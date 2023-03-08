@@ -2,7 +2,5 @@
 
 ## Release
 
-Each push to master will deploy to [staging.curarehab.se](https://staging.curarehab.se) and each release will deploy to [curarehab.se](https://curarehab.se).
-To trigger a release, create a new release on GitHub.
-
-Both releases will send notifications to the Slack channels #website-release and #website-staging.
+Create a GitHub Release this will trigger a merge into the Release branch. The release branch automatically triggers a CloudFlare pages deployment
+to production.
