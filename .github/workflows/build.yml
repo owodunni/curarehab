@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
   deployments: write
 
 jobs:
@@ -31,7 +30,7 @@ jobs:
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: 9cfea2e285c146fea82083f9ff4f38dd
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: curarehab
           directory: packages/web/.svelte-kit/cloudflare
           # Optional: Enable this if you want to have GitHub Deployments triggered
