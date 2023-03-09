@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [master]
 
-permissions:
-  contents: read
-  deployments: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,13 +22,3 @@ jobs:
       - run: npm run lint
       - run: npm run build
       - run: npm run test
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        if: github.ref == 'refs/heads/master'
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: dev-curarehab
-          directory: packages/web/.svelte-kit/cloudflare
-          # Optional: Enable this if you want to have GitHub Deployments triggered
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
