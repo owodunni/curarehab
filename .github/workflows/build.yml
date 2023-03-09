@@ -6,9 +6,9 @@ on:
   pull_request:
     branches: [master]
 
-permissions:
-  contents: read
-  deployments: write
+#permissions:
+#  contents: read
+#  deployments: write
 
 jobs:
   build:
@@ -26,12 +26,12 @@ jobs:
       - run: npm run lint
       - run: npm run build
       - run: npm run test
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: curarehab
-          directory: packages/web/.svelte-kit/cloudflare
-          # Optional: Enable this if you want to have GitHub Deployments triggered
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Publish to Cloudflare Pages
+#        uses: cloudflare/pages-action@v1
+#        with:
+#          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+#          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+#          projectName: curarehab
+#          directory: packages/web/.svelte-kit/cloudflare
+#          # Optional: Enable this if you want to have GitHub Deployments triggered
+#          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
