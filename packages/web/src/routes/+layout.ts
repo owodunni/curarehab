@@ -1,4 +1,4 @@
-import { loadTranslations, locales } from "$lib/i18n";
+import { detectLocale, loadTranslations, locales } from "$lib/i18n";
 import type { Locale } from "$lib/i18n/types";
 import type { LayoutLoad } from "./$types";
 
@@ -6,7 +6,7 @@ export const load: LayoutLoad = async (event) => {
   const { pathname } = event.url;
   const { lang } = event.params;
 
-  const locale: Locale = locales.find((l) => l === lang) || "sv";
+  const locale: Locale = locales.find((l) => l === lang) || detectLocale();
   const route = ((): string => {
     if (!lang) return pathname;
     else if (pathname === `/${lang}`) return "/";

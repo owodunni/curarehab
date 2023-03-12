@@ -1,8 +1,11 @@
+import { browser } from "$app/environment";
 import type { Config } from "sveltekit-i18n";
 import i18n from "sveltekit-i18n";
 import type { Categories, Locale } from "./types";
 
 export const locales: Locale[] = ["en", "sv"];
+const localeSet = new Set(locales);
+export const defaultLocale: Locale = "sv";
 
 const config = ((): Config => {
   const categories: ({ category: Categories } & { route?: string })[] = [
@@ -19,7 +22,6 @@ const config = ((): Config => {
         key: category,
         ...(route && { routes: [route] }),
         loader: async () => {
-          console.log("loading", locale, category, `./${locale}/index.ts`);
           return (await import(`./${locale}/index.ts`))[category];
         }
       };
@@ -31,8 +33,12 @@ const config = ((): Config => {
 
 export const { t, locale, loading, loadTranslations } = new i18n(config);
 
-/*export const detectLocale = (locale: string, defaultLocale: Locale = "sv"): Locale => {
-  const detectedLocales = [locale, locale.split("-")[0]];
-
-  return locales.find((locale) => detectedLocales.includes(locale)) || defaultLocale;
-};*/
+export const detectLocale = (): Locale => {
+  if (!browser) return defaultLocale;
+  const locale = navigator.language;
+  const detectedLocales = [window.location.pathname.split("/")[1], locale, locale.split("-")[0]];
+  for (const detectedLocale of detectedLocales) {
+    if (localeSet.has(detectedLocale as Locale)) return detectedLocale as Locale;
+  }
+  return defaultLocale;
+};

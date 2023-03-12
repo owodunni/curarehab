@@ -5,6 +5,7 @@
 <div class="p-4">
   <h1>{$t("home.title")}</h1>
   <p>{$t("home.description")}</p>
+  <a href={$t("common.link", { default: "/about" })}>{$t("home.aboutLink")}</a>
 </div>
 
 <!-- TODO: Make this a component -->

@@ -1,12 +1,13 @@
 import type { AboutTranslations, CommonTranslations, HomeTranslations } from "../types";
 
 export const common: CommonTranslations = {
-  hello: "Hello"
+  link: "/en{{link}}"
 };
 
 export const home: HomeTranslations = {
   title: "Cura Rehab",
-  description: "A website for Cura Rehab"
+  description: "A website for Cura Rehab",
+  aboutLink: "Read about us"
 };
 
 export const about: AboutTranslations = {

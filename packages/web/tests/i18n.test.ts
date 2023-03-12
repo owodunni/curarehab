@@ -7,10 +7,10 @@ test.describe("Check that pages are localized and have SEO headers", () => {
     route,
     data: { title, description }
   } of [
-    { route: "/", data: svHome },
+    { route: "/", data: enHome },
     { route: "/sv", data: svHome },
     { route: "/en", data: enHome },
-    { route: "/about", data: svAbout },
+    { route: "/about", data: enAbout },
     { route: "/sv/about", data: svAbout },
     { route: "/en/about", data: enAbout }
   ]) {
