@@ -1,3 +1,16 @@
+import { locales } from "$lib/i18n";
+
+const urls = [...locales.map((l) => `/${l}`), ""].flatMap((locale) =>
+  ["", "/about"].map((route) => {
+    return `
+      <url>
+        <loc>https://curarehab.se${locale}${route}</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+      </url>`.trim();
+  })
+);
+
 export async function GET() {
   return new Response(
     `
@@ -10,11 +23,7 @@ export async function GET() {
       xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
       xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
     >
-      <url>
-        <loc>https://curarehab.se/</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-      </url>
+      ${urls.join("\n")}
     </urlset>`.trim(),
     {
       headers: {
