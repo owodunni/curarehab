@@ -1,16 +1,16 @@
-import type { AboutTranslations, CommonTranslations, HomeTranslations } from "../types";
+import type { OmTranslations, CommonTranslations, HemTranslations } from "../types";
 
 export const common: CommonTranslations = {
   link: "/en{{link}}"
 };
 
-export const home: HomeTranslations = {
+export const hem: HemTranslations = {
   title: "Cura Rehab",
   description: "A website for Cura Rehab",
   aboutLink: "Read about us"
 };
 
-export const about: AboutTranslations = {
+export const om: OmTranslations = {
   title: "About",
   description: "About Cura Rehab"
 };

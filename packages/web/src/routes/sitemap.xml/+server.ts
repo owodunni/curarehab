@@ -1,14 +1,15 @@
-import { locales } from "$lib/i18n";
+import { defaultLocale, locales } from "$lib/i18n";
 
-const urls = [...locales.map((l) => `/${l}`), ""].flatMap((locale) =>
-  ["", "/about"].map((route) => {
-    return `
+const urls = [...locales.filter((l) => l !== defaultLocale).map((l) => `/${l}`), ""].flatMap(
+  (locale) =>
+    ["", "/om"].map((route) => {
+      return `
       <url>
         <loc>https://curarehab.se${locale}${route}</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
       </url>`.trim();
-  })
+    })
 );
 
 export async function GET() {
