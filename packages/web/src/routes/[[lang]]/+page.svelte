@@ -3,14 +3,14 @@
 </script>
 
 <div class="p-4">
-  <h1>{$t("home.title")}</h1>
-  <p>{$t("home.description")}</p>
-  <a href={$t("common.link", { default: "/about" })}>{$t("home.aboutLink")}</a>
+  <h1>{$t("hem.title")}</h1>
+  <p>{$t("hem.description")}</p>
+  <a href={$t("common.link", { default: "/om" })}>{$t("hem.aboutLink")}</a>
 </div>
 
 <!-- TODO: Make this a component -->
 <svelte:head>
   <!-- Simple SEO for now requires a title and description to be provided by the child route -->
-  <title>{$t("home.title")}</title>
-  <meta name="description" content={$t("home.description")} />
+  <title>{$t("hem.title")}</title>
+  <meta name="description" content={$t("hem.description")} />
 </svelte:head>
