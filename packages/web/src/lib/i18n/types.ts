@@ -3,6 +3,9 @@ export type Categories = "common" | "om" | "hem";
 
 export type CommonTranslations = {
   link: string;
+  title: string;
+  subtitle: string;
+  om: string;
 };
 
 export type HemTranslations = {

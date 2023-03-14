@@ -1,7 +1,10 @@
 import type { OmTranslations, CommonTranslations, HemTranslations } from "../types";
 
 export const common: CommonTranslations = {
-  link: "/en{{link}}"
+  link: "/en{{link}}",
+  title: "CuraRehab",
+  subtitle: "Pain-free rehab",
+  om: "About"
 };
 
 export const hem: HemTranslations = {
