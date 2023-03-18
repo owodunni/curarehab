@@ -10,7 +10,8 @@ import type {
   Translations,
   OmTranslations,
   BloggTranslations,
-  SmartaTranslations
+  LogaInTranslations,
+  BokaTranslations
 } from "./types";
 
 export const locales: Locale[] = ["en", "sv"];
@@ -21,7 +22,8 @@ export const pageWithRoute: Record<Page, Route> = {
   hem: { route: "/" },
   om: { route: "/om" },
   blogg: { route: "/blogg" },
-  smarta: { route: "/smarta" }
+  boka: { route: "/boka" },
+  logaIn: { route: "/logain" }
 };
 
 const groupWithRoute: Record<TranslationGroup, Partial<Route>> = {
@@ -64,10 +66,11 @@ export const t = derived(_i18n.t, (t) => {
   function r(group: "om", key: keyof OmTranslations, ...parserParams: Parser.Params): string;
   function r(group: "blogg", key: keyof BloggTranslations, ...parserParams: Parser.Params): string;
   function r(
-    group: "smarta",
-    key: keyof SmartaTranslations,
+    group: "logaIn",
+    key: keyof LogaInTranslations,
     ...parserParams: Parser.Params
   ): string;
+  function r(group: "boka", key: keyof BokaTranslations, ...parserParams: Parser.Params): string;
   function r(group: TranslationGroup, key: Translations, ...parserParams: Parser.Params): string {
     return t(`${group}.${key}`, ...parserParams);
   }

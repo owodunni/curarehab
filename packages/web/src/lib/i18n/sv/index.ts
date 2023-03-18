@@ -3,7 +3,8 @@ import type {
   CommonTranslations,
   HemTranslations,
   BloggTranslations,
-  SmartaTranslations
+  BokaTranslations,
+  LogaInTranslations
 } from "../types";
 
 export const common: CommonTranslations = {
@@ -12,7 +13,10 @@ export const common: CommonTranslations = {
   subtitle: "Smärtfri rehab",
   om: "Om oss",
   blogg: "Blogg",
-  smarta: "Smärta"
+  smarta: "Smärta",
+  menuAria: "Växla navigationsmenyn",
+  logaIn: "Logga in",
+  boka: "Boka nu"
 };
 
 export const hem: HemTranslations = {
@@ -31,7 +35,12 @@ export const blogg: BloggTranslations = {
   description: "Bloggartiklar om rehab, smärta och mer"
 };
 
-export const smarta: SmartaTranslations = {
-  title: "Smärta",
-  description: "Hur du rehabar och behandlar smärta i din kropp"
+export const boka: BokaTranslations = {
+  title: "Boka",
+  description: "Boka en tid hos oss"
+};
+
+export const logaIn: LogaInTranslations = {
+  title: "Loga in",
+  description: "Loga in till din konto"
 };
