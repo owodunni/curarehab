@@ -12,6 +12,7 @@ export type CommonTranslations = {
   menuAria: string;
   logaIn: string;
   boka: string;
+  directions: string;
 };
 
 export type HemTranslations = {

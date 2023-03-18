@@ -20,7 +20,7 @@
     <Container class={"relative z-50 flex justify-between py-8"}>
       <div class="relative z-10 flex items-center gap-16">
         <a href={$l("hem")} class="flex items-center"
-          ><AcademicCapIcon class="h-10 w-10 text-zinc-500" /><span class="text-xl"
+          ><AcademicCapIcon class="h-10 w-10 text-zinc-500" /><span class="text-base font-semibold"
             >{$t("common", "title")}</span
           ></a
         >

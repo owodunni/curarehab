@@ -16,7 +16,8 @@ export const common: CommonTranslations = {
   smarta: "Smärta",
   menuAria: "Växla navigationsmenyn",
   logaIn: "Logga in",
-  boka: "Boka nu"
+  boka: "Boka nu",
+  directions: "Klicka här för att se hur du kommer till oss."
 };
 
 export const hem: HemTranslations = {

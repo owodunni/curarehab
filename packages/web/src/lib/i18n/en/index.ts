@@ -16,7 +16,8 @@ export const common: CommonTranslations = {
   smarta: "Pain",
   menuAria: "Toggle site navigation",
   logaIn: "Log in",
-  boka: "Book"
+  boka: "Book",
+  directions: "Click here to see how to get to us."
 };
 
 export const hem: HemTranslations = {
