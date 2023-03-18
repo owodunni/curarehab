@@ -3,7 +3,8 @@ import type {
   CommonTranslations,
   HemTranslations,
   BloggTranslations,
-  SmartaTranslations
+  BokaTranslations,
+  LogaInTranslations
 } from "../types";
 
 export const common: CommonTranslations = {
@@ -12,7 +13,10 @@ export const common: CommonTranslations = {
   subtitle: "Pain-free rehab",
   om: "About us",
   blogg: "Blog",
-  smarta: "Pain"
+  smarta: "Pain",
+  menuAria: "Toggle site navigation",
+  logaIn: "Log in",
+  boka: "Book"
 };
 
 export const hem: HemTranslations = {
@@ -31,7 +35,12 @@ export const blogg: BloggTranslations = {
   description: "Blog articles about rehab, pain and more"
 };
 
-export const smarta: SmartaTranslations = {
-  title: "Pain",
-  description: "How to rehab and treat pain in your body"
+export const boka: BokaTranslations = {
+  title: "Book",
+  description: "Book an appointment with us"
+};
+
+export const logaIn: LogaInTranslations = {
+  title: "Log in",
+  description: "Log in to your account"
 };
