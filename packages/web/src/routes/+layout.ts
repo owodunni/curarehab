@@ -20,6 +20,5 @@ export const load: LayoutLoad = async (event) => {
   if (localeExists === defaultLocale) throw redirect(308, route);
 
   await loadTranslations(locale, route);
-
   return event.data;
 };
