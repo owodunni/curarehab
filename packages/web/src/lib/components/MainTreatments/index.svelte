@@ -1,23 +1,22 @@
 <script lang="ts">
-  import { Container } from ".";
+  import { Container } from "$lib/components";
   import treatmentImg from "$lib/assets/rehab-treatment-unsplash.jpg";
   import { Tab, TabGroup, TabList } from "@rgossiaux/svelte-headlessui";
+  import { t } from "$lib/i18n";
+  import type { HemTranslations } from "$lib/i18n/types";
 
-  const treatments: { title: string; description: string }[] = [
+  const treatments: { title: keyof HemTranslations; description: keyof HemTranslations }[] = [
     {
-      title: "Naprapati - Smärtlindring för muskler och leder",
-      description:
-        "Våra naprapater använder manuella tekniker och träning för att lindra smärta och öka rörligheten i muskler och leder."
+      title: "naprapathyTitle",
+      description: "naprapathyParagraph"
     },
     {
-      title: "Fysioterapi - Återställer rörlighet och förbättrar funktion",
-      description:
-        "Våra fysioterapeuter använder manuell terapi och andra tekniker för att återställa rörligheten och förbättra funktionen i kroppen."
+      title: "physiotherapyTitle",
+      description: "physiotherapyParagraph"
     },
     {
-      title: "Massage - Avkoppling och återhämtning för kropp och själ",
-      description:
-        "Våra massageterapeuter använder olika tekniker för att lindra muskelspänningar, öka blodcirkulationen och förbättra rörligheten, samtidigt som du kan koppla av och återhämta dig."
+      title: "massageTitle",
+      description: "massageParagraph"
     }
   ];
 </script>
@@ -30,12 +29,10 @@
   <Container>
     <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-3xl">
       <h2 class="text-3xl font-medium tracking-tight text-white">
-        Våra behandlingar - Skräddarsydda för din hälsa och återhämtning
+        {$t("hem", "mainTreatmentTitle")}
       </h2>
       <p class="mt-2 text-lg text-gray-400">
-        På CuraRehab erbjuder vi en rad olika behandlingar. Våra kvalificerade terapeuter arbetar
-        tillsammans för att utveckla en skräddarsydd behandlingsplan som passar dina specifika behov
-        och mål för att hjälpa dig att återhämta dig och återfå din hälsa.
+        {$t("hem", "mainTreatmentParagraph")}
       </p>
     </div>
   </Container>
@@ -57,12 +54,12 @@
               <Tab>
                 <div class="text-left [&:not(:focus-visible)]:focus:outline-none">
                   <span class="absolute inset-0 rounded-2xl" />
-                  {treatment.title}
+                  {$t("hem", treatment.title)}
                 </div>
               </Tab>
             </h3>
             <p class="mt-2 text-sm text-gray-400">
-              {treatment.description}
+              {$t("hem", treatment.description)}
             </p>
           </div>
         </div>

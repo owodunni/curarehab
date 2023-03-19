@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Hero } from "$lib/components";
-  import MainTreatments from "$lib/components/MainTreatments.svelte";
+  import { Hero, MainTreatments } from "$lib/components";
   import { t } from "$lib/i18n";
 </script>
 
