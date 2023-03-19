@@ -1,9 +1,13 @@
 <script lang="ts">
   import { Hero } from "$lib/components";
+  import MainTreatments from "$lib/components/MainTreatments.svelte";
   import { t } from "$lib/i18n";
 </script>
 
-<Hero />
+<main>
+  <Hero />
+  <MainTreatments />
+</main>
 
 <!-- TODO: Make this a component -->
 <svelte:head>
