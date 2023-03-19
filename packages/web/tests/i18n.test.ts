@@ -24,7 +24,6 @@ test.describe("Test locale, SEO, status and redirects", () => {
 
       if (!data) return;
       const { title, description } = data;
-      await expect(page.getByRole("heading", { name: title })).toBeVisible();
       expect(await page.title()).toBe(title);
       await expect(page.locator('meta[name="description"]')).toHaveAttribute(
         "content",

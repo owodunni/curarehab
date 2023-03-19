@@ -23,7 +23,12 @@ export const common: CommonTranslations = {
 export const hem: HemTranslations = {
   title: "Cura Rehab",
   description: "En hemsida för Cura Rehab",
-  aboutLink: "Läs om oss"
+  titleParagraph: "Bli av med smärta och rehabilitera skador",
+  subtitleParagraph:
+    "Har du ont i ryggen, nacken eller lederna? Vi på CuraRehab kan hjälpa dig. Vi använder en kombination av naprapati och fysioterapi för att behandla smärta och rehabilitera skador. Boka din tid idag och ta det första steget mot ett smärtfritt liv!",
+  readMore: "Läs mer",
+  boka: "Boka din tid",
+  heroImage: "Äldre man rehabiliterar sin rygg"
 };
 
 export const om: OmTranslations = {

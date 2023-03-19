@@ -23,7 +23,12 @@ export const common: CommonTranslations = {
 export const hem: HemTranslations = {
   title: "Cura Rehab",
   description: "A website for Cura Rehab",
-  aboutLink: "Read about us"
+  titleParagraph: "Get rid of pain and rehabilitate injuries",
+  subtitleParagraph:
+    "Do you have back, neck, or joint pain? We at CuraRehab can help. We use a combination of naprapathy and physiotherapy to treat pain and rehabilitate injuries. Book your appointment today and take the first step towards a pain-free life!",
+  readMore: "Read more",
+  boka: "Book your appointment",
+  heroImage: "Old man rehabinating his back"
 };
 
 export const om: OmTranslations = {
