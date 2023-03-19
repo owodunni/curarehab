@@ -23,6 +23,14 @@ export type HemTranslations = {
   readMore: string;
   boka: string;
   heroImage: string;
+  naprapathyTitle: string;
+  naprapathyParagraph: string;
+  physiotherapyTitle: string;
+  physiotherapyParagraph: string;
+  massageTitle: string;
+  massageParagraph: string;
+  mainTreatmentTitle: string;
+  mainTreatmentParagraph: string;
 };
 
 export type OmTranslations = {
