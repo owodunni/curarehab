@@ -18,7 +18,11 @@ export type CommonTranslations = {
 export type HemTranslations = {
   title: string;
   description: string;
-  aboutLink: string;
+  titleParagraph: string;
+  subtitleParagraph: string;
+  readMore: string;
+  boka: string;
+  heroImage: string;
 };
 
 export type OmTranslations = {
