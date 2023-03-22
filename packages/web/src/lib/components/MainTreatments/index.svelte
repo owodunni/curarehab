@@ -48,14 +48,14 @@
         vertical
         let:selectedIndex
       >
-        <TabList class="relative z-10 order-last col-span-6 space-y-6">
+        <TabList class="relative z-10 col-span-12 space-y-6 md:order-last md:col-span-6">
           {#each treatments as treatment, i}
             <div class="relative rounded-2xl transition-colors hover:bg-gray-800/30">
               {#if i === selectedIndex}
                 <div class="absolute inset-0 rounded-lg bg-gray-800" />
               {/if}
               <div class="relative z-10 p-8">
-                <h3 class="mt-6 text-lg font-semibold text-white">
+                <h3 class="text-lg font-semibold text-white">
                   <Tab>
                     <div class="text-left [&:not(:focus-visible)]:focus:outline-none">
                       <span class="absolute inset-0 rounded-2xl" />
@@ -66,27 +66,29 @@
                 <p class="mt-2 text-sm text-gray-400">
                   {$t("hem", treatment.description)}
                 </p>
-                {#if i === selectedIndex}
-                  <div class="pt-4">
-                    <a
-                      href={$l("blogg")}
-                      class="relative text-sm font-semibold text-white hover:text-gray-300"
-                      >{$t("hem", "readMore")} <span aria-hidden="true">→</span></a
-                    >
-                  </div>
-                {/if}
+                <div class="pt-4">
+                  <a
+                    href={$l("blogg")}
+                    class="relative text-sm font-semibold text-white hover:text-gray-300"
+                    >{$t("hem", "readMore")} <span aria-hidden="true">→</span></a
+                  >
+                </div>
               </div>
             </div>
+            <img src={treatment.image} alt="" class="rounded-lg object-cover grayscale md:hidden" />
           {/each}
         </TabList>
-        <div class="relative col-span-6">
-          <div class="relative aspect-video">
-            {#each treatments as { image }, i}
-              {#if i === selectedIndex}
-                <img transition:fade src={image} alt="" class="absolute rounded-lg grayscale" />
-              {/if}
-            {/each}
-          </div>
+        <div class="relative col-span-12 h-full w-full md:col-span-6">
+          {#each treatments as { image }, i}
+            {#if i === selectedIndex}
+              <img
+                transition:fade
+                src={image}
+                alt=""
+                class="absolute h-full w-full rounded-lg object-cover grayscale"
+              />
+            {/if}
+          {/each}
         </div>
       </TabGroup>
     </div>
