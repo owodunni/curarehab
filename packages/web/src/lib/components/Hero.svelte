@@ -15,7 +15,7 @@
       <polygon points="0,0 90,0 50,100 0,100" />
     </svg>
 
-    <div class="relative py-32 px-6 sm:py-40 lg:py-56 lg:px-8 lg:pr-0">
+    <div class="relative py-32 sm:py-40 lg:py-56 lg:pr-0">
       <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
         <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
           {$t("hem", "titleParagraph")}
