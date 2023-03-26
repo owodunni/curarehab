@@ -11,8 +11,9 @@
     Transition
   } from "@rgossiaux/svelte-headlessui";
   import NavLink from "./NavLink.svelte";
+  export let isLoggedIn = false;
   const links = ["om", "blogg"] as const;
-  const buttonLinks = ["logaIn", "boka"] as const;
+  const buttonLinks = [isLoggedIn ? "profile" : "login", "boka"] as const;
 </script>
 
 <header>

@@ -1,5 +1,5 @@
 export type Locale = "en" | "sv";
-export type Page = "hem" | "om" | "blogg" | "boka" | "logaIn";
+export type Page = "hem" | "om" | "blogg" | "boka" | "login" | "profile";
 export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
@@ -10,9 +10,11 @@ export type CommonTranslations = {
   blogg: string;
   smarta: string;
   menuAria: string;
-  logaIn: string;
+  login: string;
   boka: string;
   directions: string;
+  hem: string;
+  profile: string;
 };
 
 export type HemTranslations = {
@@ -43,14 +45,34 @@ export type BloggTranslations = {
   description: string;
 };
 
-export type LogaInTranslations = {
+export type BokaTranslations = {
   title: string;
   description: string;
 };
 
-export type BokaTranslations = {
+export type LogInTranslations = {
   title: string;
   description: string;
+  password: string;
+  email: string;
+  signUp: string;
+};
+
+export type ProfileTranslations = {
+  title: string;
+  description: string;
+  welcome: string;
+  logOut: string;
+};
+
+export type TranslationsByGroup = {
+  common: CommonTranslations;
+  hem: HemTranslations;
+  om: OmTranslations;
+  blogg: BloggTranslations;
+  boka: BokaTranslations;
+  login: LogInTranslations;
+  profile: ProfileTranslations;
 };
 
 export type Translations =
@@ -58,5 +80,6 @@ export type Translations =
   | keyof OmTranslations
   | keyof BloggTranslations
   | keyof CommonTranslations
-  | keyof LogaInTranslations
-  | keyof BokaTranslations;
+  | keyof BokaTranslations
+  | keyof ProfileTranslations
+  | keyof LogInTranslations;

@@ -4,7 +4,9 @@ import type {
   HemTranslations,
   BloggTranslations,
   BokaTranslations,
-  LogaInTranslations
+  LogInTranslations,
+  TranslationsByGroup,
+  ProfileTranslations
 } from "../types";
 
 export const common: CommonTranslations = {
@@ -15,9 +17,11 @@ export const common: CommonTranslations = {
   blogg: "Blog",
   smarta: "Pain",
   menuAria: "Toggle site navigation",
-  logaIn: "Log in",
+  login: "Log in",
   boka: "Book",
-  directions: "Click here to see how to get to us."
+  directions: "Click here to see how to get to us.",
+  hem: "Home",
+  profile: "Profile"
 };
 
 export const hem: HemTranslations = {
@@ -58,7 +62,27 @@ export const boka: BokaTranslations = {
   description: "Book an appointment with us"
 };
 
-export const logaIn: LogaInTranslations = {
+export const login: LogInTranslations = {
   title: "Log in",
-  description: "Log in to your account"
+  description: "Log in to your account",
+  password: "Password",
+  email: "Email address",
+  signUp: "Sign up"
+};
+
+const profile: ProfileTranslations = {
+  title: "Profile",
+  description: "Your profile",
+  welcome: "Welcome {{name}}!",
+  logOut: "Log out"
+};
+
+export const translations: TranslationsByGroup = {
+  common,
+  hem,
+  om,
+  blogg,
+  boka,
+  login,
+  profile
 };

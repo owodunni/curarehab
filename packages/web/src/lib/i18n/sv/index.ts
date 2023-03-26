@@ -4,7 +4,9 @@ import type {
   HemTranslations,
   BloggTranslations,
   BokaTranslations,
-  LogaInTranslations
+  LogInTranslations,
+  TranslationsByGroup,
+  ProfileTranslations
 } from "../types";
 
 export const common: CommonTranslations = {
@@ -15,9 +17,11 @@ export const common: CommonTranslations = {
   blogg: "Blogg",
   smarta: "Smärta",
   menuAria: "Växla navigationsmenyn",
-  logaIn: "Logga in",
+  login: "Logga in",
   boka: "Boka nu",
-  directions: "Klicka här för att se hur du kommer till oss."
+  directions: "Klicka här för att se hur du kommer till oss.",
+  hem: "Hem",
+  profile: "Profil"
 };
 
 export const hem: HemTranslations = {
@@ -58,7 +62,27 @@ export const boka: BokaTranslations = {
   description: "Boka en tid hos oss"
 };
 
-export const logaIn: LogaInTranslations = {
+export const login: LogInTranslations = {
   title: "Loga in",
-  description: "Loga in till din konto"
+  description: "Loga in till din konto",
+  password: "Lösenord",
+  email: "E-post address",
+  signUp: "Skapa konto"
+};
+
+const profile: ProfileTranslations = {
+  title: "Din sida",
+  description: "Din sida",
+  welcome: "Välkommen {{name}}!",
+  logOut: "Logga ut"
+};
+
+export const translations: TranslationsByGroup = {
+  common,
+  hem,
+  om,
+  blogg,
+  boka,
+  login,
+  profile
 };

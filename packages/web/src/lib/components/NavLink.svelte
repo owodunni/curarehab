@@ -1,7 +1,10 @@
 <script lang="ts">
   import { l, t } from "$lib/i18n";
+  import type { Page } from "$lib/i18n";
 
-  const links = ["om", "blogg"] as const;
+  export let extraLinks: Page[] = [];
+
+  const links: Page[] = ["om", "blogg", ...extraLinks];
 </script>
 
 {#each links as link}

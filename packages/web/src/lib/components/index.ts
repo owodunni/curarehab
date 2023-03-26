@@ -4,3 +4,4 @@ export { default as Hero } from "./Hero.svelte";
 export { default as Container } from "./Container.svelte";
 export { default as Button } from "./Button.svelte";
 export { default as MainTreatments } from "./MainTreatments/index.svelte";
+export { default as HeroComponent } from "./HeroComponent.svelte";

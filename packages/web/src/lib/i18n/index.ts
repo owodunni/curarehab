@@ -10,9 +10,12 @@ import type {
   Translations,
   OmTranslations,
   BloggTranslations,
-  LogaInTranslations,
-  BokaTranslations
+  BokaTranslations,
+  LogInTranslations,
+  TranslationsByGroup,
+  ProfileTranslations
 } from "./types";
+export type { Page };
 
 export const locales: Locale[] = ["en", "sv"];
 export const defaultLocale: Locale = "sv";
@@ -23,7 +26,8 @@ export const pageWithRoute: Record<Page, Route> = {
   om: { route: "/om" },
   blogg: { route: "/blogg" },
   boka: { route: "/boka" },
-  logaIn: { route: "/logain" }
+  login: { route: "/login" },
+  profile: { route: "/profile" }
 };
 
 const groupWithRoute: Record<TranslationGroup, Partial<Route>> = {
@@ -40,7 +44,9 @@ const config = ((): Config => {
         key: category,
         ...(route && { routes: [route] }),
         loader: async () => {
-          return (await import(`./${locale}/index.ts`))[category];
+          return ((await import(`./${locale}/index.ts`))["translations"] as TranslationsByGroup)[
+            category as TranslationGroup
+          ];
         }
       };
     });
@@ -65,12 +71,13 @@ export const t = derived(_i18n.t, (t) => {
   function r(group: "hem", key: keyof HemTranslations, ...parserParams: Parser.Params): string;
   function r(group: "om", key: keyof OmTranslations, ...parserParams: Parser.Params): string;
   function r(group: "blogg", key: keyof BloggTranslations, ...parserParams: Parser.Params): string;
+  function r(group: "boka", key: keyof BokaTranslations, ...parserParams: Parser.Params): string;
+  function r(group: "login", key: keyof LogInTranslations, ...parserParams: Parser.Params): string;
   function r(
-    group: "logaIn",
-    key: keyof LogaInTranslations,
+    group: "profile",
+    key: keyof ProfileTranslations,
     ...parserParams: Parser.Params
   ): string;
-  function r(group: "boka", key: keyof BokaTranslations, ...parserParams: Parser.Params): string;
   function r(group: TranslationGroup, key: Translations, ...parserParams: Parser.Params): string {
     return t(`${group}.${key}`, ...parserParams);
   }
