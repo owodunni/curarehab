@@ -65,51 +65,22 @@
                     class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8"
                     >Title</th
                   >
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >Sammanfattning</th
-                  >
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >Språk</th
-                  >
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >Skapad</th
-                  >
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >Updaterad</th
-                  >
                   <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">
                     <span class="sr-only">Updatera</span>
-                  </th>
-                  <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">
-                    <span class="sr-only">Ta bort</span>
                   </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-                {#each posts as post, i}
+                {#each posts as post}
                   <tr>
                     <td
                       class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
                       >{post.title}</td
                     >
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{post.excerpt}</td
-                    >
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{post.locale}</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                      >{new Date(post.created_at).toLocaleDateString("sv-SE")}</td
-                    >
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                      >{new Date(post.updated_at).toLocaleDateString("sv-SE")}</td
-                    >
                     <td
                       class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8"
                     >
-                      <Button href="#" variant="outline">Updatera</Button>
-                    </td>
-                    <td
-                      class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8"
-                    >
-                      <Button href="#" variant="outline">Ta bort</Button>
+                      <Button href={post.link} variant="outline">Updatera</Button>
                     </td>
                   </tr>
                 {/each}

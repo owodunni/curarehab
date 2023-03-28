@@ -7,7 +7,7 @@ export type CommonTranslations = {
   title: string;
   subtitle: string;
   om: string;
-  blogg: string;
+  blog: string;
   smarta: string;
   menuAria: string;
   login: string;

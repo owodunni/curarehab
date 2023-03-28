@@ -12,7 +12,7 @@
   } from "@rgossiaux/svelte-headlessui";
   import NavLink from "./NavLink.svelte";
   export let isLoggedIn = false;
-  const links = ["om", "blogg"] as const;
+  const links = ["om", "blog"] as const;
   const buttonLinks = [isLoggedIn ? "profile" : "login", "boka"] as const;
 </script>
 
