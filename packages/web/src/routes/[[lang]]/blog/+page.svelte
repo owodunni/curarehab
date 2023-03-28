@@ -3,6 +3,6 @@
 </script>
 
 <svelte:head>
-  <title>{$t("blogg", "title")}</title>
-  <meta name="description" content={$t("blogg", "description")} />
+  <title>{$t("blog", "title")}</title>
+  <meta name="description" content={$t("blog", "description")} />
 </svelte:head>

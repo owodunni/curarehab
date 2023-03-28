@@ -14,7 +14,7 @@ export const common: CommonTranslations = {
   title: "CuraRehab",
   subtitle: "Pain-free rehab",
   om: "About us",
-  blogg: "Blog",
+  blog: "Blog",
   smarta: "Pain",
   menuAria: "Toggle site navigation",
   login: "Log in",
@@ -52,7 +52,7 @@ export const om: OmTranslations = {
   description: "About Cura Rehab"
 };
 
-export const blogg: BlogTranslations = {
+export const blog: BlogTranslations = {
   title: "Blog",
   description: "Blog articles about rehab, pain and more"
 };
