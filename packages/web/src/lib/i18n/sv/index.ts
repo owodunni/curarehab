@@ -2,7 +2,7 @@ import type {
   OmTranslations,
   CommonTranslations,
   HemTranslations,
-  BloggTranslations,
+  BlogTranslations,
   BokaTranslations,
   LogInTranslations,
   TranslationsByGroup,
@@ -52,7 +52,7 @@ export const om: OmTranslations = {
   description: "Om Cura Rehab"
 };
 
-export const blogg: BloggTranslations = {
+export const blog: BlogTranslations = {
   title: "Blogg",
   description: "Bloggartiklar om rehab, smärta och mer"
 };
@@ -81,7 +81,7 @@ export const translations: TranslationsByGroup = {
   common,
   hem,
   om,
-  blogg,
+  blog,
   boka,
   login,
   profile
