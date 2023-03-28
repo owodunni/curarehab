@@ -1,36 +1,48 @@
 import type { BlogPostMetaData, SupabaseLightClient, SupabaseUtil } from "./types";
 
-function getRouteFromPosts(post: Required<BlogPostMetaData>, posts: Map<number, BlogPostMetaData>) {
-  const route: string[] = [];
-  function addPostToRouteReqursive(post: BlogPostMetaData): string[] {
-    route.push(post.slug);
-    if (post.parent === null) return route;
-    const parent = posts.get(post.parent);
-    if (parent) return addPostToRouteReqursive(parent);
-    return route;
-  }
-  return `/${addPostToRouteReqursive(post).reverse().join("/")}`;
-}
+const cacheable = <T>(fn: () => T, duration: number) => {
+  let cache: T;
+  let lastUpdate = 0;
+  return () => {
+    const now = Date.now();
+    if (now - lastUpdate > duration) {
+      cache = fn();
+      lastUpdate = now;
+    }
+    return cache;
+  };
+};
 
 export const util = (supabase: SupabaseLightClient): SupabaseUtil => {
+  const postsCache = cacheable(
+    () => supabase.getBlogPostsMetaData().then((posts) => new Map(posts.map((p) => [p.id, p]))),
+    200
+  );
+
+  async function getRouteFromPosts(post: Required<BlogPostMetaData>): Promise<string> {
+    const route: string[] = [];
+    async function addPostToRouteReqursive(post: BlogPostMetaData): Promise<string[]> {
+      route.push(post.slug);
+      if (post.parent === null) return route;
+      const parent = (await postsCache()).get(post.parent);
+      if (parent) return addPostToRouteReqursive(parent);
+      return route;
+    }
+    return `/${(await addPostToRouteReqursive(post)).reverse().join("/")}`;
+  }
+
   return {
     getRouteToPost: async (post: BlogPostMetaData) => {
       if (post.parent === null) {
         return `/${post.slug}`;
       }
 
-      const posts = await supabase.getBlogPostsMetaData();
-      return "code" in posts
-        ? posts
-        : getRouteFromPosts(post, new Map(posts.map((p) => [p.id, p])));
+      return getRouteFromPosts(post);
     },
     getPostFromRoute: async (slugs: string) => {
       // We want the slugs in reverse order, so we can start with the leaf and then go up the tree
       const slugList = slugs.split("/").reverse();
-      const [post, posts] = await Promise.all([
-        supabase.getBlogPost(slugList[0]),
-        supabase.getBlogPostsMetaData()
-      ]);
+      const post = await supabase.getBlogPost(slugList[0]);
       if ("code" in post) {
         return post;
       } else if (post.parent === null && slugList.length === 1) {
@@ -39,9 +51,7 @@ export const util = (supabase: SupabaseLightClient): SupabaseUtil => {
         return { code: 404, message: "Article not found" };
       }
 
-      if ("code" in posts) return posts;
-
-      const postsMap = new Map(posts.map((p) => [p.id, p]));
+      const postsMap = await postsCache();
 
       //return supabase.getBlogPost(slugList[0]);
       function checkSlugRecursive(slugs: string[], post: BlogPostMetaData): boolean {

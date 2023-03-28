@@ -1,4 +1,5 @@
-import type { Supabase, SupabaseLightClient } from "./types";
+import { error } from "@sveltejs/kit";
+import type { Supabase, SupabaseLightClient, SupabaseUtil } from "./types";
 import { util } from "./util";
 
 export const supabaseApiKeys = () => ({
@@ -11,11 +12,12 @@ export type { Database } from "./supabase";
 export type { Supabase, Session } from "./types";
 
 export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => {
-  return {
+  let u: SupabaseUtil;
+  const client: SupabaseLightClient = {
     getBlogPostsMetaData: async () => {
       const result = await supabase.from("blog").select("id,slug,locale,parent");
       if (result.error) {
-        return { message: result.error.message, code: 500 };
+        throw error(500, result.error);
       } else {
         return result.data;
       }
@@ -36,9 +38,11 @@ export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => 
         return result.data[0];
       }
     },
-    get util() {
-      return util(this);
+    util: () => {
+      u = u || util(client);
+      return u;
     },
     s: supabase
   };
+  return client;
 };

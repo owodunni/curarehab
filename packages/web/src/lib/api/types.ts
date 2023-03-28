@@ -11,10 +11,10 @@ export type BlogPostMetaData = Pick<
 export type BlogPost = Database["public"]["Tables"]["blog"]["Row"];
 
 export interface SupabaseLightClient {
-  getBlogPostsMetaData: () => Promise<BlogPostMetaData[] | DbError>;
+  getBlogPostsMetaData: () => Promise<BlogPostMetaData[]>;
   getBlogPosts: () => Promise<BlogPost[] | DbError>;
   getBlogPost: (slug: string) => Promise<BlogPost | DbError>;
-  util: SupabaseUtil;
+  util: () => SupabaseUtil;
   s: Supabase;
 }
 

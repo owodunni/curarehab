@@ -60,10 +60,6 @@ describe("supabase util", () => {
     expect(await getRouteToPost(p0)).toBe("/pain");
     expect(await getRouteToPost(p1)).toBe("/pain/back");
     expect(await getRouteToPost(p2)).toBe("/pain/back/extream");
-
-    const error = { code: 500, message: "not found" };
-    supabase.getBlogPostsMetaData.mockResolvedValueOnce(error);
-    expect(await getRouteToPost(p2)).toEqual(error);
   });
 
   it("getPostFromRoute", async () => {
