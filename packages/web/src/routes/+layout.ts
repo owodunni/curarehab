@@ -1,4 +1,4 @@
-import { supabaseApiKeys, type Database } from "$lib/api";
+import { supabaseApiKeys, supabaseLightClient, type Database } from "$lib/api";
 import { defaultLocale, loadTranslations, locales } from "$lib/i18n";
 import type { Locale } from "$lib/i18n/types";
 import { createSupabaseLoadClient } from "@supabase/auth-helpers-sveltekit";
@@ -36,5 +36,5 @@ export const load: LayoutLoad = async (event) => {
     data: { session }
   } = await supabase.auth.getSession();
 
-  return { ...event.data, supabase, session };
+  return { ...event.data, supabase: supabaseLightClient(supabase), session };
 };

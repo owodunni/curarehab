@@ -1,0 +1,26 @@
+import type { Database } from "./supabase";
+import type { SupabaseClient, Session } from "@supabase/supabase-js";
+
+export type Supabase = SupabaseClient<Database>;
+export type { Session };
+
+export type BlogPostMetaData = Pick<
+  Database["public"]["Tables"]["blog"]["Row"],
+  "id" | "slug" | "locale" | "parent"
+>;
+export type BlogPost = Database["public"]["Tables"]["blog"]["Row"];
+
+export interface SupabaseLightClient {
+  getBlogPostsMetaData: () => Promise<BlogPostMetaData[] | DbError>;
+  getBlogPosts: () => Promise<BlogPost[] | DbError>;
+  getBlogPost: (slug: string) => Promise<BlogPost | DbError>;
+  util: SupabaseUtil;
+  s: Supabase;
+}
+
+export interface SupabaseUtil {
+  getRouteToPost: (post: BlogPostMetaData) => Promise<string | DbError>;
+  getPostFromRoute: (slugs: string) => Promise<BlogPost | DbError>;
+}
+
+export type DbError = { message: string; code: number };

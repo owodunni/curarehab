@@ -22,7 +22,7 @@
     error = "";
     try {
       if (action === "signUp") {
-        const result = await data.supabase.auth.signUp({
+        const result = await data.supabase.s.auth.signUp({
           email,
           password
         });
@@ -30,7 +30,7 @@
           error = result.error.message;
         }
       } else if (action === "login") {
-        const result = await data.supabase.auth.signInWithPassword({
+        const result = await data.supabase.s.auth.signInWithPassword({
           email,
           password
         });

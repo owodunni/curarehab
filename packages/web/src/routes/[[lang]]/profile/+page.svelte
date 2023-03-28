@@ -4,18 +4,19 @@
   import type { PageData } from "./$types";
 
   export let data: PageData;
-  const posts = data.bloggPosts || [];
+  const posts = data.blogPosts;
   let showDialog = false;
 
   let submitted = false;
 
   async function handleSubmit(e: Event) {
     const formData = new FormData(e.target as HTMLFormElement);
-    const res = await data.supabase.from("blogg").insert([
+    const res = await data.supabase.s.from("blog").insert([
       {
         title: formData.get("title") as string,
         excerpt: formData.get("excerpt") as string,
         post: formData.get("article") as string,
+        slug: formData.get("slug") as string,
         author: data.user.id,
         updated_at: new Date().toISOString(),
         locale: "sv"
@@ -91,23 +92,24 @@
                       class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
                       >{post.title}</td
                     >
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                      >{post.excerpt}</td
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{post.excerpt}</td
                     >
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{post.locale}</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{new Date(post.created_at).toLocaleDateString("sv-SE")}</td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{new Date(post.updated_at).toLocaleDateString("sv-SE")}</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+                      >{new Date(post.created_at).toLocaleDateString("sv-SE")}</td
+                    >
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+                      >{new Date(post.updated_at).toLocaleDateString("sv-SE")}</td
+                    >
                     <td
                       class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8"
                     >
-                      <Button href="#" variant="outline"
-                        >Updatera</Button>
+                      <Button href="#" variant="outline">Updatera</Button>
                     </td>
                     <td
                       class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8"
                     >
-                      <Button href="#" variant="outline"
-                        >Ta bort</Button>
+                      <Button href="#" variant="outline">Ta bort</Button>
                     </td>
                   </tr>
                 {/each}
@@ -140,6 +142,21 @@
                     placeholder="Lorem ipsum dolor."
                   />
                 </div>
+              </div>
+            </div>
+
+            <div class="col-span-full">
+              <label for="slug" class="block text-sm font-medium leading-6 text-gray-900"
+                >Slug</label
+              >
+              <div class="mt-2">
+                <textarea
+                  id="slug"
+                  name="slug"
+                  rows="1"
+                  placeholder="Lorem"
+                  class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
+                />
               </div>
             </div>
 
