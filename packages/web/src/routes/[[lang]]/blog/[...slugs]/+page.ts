@@ -1,6 +1,6 @@
 import type { PageLoad } from "./$types";
 import { error } from "@sveltejs/kit";
-import { compile } from "mdsvex/dist/browser-umd";
+import { marked } from "marked";
 
 export const load: PageLoad = async (event) => {
   const { supabase } = await event.parent();
@@ -10,6 +10,6 @@ export const load: PageLoad = async (event) => {
 
   if ("code" in post) throw error(post.code, post.message);
   return {
-    post: { ...post, html: await compile(post.post || "") }
+    post: { ...post, html: marked.parse(post.post || "") }
   };
 };

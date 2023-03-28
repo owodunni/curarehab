@@ -7,6 +7,6 @@
 <Container>
   <h1>{data.post.title}</h1>
   <article class="prose">
-    {@html data.post.html.code}
+    {@html data.post.html}
   </article>
 </Container>

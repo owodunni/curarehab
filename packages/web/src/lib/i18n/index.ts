@@ -9,7 +9,7 @@ import type {
   HemTranslations,
   Translations,
   OmTranslations,
-  BloggTranslations,
+  BlogTranslations,
   BokaTranslations,
   LogInTranslations,
   TranslationsByGroup,
@@ -24,7 +24,7 @@ type Route = { route: string };
 export const pageWithRoute: Record<Page, Route> = {
   hem: { route: "/" },
   om: { route: "/om" },
-  blogg: { route: "/blogg" },
+  blog: { route: "/blog" },
   boka: { route: "/boka" },
   login: { route: "/login" },
   profile: { route: "/profile" }
@@ -70,7 +70,7 @@ export const t = derived(_i18n.t, (t) => {
   ): string;
   function r(group: "hem", key: keyof HemTranslations, ...parserParams: Parser.Params): string;
   function r(group: "om", key: keyof OmTranslations, ...parserParams: Parser.Params): string;
-  function r(group: "blogg", key: keyof BloggTranslations, ...parserParams: Parser.Params): string;
+  function r(group: "blog", key: keyof BlogTranslations, ...parserParams: Parser.Params): string;
   function r(group: "boka", key: keyof BokaTranslations, ...parserParams: Parser.Params): string;
   function r(group: "login", key: keyof LogInTranslations, ...parserParams: Parser.Params): string;
   function r(

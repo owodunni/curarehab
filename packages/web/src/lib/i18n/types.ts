@@ -1,5 +1,5 @@
 export type Locale = "en" | "sv";
-export type Page = "hem" | "om" | "blogg" | "boka" | "login" | "profile";
+export type Page = "hem" | "om" | "blog" | "boka" | "login" | "profile";
 export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
@@ -40,7 +40,7 @@ export type OmTranslations = {
   description: string;
 };
 
-export type BloggTranslations = {
+export type BlogTranslations = {
   title: string;
   description: string;
 };
@@ -69,7 +69,7 @@ export type TranslationsByGroup = {
   common: CommonTranslations;
   hem: HemTranslations;
   om: OmTranslations;
-  blogg: BloggTranslations;
+  blog: BlogTranslations;
   boka: BokaTranslations;
   login: LogInTranslations;
   profile: ProfileTranslations;
@@ -78,7 +78,7 @@ export type TranslationsByGroup = {
 export type Translations =
   | keyof HemTranslations
   | keyof OmTranslations
-  | keyof BloggTranslations
+  | keyof BlogTranslations
   | keyof CommonTranslations
   | keyof BokaTranslations
   | keyof ProfileTranslations
