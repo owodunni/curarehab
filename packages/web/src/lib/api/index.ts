@@ -9,13 +9,20 @@ export const supabaseApiKeys = () => ({
 });
 
 export type { Database } from "./supabase";
-export type { Supabase, Session, SupabaseLightClient, User } from "./types";
+export type {
+  Supabase,
+  Session,
+  SupabaseLightClient,
+  User,
+  BlogPostMetaData,
+  BlogPost
+} from "./types";
 
 export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => {
   let u: SupabaseUtil;
   const client: SupabaseLightClient = {
     getBlogPostsMetaData: async () => {
-      const result = await supabase.from("blog").select("id,slug,locale,parent");
+      const result = await supabase.from("blog").select("title,id,slug,locale,parent,excerpt");
       if (result.error) {
         throw error(500, result.error);
       } else {
