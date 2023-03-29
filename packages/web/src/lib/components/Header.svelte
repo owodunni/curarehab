@@ -11,9 +11,8 @@
     Transition
   } from "@rgossiaux/svelte-headlessui";
   import NavLink from "./NavLink.svelte";
-  export let isLoggedIn = false;
   const links = ["om", "blog"] as const;
-  const buttonLinks = [isLoggedIn ? "profile" : "login", "boka"] as const;
+  const buttonLinks = ["boka"] as const;
 </script>
 
 <header>
@@ -79,7 +78,7 @@
                 {#each buttonLinks as link, i}
                   <Button
                     href={$l(link)}
-                    variant={i == 0 ? "outline" : "solid"}
+                    variant="solid"
                     on:click={() => close(null)}
                   >
                     {$t("common", link)}
@@ -90,7 +89,7 @@
           </Transition>
         </Popover>
         {#each buttonLinks as link, i}
-          <Button class="hidden lg:block" href={$l(link)} variant={i == 0 ? "outline" : "solid"}>
+          <Button class="hidden lg:block" href={$l(link)} variant="solid">
             {$t("common", link)}
           </Button>
         {/each}

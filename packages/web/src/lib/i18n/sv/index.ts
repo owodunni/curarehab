@@ -6,7 +6,7 @@ import type {
   BokaTranslations,
   LogInTranslations,
   TranslationsByGroup,
-  ProfileTranslations
+  AdminTranslations
 } from "../types";
 
 export const common: CommonTranslations = {
@@ -21,7 +21,7 @@ export const common: CommonTranslations = {
   boka: "Boka nu",
   directions: "Klicka här för att se hur du kommer till oss.",
   hem: "Hem",
-  profile: "Profil"
+  admin: "Admin"
 };
 
 export const hem: HemTranslations = {
@@ -70,7 +70,7 @@ export const login: LogInTranslations = {
   signUp: "Skapa konto"
 };
 
-const profile: ProfileTranslations = {
+const admin: AdminTranslations = {
   title: "Din sida",
   description: "Din sida",
   welcome: "Välkommen {{name}}!",
@@ -84,5 +84,5 @@ export const translations: TranslationsByGroup = {
   blog,
   boka,
   login,
-  profile
+  admin
 };

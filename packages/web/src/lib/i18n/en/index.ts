@@ -6,7 +6,7 @@ import type {
   BokaTranslations,
   LogInTranslations,
   TranslationsByGroup,
-  ProfileTranslations
+  AdminTranslations
 } from "../types";
 
 export const common: CommonTranslations = {
@@ -21,7 +21,7 @@ export const common: CommonTranslations = {
   boka: "Book",
   directions: "Click here to see how to get to us.",
   hem: "Home",
-  profile: "Profile"
+  admin: "Admin"
 };
 
 export const hem: HemTranslations = {
@@ -70,8 +70,8 @@ export const login: LogInTranslations = {
   signUp: "Sign up"
 };
 
-const profile: ProfileTranslations = {
-  title: "Profile",
+const admin: AdminTranslations = {
+  title: "Admin page",
   description: "Your profile",
   welcome: "Welcome {{name}}!",
   logOut: "Log out"
@@ -84,5 +84,5 @@ export const translations: TranslationsByGroup = {
   blog,
   boka,
   login,
-  profile
+  admin
 };

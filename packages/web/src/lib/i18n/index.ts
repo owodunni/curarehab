@@ -13,7 +13,7 @@ import type {
   BokaTranslations,
   LogInTranslations,
   TranslationsByGroup,
-  ProfileTranslations
+  AdminTranslations
 } from "./types";
 export type { Page };
 
@@ -26,8 +26,8 @@ export const pageWithRoute: Record<Page, Route> = {
   om: { route: "/om" },
   blog: { route: "/blog" },
   boka: { route: "/boka" },
-  login: { route: "/login" },
-  profile: { route: "/profile" }
+  login: { route: "/admin/login" },
+  admin: { route: "/admin" }
 };
 
 const groupWithRoute: Record<TranslationGroup, Partial<Route>> = {
@@ -73,11 +73,7 @@ export const t = derived(_i18n.t, (t) => {
   function r(group: "blog", key: keyof BlogTranslations, ...parserParams: Parser.Params): string;
   function r(group: "boka", key: keyof BokaTranslations, ...parserParams: Parser.Params): string;
   function r(group: "login", key: keyof LogInTranslations, ...parserParams: Parser.Params): string;
-  function r(
-    group: "profile",
-    key: keyof ProfileTranslations,
-    ...parserParams: Parser.Params
-  ): string;
+  function r(group: "admin", key: keyof AdminTranslations, ...parserParams: Parser.Params): string;
   function r(group: TranslationGroup, key: Translations, ...parserParams: Parser.Params): string {
     return t(`${group}.${key}`, ...parserParams);
   }

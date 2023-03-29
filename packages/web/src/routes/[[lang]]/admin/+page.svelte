@@ -35,11 +35,11 @@
   <HeroComponent>
     <div class="flex h-full max-w-sm flex-col lg:w-96">
       <h2 class="flex-1 text-4xl font-bold tracking-tight text-gray-900">
-        {$t("profile", "welcome", { default: data.user.email })}
+        {$t("admin", "welcome", { default: data.user.email })}
       </h2>
 
       <div class="mt-14 flex gap-2">
-        <Button class="w-full" variant="outline">{$t("profile", "logOut")}</Button>
+        <Button class="w-full" variant="outline">{$t("admin", "logOut")}</Button>
       </div>
     </div>
   </HeroComponent>
