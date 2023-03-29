@@ -28,16 +28,17 @@ export const util = (supabase: SupabaseLightClient): SupabaseUtil => {
       if (parent) return addPostToRouteReqursive(parent);
       return route;
     }
-    return `/${(await addPostToRouteReqursive(post)).reverse().join("/")}`;
+    return `${(await addPostToRouteReqursive(post)).reverse().join("/")}`;
   }
 
   return {
     getRouteToPost: async (post: BlogPostMetaData) => {
+      const prefix = post.locale === "en" ? `/${post.locale}/blog` : "/blog";
       if (post.parent === null) {
-        return `/${post.slug}`;
+        return `${prefix}/${post.slug}`;
       }
 
-      return getRouteFromPosts(post);
+      return `${prefix}/${await getRouteFromPosts(post)}`;
     },
     getPostFromRoute: async (slugs: string) => {
       // We want the slugs in reverse order, so we can start with the leaf and then go up the tree

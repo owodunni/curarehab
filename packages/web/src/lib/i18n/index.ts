@@ -90,3 +90,11 @@ const _l = derived(t, (t) => (link: string) => t("common", "link", { default: li
  * {@link l} is a type-safe link function. It takes a page and returns the link to that page.
  */
 export const l = derived(_l, (l) => (page: Page) => l(pageWithRoute[page].route));
+export const link = async (page: Page): Promise<string> => {
+  return new Promise((resolve) => {
+    const u = l.subscribe((value) => {
+      resolve(value(page));
+      u();
+    });
+  });
+};
