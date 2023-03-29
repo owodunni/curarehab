@@ -1,8 +1,8 @@
 import type { Database } from "./supabase";
-import type { SupabaseClient, Session } from "@supabase/supabase-js";
+import type { SupabaseClient, Session, User } from "@supabase/supabase-js";
 
 export type Supabase = SupabaseClient<Database>;
-export type { Session };
+export type { Session, User };
 
 export type BlogPostMetaData = Pick<
   Database["public"]["Tables"]["blog"]["Row"],

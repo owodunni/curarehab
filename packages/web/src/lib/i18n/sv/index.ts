@@ -74,7 +74,14 @@ const admin: AdminTranslations = {
   title: "Din sida",
   description: "Din sida",
   welcome: "Välkommen {{name}}!",
-  logOut: "Logga ut"
+  logOut: "Logga ut",
+  blogPosts: "Bloggartiklar",
+  tableTitle: "Title",
+  tableSlug: "Slug",
+  tableExcerpt: "Sammanfattning",
+  tableDescription: "Lista på alla bloggartiklar",
+  tableParent: "Förälder",
+  newBlogPost: "Ny artikel"
 };
 
 export const translations: TranslationsByGroup = {
