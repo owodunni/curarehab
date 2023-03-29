@@ -26,7 +26,7 @@ export const pageWithRoute: Record<Page, Route> = {
   om: { route: "/om" },
   blog: { route: "/blog" },
   boka: { route: "/boka" },
-  login: { route: "/admin/login" },
+  login: { route: "/login" },
   admin: { route: "/admin" }
 };
 
