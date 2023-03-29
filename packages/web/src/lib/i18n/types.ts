@@ -63,6 +63,13 @@ export type AdminTranslations = {
   description: string;
   welcome: string;
   logOut: string;
+  blogPosts: string;
+  tableTitle: string;
+  tableSlug: string;
+  tableExcerpt: string;
+  tableDescription: string;
+  tableParent: string;
+  newBlogPost: string;
 };
 
 export type TranslationsByGroup = {

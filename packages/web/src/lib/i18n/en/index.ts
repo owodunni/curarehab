@@ -74,7 +74,14 @@ const admin: AdminTranslations = {
   title: "Admin page",
   description: "Your profile",
   welcome: "Welcome {{name}}!",
-  logOut: "Log out"
+  logOut: "Log out",
+  blogPosts: "Blog posts",
+  tableTitle: "Title",
+  tableSlug: "Slug",
+  tableExcerpt: "Excerpt",
+  tableDescription: "List of blog posts",
+  tableParent: "Parent",
+  newBlogPost: "New article"
 };
 
 export const translations: TranslationsByGroup = {

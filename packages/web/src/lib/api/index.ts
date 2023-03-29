@@ -9,7 +9,7 @@ export const supabaseApiKeys = () => ({
 });
 
 export type { Database } from "./supabase";
-export type { Supabase, Session } from "./types";
+export type { Supabase, Session, SupabaseLightClient, User } from "./types";
 
 export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => {
   let u: SupabaseUtil;
