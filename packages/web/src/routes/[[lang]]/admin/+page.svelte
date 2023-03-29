@@ -47,10 +47,6 @@
     <h2 class="flex-1 text-4xl font-bold tracking-tight text-gray-900">
       {$t("admin", "welcome", { default: data.user.email })}
     </h2>
-
-    <div class="mt-14 flex gap-2">
-      <Button class="w-full" variant="outline">{$t("admin", "logOut")}</Button>
-    </div>
   </div>
 </HeroComponent>
 <Container>
@@ -75,16 +71,6 @@
             <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
               >{$t("admin", "tableTitle")}</th
             >
-            <th
-              scope="col"
-              class="max-w-xs py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
-              >{$t("admin", "tableExcerpt")}</th
-            >
-            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
-              ><a href="https://developer.mozilla.org/en-US/docs/Glossary/Slug" class="underline"
-                >{$t("admin", "tableSlug")}</a
-              ></th
-            >
             <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
               >{$t("admin", "tableParent")}</th
             >
@@ -97,15 +83,9 @@
                 >{post.id}</td
               >
               <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{post.title}</td>
-              <td class="truncate whitespace-nowrap py-4 px-3 text-sm text-gray-500 "
-                ><p class="w-10">{post.excerpt}</p></td
-              >
-              <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{post.slug}</td>
               <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{post.parent ?? "-"}</td
               >
-              <td
-                class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0"
-              >
+              <td class="relative flex py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-1">
                 <Button href={post.link}><EyeIcon class="h-4 w-4" /></Button>
                 <Button variant="outline" on:click={() => showEditCreatePostDialog({ post })}
                   ><PencilIcon class="h-4 w-4" /></Button
@@ -116,7 +96,6 @@
                   ><PlusSmIcon class="h-4 w-4" /></Button
                 >
               </td>
-              <td class="relative" />
             </tr>
           {/each}
         </tbody>
