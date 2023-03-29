@@ -46,7 +46,21 @@ const getPosts = () => {
     updated_at: ""
   };
 
-  return [p0, p1, p2];
+  const p3: BlogPost = {
+    author: "",
+    created_at: "",
+    excerpt: "",
+    id: 2,
+    locale: "en",
+    parent: 1,
+    post: "",
+    published: false,
+    slug: "extream",
+    title: "",
+    updated_at: ""
+  };
+
+  return [p0, p1, p2, p3];
 };
 
 describe("supabase util", () => {
@@ -54,12 +68,13 @@ describe("supabase util", () => {
     const supabase = mock<SupabaseLightClient>();
     const { getRouteToPost } = util(supabase);
     const posts = getPosts();
-    const [p0, p1, p2] = posts;
+    const [p0, p1, p2, p3] = posts;
     supabase.getBlogPostsMetaData.mockResolvedValue(posts);
 
-    expect(await getRouteToPost(p0)).toBe("/pain");
-    expect(await getRouteToPost(p1)).toBe("/pain/back");
-    expect(await getRouteToPost(p2)).toBe("/pain/back/extream");
+    expect(await getRouteToPost(p0)).toBe("/blog/pain");
+    expect(await getRouteToPost(p1)).toBe("/blog/pain/back");
+    expect(await getRouteToPost(p2)).toBe("/blog/pain/back/extream");
+    expect(await getRouteToPost(p3)).toBe("/en/blog/pain/back/extream");
   });
 
   it("getPostFromRoute", async () => {
