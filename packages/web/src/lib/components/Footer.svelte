@@ -20,7 +20,7 @@
           </div>
         </div>
         <nav class="mt-11 flex gap-8">
-          <NavLink />
+          <NavLink extraLinks={["admin"]} />
         </nav>
       </div>
 
