@@ -21,7 +21,10 @@ export const common: CommonTranslations = {
   boka: "Boka nu",
   directions: "Klicka här för att se hur du kommer till oss.",
   hem: "Hem",
-  admin: "Admin"
+  admin: "Admin",
+  create: "Skapa artikel",
+  cancel: "Avbryt",
+  save: "Spara"
 };
 
 export const hem: HemTranslations = {

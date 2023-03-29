@@ -15,6 +15,9 @@ export type CommonTranslations = {
   directions: string;
   hem: string;
   admin: string;
+  create: string;
+  cancel: string;
+  save: string;
 };
 
 export type HemTranslations = {

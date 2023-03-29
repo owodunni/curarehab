@@ -76,11 +76,7 @@
 
               <div class="mt-8 flex flex-col gap-4">
                 {#each buttonLinks as link, i}
-                  <Button
-                    href={$l(link)}
-                    variant="solid"
-                    on:click={() => close(null)}
-                  >
+                  <Button href={$l(link)} variant="solid" on:click={() => close(null)}>
                     {$t("common", link)}
                   </Button>
                 {/each}

@@ -22,7 +22,7 @@
 </script>
 
 <div class="flex h-screen flex-col">
-  <Header isLoggedIn={!!data.session} />
+  <Header />
   <div class="flex-1">
     <slot />
   </div>
