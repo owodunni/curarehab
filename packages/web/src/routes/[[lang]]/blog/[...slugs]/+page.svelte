@@ -24,7 +24,7 @@
   }
 </script>
 
-<Container>
+<Container class="pb-16">
   {#if data.session?.user}
     <div class="flex w-full justify-end gap-1 pb-1">
       <Button variant="outline" on:click={() => (showMarkdown = !showMarkdown)}
