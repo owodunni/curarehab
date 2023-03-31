@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "vite dev",
+    "dev": "vite dev --host",
     "build": "run-s check assemble",
     "assemble": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "test": "run-s test:unit test:system",
@@ -19,6 +19,7 @@
     "@playwright/test": "^1.28.1",
     "@rgossiaux/svelte-headlessui": "^1.0.2",
     "@rgossiaux/svelte-heroicons": "^0.1.2",
+    "@sentry/vite-plugin": "^0.4.0",
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/adapter-cloudflare": "^2.2.0",
     "@sveltejs/kit": "^1.5.0",
@@ -40,9 +41,12 @@
   },
   "type": "module",
   "dependencies": {
+    "@sentry/svelte": "^7.46.0",
+    "@sentry/tracing": "^7.46.0",
     "@supabase/auth-helpers-sveltekit": "^0.9.0",
     "marked": "^4.3.0",
     "sveltekit-i18n": "^2.2.2",
+    "toucan-js": "^3.1.0",
     "update": "^0.7.4"
   }
 }
