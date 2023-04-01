@@ -47,9 +47,17 @@ const config: Config<TranslationGroup, Locale> = {
 
 const translator = createTranslator(config);
 
-export const loadTranslations = async (locale: Locale, page: Route) => {
-  if (!pageFromRoute[page]) throw new Error(`No page found for route ${page}`);
-  await translator.loadCategories([pageFromRoute[page], "common"], locale);
+export const loadTranslations = async (locale: Locale, route: Route) => {
+  const page = pageFromRoute[route]
+    ? pageFromRoute[route]
+    : route.startsWith("/blog")
+    ? "blog"
+    : undefined;
+  if (!page) {
+    throw new Error(`No page found for route ${route}`);
+  }
+
+  await translator.loadCategories([page, "common"], locale);
 };
 
 /**
