@@ -10,7 +10,7 @@ import type {
 } from "../types";
 
 export const common: CommonTranslations = {
-  link: "{{link}}",
+  link: "{link}",
   title: "CuraRehab",
   subtitle: "Smärtfri rehab",
   om: "Om oss",
@@ -24,7 +24,8 @@ export const common: CommonTranslations = {
   admin: "Admin",
   create: "Skapa artikel",
   cancel: "Avbryt",
-  save: "Spara"
+  save: "Spara",
+  heroImage: "Äldre man rehabiliterar sin rygg"
 };
 
 export const hem: HemTranslations = {
@@ -35,7 +36,6 @@ export const hem: HemTranslations = {
     "Har du ont i ryggen, nacken eller lederna? Vi på CuraRehab kan hjälpa dig. Vi använder en kombination av naprapati och fysioterapi för att behandla smärta och rehabilitera skador. Boka din tid idag och ta det första steget mot ett smärtfritt liv!",
   readMore: "Läs mer",
   boka: "Boka din tid",
-  heroImage: "Äldre man rehabiliterar sin rygg",
   naprapathyTitle: "Naprapati - Smärtlindring för muskler och leder",
   naprapathyParagraph:
     "Våra naprapater använder manuella tekniker och träning för att lindra smärta och öka rörligheten i muskler och leder.",
@@ -76,7 +76,7 @@ export const login: LogInTranslations = {
 const admin: AdminTranslations = {
   title: "Din sida",
   description: "Din sida",
-  welcome: "Välkommen {{name}}!",
+  welcome: "Välkommen {name}!",
   logOut: "Logga ut",
   blogPosts: "Bloggartiklar",
   tableTitle: "Title",

@@ -18,6 +18,7 @@ export type CommonTranslations = {
   create: string;
   cancel: string;
   save: string;
+  heroImage: string;
 };
 
 export type HemTranslations = {
@@ -27,7 +28,6 @@ export type HemTranslations = {
   subtitleParagraph: string;
   readMore: string;
   boka: string;
-  heroImage: string;
   naprapathyTitle: string;
   naprapathyParagraph: string;
   physiotherapyTitle: string;

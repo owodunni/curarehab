@@ -23,7 +23,7 @@
     <img
       class="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
       src={rehab}
-      alt={$t("hem", "heroImage")}
+      alt={$t("common", "heroImage")}
     />
   </div>
 </Container>
