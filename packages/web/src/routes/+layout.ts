@@ -1,5 +1,5 @@
 import { supabaseApiKeys, supabaseLightClient, type Database } from "$lib/api";
-import { defaultLocale, loadTranslations, locales } from "$lib/i18n";
+import { defaultLocale, loadTranslations, locales, type Route } from "$lib/i18n";
 import type { Locale } from "$lib/i18n/types";
 import { createSupabaseLoadClient } from "@supabase/auth-helpers-sveltekit";
 import { error, redirect } from "@sveltejs/kit";
@@ -21,7 +21,7 @@ export const load: LayoutLoad = async (event) => {
 
   if (localeExists === defaultLocale) throw redirect(308, route);
 
-  await loadTranslations(locale, route);
+  await loadTranslations(locale, route as Route);
 
   // What does this line do?
   event.depends("supabase:auth");

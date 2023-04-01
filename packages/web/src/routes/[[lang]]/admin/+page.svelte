@@ -27,7 +27,6 @@
   }
 
   function closeDialog() {
-    console.log("closeDialog");
     showDialog = false;
     selectedPost = undefined;
     parentPost = undefined;
@@ -45,7 +44,7 @@
 <HeroComponent>
   <div class="flex h-full max-w-sm flex-col lg:w-96">
     <h2 class="flex-1 text-4xl font-bold tracking-tight text-gray-900">
-      {$t("admin", "welcome", { default: data.user.email })}
+      {$t("admin", "welcome", { name: data.user.email || "" })}
     </h2>
   </div>
 </HeroComponent>

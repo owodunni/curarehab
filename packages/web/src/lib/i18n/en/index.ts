@@ -10,7 +10,7 @@ import type {
 } from "../types";
 
 export const common: CommonTranslations = {
-  link: "/en{{link}}",
+  link: "/en{link}",
   title: "CuraRehab",
   subtitle: "Pain-free rehab",
   om: "About us",
@@ -24,7 +24,8 @@ export const common: CommonTranslations = {
   admin: "Admin",
   create: "Create article",
   cancel: "Cancel",
-  save: "Save"
+  save: "Save",
+  heroImage: "Old man rehabinating his back"
 };
 
 export const hem: HemTranslations = {
@@ -35,7 +36,6 @@ export const hem: HemTranslations = {
     "Do you have back, neck, or joint pain? We at CuraRehab can help. We use a combination of naprapathy and physiotherapy to treat pain and rehabilitate injuries. Book your appointment today and take the first step towards a pain-free life!",
   readMore: "Read more",
   boka: "Book your appointment",
-  heroImage: "Old man rehabinating his back",
   naprapathyTitle: "Naprapathy - Pain relief for muscles and joints",
   naprapathyParagraph:
     "Our naprapaths use manual techniques and exercise to relieve pain and increase mobility in muscles and joints.",
@@ -76,7 +76,7 @@ export const login: LogInTranslations = {
 const admin: AdminTranslations = {
   title: "Admin page",
   description: "Your profile",
-  welcome: "Welcome {{name}}!",
+  welcome: "Welcome {name}!",
   logOut: "Log out",
   blogPosts: "Blog posts",
   tableTitle: "Title",

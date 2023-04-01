@@ -45,7 +45,6 @@
     "@sentry/tracing": "^7.46.0",
     "@supabase/auth-helpers-sveltekit": "^0.9.0",
     "marked": "^4.3.0",
-    "sveltekit-i18n": "^2.2.2",
     "toucan-js": "^3.1.0",
     "update": "^0.7.4"
   }
