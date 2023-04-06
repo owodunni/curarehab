@@ -13,7 +13,7 @@
       {$t("hem", "subtitleParagraph")}
     </p>
     <div class="mt-10 flex items-center gap-x-6">
-      <Button href={$l("boka")}>{$t("hem", "boka")}</Button>
+      <Button href={$l("boka")} class="hidden">{$t("hem", "boka")}</Button>
       <a href={$l("blog")} class="text-sm font-semibold leading-6 text-gray-900"
         >{$t("hem", "readMore")} <span aria-hidden="true">→</span></a
       >

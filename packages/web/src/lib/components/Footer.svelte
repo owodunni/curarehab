@@ -2,7 +2,7 @@
   import { t } from "$lib/i18n";
   import NavLink from "./NavLink.svelte";
   import Container from "./Container.svelte";
-  import { AcademicCapIcon, MapIcon } from "@rgossiaux/svelte-heroicons/outline";
+  import { AcademicCapIcon } from "@rgossiaux/svelte-heroicons/outline";
 </script>
 
 <footer class="border-t border-gray-200" aria-labelledby="footer-heading">
@@ -24,7 +24,7 @@
         </nav>
       </div>
 
-      <div
+      <!--div
         class="group relative -mx-4 flex items-center self-stretch p-4 transition-colors hover:bg-gray-100 sm:self-auto sm:rounded-2xl lg:mx-0 lg:self-auto lg:p-6"
       >
         <div class="relative flex h-24 w-24 flex-none items-center justify-center">
@@ -39,14 +39,14 @@
           </p>
           <p class="mt-1 text-sm text-gray-700">{$t("common", "directions")}</p>
         </div>
-      </div>
+      </div-->
     </div>
 
     <div
       class="mt-8 border-t border-gray-900/10 pt-8 pb-12 md:flex md:items-center md:justify-between"
     >
       <div class="flex space-x-6 md:order-2">
-        <a href="/" class="text-gray-400 hover:text-gray-500">
+        <!--a href="/" class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">Facebook</span>
           <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -97,13 +97,13 @@
               clip-rule="evenodd"
             />
           </svg>
-        </a>
+        </a-->
       </div>
       <p class="mt-8 text-sm leading-5 text-gray-400 md:order-1 md:mt-0">
         &copy; {new Date().getFullYear()}
         {$t("common", "title")} —
-        <a href="mailto: info@curarehab.se" class="hover:text-gray-500">info@curarehab.se</a> —
-        <a href="tel:+4680123456" class="hover:text-gray-500">080-123456</a>
+        <a href="mailto: info@curarehab.se" class="hover:text-gray-500">info@curarehab.se</a>
+        <!--a href="tel:+4680123456" class="hover:text-gray-500">080-123456</a-->
       </p>
     </div>
   </Container>

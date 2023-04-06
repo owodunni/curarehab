@@ -4,7 +4,7 @@
 
   export let extraLinks: Page[] = [];
 
-  const links: Page[] = ["om", "blog", ...extraLinks];
+  const links: Page[] = ["blog", ...extraLinks];
 </script>
 
 {#each links as link}

@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { Hero, MainTreatments } from "$lib/components";
+  import { Hero } from "$lib/components";
   import { t } from "$lib/i18n";
 </script>
 
 <main>
   <Hero />
-  <MainTreatments />
+  <!--MainTreatments /-->
 </main>
 
 <!-- TODO: Make this a component -->
