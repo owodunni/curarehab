@@ -113,14 +113,19 @@
         {/if}
 
         <div class="col-span-full">
-          <label for="slug" class="block text-sm font-medium leading-6 text-gray-900">Slug</label>
-          <div class="mt-2">
-            <textarea
+          <label for="slug" class="block text-sm font-medium leading-6 text-gray-900 underline"
+            ><a href="https://developer.mozilla.org/en-US/docs/Glossary/Slug">Slug</a></label
+          >
+          <div
+            class=" mt-2 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
+          >
+            <input
+              type="text"
               id="slug"
               name="slug"
-              rows="1"
-              placeholder="Lorem"
-              class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
+              placeholder="lorem"
+              pattern="^[a-zA-Z0-9\-._~]+$"
+              class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-700 focus:ring-0 sm:text-sm sm:leading-6"
               value={post?.slug || ""}
             />
           </div>
