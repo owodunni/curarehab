@@ -40,7 +40,8 @@ export const util = (supabase: SupabaseLightClient): SupabaseUtil => {
 
       return `${prefix}/${await getRouteFromPosts(post)}`;
     },
-    getPostFromRoute: async (slugs: string) => {
+    getPostFromRoute: async (slugs?: string) => {
+      if (!slugs) return { code: 404, message: "Article not found" };
       // We want the slugs in reverse order, so we can start with the leaf and then go up the tree
       const slugList = slugs.split("/").reverse();
       const post = await supabase.getBlogPost(slugList[0]);
