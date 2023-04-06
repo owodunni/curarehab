@@ -11,8 +11,8 @@
     Transition
   } from "@rgossiaux/svelte-headlessui";
   import NavLink from "./NavLink.svelte";
-  const links = ["om", "blog"] as const;
-  const buttonLinks = ["boka"] as const;
+  const links = ["blog"] as const;
+  const buttonLinks = [] as const;
 </script>
 
 <header>
