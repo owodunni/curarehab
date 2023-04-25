@@ -1,3 +1,4 @@
+import { dev } from "$app/environment";
 import { sentry } from "$lib/sentry";
 import {
   init as SentryInit,
@@ -14,10 +15,9 @@ SentryInit({
 });
 
 SentrySetTag("svelteKit", "client");
-
 export const handleError: HandleClientError = async ({ error, event }) => {
   console.info("Handle error", error, event);
-  SentryCaptureException(error, { contexts: { svelteKit: { event } } });
+  if (!dev) SentryCaptureException(error, { contexts: { svelteKit: { event } } });
   const toMessage = (): string => {
     const message =
       typeof error === "string"
