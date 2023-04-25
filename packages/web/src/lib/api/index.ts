@@ -22,7 +22,9 @@ export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => 
   let u: SupabaseUtil;
   const client: SupabaseLightClient = {
     getBlogPostsMetaData: async () => {
-      const result = await supabase.from("blog").select("title,id,slug,locale,parent,excerpt");
+      const result = await supabase
+        .from("blog")
+        .select("title,id,slug,locale,parent,excerpt,published");
       if (result.error) {
         throw error(500, result.error);
       } else {

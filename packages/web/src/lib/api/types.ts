@@ -6,7 +6,7 @@ export type { Session, User };
 
 export type BlogPostMetaData = Pick<
   Database["public"]["Tables"]["blog"]["Row"],
-  "id" | "slug" | "locale" | "parent" | "title" | "excerpt"
+  "id" | "slug" | "locale" | "parent" | "title" | "excerpt" | "published"
 >;
 export type BlogPost = Database["public"]["Tables"]["blog"]["Row"];
 

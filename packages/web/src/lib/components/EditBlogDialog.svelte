@@ -31,9 +31,11 @@
           title: formData.get("title") as string,
           excerpt: formData.get("excerpt") as string,
           slug: formData.get("slug") as string,
+          published: formData.get("publish") === "on",
           updated_at: new Date().toISOString()
         })
         .eq("id", post.id);
+      console.log("res", res);
       if (res.error) {
         console.error(res.error);
       } else {
@@ -88,6 +90,20 @@
                 value={post?.title || ""}
               />
             </div>
+          </div>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="publish" class="block text-sm font-medium leading-6 text-gray-900"
+            >Publish</label
+          >
+          <div class="mt-2">
+            <input
+              type="checkbox"
+              name="publish"
+              id="publish"
+              placeholder="Lorem ipsum dolor."
+              checked={post?.published === true}
+            />
           </div>
         </div>
         {#if parent}
