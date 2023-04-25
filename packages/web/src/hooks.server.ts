@@ -3,6 +3,7 @@ import type { Handle, HandleServerError } from "@sveltejs/kit";
 import { supabaseApiKeys, supabaseLightClient } from "$lib/api";
 import { sentry } from "$lib/sentry";
 import { Toucan } from "toucan-js";
+import { dev } from "$app/environment";
 
 const toucan = new Toucan({
   dsn: sentry.dsn
@@ -11,7 +12,7 @@ const toucan = new Toucan({
 export const handleError: HandleServerError = async ({ error, event }) => {
   console.info("Handle error", error, event);
 
-  toucan.captureException(error, { data: { svelteKit: { event } } });
+  if (!dev) toucan.captureException(error, { data: { svelteKit: { event } } });
 
   const toMessage = (): string => {
     const message =
