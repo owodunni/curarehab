@@ -9,7 +9,7 @@
   <Container>
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div
-      class="flex flex-col items-start justify-between gap-y-12 pt-16 pb-6 lg:flex-row lg:items-center lg:py-16"
+      class="flex flex-col items-start justify-between gap-y-12 pb-6 pt-16 lg:flex-row lg:items-center lg:py-16"
     >
       <div>
         <div class="flex items-center text-gray-900">
@@ -43,7 +43,7 @@
     </div>
 
     <div
-      class="mt-8 border-t border-gray-900/10 pt-8 pb-12 md:flex md:items-center md:justify-between"
+      class="mt-8 border-t border-gray-900/10 pb-12 pt-8 md:flex md:items-center md:justify-between"
     >
       <div class="flex space-x-6 md:order-2">
         <!--a href="/" class="text-gray-400 hover:text-gray-500">

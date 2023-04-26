@@ -1,6 +1,6 @@
 import { createSupabaseServerClient } from "@supabase/auth-helpers-sveltekit";
 import type { Handle, HandleServerError } from "@sveltejs/kit";
-import { supabaseApiKeys, supabaseLightClient } from "$lib/api";
+import { supabaseApiKeys, supabaseLightClient } from "@curarehab/api";
 import { sentry } from "$lib/sentry";
 import { Toucan } from "toucan-js";
 import { dev } from "$app/environment";

@@ -1,4 +1,4 @@
-import { supabaseApiKeys, supabaseLightClient, type Database } from "$lib/api";
+import { supabaseApiKeys, supabaseLightClient, type Database } from "@curarehab/api";
 import { defaultLocale, loadTranslations, locales, type Route } from "$lib/i18n";
 import type { Locale } from "$lib/i18n/types";
 import { createSupabaseLoadClient } from "@supabase/auth-helpers-sveltekit";

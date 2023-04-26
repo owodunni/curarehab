@@ -14,10 +14,11 @@ const cacheable = <T>(fn: () => T, duration: number) => {
 };
 
 export const util = (supabase: SupabaseLightClient): SupabaseUtil => {
-  const postsCache = cacheable(
-    () => supabase.getBlogPostsMetaData().then((posts) => new Map(posts.map((p) => [p.id, p]))),
-    200
-  );
+  const postsCache = cacheable(async () => {
+    const data = await supabase.getBlogPostsMetaData();
+    if ("code" in data) throw new Error(data.message);
+    return new Map(data.map((p) => [p.id, p]));
+  }, 200);
 
   async function getRouteFromPosts(post: Required<BlogPostMetaData>): Promise<string> {
     const route: string[] = [];
@@ -44,7 +45,7 @@ export const util = (supabase: SupabaseLightClient): SupabaseUtil => {
       if (!slugs) return { code: 404, message: "Article not found" };
       // We want the slugs in reverse order, so we can start with the leaf and then go up the tree
       const slugList = slugs.split("/").reverse();
-      const post = await supabase.getBlogPost(slugList[0]);
+      const post = await supabase.getBlogPost(slugList[0] || "");
       if ("code" in post) {
         return post;
       } else if (post.parent === null && slugList.length === 1) {

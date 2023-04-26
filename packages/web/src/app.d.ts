@@ -1,6 +1,6 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
-import { SupabaseLightClient, Session } from "$lib/api";
+import { SupabaseLightClient, Session } from "@curarehab/api";
 
 declare global {
   namespace App {

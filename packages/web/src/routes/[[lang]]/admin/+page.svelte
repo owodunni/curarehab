@@ -5,7 +5,7 @@
   import { EyeIcon } from "@rgossiaux/svelte-heroicons/solid";
   import { t } from "$lib/i18n";
   import type { PageData } from "./$types";
-  import type { BlogPostMetaData } from "$lib/api";
+  import type { BlogPostMetaData } from "@curarehab/api";
 
   export let data: PageData;
   const posts = data.blogPosts;
@@ -54,7 +54,7 @@
       <h1 class="text-base font-semibold leading-6 text-gray-900">{$t("admin", "blogPosts")}</h1>
       <p class="mt-2 text-sm text-gray-700">{$t("admin", "tableDescription")}</p>
     </div>
-    <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
       <Button on:click={() => (showDialog = true)}>{$t("admin", "newBlogPost")}</Button>
     </div>
   </div>
@@ -67,10 +67,10 @@
               scope="col"
               class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Id</th
             >
-            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
               >{$t("admin", "tableTitle")}</th
             >
-            <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900"
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
               >{$t("admin", "tableParent")}</th
             >
           </tr>
@@ -81,8 +81,8 @@
               <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"
                 >{post.id}</td
               >
-              <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{post.title}</td>
-              <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{post.parent ?? "-"}</td
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{post.title}</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{post.parent ?? "-"}</td
               >
               <td class="relative flex py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-1">
                 <Button href={post.link}><EyeIcon class="h-4 w-4" /></Button>
