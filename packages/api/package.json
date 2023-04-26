@@ -2,10 +2,11 @@
   "name": "@curarehab/api",
   "version": "0.1.0",
   "main": "src/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.21.0"
-  },
-  "devDependencies": {
-    "@tsconfig/strictest": "^2.0.1"
   }
 }

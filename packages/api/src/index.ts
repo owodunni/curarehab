@@ -1,4 +1,3 @@
-import { error } from "@sveltejs/kit";
 import type { Supabase, SupabaseLightClient, SupabaseUtil } from "./types";
 import { util } from "./util";
 
@@ -26,7 +25,7 @@ export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => 
         .from("blog")
         .select("title,id,slug,locale,parent,excerpt,published");
       if (result.error) {
-        throw error(500, result.error);
+        return { message: result.error.message, code: 500 };
       } else {
         return result.data;
       }
@@ -43,7 +42,9 @@ export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => 
       const result = await supabase.from("blog").select("*").eq("slug", slug);
       if (result.error) {
         return { message: result.error.message, code: 500 };
-      } else {
+      }
+      if (!result.data[0]) return { message: "Not found", code: 500 };
+      else {
         return result.data[0];
       }
     },

@@ -4,7 +4,7 @@ import type { BlogPost, SupabaseLightClient } from "./types";
 import { util } from "./util";
 
 const getPosts = () => {
-  const p0: BlogPost = {
+  const p0 = {
     author: "",
     created_at: "",
     excerpt: "",
@@ -16,9 +16,9 @@ const getPosts = () => {
     slug: "pain",
     title: "",
     updated_at: ""
-  };
+  } satisfies BlogPost;
 
-  const p1: BlogPost = {
+  const p1 = {
     author: "",
     created_at: "",
     excerpt: "",
@@ -30,9 +30,9 @@ const getPosts = () => {
     slug: "back",
     title: "",
     updated_at: ""
-  };
+  } satisfies BlogPost;
 
-  const p2: BlogPost = {
+  const p2 = {
     author: "",
     created_at: "",
     excerpt: "",
@@ -44,9 +44,9 @@ const getPosts = () => {
     slug: "extream",
     title: "",
     updated_at: ""
-  };
+  } satisfies BlogPost;
 
-  const p3: BlogPost = {
+  const p3 = {
     author: "",
     created_at: "",
     excerpt: "",
@@ -58,9 +58,9 @@ const getPosts = () => {
     slug: "extream",
     title: "",
     updated_at: ""
-  };
+  } satisfies BlogPost;
 
-  return [p0, p1, p2, p3];
+  return [p0, p1, p2, p3] as const;
 };
 
 describe("supabase util", () => {
@@ -69,7 +69,7 @@ describe("supabase util", () => {
     const { getRouteToPost } = util(supabase);
     const posts = getPosts();
     const [p0, p1, p2, p3] = posts;
-    supabase.getBlogPostsMetaData.mockResolvedValue(posts);
+    supabase.getBlogPostsMetaData.mockResolvedValue([...posts]);
 
     expect(await getRouteToPost(p0)).toBe("/blog/pain");
     expect(await getRouteToPost(p1)).toBe("/blog/pain/back");
@@ -82,7 +82,7 @@ describe("supabase util", () => {
     const { getPostFromRoute } = util(supabase);
     const posts = getPosts();
     const [p0, p1, p2] = posts;
-    supabase.getBlogPostsMetaData.mockResolvedValue(posts);
+    supabase.getBlogPostsMetaData.mockResolvedValue([...posts]);
 
     supabase.getBlogPost.mockResolvedValueOnce(p0);
     expect(await getPostFromRoute("pain")).toBe(p0);

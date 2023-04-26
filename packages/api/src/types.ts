@@ -11,7 +11,7 @@ export type BlogPostMetaData = Pick<
 export type BlogPost = Database["public"]["Tables"]["blog"]["Row"];
 
 export interface SupabaseLightClient {
-  getBlogPostsMetaData: () => Promise<BlogPostMetaData[]>;
+  getBlogPostsMetaData: () => Promise<BlogPostMetaData[] | DbError>;
   getBlogPosts: () => Promise<BlogPost[] | DbError>;
   getBlogPost: (slug: string) => Promise<BlogPost | DbError>;
   util: () => SupabaseUtil;

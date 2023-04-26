@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { BlogPostMetaData } from "$lib/api";
+  import type { BlogPostMetaData } from "@curarehab/api";
 
   export let post: BlogPostMetaData;
 </script>

@@ -2,7 +2,7 @@
   import Modal from "./Modal.svelte";
   import { createEventDispatcher } from "svelte";
   import { t } from "$lib/i18n";
-  import type { SupabaseLightClient, User, BlogPostMetaData } from "$lib/api";
+  import type { SupabaseLightClient, User, BlogPostMetaData } from "@curarehab/api";
   import { Button } from ".";
   import { goto } from "$app/navigation";
 
