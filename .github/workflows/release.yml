@@ -5,8 +5,7 @@ on:
     branches:
       - "release"
 
-permissions:
-  contents: write
+permissions: write-all
 
 jobs:
   pre-release:
