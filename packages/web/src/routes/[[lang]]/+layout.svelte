@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Header } from "$lib/components";
+  import { Analytics, Header } from "$lib/components";
   import { Footer } from "$lib/components";
   import "../../app.css";
   import { invalidate } from "$app/navigation";
@@ -20,6 +20,8 @@
     return () => subscription.unsubscribe();
   });
 </script>
+
+<Analytics />
 
 <div class="flex h-screen flex-col">
   <Header />
