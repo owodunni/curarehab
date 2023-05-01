@@ -1,4 +1,4 @@
-import type { Supabase, SupabaseLightClient, SupabaseUtil, DbError } from "./types";
+import type { Supabase, SupabaseLightClient, SupabaseUtil } from "./types";
 import { util } from "./util";
 
 export const supabaseApiKeys = () => ({
@@ -14,16 +14,20 @@ export type {
   SupabaseLightClient,
   User,
   BlogPostMetaData,
-  BlogPost
+  BlogPost,
+  DbError
 } from "./types";
 
 export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => {
   let u: SupabaseUtil;
   const client: SupabaseLightClient = {
-    getBlogPostsMetaData: async () => {
-      const result = await supabase
-        .from("blog")
-        .select("title,id,slug,locale,parent,excerpt,published");
+    getBlogPostsMetaData: async (onlyPublished: boolean) => {
+      const result = await (() => {
+        const partial = supabase
+          .from("blog")
+          .select("title,id,slug,locale,parent,excerpt,published,created_at,updated_at");
+        return onlyPublished ? partial.eq("published", true) : partial;
+      })();
       if (result.error) {
         return { message: result.error.message, code: 500 };
       } else {

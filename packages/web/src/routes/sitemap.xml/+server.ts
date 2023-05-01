@@ -1,18 +1,35 @@
 import { defaultLocale, locales } from "$lib/i18n";
+import type { BlogPostMetaData, DbError } from "@curarehab/api";
+import type { RequestHandler } from "./$types";
 
 const urls = [...locales.filter((l) => l !== defaultLocale).map((l) => `/${l}`), ""].flatMap(
   (locale) =>
-    ["", "/om"].map((route) => {
+    ["", "/om", "/blog"].map((route) => {
       return `
       <url>
         <loc>https://curarehab.se${locale}${route}</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
       </url>`.trim();
     })
 );
 
-export async function GET() {
+const postUrls = (posts: BlogPostMetaData[]) => {
+  return posts.flatMap((post) => {
+    return `
+    <url>
+      <loc>https://curarehab.se/${post.locale === "sv" ? "" : `${post.locale}/`}blog/${
+      post.slug
+    }</loc>
+      <lastmod>${new Date(post.updated_at).toISOString().split("T")[0]}</lastmod>
+    </url>`.trim();
+  });
+};
+
+export const GET: RequestHandler = async (event) => {
+  const posts = await (async (): Promise<BlogPostMetaData[]> => {
+    const posts = (await (await event.fetch("/api/blog")).json()) as DbError | BlogPostMetaData[];
+    return "code" in posts ? [] : posts;
+  })();
+
   return new Response(
     `
     <?xml version="1.0" encoding="UTF-8" ?>
@@ -25,6 +42,7 @@ export async function GET() {
       xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
     >
       ${urls.join("\n")}
+      ${postUrls(posts)}
     </urlset>`.trim(),
     {
       headers: {
@@ -32,4 +50,4 @@ export async function GET() {
       }
     }
   );
-}
+};

@@ -58,7 +58,8 @@ export const om: OmTranslations = {
 
 export const blog: BlogTranslations = {
   title: "Blog",
-  description: "Bloggartiklar om rehab, smärta och mer"
+  description: "Artiklar om rehab, smärta och mer",
+  readArticle: "Läs artikeln"
 };
 
 export const boka: BokaTranslations = {

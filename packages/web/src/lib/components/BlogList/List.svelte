@@ -5,8 +5,10 @@
   export let posts: BlogPostMetaData[];
 </script>
 
-<ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-  {#each posts as post}
-    <Card {post} />
-  {/each}
-</ul>
+<div class="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
+  <div class="flex max-w-3xl flex-col space-y-16">
+    {#each posts as post}
+      <Card {post} />
+    {/each}
+  </div>
+</div>
