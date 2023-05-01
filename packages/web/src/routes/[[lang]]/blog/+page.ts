@@ -10,6 +10,6 @@ export const load: PageLoad = async (event) => {
 
   return {
     ...(session?.user && { user: session.user }),
-    posts
+    posts: posts.filter((post) => post.published)
   };
 };
