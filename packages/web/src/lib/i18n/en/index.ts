@@ -58,7 +58,8 @@ export const om: OmTranslations = {
 
 export const blog: BlogTranslations = {
   title: "Blog",
-  description: "Blog articles about rehab, pain and more"
+  description: "Articles about rehab, pain and more",
+  readArticle: "Read article"
 };
 
 export const boka: BokaTranslations = {

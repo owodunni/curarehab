@@ -46,6 +46,7 @@ export type OmTranslations = {
 export type BlogTranslations = {
   title: string;
   description: string;
+  readArticle: string;
 };
 
 export type BokaTranslations = {

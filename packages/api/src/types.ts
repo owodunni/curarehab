@@ -6,12 +6,20 @@ export type { Session, User };
 
 export type BlogPostMetaData = Pick<
   Database["public"]["Tables"]["blog"]["Row"],
-  "id" | "slug" | "locale" | "parent" | "title" | "excerpt" | "published"
+  | "id"
+  | "slug"
+  | "locale"
+  | "parent"
+  | "title"
+  | "excerpt"
+  | "published"
+  | "created_at"
+  | "updated_at"
 >;
 export type BlogPost = Database["public"]["Tables"]["blog"]["Row"];
 
 export interface SupabaseLightClient {
-  getBlogPostsMetaData: () => Promise<BlogPostMetaData[] | DbError>;
+  getBlogPostsMetaData: (onlyPublished: boolean) => Promise<BlogPostMetaData[] | DbError>;
   getBlogPosts: () => Promise<BlogPost[] | DbError>;
   getBlogPost: (slug: string) => Promise<BlogPost | DbError>;
   util: () => SupabaseUtil;

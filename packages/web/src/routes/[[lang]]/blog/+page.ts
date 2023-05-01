@@ -9,6 +9,6 @@ export const load: PageLoad = async (event) => {
   // TODO: Check if author is valid, if locale is valid and if post is published
 
   return {
-    posts: posts.filter((p: BlogPostMetaData) => p.published)
+    posts
   };
 };

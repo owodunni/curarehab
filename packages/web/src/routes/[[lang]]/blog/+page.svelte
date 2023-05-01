@@ -7,7 +7,12 @@
 </script>
 
 <Container>
-  <BlogList posts={data.posts} />
+  <header class="max-w-2xl">
+    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">{$t("blog", "description")}</h1>
+  </header>
+  <div class="py-16">
+    <BlogList posts={data.posts} />
+  </div>
 </Container>
 
 <svelte:head>
