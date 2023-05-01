@@ -1,4 +1,4 @@
-import type { Supabase, SupabaseLightClient, SupabaseUtil } from "./types";
+import type { Supabase, SupabaseLightClient, SupabaseUtil, DbError } from "./types";
 import { util } from "./util";
 
 export const supabaseApiKeys = () => ({
@@ -49,7 +49,7 @@ export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => 
       }
     },
     util: () => {
-      u = u || util(client);
+      u = u || util();
       return u;
     },
     s: supabase

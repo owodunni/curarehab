@@ -5,7 +5,7 @@ import { marked } from "marked";
 export const load: PageLoad = async (event) => {
   const { supabase, session } = await event.parent();
 
-  const post = await supabase.util().getPostFromRoute(event.params.slugs);
+  const post = await supabase.getBlogPost(event.params.slug);
   // TODO: Check if author is valid, if locale is valid and if post is published
 
   if ("code" in post) throw error(post.code, post.message);
