@@ -20,7 +20,6 @@ export interface SupabaseLightClient {
 
 export interface SupabaseUtil {
   getRouteToPost: (post: BlogPostMetaData) => Promise<string | DbError>;
-  getPostFromRoute: (slugs?: string) => Promise<BlogPost | DbError>;
 }
 
 export type DbError = { message: string; code: number };
