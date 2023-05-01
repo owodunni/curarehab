@@ -39,6 +39,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@curarehab/api": "*",
     "@sentry/svelte": "^7.46.0",
     "@sentry/tracing": "^7.46.0",
     "@supabase/auth-helpers-sveltekit": "^0.9.0",
