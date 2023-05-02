@@ -15,7 +15,9 @@
     "format:eslint": "eslint . --fix",
     "lint": "run-p lint:prettier lint:eslint",
     "lint:prettier": "prettier --plugin-search-dir . --check .",
-    "lint:eslint": "eslint ."
+    "lint:eslint": "eslint .",
+    "lighthouse:test": "npm run test:lighthouse --workspace=@curarehab/web",
+    "lighthouse:badge": "npx lighthouse-badge-generator packages/web/build/lighthouse"
   },
   "author": "Alexander Poole",
   "workspaces": [
