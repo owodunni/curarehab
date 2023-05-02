@@ -1,0 +1,16 @@
+{
+  "ci": {
+    "collect": {
+      "url": [
+        "http://localhost:4173",
+        "http://localhost:4173/en",
+        "http://localhost:4173/blog",
+        "http://localhost:4173/blog/vulvodyni"
+      ],
+      "startServerCommand": "npm run preview"
+    },
+    "upload": {
+      "target": "temporary-public-storage",
+    }
+  }
+}

@@ -9,13 +9,15 @@
     "preview": "vite preview --host",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "test": "run-s test:unit test:system",
+    "test": "run-s test:*",
     "test:unit": "vitest run",
     "test:system": "playwright test",
+    "test:lighthouse": "lhci autorun --config ./lighthouserc.ssr.json",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write ."
   },
   "devDependencies": {
+    "@lhci/cli": "^0.12.0",
     "@playwright/test": "^1.28.1",
     "@rgossiaux/svelte-headlessui": "^1.0.2",
     "@rgossiaux/svelte-heroicons": "^0.1.2",
@@ -40,7 +42,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@curarehab/api": "*",
+    "@curarehab/api": "file:../api",
     "@sentry/svelte": "^7.46.0",
     "@sentry/tracing": "^7.46.0",
     "@supabase/auth-helpers-sveltekit": "^0.9.0",
