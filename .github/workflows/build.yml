@@ -24,6 +24,8 @@ jobs:
       - run: npm run build
       - run: npm run test
       - run: npm run lighthouse:test
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
       - run: npm run lighthouse:badge
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
