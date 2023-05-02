@@ -30,6 +30,22 @@ jobs:
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
+      - name: Deploy lighthouse
+        if: github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v3.7.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages-master
+          publish_dir: packages/web/build/lighthouse
+
+      - name: Deploy lighthouse
+        if: github.ref == 'refs/heads/release'
+        uses: peaceiris/actions-gh-pages@v3.7.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages-release
+          publish_dir: packages/web/build/lighthouse
+
       - uses: "marvinpinto/action-automatic-releases@latest"
         if: github.ref == 'refs/heads/release'
         with:
