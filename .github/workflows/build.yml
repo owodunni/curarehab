@@ -9,8 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    permissions: write-all
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -29,10 +28,20 @@ jobs:
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
-      - name: Deploy Build & Results to Github Pages
+      - uses: "marvinpinto/action-automatic-releases@latest"
         if: github.ref == 'refs/heads/master'
-        uses: peaceiris/actions-gh-pages@v3.7.3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: packages/web/build/lighthouse
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "alpha"
+          prerelease: true
+          title: "Alpha Release Build"
+          files: packages/web/build/lighthouse
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        if: github.ref == 'refs/heads/release'
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: "Release Build"
+          files: packages/web/build/lighthouse
