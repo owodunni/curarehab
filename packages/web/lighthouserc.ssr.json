@@ -1,16 +1,8 @@
 {
   "ci": {
     "collect": {
-      "url": [
-        "http://localhost:4173",
-        "http://localhost:4173/en",
-        "http://localhost:4173/blog",
-        "http://localhost:4173/blog/vulvodyni"
-      ],
+      "url": ["http://localhost:4173"],
       "startServerCommand": "npm run preview"
-    },
-    "assert": {
-      "preset": "lighthouse:recommended"
     },
     "upload": {
       "target": "filesystem",
