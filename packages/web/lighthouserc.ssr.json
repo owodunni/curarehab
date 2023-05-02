@@ -9,8 +9,13 @@
       ],
       "startServerCommand": "npm run preview"
     },
+    "assert": {
+      "preset": "lighthouse:recommended"
+    },
     "upload": {
-      "target": "temporary-public-storage",
+      "target": "filesystem",
+      "outputDir": "./build/lighthouse",
+      "reportFilenamePattern": "%%PATHNAME%%.report.%%EXTENSION%%"
     }
   }
 }

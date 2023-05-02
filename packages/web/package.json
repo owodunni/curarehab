@@ -9,7 +9,7 @@
     "preview": "vite preview --host",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "test": "run-s test:*",
+    "test": "run-s test:unit test:system",
     "test:unit": "vitest run",
     "test:system": "playwright test",
     "test:lighthouse": "lhci autorun --config ./lighthouserc.ssr.json",
@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@lhci/cli": "^0.12.0",
+    "@lighthouse-test/badge-generator": "^1.0.2",
     "@playwright/test": "^1.28.1",
     "@rgossiaux/svelte-headlessui": "^1.0.2",
     "@rgossiaux/svelte-heroicons": "^0.1.2",
