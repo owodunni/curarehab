@@ -7,3 +7,4 @@ export { default as MainTreatments } from "./MainTreatments/index.svelte";
 export { default as HeroComponent } from "./HeroComponent.svelte";
 export { default as EditBlogDialog } from "./EditBlogDialog.svelte";
 export { default as Analytics } from "./Analytics.svelte";
+export { default as Link } from "./Link.svelte";

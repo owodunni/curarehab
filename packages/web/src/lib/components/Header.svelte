@@ -29,8 +29,10 @@
         </div>
       </div>
       <div class="flex items-center gap-6">
-        <Popover class="lg:hidden" aria-label={$t("common", "menuAria")} let:open let:close>
+        <Popover class="lg:hidden" let:open let:close>
           <PopoverButton
+            aria-haspopup="menu"
+            aria-label={$t("common", "menuAria")}
             class="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-2 hover:bg-gray-200/50 hover:stroke-gray-600 active:stroke-gray-900 [&:not(:focus-visible)]:focus:outline-none"
           >
             {#if open}
