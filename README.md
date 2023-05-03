@@ -1,5 +1,11 @@
 # Cura Rehab
 
+[![accecibility](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_.accessibility.svg)
+![best-practices](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_.best-practices.svg)
+![performance](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_.performance.svg)
+![seo](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_.seo.svg)
+![pwa](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_.pwa.svg)](https://htmlpreview.github.io/?https://github.com/owodunni/curarehab-reports/blob/gh-pages/_.report.html)
+
 ## Release
 
 Create a GitHub Release this will trigger a merge into the Release branch. The release branch automatically triggers a CloudFlare pages deployment
