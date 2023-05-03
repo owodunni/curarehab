@@ -39,6 +39,19 @@ jobs:
           publish_dir: packages/web/build/lighthouse
 
       - name: Deploy lighthouse
+        uses: cpina/github-action-push-to-another-repository@main
+        if: github.ref == 'refs/heads/master'
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        with:
+          source-directory: "packages/web/build/lighthouse"
+          destination-github-username: "owodunni"
+          destination-repository-name: "curarehab-reports"
+          user-email: alex.o.poole@gmail.com
+          target-branch: gh-pages
+          create-target-branch-if-needed: true
+
+      - name: Deploy lighthouse release
         if: github.ref == 'refs/heads/release'
         uses: peaceiris/actions-gh-pages@v3.7.3
         with:
