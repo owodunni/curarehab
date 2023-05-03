@@ -41,7 +41,6 @@ jobs:
           destination-repository-name: "curarehab-reports"
           user-email: alex.o.poole@gmail.com
           target-branch: gh-pages
-          create-target-branch-if-needed: true
 
       - name: Deploy lighthouse release
         uses: cpina/github-action-push-to-another-repository@main
@@ -54,7 +53,6 @@ jobs:
           destination-repository-name: "curarehab-reports"
           user-email: alex.o.poole@gmail.com
           target-branch: gh-pages-release
-          create-target-branch-if-needed: true
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         if: github.ref == 'refs/heads/release'
