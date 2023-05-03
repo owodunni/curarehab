@@ -8,6 +8,9 @@
       ],
       "startServerCommand": "npm run preview"
     },
+    "assert": {
+      "preset": "lighthouse:recommended"
+    },
     "upload": {
       "target": "filesystem",
       "outputDir": "./build/lighthouse",
