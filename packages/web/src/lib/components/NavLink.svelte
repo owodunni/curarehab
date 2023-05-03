@@ -1,6 +1,7 @@
 <script lang="ts">
   import { l, t } from "$lib/i18n";
   import type { Page } from "$lib/i18n";
+  import Link from "./Link.svelte";
 
   export let extraLinks: Page[] = [];
 
@@ -8,10 +9,7 @@
 </script>
 
 {#each links as link}
-  <a
-    href={$l(link)}
-    class="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:bg-gray-100 hover:text-gray-900 hover:delay-[0ms]"
-  >
+  <Link href={$l(link)}>
     <span class="relative z-10">{$t("common", link)}</span>
-  </a>
+  </Link>
 {/each}

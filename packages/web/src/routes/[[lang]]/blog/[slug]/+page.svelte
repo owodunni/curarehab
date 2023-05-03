@@ -24,6 +24,11 @@
   }
 </script>
 
+<svelte:head>
+  <title>{data.post.title}</title>
+  <meta name="description" content={data.post.excerpt} />
+</svelte:head>
+
 <Container class="pb-16">
   {#if data.session?.user}
     <div class="flex w-full justify-end gap-1 pb-1">
