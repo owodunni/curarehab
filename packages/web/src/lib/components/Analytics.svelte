@@ -1,4 +1,5 @@
 <script>
+  import { dev } from "$app/environment";
   import { page } from "$app/stores";
 
   $: {
@@ -13,15 +14,17 @@
 </script>
 
 <svelte:head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CD7YZYZYND"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+  {#if !dev}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CD7YZYZYND"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+      function gtag() {
+        dataLayer.push(arguments);
+      }
 
-    gtag("js", new Date());
-    gtag("config", "G-CD7YZYZYND");
-  </script>
+      gtag("js", new Date());
+      gtag("config", "G-CD7YZYZYND");
+    </script>
+  {/if}
 </svelte:head>
