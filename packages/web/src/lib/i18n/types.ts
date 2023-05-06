@@ -11,6 +11,7 @@ export type CommonTranslations = {
   smarta: string;
   menuAria: string;
   login: string;
+  logout: string;
   boka: string;
   directions: string;
   hem: string;
@@ -60,6 +61,8 @@ export type LogInTranslations = {
   password: string;
   email: string;
   signUp: string;
+  emailError: string;
+  passwordError: string;
 };
 
 export type AdminTranslations = {

@@ -26,7 +26,7 @@ export const createTranslator: TranslatorFactory = <F extends string, L extends 
     };
   });
 
-  const a: Translator<F, L> = {
+  return {
     t,
     loadCategories: async (categories, locale) => {
       const _t = get(translations);
@@ -35,6 +35,5 @@ export const createTranslator: TranslatorFactory = <F extends string, L extends 
       );
       translations.set(_t);
     }
-  };
-  return a;
+  } satisfies Translator<F, L>;
 };

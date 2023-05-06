@@ -18,6 +18,7 @@ export const common: CommonTranslations = {
   smarta: "Smärta",
   menuAria: "Växla navigationsmenyn",
   login: "Logga in",
+  logout: "Logga ut",
   boka: "Boka nu",
   directions: "Klicka här för att se hur du kommer till oss.",
   hem: "Hem",
@@ -72,7 +73,9 @@ export const login: LogInTranslations = {
   description: "Loga in till din konto",
   password: "Lösenord",
   email: "E-post address",
-  signUp: "Skapa konto"
+  signUp: "Skapa konto",
+  emailError: "E-post addressen är inte giltig",
+  passwordError: "Lösenordet är inte giltigt"
 };
 
 const admin: AdminTranslations = {

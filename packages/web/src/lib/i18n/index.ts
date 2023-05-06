@@ -19,13 +19,13 @@ export type { Page };
 export const locales: Locale[] = ["en", "sv"];
 export const defaultLocale: Locale = "sv";
 
-export type Route = "/om" | "/blog" | "/boka" | "/login" | "/admin" | "/";
+export type Route = "/om" | "/blog" | "/boka" | "/admin/login" | "/admin" | "/";
 export const pageWithRoute = {
   hem: "/",
   om: "/om",
   blog: "/blog",
   boka: "/boka",
-  login: "/login",
+  login: "/admin/login",
   admin: "/admin"
 } satisfies Record<Page, Route>;
 
