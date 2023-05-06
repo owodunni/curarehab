@@ -1,3 +1,4 @@
+import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 
 export const GET: RequestHandler = async (event) => {
@@ -8,11 +9,8 @@ export const GET: RequestHandler = async (event) => {
   const posts = await supabase.getBlogPostsMetaData(session === null);
 
   if ("code" in posts) {
-    return new Response(JSON.stringify(posts), {
-      status: posts.code,
-      headers: { "Content-Type": "application/json" }
-    });
+    return json(posts, { status: posts.code });
   }
 
-  return new Response(JSON.stringify(posts), { headers: { "content-type": "application/json" } });
+  return json(posts);
 };

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   import { Button, Container } from "$lib/components";
   import { PencilIcon } from "@rgossiaux/svelte-heroicons/outline";
   import { EyeIcon, SaveIcon } from "@rgossiaux/svelte-heroicons/solid";
@@ -8,20 +9,6 @@
   export let showMarkdown = false;
 
   $: editedHtml = marked.parse(data.post.post);
-  async function save() {
-    const res = await data.supabase.s
-      .from("blog")
-      .update({
-        post: data.post.post,
-        updated_at: new Date().toISOString()
-      })
-      .eq("id", data.post.id);
-    if (res.error) {
-      console.error(res.error);
-    } else {
-      window.location.reload();
-    }
-  }
 </script>
 
 <svelte:head>
@@ -38,7 +25,7 @@
           <PencilIcon class="h-5 w-5" />
         {/if}</Button
       >
-      <Button variant="outline" on:click={save}>
+      <Button variant="outline" type="submit" form="post_form">
         <SaveIcon class="h-5 w-5" /></Button
       >
     </div>
@@ -47,7 +34,16 @@
         {@html editedHtml}
       </article>
     {:else}
-      <textarea class="h-96 w-full" bind:value={data.post.post} placeholder="Markdown" />
+      <form id="post_form" method="POST" use:enhance>
+        <textarea
+          name="post"
+          id="post"
+          class="h-96 w-full"
+          bind:value={data.post.post}
+          placeholder="Markdown"
+        />
+        <input name="post_id" id="post_id" value={data.post.id} class="hidden" />
+      </form>
     {/if}
   {:else}
     <article class="prose">

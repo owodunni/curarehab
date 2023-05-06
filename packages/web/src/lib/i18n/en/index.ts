@@ -18,6 +18,7 @@ export const common: CommonTranslations = {
   smarta: "Pain",
   menuAria: "Toggle site navigation",
   login: "Log in",
+  logout: "Log out",
   boka: "Book",
   directions: "Click here to see how to get to us.",
   hem: "Home",
@@ -72,7 +73,9 @@ export const login: LogInTranslations = {
   description: "Log in to your account",
   password: "Password",
   email: "Email address",
-  signUp: "Sign up"
+  signUp: "Sign up",
+  emailError: "Email is not valid",
+  passwordError: "Password is not valid"
 };
 
 const admin: AdminTranslations = {

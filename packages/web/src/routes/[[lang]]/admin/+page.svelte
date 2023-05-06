@@ -4,8 +4,9 @@
   import { PencilIcon, PlusSmIcon } from "@rgossiaux/svelte-heroicons/outline";
   import { EyeIcon } from "@rgossiaux/svelte-heroicons/solid";
   import { t } from "$lib/i18n";
-  import type { PageData } from "./$types";
+  import type { ActionData, PageData } from "./$types";
   import type { BlogPostMetaData } from "@curarehab/api";
+  import { enhance } from "$app/forms";
 
   export let data: PageData;
   const posts = data.blogPosts;
@@ -31,20 +32,17 @@
     selectedPost = undefined;
     parentPost = undefined;
   }
+  export let form: ActionData;
 </script>
 
-<EditBlogDialog
-  {showDialog}
-  supabase={data.supabase}
-  user={data.user}
-  post={selectedPost}
-  parent={parentPost}
-  on:close={closeDialog}
-/>
+<EditBlogDialog {showDialog} post={selectedPost} parent={parentPost} on:close={closeDialog} />
 <HeroComponent>
   <div class="flex h-full max-w-sm flex-col lg:w-96">
     <h2 class="flex-1 text-4xl font-bold tracking-tight text-gray-900">
       {$t("admin", "welcome", { name: data.user.email || "" })}
+      <form method="post" action="/admin/login?/logout" use:enhance>
+        <Button variant="outline">{$t("common", "logout")}</Button>
+      </form>
     </h2>
   </div>
 </HeroComponent>
@@ -59,6 +57,13 @@
     </div>
   </div>
   <div class="mt-8 flow-root">
+    {#if form?.slugMissing}
+      <p class="text-sm text-red-500">Slug is required!</p>
+    {:else if form?.titleMissing}
+      <p class="text-sm text-red-500">Title is required!</p>
+    {:else if form?.error}
+      <p class="text-sm text-red-500">{form?.error.message}</p>
+    {/if}
     <div class="inline-block min-w-full py-2 align-middle">
       <table class="min-w-full divide-y divide-gray-300">
         <thead>
@@ -85,7 +90,7 @@
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{post.parent ?? "-"}</td
               >
               <td class="relative flex py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-1">
-                <Button href={post.link}><EyeIcon class="h-4 w-4" /></Button>
+                <Button href={`/blog/${post.slug}`}><EyeIcon class="h-4 w-4" /></Button>
                 <Button variant="outline" on:click={() => showEditCreatePostDialog({ post })}
                   ><PencilIcon class="h-4 w-4" /></Button
                 >
