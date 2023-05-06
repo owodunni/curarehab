@@ -38,6 +38,9 @@
   let _clazz = "";
   export { _clazz as class };
 
+  export let type: "submit" | "button" | undefined = undefined;
+  export let form: string | undefined = undefined;
+
   $: clazz = `${baseStyles[variant]} ${baseVariantStyles[variant][color] || ""} ${
     (disabled ? disabledVariantStyles : variantStyles)[variant][color] || ""
   } ${_clazz || ""}`;
@@ -46,5 +49,5 @@
 {#if href}
   <a {href} class={clazz} on:click><slot /></a>
 {:else}
-  <button class={clazz} on:click {disabled}><slot /></button>
+  <button class={clazz} on:click {disabled} {type} {form}><slot /></button>
 {/if}
