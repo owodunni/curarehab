@@ -88,7 +88,7 @@ export const link = async (page: Page): Promise<string> => {
   return new Promise((resolve) => {
     const u = l.subscribe((value) => {
       resolve(value(page));
-      u();
+      setTimeout(() => u(), 0);
     });
   });
 };
