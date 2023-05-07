@@ -6,7 +6,7 @@ We use [Google Lighthouse](https://pagespeed.web.dev/analysis/https-curarehab-se
 
 ### /
 
-[![accecibility](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_.accessibility.svg)
+[![accecibility](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_.accessibility.svg)
 ![best-practices](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_.best-practices.svg)
 ![performance](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_.performance.svg)
 ![seo](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_.seo.svg)
@@ -14,7 +14,7 @@ We use [Google Lighthouse](https://pagespeed.web.dev/analysis/https-curarehab-se
 
 ### /blog
 
-[![accecibility](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_blog.accessibility.svg)
+[![accecibility](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog.accessibility.svg)
 ![best-practices](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog.best-practices.svg)
 ![performance](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog.performance.svg)
 ![seo](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_blog.seo.svg)
@@ -22,7 +22,7 @@ We use [Google Lighthouse](https://pagespeed.web.dev/analysis/https-curarehab-se
 
 ### /blog/vulvodyni
 
-[![accecibility](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_blog_vulvodyni.accessibility.svg)
+[![accecibility](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog_vulvodyni.accessibility.svg)
 ![best-practices](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog_vulvodyni.best-practices.svg)
 ![performance](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog_vulvodyni.performance.svg)
 ![seo](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_blog_vulvodyni.seo.svg)
