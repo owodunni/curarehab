@@ -68,7 +68,7 @@
                 </p>
                 <div class="pt-4">
                   <a
-                    href={$l("blog")}
+                    href={$l("artiklar")}
                     class="relative text-sm font-semibold text-white hover:text-gray-300"
                     >{$t("hem", "readMore")} <span aria-hidden="true">→</span></a
                   >

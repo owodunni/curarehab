@@ -11,7 +11,9 @@
     Transition
   } from "@rgossiaux/svelte-headlessui";
   import NavLink from "./NavLink.svelte";
-  const links = ["blog"] as const;
+
+  // TODO: Don't show articles when locale !== swedish
+  const links = [ "artiklar"] as const;
   const buttonLinks = [] as const;
 </script>
 

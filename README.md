@@ -12,21 +12,21 @@ We use [Google Lighthouse](https://pagespeed.web.dev/analysis/https-curarehab-se
 ![seo](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_.seo.svg)
 ![pwa](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_.pwa.svg)](https://htmlpreview.github.io/?https://github.com/owodunni/curarehab-reports/blob/gh-pages/_.report.html)
 
-### /blog
+### /artiklar
 
-[![accecibility](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog.accessibility.svg)
-![best-practices](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog.best-practices.svg)
-![performance](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog.performance.svg)
-![seo](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_blog.seo.svg)
-![pwa](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_blog.pwa.svg)](https://htmlpreview.github.io/?https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog.report.html)
+[![accecibility](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar.accessibility.svg)
+![best-practices](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar.best-practices.svg)
+![performance](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar.performance.svg)
+![seo](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_artiklar.seo.svg)
+![pwa](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_artiklar.pwa.svg)](https://htmlpreview.github.io/?https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar.report.html)
 
-### /blog/vulvodyni
+### /artiklar/vulvodyni
 
-[![accecibility](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog_vulvodyni.accessibility.svg)
-![best-practices](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog_vulvodyni.best-practices.svg)
-![performance](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog_vulvodyni.performance.svg)
-![seo](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_blog_vulvodyni.seo.svg)
-![pwa](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_blog_vulvodyni.pwa.svg)](https://htmlpreview.github.io/?https://github.com/owodunni/curarehab-reports/blob/gh-pages/_blog_vulvodyni.report.html)
+[![accecibility](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar_vulvodyni.accessibility.svg)
+![best-practices](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar_vulvodyni.best-practices.svg)
+![performance](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar_vulvodyni.performance.svg)
+![seo](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_artiklar_vulvodyni.seo.svg)
+![pwa](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_artiklar_vulvodyni.pwa.svg)](https://htmlpreview.github.io/?https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar_vulvodyni.report.html)
 
 ## Release
 

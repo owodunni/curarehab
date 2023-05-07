@@ -8,7 +8,7 @@ import type {
   HemTranslations,
   Translations,
   OmTranslations,
-  BlogTranslations,
+  ArticleTranslations,
   BokaTranslations,
   LogInTranslations,
   TranslationsByGroup,
@@ -19,11 +19,11 @@ export type { Page };
 export const locales: Locale[] = ["en", "sv"];
 export const defaultLocale: Locale = "sv";
 
-export type Route = "/om" | "/blog" | "/boka" | "/admin/login" | "/admin" | "/";
+export type Route = "/om" | "/artiklar" | "/boka" | "/admin/login" | "/admin" | "/";
 export const pageWithRoute = {
   hem: "/",
   om: "/om",
-  blog: "/blog",
+  artiklar: "/artiklar",
   boka: "/boka",
   login: "/admin/login",
   admin: "/admin"
@@ -50,8 +50,8 @@ const translator = createTranslator(config);
 export const loadTranslations = async (locale: Locale, route: Route) => {
   const page = pageFromRoute[route]
     ? pageFromRoute[route]
-    : route.startsWith("/blog")
-    ? "blog"
+    : route.startsWith("/artiklar")
+    ? "artiklar"
     : undefined;
   if (!page) {
     throw new Error(`No page found for route ${route}`);
@@ -68,7 +68,7 @@ export const t = derived(translator.t, (t) => {
   function r(group: "common", key: keyof CommonTranslations, params?: NamedPlaceholder): string;
   function r(group: "hem", key: keyof HemTranslations, params?: NamedPlaceholder): string;
   function r(group: "om", key: keyof OmTranslations, params?: NamedPlaceholder): string;
-  function r(group: "blog", key: keyof BlogTranslations, params?: NamedPlaceholder): string;
+  function r(group: "artiklar", key: keyof ArticleTranslations, params?: NamedPlaceholder): string;
   function r(group: "boka", key: keyof BokaTranslations, params?: NamedPlaceholder): string;
   function r(group: "login", key: keyof LogInTranslations, params?: NamedPlaceholder): string;
   function r(group: "admin", key: keyof AdminTranslations, params?: NamedPlaceholder): string;
