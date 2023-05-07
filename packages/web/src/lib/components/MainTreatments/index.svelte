@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Container } from "$lib/components";
-  import physioImg from "$lib/assets/rehab-physio-unsplash.jpg";
-  import napraImg from "$lib/assets/rehab-napra-unsplash.jpg";
-  import massageImg from "$lib/assets/massage-unsplash.jpg";
+  import physioImg from "$lib/assets/rehab-physio-unsplash.webp";
+  import napraImg from "$lib/assets/rehab-napra-unsplash.webp";
+  import massageImg from "$lib/assets/massage-unsplash.webp";
   import { Tab, TabGroup, TabList } from "@rgossiaux/svelte-headlessui";
   import { t, l } from "$lib/i18n";
   import { fade } from "svelte/transition";

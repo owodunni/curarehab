@@ -1,6 +1,6 @@
 <script>
   import { Container } from "$lib/components";
-  import rehab from "$lib/assets/rehab-unsplash.jpg";
+  import rehab from "$lib/assets/rehab-unsplash.webp";
   import { t } from "$lib/i18n";
 </script>
 
