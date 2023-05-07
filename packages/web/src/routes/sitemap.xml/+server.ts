@@ -33,7 +33,9 @@ const postUrls = (posts: BlogPostMetaData[]) => {
 
 export const GET: RequestHandler = async (event) => {
   const posts = await (async (): Promise<BlogPostMetaData[]> => {
-    const posts = (await (await event.fetch("/api/artiklar")).json()) as DbError | BlogPostMetaData[];
+    const posts = (await (await event.fetch("/api/artiklar")).json()) as
+      | DbError
+      | BlogPostMetaData[];
     return "code" in posts ? [] : posts;
   })();
 

@@ -11,9 +11,11 @@
     Transition
   } from "@rgossiaux/svelte-headlessui";
   import NavLink from "./NavLink.svelte";
+  import { page } from "$app/stores";
 
-  // TODO: Don't show articles when locale !== swedish
-  const links = [ "artiklar"] as const;
+  const links = (locale: string | undefined) => {
+    return locale === "en" ? [] : (["artiklar"] as const);
+  };
   const buttonLinks = [] as const;
 </script>
 
@@ -51,7 +53,7 @@
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <PopoverOverlay class="fixed inset-0 z-0 bg-gray-300/60 backdrop-blur" />
+            <PopoverOverlay class="fixed inset-0 z-0 bg-gray-300/60 backdrop-blur-sm" />
           </Transition>
           <Transition
             as="div"
@@ -67,7 +69,7 @@
               class="z-0 w-screen rounded-b-2xl bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
             >
               <div class="space-y-4">
-                {#each links as link}
+                {#each links($page.params.lang) as link}
                   <PopoverButton
                     class="block text-base leading-7 tracking-tight text-gray-700"
                     as="a"
@@ -79,7 +81,7 @@
               </div>
 
               <div class="mt-8 flex flex-col gap-4">
-                {#each buttonLinks as link, i}
+                {#each buttonLinks as link}
                   <Button href={$l(link)} variant="solid" on:click={() => close(null)}>
                     {$t("common", link)}
                   </Button>
@@ -88,7 +90,7 @@
             </PopoverPanel>
           </Transition>
         </Popover>
-        {#each buttonLinks as link, i}
+        {#each buttonLinks as link}
           <Button class="hidden lg:block" href={$l(link)} variant="solid">
             {$t("common", link)}
           </Button>
