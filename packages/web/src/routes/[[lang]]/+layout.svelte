@@ -1,10 +1,8 @@
 <script lang="ts">
-  import { Analytics, Header } from "$lib/components";
+  import { Header } from "$lib/components";
   import { Footer } from "$lib/components";
   import "../../app.css";
 </script>
-
-<Analytics />
 
 <div class="flex h-screen flex-col">
   <Header />
