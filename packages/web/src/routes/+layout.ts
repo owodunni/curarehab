@@ -3,6 +3,8 @@ import type { Locale } from "$lib/i18n/types";
 import { error, redirect } from "@sveltejs/kit";
 import type { LayoutLoad } from "./$types";
 
+export const csr = false;
+
 export const load: LayoutLoad = async (event) => {
   const { pathname } = event.url;
   const { lang } = event.params;
