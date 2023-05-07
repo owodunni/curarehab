@@ -2,7 +2,7 @@ import type {
   OmTranslations,
   CommonTranslations,
   HemTranslations,
-  BlogTranslations,
+  ArticleTranslations,
   BokaTranslations,
   LogInTranslations,
   TranslationsByGroup,
@@ -14,7 +14,7 @@ export const common: CommonTranslations = {
   title: "CuraRehab",
   subtitle: "Pain-free rehab",
   om: "About us",
-  blog: "Blog",
+  artiklar: "Articles",
   smarta: "Pain",
   menuAria: "Toggle site navigation",
   login: "Log in",
@@ -57,8 +57,8 @@ export const om: OmTranslations = {
   description: "About Cura Rehab"
 };
 
-export const blog: BlogTranslations = {
-  title: "Blog",
+export const artiklar: ArticleTranslations = {
+  title: "Articles",
   description: "Articles about rehab, pain and more",
   readArticle: "Read article"
 };
@@ -83,20 +83,20 @@ const admin: AdminTranslations = {
   description: "Your profile",
   welcome: "Welcome {name}!",
   logOut: "Log out",
-  blogPosts: "Blog posts",
+  articles: "Articles",
   tableTitle: "Title",
   tableSlug: "Slug",
   tableExcerpt: "Excerpt",
-  tableDescription: "List of blog posts",
+  tableDescription: "List of articles",
   tableParent: "Parent",
-  newBlogPost: "New article"
+  newArticle: "New article"
 };
 
 export const translations: TranslationsByGroup = {
   common,
   hem,
   om,
-  blog,
+  artiklar,
   boka,
   login,
   admin

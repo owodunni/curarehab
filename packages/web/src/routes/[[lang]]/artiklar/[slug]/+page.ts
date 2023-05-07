@@ -4,7 +4,7 @@ import { error } from "@sveltejs/kit";
 import { marked } from "marked";
 
 export const load: PageLoad = async (event) => {
-  const post = (await (await event.fetch(`/api/blog/${event.params.slug}`)).json()) as
+  const post = (await (await event.fetch(`/api/artiklar/${event.params.slug}`)).json()) as
     | DbError
     | BlogPost;
 

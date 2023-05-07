@@ -2,7 +2,7 @@ import type {
   OmTranslations,
   CommonTranslations,
   HemTranslations,
-  BlogTranslations,
+  ArticleTranslations,
   BokaTranslations,
   LogInTranslations,
   TranslationsByGroup,
@@ -14,7 +14,7 @@ export const common: CommonTranslations = {
   title: "CuraRehab",
   subtitle: "Smärtfri rehab",
   om: "Om oss",
-  blog: "Blog",
+  artiklar: "Artiklar",
   smarta: "Smärta",
   menuAria: "Växla navigationsmenyn",
   login: "Logga in",
@@ -57,8 +57,8 @@ export const om: OmTranslations = {
   description: "Om Cura Rehab"
 };
 
-export const blog: BlogTranslations = {
-  title: "Blog",
+export const artiklar: ArticleTranslations = {
+  title: "Artiklar",
   description: "Artiklar om rehab, smärta och mer",
   readArticle: "Läs artikeln"
 };
@@ -83,20 +83,20 @@ const admin: AdminTranslations = {
   description: "Din sida",
   welcome: "Välkommen {name}!",
   logOut: "Logga ut",
-  blogPosts: "Bloggartiklar",
+  articles: "Artiklar",
   tableTitle: "Title",
   tableSlug: "Slug",
   tableExcerpt: "Sammanfattning",
-  tableDescription: "Lista på alla bloggartiklar",
+  tableDescription: "Lista på alla artiklar",
   tableParent: "Förälder",
-  newBlogPost: "Ny artikel"
+  newArticle: "Ny artikel"
 };
 
 export const translations: TranslationsByGroup = {
   common,
   hem,
   om,
-  blog,
+  artiklar,
   boka,
   login,
   admin

@@ -8,7 +8,7 @@ export const load: PageLoad = async ({ parent, fetch }) => {
   if (!session) {
     throw redirect(303, await link("login"));
   }
-  const blogPosts = await fetch("/api/blog");
+  const blogPosts = await fetch("/api/artiklar");
 
   return {
     user: session.user,

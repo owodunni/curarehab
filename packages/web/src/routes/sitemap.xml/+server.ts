@@ -2,9 +2,16 @@ import { defaultLocale, locales } from "$lib/i18n";
 import type { BlogPostMetaData, DbError } from "@curarehab/api";
 import type { RequestHandler } from "./$types";
 
+const seUrls = ["/artiklar"].flatMap((route) => {
+  return `
+      <url>
+        <loc>https://curarehab.se${route}</loc>
+      </url>`.trim();
+});
+
 const urls = [...locales.filter((l) => l !== defaultLocale).map((l) => `/${l}`), ""].flatMap(
   (locale) =>
-    ["", "/om", "/blog"].map((route) => {
+    ["", "/om"].map((route) => {
       return `
       <url>
         <loc>https://curarehab.se${locale}${route}</loc>
@@ -16,7 +23,7 @@ const postUrls = (posts: BlogPostMetaData[]) => {
   return posts.flatMap((post) => {
     return `
     <url>
-      <loc>https://curarehab.se/${post.locale === "sv" ? "" : `${post.locale}/`}blog/${
+      <loc>https://curarehab.se/${post.locale === "sv" ? "" : `${post.locale}/`}artiklar/${
       post.slug
     }</loc>
       <lastmod>${new Date(post.updated_at).toISOString().split("T")[0]}</lastmod>
@@ -26,7 +33,7 @@ const postUrls = (posts: BlogPostMetaData[]) => {
 
 export const GET: RequestHandler = async (event) => {
   const posts = await (async (): Promise<BlogPostMetaData[]> => {
-    const posts = (await (await event.fetch("/api/blog")).json()) as DbError | BlogPostMetaData[];
+    const posts = (await (await event.fetch("/api/artiklar")).json()) as DbError | BlogPostMetaData[];
     return "code" in posts ? [] : posts;
   })();
 
@@ -41,6 +48,7 @@ export const GET: RequestHandler = async (event) => {
       xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
       xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
     >
+      ${seUrls.join("\n")}
       ${urls.join("\n")}
       ${postUrls(posts)}
     </urlset>`.trim(),

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Button, Container, HeroComponent } from "$lib/components";
-  import { EditBlogDialog } from "$lib/components";
+  import { EditArticleDialog } from "$lib/components";
   import { PencilIcon, PlusSmIcon } from "@rgossiaux/svelte-heroicons/outline";
   import { EyeIcon } from "@rgossiaux/svelte-heroicons/solid";
   import { t } from "$lib/i18n";
@@ -35,7 +35,7 @@
   export let form: ActionData;
 </script>
 
-<EditBlogDialog {showDialog} post={selectedPost} parent={parentPost} on:close={closeDialog} />
+<EditArticleDialog {showDialog} post={selectedPost} parent={parentPost} on:close={closeDialog} />
 <HeroComponent>
   <div class="flex h-full max-w-sm flex-col lg:w-96">
     <h2 class="flex-1 text-4xl font-bold tracking-tight text-gray-900">
@@ -49,11 +49,11 @@
 <Container>
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-gray-900">{$t("admin", "blogPosts")}</h1>
+      <h1 class="text-base font-semibold leading-6 text-gray-900">{$t("admin", "articles")}</h1>
       <p class="mt-2 text-sm text-gray-700">{$t("admin", "tableDescription")}</p>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <Button on:click={() => (showDialog = true)}>{$t("admin", "newBlogPost")}</Button>
+      <Button on:click={() => (showDialog = true)}>{$t("admin", "newArticle")}</Button>
     </div>
   </div>
   <div class="mt-8 flow-root">
