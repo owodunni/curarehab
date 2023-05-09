@@ -1,4 +1,4 @@
-import { dev } from "$app/environment";
+/*import { dev } from "$app/environment";
 import { sentry } from "$lib/sentry";
 import {
   init as SentryInit,
@@ -36,4 +36,4 @@ export const handleError: HandleClientError = async ({ error, event }) => {
   return {
     message: toMessage()
   };
-};
+};*/

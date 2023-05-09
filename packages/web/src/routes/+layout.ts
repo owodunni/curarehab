@@ -1,4 +1,4 @@
-import { defaultLocale, loadTranslations, locales, type Route } from "$lib/i18n";
+/*import { defaultLocale, loadTranslations, locales, type Route } from "$lib/i18n";
 import type { Locale } from "$lib/i18n/types";
 import { error, redirect } from "@sveltejs/kit";
 import type { LayoutLoad } from "./$types";
@@ -22,4 +22,4 @@ export const load: LayoutLoad = async (event) => {
   await loadTranslations(locale, route as Route);
 
   return event.data;
-};
+};*/
