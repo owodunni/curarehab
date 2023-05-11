@@ -1,15 +1,16 @@
 <script lang="ts">
-  import { l, t } from "$lib/i18n";
   import type { Page } from "$lib/i18n";
-  import Link from "./Link.svelte";
+  import type { L, T } from "$lib/i18n/t";
 
   export let extraLinks: Page[] = [];
 
-  const links: Page[] = ["artiklar", ...extraLinks];
+  const links: Page[] = ["skadekompassen", "behandlingar", "hitta", "terapeuter", ...extraLinks];
+  export let t: T;
+  export let l: L;
 </script>
 
 {#each links as link}
-  <Link href={$l(link)}>
-    <span class="relative z-10">{$t("common", link)}</span>
-  </Link>
+  <a href={l(link)} class="btn btn-sm">
+    {t("common", link)}
+  </a>
 {/each}

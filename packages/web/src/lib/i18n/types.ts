@@ -1,5 +1,16 @@
 export type Locale = "en" | "sv";
-export type Page = "hem" | "om" | "artiklar" | "boka" | "login" | "admin";
+export type Page =
+  | "hem"
+  | "om"
+  | "artiklar"
+  | "boka"
+  | "login"
+  | "admin"
+  | "hitta"
+  | "behandlingar"
+  | "terapeuter"
+  | "skadekompassen"
+  | "sekretess";
 export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
@@ -20,6 +31,18 @@ export type CommonTranslations = {
   cancel: string;
   save: string;
   heroImage: string;
+  comingSoon: string;
+  hitta: string;
+  behandlingar: string;
+  terapeuter: string;
+  skadekompassen: string;
+  sekretess: string;
+  ourServices: string;
+  information: string;
+  partners: string;
+  readMore: string;
+  contact: string;
+  descriptionParagraph: string;
 };
 
 export type HemTranslations = {
@@ -79,6 +102,31 @@ export type AdminTranslations = {
   newArticle: string;
 };
 
+export type FindTranslations = {
+  title: string;
+  description: string;
+};
+
+export type TerapheutTranslations = {
+  title: string;
+  description: string;
+};
+
+export type PrivacyTranslations = {
+  title: string;
+  description: string;
+};
+
+export type TreatmentsTranslations = {
+  title: string;
+  description: string;
+};
+
+export type SkadekompassenTranslations = {
+  title: string;
+  description: string;
+};
+
 export type TranslationsByGroup = {
   common: CommonTranslations;
   hem: HemTranslations;
@@ -87,6 +135,11 @@ export type TranslationsByGroup = {
   boka: BokaTranslations;
   login: LogInTranslations;
   admin: AdminTranslations;
+  hitta: FindTranslations;
+  terapeuter: TerapheutTranslations;
+  sekretess: PrivacyTranslations;
+  behandlingar: TreatmentsTranslations;
+  skadekompassen: SkadekompassenTranslations;
 };
 
 export type Translations =
@@ -96,4 +149,9 @@ export type Translations =
   | keyof CommonTranslations
   | keyof BokaTranslations
   | keyof AdminTranslations
-  | keyof LogInTranslations;
+  | keyof LogInTranslations
+  | keyof FindTranslations
+  | keyof TerapheutTranslations
+  | keyof PrivacyTranslations
+  | keyof TreatmentsTranslations
+  | keyof SkadekompassenTranslations;

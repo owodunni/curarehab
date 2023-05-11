@@ -1,8 +1,11 @@
 <script lang="ts">
-  import { l, t } from "$lib/i18n";
   import type { BlogPostMetaData } from "@curarehab/api";
+  import type { T, L } from "$lib/i18n/t";
 
   export let post: BlogPostMetaData;
+
+  export let t: T;
+  export let l: L;
 
   $: date = new Date(post.updated_at).toLocaleDateString("sv-se");
 </script>
@@ -13,7 +16,7 @@
       <div
         class="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-gray-100 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"
       />
-      <a href={`${$l("artiklar")}/${post.slug}`}
+      <a href={`${l("artiklar")}/${post.slug}`}
         ><span class="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl" /><span
           class="relative z-10">{post.title}</span
         ></a
@@ -30,7 +33,7 @@
       {post.excerpt}
     </p>
     <div aria-hidden="true" class="relative z-10 mt-4 flex items-center text-sm font-medium">
-      {$t("artiklar", "readArticle")}<svg
+      {t("artiklar", "readArticle")}<svg
         viewBox="0 0 16 16"
         fill="none"
         aria-hidden="true"

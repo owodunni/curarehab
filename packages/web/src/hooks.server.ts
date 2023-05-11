@@ -53,7 +53,10 @@ export const handle: Handle = async ({ event, resolve }) => {
   };
 
   return resolve(
-    { ...event, locals: { ...event.locals, supabase: supabaseLightClient(supabase), getSession } },
+    {
+      ...event,
+      locals: { ...event.locals, supabase: supabaseLightClient(supabase), getSession }
+    },
     {
       /**
        * There´s an issue with `filterSerializedResponseHeaders` not working when using `sequence`

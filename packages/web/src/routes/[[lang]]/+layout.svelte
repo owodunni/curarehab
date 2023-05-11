@@ -1,13 +1,17 @@
 <script lang="ts">
-  import { Header } from "$lib/components";
-  import { Footer } from "$lib/components";
-  import "../../app.css";
+  // The ordering of these imports is critical to your app working properly
+  import "../../theme.postcss";
+  // If you have source.organizeImports set to true in VSCode, then it will auto change this ordering
+  import "@skeletonlabs/skeleton/styles/skeleton.css";
+  // Most of your app wide CSS should be put in this file
+  import "../../app.postcss";
+  import Footer from "$lib/components/Footer.svelte";
+  import Header from "$lib/components/Header.svelte";
+  import type { LayoutData } from "./$types";
+
+  export let data: LayoutData;
 </script>
 
-<div class="flex h-screen flex-col">
-  <Header />
-  <div class="flex-1">
-    <slot />
-  </div>
-  <Footer />
-</div>
+<Header t={data.t} l={data.l} />
+<slot />
+<Footer t={data.t} l={data.l} />
