@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
-import { hem as svHem, om as svOm } from "$lib/i18n/sv/index";
-import { hem as enHem, om as enOm } from "$lib/i18n/en/index";
+import { hem as svHem } from "$lib/i18n/sv/hem";
+import { om as svOm } from "$lib/i18n/sv/om";
+import { hem as enHem } from "$lib/i18n/en/hem";
+import { om as enOm } from "$lib/i18n/en/om";
 
 test.describe("Test locale, SEO, status and redirects", () => {
   for (const { route, expectedRoute, data, status } of [

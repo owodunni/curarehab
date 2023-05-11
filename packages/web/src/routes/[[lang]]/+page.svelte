@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { Hero } from "$lib/components";
-  import { t } from "$lib/i18n";
+  import Hero from "$lib/components/Hero.svelte";
+  import type { PageData } from "./$types";
+
+  export let data: PageData;
 </script>
 
 <main>
-  <Hero />
+  <Hero t={data.t} l={data.l} />
   <!--MainTreatments /-->
 </main>
 
-<!-- TODO: Make this a component -->
 <svelte:head>
-  <!-- Simple SEO for now requires a title and description to be provided by the child route -->
-  <title>{$t("hem", "title")}</title>
-  <meta name="description" content={$t("hem", "description")} />
+  <title>{data.t("hem", "title")}</title>
+  <meta name="description" content={data.t("hem", "description")} />
 </svelte:head>

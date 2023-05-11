@@ -1,21 +1,24 @@
-<script>
-  import { Button } from "$lib/components";
-  import { t, l } from "$lib/i18n";
+<script lang="ts">
   import HeroComponent from "./HeroComponent.svelte";
+
+  import type { T, L } from "$lib/i18n/t";
+
+  export let t: T;
+  export let l: L;
 </script>
 
-<HeroComponent>
+<HeroComponent {t}>
   <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
     <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-      {$t("hem", "titleParagraph")}
+      {t("hem", "titleParagraph")}
     </h1>
     <p class="mt-6 text-lg leading-8 text-gray-600">
-      {$t("hem", "subtitleParagraph")}
+      {t("hem", "subtitleParagraph")}
     </p>
     <div class="mt-10 flex items-center gap-x-6">
-      <Button href={$l("boka")} class="hidden">{$t("hem", "boka")}</Button>
-      <a href={$l("artiklar")} class="text-sm font-semibold leading-6 text-gray-900"
-        >{$t("hem", "readMore")} <span aria-hidden="true">→</span></a
+      <a href={l("boka")} class="btn variant-filled">{t("hem", "boka")}</a>
+      <a href={l("artiklar")} class="text-sm font-semibold leading-6 text-gray-900"
+        >{t("hem", "readMore")} <span aria-hidden="true">→</span></a
       >
     </div>
   </div>

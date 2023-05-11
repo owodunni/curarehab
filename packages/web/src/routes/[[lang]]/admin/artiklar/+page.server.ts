@@ -1,4 +1,4 @@
-import type { BlogPostMetaData, SupabaseLightClient } from "@curarehab/api";
+import type { BlogPost, SupabaseLightClient } from "@curarehab/api";
 import { fail, type Actions } from "@sveltejs/kit";
 
 function parseForm(data: FormData) {
@@ -9,8 +9,9 @@ function parseForm(data: FormData) {
     "parent",
     "published",
     "parent_title",
-    "parent_id"
-  ] satisfies (keyof BlogPostMetaData | "parent_title" | "parent_id")[];
+    "parent_id",
+    "post"
+  ] satisfies (keyof BlogPost | "parent_title" | "parent_id")[];
 
   const post = Object.fromEntries(keys.map((k) => [k, data.get(k)])) as Record<
     (typeof keys)[number],
@@ -43,6 +44,7 @@ async function postCrud(
         excerpt: post.excerpt?.toString(),
         slug: post.slug.toString(),
         published: post.published?.toString() === "on",
+        post: post.post?.toString(),
         updated_at: new Date().toISOString()
       })
       .eq("slug", post.slug);
@@ -72,6 +74,7 @@ async function postCrud(
           author,
           updated_at: new Date().toISOString(),
           ...(parentId && { parent: parentId }),
+          post: post.post?.toString(),
           locale: "sv"
         }
       ])

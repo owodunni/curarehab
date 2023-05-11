@@ -1,33 +1,4 @@
-import type {
-  OmTranslations,
-  CommonTranslations,
-  HemTranslations,
-  ArticleTranslations,
-  BokaTranslations,
-  LogInTranslations,
-  TranslationsByGroup,
-  AdminTranslations
-} from "../types";
-
-export const common: CommonTranslations = {
-  link: "{link}",
-  title: "CuraRehab",
-  subtitle: "Smärtfri rehab",
-  om: "Om oss",
-  artiklar: "Artiklar",
-  smarta: "Smärta",
-  menuAria: "Växla navigationsmenyn",
-  login: "Logga in",
-  logout: "Logga ut",
-  boka: "Boka nu",
-  directions: "Klicka här för att se hur du kommer till oss.",
-  hem: "Hem",
-  admin: "Admin",
-  create: "Skapa artikel",
-  cancel: "Avbryt",
-  save: "Spara",
-  heroImage: "Äldre man rehabiliterar sin rygg"
-};
+import type { HemTranslations } from "../types";
 
 export const hem: HemTranslations = {
   title: "Cura Rehab",
@@ -50,54 +21,4 @@ export const hem: HemTranslations = {
   mainTreatmentTitle: "Våra behandlingar - Skräddarsydda för din hälsa och återhämtning",
   mainTreatmentParagraph:
     "På CuraRehab erbjuder vi en rad olika behandlingar. Våra kvalificerade terapeuter arbetar tillsammans för att utveckla en skräddarsydd behandlingsplan som passar dina specifika behov och mål för att hjälpa dig att återhämta dig och återfå din hälsa."
-};
-
-export const om: OmTranslations = {
-  title: "Om",
-  description: "Om Cura Rehab"
-};
-
-export const artiklar: ArticleTranslations = {
-  title: "Artiklar",
-  description: "Artiklar om rehab, smärta och mer",
-  readArticle: "Läs artikeln"
-};
-
-export const boka: BokaTranslations = {
-  title: "Boka",
-  description: "Boka en tid hos oss"
-};
-
-export const login: LogInTranslations = {
-  title: "Loga in",
-  description: "Loga in till din konto",
-  password: "Lösenord",
-  email: "E-post address",
-  signUp: "Skapa konto",
-  emailError: "E-post addressen är inte giltig",
-  passwordError: "Lösenordet är inte giltigt"
-};
-
-const admin: AdminTranslations = {
-  title: "Din sida",
-  description: "Din sida",
-  welcome: "Välkommen {name}!",
-  logOut: "Logga ut",
-  articles: "Artiklar",
-  tableTitle: "Title",
-  tableSlug: "Slug",
-  tableExcerpt: "Sammanfattning",
-  tableDescription: "Lista på alla artiklar",
-  tableParent: "Förälder",
-  newArticle: "Ny artikel"
-};
-
-export const translations: TranslationsByGroup = {
-  common,
-  hem,
-  om,
-  artiklar,
-  boka,
-  login,
-  admin
 };

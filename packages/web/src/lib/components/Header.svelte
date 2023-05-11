@@ -1,99 +1,97 @@
 <script lang="ts">
-  import { l, t } from "$lib/i18n";
   import Container from "./Container.svelte";
-  import Button from "./Button.svelte";
-  import { AcademicCapIcon, MenuIcon, ChevronUpIcon } from "@rgossiaux/svelte-heroicons/outline";
-  import {
-    Popover,
-    PopoverButton,
-    PopoverPanel,
-    PopoverOverlay,
-    Transition
-  } from "@rgossiaux/svelte-headlessui";
+  import { AcademicCapIcon, ChevronUpIcon, MenuIcon } from "@rgossiaux/svelte-heroicons/outline";
   import NavLink from "./NavLink.svelte";
+  import type { T, L } from "$lib/i18n/t";
+  import type { Page } from "$lib/i18n";
   import { page } from "$app/stores";
+  import { fade, fly } from "svelte/transition";
+
+  export let t: T;
+  export let l: L;
+
+  let open = false;
+
+  function toggle() {
+    open = !open;
+  }
+
+  const baseLinks = ["behandlingar", "hitta", "terapeuter"] as const;
 
   const links = (locale: string | undefined) => {
-    return locale === "en" ? [] : (["artiklar"] as const);
+    return locale === "en" ? baseLinks : (["skadekompassen", ...baseLinks] as const);
   };
-  const buttonLinks = [] as const;
+  const buttonLinks = ["boka"] satisfies Page[];
 </script>
 
 <header>
   <nav>
     <Container class={"relative z-50 flex justify-between py-8"}>
       <div class="relative z-10 flex items-center gap-16">
-        <a href={$l("hem")} class="flex items-center"
+        <a href={l("hem")} class="flex items-center"
           ><AcademicCapIcon class="h-10 w-10 text-zinc-500" /><span class="text-base font-semibold"
-            >{$t("common", "title")}</span
+            >{t("common", "title")}</span
           ></a
         >
         <div class="hidden lg:flex lg:gap-10">
-          <NavLink />
+          <NavLink {t} {l} />
         </div>
       </div>
       <div class="flex items-center gap-6">
-        <Popover class="lg:hidden" let:open let:close>
-          <PopoverButton
+        <div class="lg:hidden">
+          <button
+            type="button"
             aria-haspopup="menu"
-            aria-label={$t("common", "menuAria")}
-            class="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-2 hover:bg-gray-200/50 hover:stroke-gray-600 active:stroke-gray-900 [&:not(:focus-visible)]:focus:outline-none"
+            aria-expanded={open}
+            aria-label={t("common", "menuAria")}
+            aria-controls={open ? "popover-panel" : undefined}
+            class="btn-icon relative z-10 -m-2"
+            on:click={toggle}
           >
             {#if open}
               <ChevronUpIcon class="h-6 w-6" />
             {:else}
               <MenuIcon class="h-6 w-6" />
             {/if}
-          </PopoverButton>
-          <Transition
-            enter="transition-opacity duration-100"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity duration-150"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <PopoverOverlay class="fixed inset-0 z-0 bg-gray-300/60 backdrop-blur-sm" />
-          </Transition>
-          <Transition
-            as="div"
-            class="absolute inset-x-0 top-0 origin-top"
-            enter="transition ease-out duration-100"
-            enterFrom="opacity-0 -translate-y-8"
-            enterTo="opacity-100 translate-y-0"
-            leave="transition ease-in duration-150"
-            leaveFrom="opacity-100 translate-y-0"
-            leaveTo="opacity-0 -translate-y-8"
-          >
-            <PopoverPanel
-              class="z-0 w-screen rounded-b-2xl bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
+          </button>
+          {#if open}
+            <div
+              aria-hidden="true"
+              class="fixed inset-0 z-0 bg-gray-300/60 backdrop-blur-sm"
+              in:fade={{ duration: 150 }}
+              out:fade={{ duration: 200 }}
+            />
+            <div
+              class="absolute inset-x-0 top-0 origin-top"
+              in:fly={{ y: -64, duration: 150 }}
+              out:fly={{ y: -64, duration: 200 }}
             >
-              <div class="space-y-4">
-                {#each links($page.params.lang) as link}
-                  <PopoverButton
-                    class="block text-base leading-7 tracking-tight text-gray-700"
-                    as="a"
-                    href={$l(link)}
-                  >
-                    {$t("common", link)}
-                  </PopoverButton>
-                {/each}
+              <div
+                id="popover-panel"
+                class="z-0 w-screen rounded-b-2xl bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
+              >
+                <div class="flex flex-col items-start space-y-4">
+                  {#each links($page.params.lang) as link}
+                    <a href={l(link)} class="btn" on:click={toggle}>{t("common", link)}</a>
+                  {/each}
+                </div>
+                {#if buttonLinks.length > 0}
+                  <div class="mt-8 flex flex-col gap-4">
+                    {#each buttonLinks as link}
+                      <a class="btn variant-filled" href={l(link)} on:click={toggle}>
+                        {t("common", link)}
+                      </a>
+                    {/each}
+                  </div>
+                {/if}
               </div>
-
-              <div class="mt-8 flex flex-col gap-4">
-                {#each buttonLinks as link}
-                  <Button href={$l(link)} variant="solid" on:click={() => close(null)}>
-                    {$t("common", link)}
-                  </Button>
-                {/each}
-              </div>
-            </PopoverPanel>
-          </Transition>
-        </Popover>
+            </div>
+          {/if}
+        </div>
         {#each buttonLinks as link}
-          <Button class="hidden lg:block" href={$l(link)} variant="solid">
-            {$t("common", link)}
-          </Button>
+          <a class="btn variant-filled hidden lg:block" href={l(link)}>
+            {t("common", link)}
+          </a>
         {/each}
       </div>
     </Container>

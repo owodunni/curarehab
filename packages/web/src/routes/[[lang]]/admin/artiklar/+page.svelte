@@ -1,23 +1,50 @@
 <script lang="ts">
-  import Modal from "./Modal.svelte";
-  import { createEventDispatcher } from "svelte";
-  import { t } from "$lib/i18n";
-  import type { BlogPostMetaData } from "@curarehab/api";
-  import { Button } from ".";
+  import Container from "$lib/components/Container.svelte";
+  import type { ActionData, PageData } from "./$types";
+  import { marked } from "marked";
+  import { ChevronDownIcon, ChevronUpIcon } from "@rgossiaux/svelte-heroicons/outline";
+  import { page } from "$app/stores";
 
-  export let showDialog = false;
-  export let post: BlogPostMetaData | undefined = undefined;
-  export let parent: BlogPostMetaData | undefined = undefined;
+  export let data: PageData;
+  export let form: ActionData;
 
-  const dispatch = createEventDispatcher();
-  function close() {
-    dispatch("close", {});
-  }
+  const { t, post, parent } = data;
+  let postData = post?.post ?? "";
+
+  $: editedHtml = marked.parse(postData);
+  let preview = false;
+  const q = [
+    `parent=${$page.url.searchParams.get("parent")}`,
+    `post=${$page.url.searchParams.get("post")}`
+  ]
+    .filter((x) => !x.includes("=null"))
+    .join("&");
 </script>
 
-<Modal open={showDialog}>
+<Container class="pb-16">
+  <button class="btn variant-filled" on:click={() => (preview = !preview)}>
+    Preview
+    {#if preview}
+      <span class="ml-2"><ChevronUpIcon class="h-4 w-4" /></span>
+    {:else}
+      <span class="ml-2"><ChevronDownIcon class="h-4 w-4" /></span>
+    {/if}
+  </button>
+  {#if preview}
+    <article class="prose border-b pb-16">
+      <!-- eslint-disable svelte/no-at-html-tags -->
+      {@html editedHtml}
+    </article>
+  {/if}
+  {#if form?.slugMissing}
+    <p class="text-sm text-red-500">Slug is required!</p>
+  {:else if form?.titleMissing}
+    <p class="text-sm text-red-500">Title is required!</p>
+  {:else if form?.error}
+    <p class="text-sm text-red-500">{form?.error.message}</p>
+  {/if}
   <div class="space-y-12">
-    <form id="editForm" method="POST" action={`?/${post ? "update" : "create"}`}>
+    <form id="editForm" method="POST" action={`?/${post ? "update" : "create"}&${q}`}>
       <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div class="sm:col-span-4">
           <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
@@ -101,7 +128,7 @@
           </div>
         </div>
 
-        <div class="col-span-full">
+        <div class="col-span-4">
           <label for="excerpt" class="block text-sm font-medium leading-6 text-gray-900"
             >Sammanfattning</label
           >
@@ -116,13 +143,21 @@
             />
           </div>
         </div>
+        <div class="col-span-4">
+          <label for="post" class="block text-sm font-medium leading-6 text-gray-900">Artikel</label
+          >
+          <textarea
+            name="post"
+            id="post"
+            class="block h-96 w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
+            bind:value={postData}
+            placeholder="Markdown"
+          />
+        </div>
       </div>
     </form>
-    <div class="col-span-full flex gap-2">
-      <Button variant="outline" class="w-full" type="submit" form="editForm"
-        >{post ? $t("common", "save") : $t("common", "create")}</Button
-      >
-      <Button on:click={close} class="w-full">{$t("common", "cancel")}</Button>
-    </div>
+    <button class="btn variant-filled" type="submit" form="editForm"
+      >{post ? t("common", "save") : t("common", "create")}</button
+    >
   </div>
-</Modal>
+</Container>

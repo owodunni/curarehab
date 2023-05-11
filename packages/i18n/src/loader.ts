@@ -9,8 +9,6 @@ export const createTranslationLoader: TranslatorFactory = <
 ) => {
   return {
     loadCategories: async (categories, locale) => {
-      console.log("loadCategories", categories, locale);
-
       return Object.fromEntries(
         await Promise.all(
           categories.map(async (category) => [category, await config.loader(locale, category)])
