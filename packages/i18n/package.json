@@ -1,12 +1,9 @@
 {
-  "name": "@curarehab/api",
+  "name": "@curarehab/i18n",
   "version": "0.1.0",
   "main": "src/index.ts",
   "scripts": {
     "test": "vitest run",
     "build": "tsc --build --verbose"
-  },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.21.0"
   }
 }

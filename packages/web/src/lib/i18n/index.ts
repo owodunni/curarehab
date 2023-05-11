@@ -1,5 +1,5 @@
 import { derived } from "svelte/store";
-import { createTranslator, type Config, type NamedPlaceholder } from "./translator";
+import { createTranslator, type Config, type NamedPlaceholder } from "@curarehab/i18n";
 import type {
   TranslationGroup,
   Locale,
