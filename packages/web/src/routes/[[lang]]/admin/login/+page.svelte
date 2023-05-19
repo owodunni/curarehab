@@ -11,7 +11,7 @@
 <HeroComponent {t}>
   <div class="max-w-sm lg:w-96">
     <div>
-      <h2 class="text-4xl font-bold tracking-tight text-gray-900">
+      <h2 class="text-tertiary-900 text-4xl font-bold tracking-tight">
         {t("common", "login")}
       </h2>
     </div>
@@ -21,7 +21,7 @@
       {#if form?.incorrect}<p class="text-sm text-red-500">{t("login", "passwordError")}</p>{/if}
       <form method="POST" action="?/login" class="space-y-6" use:enhance>
         <div>
-          <label for="email" class="block text-sm font-medium leading-6 text-gray-900"
+          <label for="email" class="text-tertiary-900 block text-sm font-medium leading-6"
             >{t("login", "email")}</label
           >
           <div class="mt-2">
@@ -33,13 +33,13 @@
               placeholder="email@curarehab.se"
               value={form?.email ?? ""}
               required
-              class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="ring-tertiary-300 placeholder:text-tertiary-400 focus:ring-surface-600 block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
             />
           </div>
         </div>
 
         <div class="space-y-1">
-          <label for="password" class="block text-sm font-medium leading-6 text-gray-900"
+          <label for="password" class="text-tertiary-900 block text-sm font-medium leading-6"
             >{t("login", "password")}</label
           >
           <div class="mt-2">
@@ -50,7 +50,7 @@
               autocomplete="current-password"
               placeholder={t("login", "password").toLowerCase()}
               required
-              class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="ring-tertiary-300 placeholder:text-tertiary-400 focus:ring-surface-600 block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
             />
           </div>
         </div>

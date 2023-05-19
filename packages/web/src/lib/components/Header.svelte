@@ -1,7 +1,6 @@
 <script lang="ts">
   import Container from "./Container.svelte";
   import { AcademicCapIcon, ChevronUpIcon, MenuIcon } from "@rgossiaux/svelte-heroicons/outline";
-  import NavLink from "./NavLink.svelte";
   import type { T, L } from "$lib/i18n/t";
   import type { Page } from "$lib/i18n";
   import { page } from "$app/stores";
@@ -29,12 +28,16 @@
     <Container class={"relative z-50 flex justify-between py-8"}>
       <div class="relative z-10 flex items-center gap-16">
         <a href={l("hem")} class="flex items-center"
-          ><AcademicCapIcon class="h-10 w-10 text-zinc-500" /><span class="text-base font-semibold"
-            >{t("common", "title")}</span
+          ><AcademicCapIcon class="text-primary-500 h-10 w-10" /><span
+            class="text-base font-semibold">{t("common", "title")}</span
           ></a
         >
         <div class="hidden lg:flex lg:gap-10">
-          <NavLink {t} {l} />
+          {#each links($page.params.lang) as link}
+            <a href={l(link)} class="text-tertiary-700 hover:text-tertiary-900 text-sm">
+              {t("common", link)}
+            </a>
+          {/each}
         </div>
       </div>
       <div class="flex items-center gap-6">
@@ -57,7 +60,7 @@
           {#if open}
             <div
               aria-hidden="true"
-              class="fixed inset-0 z-0 bg-gray-300/60 backdrop-blur-sm"
+              class="bg-surface-300/60 fixed inset-0 z-0 backdrop-blur-sm"
               in:fade={{ duration: 150 }}
               out:fade={{ duration: 200 }}
             />
@@ -68,11 +71,15 @@
             >
               <div
                 id="popover-panel"
-                class="z-0 w-screen rounded-b-2xl bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
+                class="bg-surface-50 shadow-surface-900/20 z-0 w-screen rounded-b-2xl px-6 pb-6 pt-32 shadow-2xl"
               >
                 <div class="flex flex-col items-start space-y-4">
                   {#each links($page.params.lang) as link}
-                    <a href={l(link)} class="btn" on:click={toggle}>{t("common", link)}</a>
+                    <a
+                      href={l(link)}
+                      class="btn text-tertiary-700 hover:text-tertiary-900"
+                      on:click={toggle}>{t("common", link)}</a
+                    >
                   {/each}
                 </div>
                 {#if buttonLinks.length > 0}

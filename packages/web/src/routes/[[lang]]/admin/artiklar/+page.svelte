@@ -47,17 +47,19 @@
     <form id="editForm" method="POST" action={`?/${post ? "update" : "create"}&${q}`}>
       <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div class="sm:col-span-4">
-          <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
+          <label for="title" class="text-tertiary-900 block text-sm font-medium leading-6"
+            >Title</label
+          >
           <div class="mt-2">
             <div
-              class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
+              class="ring-surface-300 focus-within:ring-surface-600 flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset sm:max-w-md"
             >
               <input
                 type="text"
                 name="title"
                 id="title"
                 required={true}
-                class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                class="text-tertiary-900 placeholder:text-tertiary-400 block flex-1 border-0 bg-transparent py-1.5 pl-1 focus:ring-0 sm:text-sm sm:leading-6"
                 placeholder="Lorem ipsum dolor."
                 value={post?.title || ""}
               />
@@ -65,7 +67,7 @@
           </div>
         </div>
         <div class="sm:col-span-2">
-          <label for="publish" class="block text-sm font-medium leading-6 text-gray-900"
+          <label for="publish" class="text-tertiary-900 block text-sm font-medium leading-6"
             >Publish</label
           >
           <div class="mt-2">
@@ -73,6 +75,7 @@
               type="checkbox"
               name="publish"
               id="publish"
+              class="text-surface-600"
               placeholder="Lorem ipsum dolor."
               checked={post?.published === true}
             />
@@ -80,19 +83,19 @@
         </div>
         {#if parent}
           <div class="sm:col-span-4">
-            <label for="parent_title" class="block text-sm font-medium leading-6 text-gray-900"
+            <label for="parent_title" class="text-tertiary-900 block text-sm font-medium leading-6"
               >Parent</label
             >
             <div class="mt-2">
               <div
-                class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
+                class="ring-surface-300 focus-within:ring-surface-600 flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset sm:max-w-md"
               >
                 <input
                   type="text"
                   disabled={true}
                   name="parent_title"
                   id="parent_title"
-                  class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-700 focus:ring-0 sm:text-sm sm:leading-6"
+                  class="text-tertiary-700 block flex-1 border-0 bg-transparent py-1.5 pl-1 focus:ring-0 sm:text-sm sm:leading-6"
                   value={parent.title}
                 />
                 <input
@@ -109,11 +112,11 @@
         {/if}
 
         <div class="col-span-full">
-          <label for="slug" class="block text-sm font-medium leading-6 text-gray-900 underline"
+          <label for="slug" class="text-tertiary-900 block text-sm font-medium leading-6 underline"
             ><a href="https://developer.mozilla.org/en-US/docs/Glossary/Slug">Slug</a></label
           >
           <div
-            class=" mt-2 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
+            class=" ring-surface-300 focus-within:ring-surface-600 mt-2 flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset sm:max-w-md"
           >
             <input
               type="text"
@@ -122,14 +125,14 @@
               placeholder="lorem"
               required={true}
               pattern="^[a-zA-Z0-9\-._~]+$"
-              class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-700 focus:ring-0 sm:text-sm sm:leading-6"
+              class="text-tertiary-700 block flex-1 border-0 bg-transparent py-1.5 pl-1 focus:ring-0 sm:text-sm sm:leading-6"
               value={post?.slug || ""}
             />
           </div>
         </div>
 
         <div class="col-span-4">
-          <label for="excerpt" class="block text-sm font-medium leading-6 text-gray-900"
+          <label for="excerpt" class="text-tertiary-900 block text-sm font-medium leading-6"
             >Sammanfattning</label
           >
           <div class="mt-2">
@@ -138,18 +141,19 @@
               name="excerpt"
               rows="3"
               placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
-              class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
+              class="text-tertiary-900 ring-surface-300 placeholder:text-tertiary-400 focus:ring-surface-600 block w-full rounded-md border-0 bg-transparent shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:py-1.5 sm:text-sm sm:leading-6"
               value={post?.excerpt || ""}
             />
           </div>
         </div>
         <div class="col-span-4">
-          <label for="post" class="block text-sm font-medium leading-6 text-gray-900">Artikel</label
+          <label for="post" class="text-tertiary-900 block text-sm font-medium leading-6"
+            >Artikel</label
           >
           <textarea
             name="post"
             id="post"
-            class="block h-96 w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
+            class="text-tertiary-900 ring-surface-300 placeholder:text-tertiary-400 focus:ring-surface-600 block h-96 w-full rounded-md border-0 bg-transparent shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:py-1.5 sm:text-sm sm:leading-6"
             bind:value={postData}
             placeholder="Markdown"
           />

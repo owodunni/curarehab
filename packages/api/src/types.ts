@@ -15,6 +15,7 @@ export type BlogPostMetaData = Pick<
   | "published"
   | "created_at"
   | "updated_at"
+  | "author"
 >;
 export type BlogPost = Database["public"]["Tables"]["blog"]["Row"];
 

@@ -9,7 +9,7 @@
 <Container class="relative">
   <div class="relative z-[5] pt-14 lg:w-full lg:max-w-2xl">
     <svg
-      class="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-white lg:block"
+      class="fill-surface-50 absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform lg:block"
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
       aria-hidden="true"
@@ -21,7 +21,7 @@
       <slot />
     </div>
   </div>
-  <div class="hidden bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:block lg:w-1/2">
+  <div class="bg-surface-50 hidden lg:absolute lg:inset-y-0 lg:right-0 lg:block lg:w-1/2">
     <img
       class="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
       src={rehab}

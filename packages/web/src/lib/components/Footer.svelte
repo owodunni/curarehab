@@ -49,7 +49,7 @@
 </script>
 
 <footer
-  class="mt-16 border-t border-gray-200 bg-white pb-8 pt-16 sm:pt-24"
+  class="border-tertiary-200 mt-16 border-t pb-8 pt-16 sm:pt-24"
   aria-labelledby="footer-heading"
 >
   <Container>
@@ -61,11 +61,11 @@
             >{t("common", "title")}</span
           ></a
         >
-        <p class="text-sm leading-6 text-gray-600">
+        <p class="text-tertiary-600 text-sm leading-6">
           {t("common", "descriptionParagraph")}
         </p>
         <div class="flex space-x-6">
-          <a href="/" class="text-gray-400 hover:text-gray-500">
+          <a href="/" class="text-tertiary-400 hover:text-tertiary-500">
             <span class="sr-only">Facebook</span>
             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -75,7 +75,7 @@
               />
             </svg>
           </a>
-          <a href="/" class="text-gray-400 hover:text-gray-500">
+          <a href="/" class="text-tertiary-400 hover:text-tertiary-500">
             <span class="sr-only">Instagram</span>
             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -85,7 +85,7 @@
               />
             </svg>
           </a>
-          <a href="/" class="text-gray-400 hover:text-gray-500">
+          <a href="/" class="text-tertiary-400 hover:text-tertiary-500">
             <span class="sr-only">Twitter</span>
             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -93,7 +93,7 @@
               />
             </svg>
           </a>
-          <a href="/" class="text-gray-400 hover:text-gray-500">
+          <a href="/" class="text-tertiary-400 hover:text-tertiary-500">
             <span class="sr-only">GitHub</span>
             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -103,7 +103,7 @@
               />
             </svg>
           </a>
-          <a href="/" class="text-gray-400 hover:text-gray-500">
+          <a href="/" class="text-tertiary-400 hover:text-tertiary-500">
             <span class="sr-only">YouTube</span>
             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -117,28 +117,31 @@
       </div>
       <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
         <div>
-          <h3 class="text-sm font-semibold leading-6 text-gray-900">{t("common", "hitta")}</h3>
+          <h3 class="text-tertiary-900 text-sm font-semibold leading-6">{t("common", "hitta")}</h3>
           <ul class="mt-6 space-y-4">
             <li>
-              <a href="/" class="text-sm leading-6 text-gray-600 hover:text-gray-900"
+              <a href="/" class="text-tertiary-600 hover:text-tertiary-900 text-sm leading-6"
                 >Xxxxxxxxxx xx | xxx xx Linköping</a
               >
             </li>
           </ul>
         </div>
         <div>
-          <h3 class="text-sm font-semibold leading-6 text-gray-900">{t("common", "contact")}</h3>
+          <h3 class="text-tertiary-900 text-sm font-semibold leading-6">
+            {t("common", "contact")}
+          </h3>
           <ul class="mt-6 space-y-4">
             <li>
               <a
                 href="mailto: info@curarehab.se"
-                class="text-sm leading-6 text-gray-600 hover:text-gray-900">info@curarehab.se</a
+                class="text-tertiary-600 hover:text-tertiary-900 text-sm leading-6"
+                >info@curarehab.se</a
               >
             </li>
             <li>
               <a
                 href="tel: +46700000000"
-                class="text-sm leading-6 text-gray-600 hover:text-gray-900">0700-000000</a
+                class="text-tertiary-600 hover:text-tertiary-900 text-sm leading-6">0700-000000</a
               >
             </li>
           </ul>
@@ -147,16 +150,16 @@
     </div>
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div />
-      <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+      <div class="col-start-2 mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
         {#each linksWithCategory as outerLinks}
           <div class={"md:grid md:grid-cols-2 md:gap-8"}>
             {#each Object.entries(outerLinks) as [title, links], i}
               <div class={i % 2 === 0 ? "" : "mt-10 md:mt-0"}>
-                <h3 class="text-sm font-semibold leading-6 text-gray-900">{title}</h3>
+                <h3 class="text-tertiary-900 text-sm font-semibold leading-6">{title}</h3>
                 <ul class="mt-6 space-y-4">
                   {#each toLinks(links) as [href, linkTitle]}
                     <li>
-                      <a {href} class="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                      <a {href} class="text-tertiary-600 hover:text-tertiary-900 text-sm"
                         >{linkTitle}</a
                       >
                     </li>
@@ -168,8 +171,8 @@
         {/each}
       </div>
     </div>
-    <div class="mt-16 flex space-x-1 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
-      <p class="text-xs leading-5 text-gray-500">
+    <div class="border-tertiary-900/10 mt-16 flex space-x-1 border-t pt-8 sm:mt-20 lg:mt-24">
+      <p class="text-tertiary-500 text-xs leading-5">
         &copy; {new Date().getFullYear()}
         {t("common", "title")} Linköping AB
       </p>
