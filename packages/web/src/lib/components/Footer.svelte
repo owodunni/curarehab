@@ -1,8 +1,8 @@
 <script lang="ts">
   import Container from "./Container.svelte";
-  import { AcademicCapIcon } from "@rgossiaux/svelte-heroicons/outline";
   import type { T, L } from "$lib/i18n/t";
   import type { Page } from "$lib/i18n";
+  import Logo from "./Logo.svelte";
 
   export let t: T;
   export let l: L;
@@ -55,15 +55,8 @@
   <Container>
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-      <div class="space-y-8">
-        <a href={l("hem")} class="flex items-center"
-          ><AcademicCapIcon class="h-10 w-10 text-zinc-500" /><span class="text-base font-semibold"
-            >{t("common", "title")}</span
-          ></a
-        >
-        <p class="text-tertiary-600 text-sm leading-6">
-          {t("common", "descriptionParagraph")}
-        </p>
+      <div class="flex flex-col items-center space-y-8">
+        <a href={l("hem")} class="btn-icon w-32"><Logo class="text-surface-700" /> </a>
         <div class="flex space-x-6">
           <a href="/" class="text-tertiary-400 hover:text-tertiary-500">
             <span class="sr-only">Facebook</span>
