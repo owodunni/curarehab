@@ -25,7 +25,8 @@ export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => 
       const result = await (() => {
         const partial = supabase
           .from("blog")
-          .select("title,id,slug,locale,parent,excerpt,published,created_at,updated_at");
+          .select("title,id,slug,locale,parent,excerpt,published,created_at,updated_at,author")
+          .order("updated_at", { ascending: false });
         return onlyPublished ? partial.eq("published", true) : partial;
       })();
       if (result.error) {
