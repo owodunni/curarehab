@@ -1,10 +1,11 @@
 <script lang="ts">
   import Container from "./Container.svelte";
-  import { AcademicCapIcon, ChevronUpIcon, MenuIcon } from "@rgossiaux/svelte-heroicons/outline";
+  import { ChevronUpIcon, MenuIcon } from "@rgossiaux/svelte-heroicons/outline";
   import type { T, L } from "$lib/i18n/t";
   import type { Page } from "$lib/i18n";
   import { page } from "$app/stores";
   import { fade, fly } from "svelte/transition";
+  import Logo from "./Logo.svelte";
 
   export let t: T;
   export let l: L;
@@ -27,11 +28,7 @@
   <nav>
     <Container class={"relative z-50 flex justify-between py-8"}>
       <div class="relative z-10 flex items-center gap-16">
-        <a href={l("hem")} class="flex items-center"
-          ><AcademicCapIcon class="text-primary-500 h-10 w-10" /><span
-            class="text-base font-semibold">{t("common", "title")}</span
-          ></a
-        >
+        <a href={l("hem")} class="btn-icon text-surface-700 m-0 h-10 w-20 p-0"><Logo /></a>
         <div class="hidden lg:flex lg:gap-10">
           {#each links($page.params.lang) as link}
             <a href={l(link)} class="text-tertiary-700 hover:text-tertiary-900 text-sm">
