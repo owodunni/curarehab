@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ArticleList } from "$lib/components/ArticleList";
+  import ArticleList from "$lib/components/ArticleList.svelte";
   import Container from "$lib/components/Container.svelte";
   import type { PageData } from "./$types";
   export let data: PageData;

@@ -7,6 +7,7 @@ export interface Database {
         Row: {
           author: string;
           author_id: number | null;
+          cover_photo: string;
           created_at: string;
           excerpt: string;
           id: number;
@@ -21,6 +22,7 @@ export interface Database {
         Insert: {
           author: string;
           author_id?: number | null;
+          cover_photo?: string;
           created_at?: string;
           excerpt?: string;
           id?: number;
@@ -35,6 +37,7 @@ export interface Database {
         Update: {
           author?: string;
           author_id?: number | null;
+          cover_photo?: string;
           created_at?: string;
           excerpt?: string;
           id?: number;
@@ -53,6 +56,7 @@ export interface Database {
           created_at: string | null;
           first_name: string;
           id: number;
+          keywords: string[] | null;
           last_name: string;
           profile_excerpt: string;
           profile_excerpt_en: string;
@@ -60,6 +64,7 @@ export interface Database {
           profile_text: string;
           profile_text_en: string;
           published: boolean;
+          title: string;
           user_id: string | null;
         };
         Insert: {
@@ -67,6 +72,7 @@ export interface Database {
           created_at?: string | null;
           first_name?: string;
           id?: number;
+          keywords?: string[] | null;
           last_name?: string;
           profile_excerpt?: string;
           profile_excerpt_en?: string;
@@ -74,6 +80,7 @@ export interface Database {
           profile_text?: string;
           profile_text_en?: string;
           published?: boolean;
+          title?: string;
           user_id?: string | null;
         };
         Update: {
@@ -81,6 +88,7 @@ export interface Database {
           created_at?: string | null;
           first_name?: string;
           id?: number;
+          keywords?: string[] | null;
           last_name?: string;
           profile_excerpt?: string;
           profile_excerpt_en?: string;
@@ -88,6 +96,7 @@ export interface Database {
           profile_text?: string;
           profile_text_en?: string;
           published?: boolean;
+          title?: string;
           user_id?: string | null;
         };
       };

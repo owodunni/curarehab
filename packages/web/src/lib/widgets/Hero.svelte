@@ -1,5 +1,5 @@
 <script lang="ts">
-  import HeroComponent from "./HeroComponent.svelte";
+  import HeroComponent from "$lib/components/HeroComponent.svelte";
 
   import type { T, L } from "$lib/i18n/t";
 
