@@ -57,6 +57,10 @@ async function postCrud(
     const author = (await supabase.s.auth.getUser()).data.user?.id;
     if (!author) return fail(400, { ...post, userNotSignedIn: true });
 
+    const terapheut = await supabase.getTerapheut(author);
+    if (!terapheut) return fail(400, { ...post, noProfile: true });
+    if ("message" in terapheut) return fail(400, { ...post, noProfile: true });
+
     const parentId = post.parent_id ? parseInt(post.parent_id.toString()) : undefined;
 
     if (parentId && isNaN(parentId)) {
@@ -72,6 +76,7 @@ async function postCrud(
           slug: post.slug.toString(),
           published: post.published?.toString() === "on",
           author,
+          terapheut: terapheut.id,
           updated_at: new Date().toISOString(),
           ...(parentId && { parent: parentId }),
           post: post.post?.toString(),

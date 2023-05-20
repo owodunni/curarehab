@@ -1,4 +1,4 @@
-import type { Supabase, SupabaseLightClient, SupabaseUtil } from "./types";
+import type { BlogPostMetaData, Supabase, SupabaseLightClient, SupabaseUtil } from "./types";
 import { util } from "./util";
 
 export const supabaseApiKeys = () => ({
@@ -15,24 +15,49 @@ export type {
   User,
   BlogPostMetaData,
   BlogPost,
+  TerapheutMetaData,
+  Terapheut,
   DbError
 } from "./types";
 
 export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => {
   let u: SupabaseUtil;
   const client: SupabaseLightClient = {
-    getBlogPostsMetaData: async (onlyPublished: boolean) => {
+    getBlogPostsMetaData: async (onlyPublished) => {
       const result = await (() => {
         const partial = supabase
           .from("blog")
-          .select("title,id,slug,locale,parent,excerpt,published,created_at,updated_at,author")
+          .select(
+            "title,id,slug,locale,parent,excerpt,published,created_at,updated_at,terapheut ( id, first_name, last_name, profile_excerpt, profile_photo )"
+          )
           .order("updated_at", { ascending: false });
         return onlyPublished ? partial.eq("published", true) : partial;
       })();
       if (result.error) {
         return { message: result.error.message, code: 500 };
       } else {
+        return result.data as BlogPostMetaData[];
+      }
+    },
+    getTerapheutMetaData: async (onlyPublished) => {
+      const result = await (() => {
+        const partial = supabase
+          .from("terapheut")
+          .select("id,first_name,last_name,profile_excerpt,profile_photo,published,user_id");
+        return onlyPublished ? partial.eq("published", true) : partial;
+      })();
+      if (result.error) {
+        return { message: result.error.message, code: 500 };
+      } else {
         return result.data;
+      }
+    },
+    getTerapheut: async (userId) => {
+      const result = await supabase.from("terapheut").select("*").eq("user_id", userId);
+      if (result.error) return { message: result.error.message, code: 500 };
+      else if (!result.data[0]) return { message: "Not found", code: 500 };
+      else {
+        return result.data[0];
       }
     },
     getBlogPosts: async () => {
@@ -47,8 +72,7 @@ export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => 
       const result = await supabase.from("blog").select("*").eq("slug", slug);
       if (result.error) {
         return { message: result.error.message, code: 500 };
-      }
-      if (!result.data[0]) return { message: "Not found", code: 500 };
+      } else if (!result.data[0]) return { message: "Not found", code: 500 };
       else {
         return result.data[0];
       }
