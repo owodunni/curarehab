@@ -11,7 +11,6 @@ import type {
   OmTranslations,
   Page,
   PrivacyTranslations,
-  SkadekompassenTranslations,
   TerapheutTranslations,
   TranslationGroup,
   Translations,
@@ -43,11 +42,6 @@ export const createT = (translations: LoadedTranslations<TranslationGroup, Trans
   function r(
     group: "terapeuter",
     key: keyof TerapheutTranslations,
-    params?: NamedPlaceholder
-  ): string;
-  function r(
-    group: "skadekompassen",
-    key: keyof SkadekompassenTranslations,
     params?: NamedPlaceholder
   ): string;
   function r(group: TranslationGroup, key: Translations, params?: NamedPlaceholder): string {

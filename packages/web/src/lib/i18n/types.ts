@@ -9,7 +9,6 @@ export type Page =
   | "hitta"
   | "behandlingar"
   | "terapeuter"
-  | "skadekompassen"
   | "sekretess";
 export type TranslationGroup = "common" | Page;
 
@@ -35,7 +34,6 @@ export type CommonTranslations = {
   hitta: string;
   behandlingar: string;
   terapeuter: string;
-  skadekompassen: string;
   sekretess: string;
   ourServices: string;
   information: string;
@@ -134,11 +132,6 @@ export type TreatmentsTranslations = {
   description: string;
 };
 
-export type SkadekompassenTranslations = {
-  title: string;
-  description: string;
-};
-
 export type TranslationsByGroup = {
   common: CommonTranslations;
   hem: HemTranslations;
@@ -151,7 +144,6 @@ export type TranslationsByGroup = {
   terapeuter: TerapheutTranslations;
   sekretess: PrivacyTranslations;
   behandlingar: TreatmentsTranslations;
-  skadekompassen: SkadekompassenTranslations;
 };
 
 export type Translations =
@@ -165,5 +157,4 @@ export type Translations =
   | keyof FindTranslations
   | keyof TerapheutTranslations
   | keyof PrivacyTranslations
-  | keyof TreatmentsTranslations
-  | keyof SkadekompassenTranslations;
+  | keyof TreatmentsTranslations;
