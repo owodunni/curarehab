@@ -12,7 +12,7 @@
     </h1>
   </header>
   <div class="py-16">
-    <ArticleList posts={data.posts} t={data.t} l={data.l} />
+    <ArticleList posts={data.posts} l={data.l} />
   </div>
 </Container>
 

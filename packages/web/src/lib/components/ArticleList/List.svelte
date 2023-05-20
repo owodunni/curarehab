@@ -22,17 +22,18 @@
       </header>
       <div class="space-y-4 p-4">
         <h3 class="h3" data-toc-ignore>{post.title}</h3>
-        <article>
-          <p>
-            {post.excerpt}
-          </p>
+        <article class="prose">
+          <!-- eslint-disable svelte/no-at-html-tags -->
+          {@html post.excerpt}
         </article>
       </div>
       <hr class="opacity-50" />
       <footer class="flex items-center justify-start space-x-4 p-4">
-        <Avatar src="https://source.unsplash.com/YOErFW8AfkI/32x32" width="w-8" />
+        {#if post.terapheut.profile_photo}
+          <Avatar src={post.terapheut.profile_photo} width="w-8" />
+        {/if}
         <div class="flex flex-auto items-center justify-between">
-          <h6 class="font-bold">{post.author}</h6>
+          <h6 class="font-bold">{post.terapheut.first_name}</h6>
           <small>
             <time datetime="2022-09-05">{toDate(post)}</time>
           </small>

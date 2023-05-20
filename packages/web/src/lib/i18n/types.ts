@@ -100,6 +100,18 @@ export type AdminTranslations = {
   tableDescription: string;
   tableParent: string;
   newArticle: string;
+  headlineTitle: string;
+  previewArticle: string;
+  headlineSlug: string;
+  headlineExcerpt: string;
+  previewExcerpt: string;
+  previewProfile: string;
+  headlinePublish: string;
+  headlineParent: string;
+  headlineProfile: string;
+  headlineFirstName: string;
+  headlineLastName: string;
+  headlineArticle: string;
 };
 
 export type FindTranslations = {

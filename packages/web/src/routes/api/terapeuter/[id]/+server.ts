@@ -7,15 +7,15 @@ import { json } from "@sveltejs/kit";
 export const GET: RequestHandler = async (event) => {
   const supabase = event.locals.supabase;
 
-  const { slug } = event.params;
+  const { id } = event.params;
 
-  const post = await supabase.getBlogPost(slug);
+  const terapheut = await supabase.getTerapheut(id);
 
-  if ("code" in post) {
-    return json(post, {
-      status: post.code
+  if ("code" in terapheut) {
+    return json(terapheut, {
+      status: terapheut.code
     });
   }
 
-  return json(post);
+  return json(terapheut);
 };
