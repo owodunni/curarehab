@@ -19,7 +19,7 @@
   const baseLinks = ["behandlingar", "hitta", "terapeuter"] as const;
 
   const links = (locale: string | undefined) => {
-    return locale === "en" ? baseLinks : (["skadekompassen", ...baseLinks] as const);
+    return locale === "en" ? baseLinks : ([...baseLinks, "artiklar"] as const);
   };
   const buttonLinks = ["boka"] satisfies Page[];
 </script>

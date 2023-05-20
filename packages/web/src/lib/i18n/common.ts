@@ -13,8 +13,7 @@ export type Route =
   | "/hitta"
   | "/sekretess"
   | "/terapeuter"
-  | "/behandlingar"
-  | "/skadekompassen";
+  | "/behandlingar";
 export const pageWithRoute = {
   hem: "/",
   om: "/om",
@@ -25,8 +24,7 @@ export const pageWithRoute = {
   hitta: "/hitta",
   sekretess: "/sekretess",
   terapeuter: "/terapeuter",
-  behandlingar: "/behandlingar",
-  skadekompassen: "/skadekompassen"
+  behandlingar: "/behandlingar"
 } satisfies Record<Page, Route>;
 
 export const pageFromRoute = Object.fromEntries(

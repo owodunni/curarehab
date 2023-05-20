@@ -22,7 +22,6 @@ export const common: CommonTranslations = {
   hitta: "Find us",
   behandlingar: "Treatments",
   terapeuter: "Therapists",
-  skadekompassen: "Injury compass",
   sekretess: "Privacy policy",
   ourServices: "Our services",
   information: "Information",
