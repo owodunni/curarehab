@@ -23,15 +23,16 @@ export type {
 export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => {
   let u: SupabaseUtil;
   const client: SupabaseLightClient = {
-    getBlogPostsMetaData: async (onlyPublished) => {
+    getBlogPostsMetaData: async (onlyPublished, limit) => {
       const result = await (() => {
         const partial = supabase
           .from("blog")
           .select(
-            "title,id,slug,locale,parent,excerpt,published,created_at,updated_at,terapheut ( id, first_name, last_name, profile_excerpt, profile_photo )"
+            "title,id,slug,locale,parent,excerpt,published,created_at,updated_at,cover_photo,terapheut ( id, first_name, last_name, profile_excerpt, profile_photo, title )"
           )
           .order("updated_at", { ascending: false });
-        return onlyPublished ? partial.eq("published", true) : partial;
+        const published = onlyPublished ? partial.eq("published", true) : partial;
+        return limit ? published.limit(limit) : published;
       })();
       if (result.error) {
         return { message: result.error.message, code: 500 };
@@ -43,7 +44,7 @@ export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => 
       const result = await (() => {
         const partial = supabase
           .from("terapheut")
-          .select("id,first_name,last_name,profile_excerpt,profile_photo,published,user_id");
+          .select("id,first_name,last_name,title,profile_excerpt,profile_photo,published,user_id");
         return onlyPublished ? partial.eq("published", true) : partial;
       })();
       if (result.error) {

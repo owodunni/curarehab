@@ -6,7 +6,12 @@ export const GET: RequestHandler = async (event) => {
 
   const session = await event.locals.getSession();
 
-  const posts = await supabase.getBlogPostsMetaData(session === null);
+  const limit = event.url.searchParams.get("limit");
+
+  const posts = await supabase.getBlogPostsMetaData(
+    session === null,
+    limit ? parseInt(limit) : undefined
+  );
 
   if ("code" in posts) {
     return json(posts, { status: posts.code });

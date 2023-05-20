@@ -1,12 +1,17 @@
 <script lang="ts">
-  import Hero from "$lib/components/Hero.svelte";
+  import Articles from "$lib/widgets/Articles.svelte";
+  import Hero from "$lib/widgets/Hero.svelte";
+  import Terapheuts from "$lib/widgets/Terapheuts.svelte";
   import type { PageData } from "./$types";
 
   export let data: PageData;
+  const { t, l, terapheuts, posts } = data;
 </script>
 
 <main>
-  <Hero t={data.t} l={data.l} />
+  <Hero {t} {l} />
+  <Terapheuts {terapheuts} {l} />
+  <Articles {posts} {l} />
   <!--MainTreatments /-->
 </main>
 
