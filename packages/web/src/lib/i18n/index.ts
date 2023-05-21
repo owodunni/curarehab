@@ -23,6 +23,8 @@ export const loadTranslations = async (locale: Locale, route: Route) => {
     ? "artiklar"
     : route.startsWith("/admin")
     ? "admin"
+    : route.startsWith("/terapeuter")
+    ? "terapeuter"
     : undefined;
   if (!page) {
     throw new Error(`No page found for route ${route}`);

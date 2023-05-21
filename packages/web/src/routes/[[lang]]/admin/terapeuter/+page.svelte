@@ -121,7 +121,7 @@
           {/if}
         </button>
         {#if previewExcerpt}
-          <article class="prose pb-16">
+          <article class="prose col-span-4 pb-16">
             <!-- eslint-disable svelte/no-at-html-tags -->
             {@html excerptHtml}
           </article>
@@ -151,7 +151,7 @@
           {/if}
         </button>
         {#if preview}
-          <article class="prose pb-16">
+          <article class="prose col-span-4 pb-16">
             <!-- eslint-disable svelte/no-at-html-tags -->
             {@html profileHtml}
           </article>
@@ -160,7 +160,7 @@
           <label
             for="profile_excerpt_en"
             class="text-tertiary-900 block text-sm font-medium leading-6"
-            >{t("admin", "headlineExcerpt")}</label
+            >{t("admin", "headlineExcerpt")} (en)</label
           >
           <div class="mt-2">
             <textarea
@@ -175,6 +175,7 @@
         </div>
         <button
           class="btn variant-filled col-span-4"
+          type="button"
           on:click={() => (previewExcerptEn = !previewExcerptEn)}
         >
           {t("admin", "previewExcerpt")} (en)
@@ -185,14 +186,14 @@
           {/if}
         </button>
         {#if previewExcerptEn}
-          <article class="prose pb-16">
+          <article class="prose col-span-4 pb-16">
             <!-- eslint-disable svelte/no-at-html-tags -->
             {@html excerptEnHtml}
           </article>
         {/if}
         <div class="col-span-4">
           <label for="profile_text_en" class="text-tertiary-900 block text-sm font-medium leading-6"
-            >{t("admin", "headlineProfile")}</label
+            >{t("admin", "headlineProfile")} (en)</label
           >
           <textarea
             name="profile_text_en"
@@ -202,7 +203,11 @@
             placeholder="Markdown"
           />
         </div>
-        <button class="btn variant-filled col-span-4" on:click={() => (previewEn = !previewEn)}>
+        <button
+          class="btn variant-filled col-span-4"
+          type="button"
+          on:click={() => (previewEn = !previewEn)}
+        >
           {t("admin", "previewProfile")} (en)
           {#if previewEn}
             <span class="ml-2"><ChevronUpIcon class="h-4 w-4" /></span>
@@ -211,7 +216,7 @@
           {/if}
         </button>
         {#if previewEn}
-          <article class="prose pb-16">
+          <article class="prose col-span-4 pb-16">
             <!-- eslint-disable svelte/no-at-html-tags -->
             {@html profileEnHtml}
           </article>

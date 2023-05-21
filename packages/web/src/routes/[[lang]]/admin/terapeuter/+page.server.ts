@@ -3,7 +3,6 @@ import { fail, type Actions } from "@sveltejs/kit";
 
 function parseForm(data: FormData) {
   const keys = [
-    "id",
     "first_name",
     "last_name",
     "profile_excerpt",
@@ -21,13 +20,15 @@ function parseForm(data: FormData) {
 }
 
 export const actions = {
-  update: async ({ request, locals: { supabase } }) => {
+  update: async ({ request, url, locals: { supabase } }) => {
     const terapheut = parseForm(await request.formData());
 
-    if (!terapheut.id) {
+    const id = url.searchParams.get("id");
+
+    if (!id) {
       return fail(400, {
         ...terapheut,
-        ...(!terapheut.id && { idMissing: true })
+        idMissing: true
       });
     }
     const s = supabase.s;
@@ -42,7 +43,7 @@ export const actions = {
         profile_excerpt_en: terapheut.profile_excerpt_en?.toString(),
         profile_text_en: terapheut.profile_text_en?.toString()
       })
-      .eq("id", terapheut.id);
+      .eq("user_id", id);
 
     if (res.error) {
       return fail(500, { ...terapheut, error: res.error });

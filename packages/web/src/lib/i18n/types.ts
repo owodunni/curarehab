@@ -41,6 +41,15 @@ export type CommonTranslations = {
   readMore: string;
   contact: string;
   descriptionParagraph: string;
+  titleFysio: string;
+  titleNaprapat: string;
+  titleMassage: string;
+  titleWeb: string;
+  terapheutsTitle: string;
+  terapheutsText: string;
+  articlesTitle: string;
+  articlesText: string;
+  bokaNu: string;
 };
 
 export type HemTranslations = {
@@ -110,6 +119,7 @@ export type AdminTranslations = {
   headlineFirstName: string;
   headlineLastName: string;
   headlineArticle: string;
+  editProfile: string;
 };
 
 export type FindTranslations = {

@@ -44,7 +44,9 @@ export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => 
       const result = await (() => {
         const partial = supabase
           .from("terapheut")
-          .select("id,first_name,last_name,title,profile_excerpt,profile_photo,published,user_id");
+          .select(
+            "id,first_name,last_name,title,profile_excerpt,profile_photo,published,user_id,profile_excerpt_en"
+          );
         return onlyPublished ? partial.eq("published", true) : partial;
       })();
       if (result.error) {
@@ -53,8 +55,12 @@ export const supabaseLightClient = (supabase: Supabase): SupabaseLightClient => 
         return result.data;
       }
     },
-    getTerapheut: async (userId) => {
-      const result = await supabase.from("terapheut").select("*").eq("user_id", userId);
+    getTerapheut: async (idOrName, type) => {
+      const partial = supabase.from("terapheut").select("*");
+      const [name, id] = type === "name" ? idOrName.split("-") : ["", ""];
+      const result = await (type === "id"
+        ? partial.eq("user_id", idOrName)
+        : partial.eq("first_name", name).eq("id", id));
       if (result.error) return { message: result.error.message, code: 500 };
       else if (!result.data[0]) return { message: "Not found", code: 500 };
       else {

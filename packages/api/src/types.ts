@@ -11,6 +11,7 @@ export type TerapheutMetaData = Pick<
   | "last_name"
   | "title"
   | "profile_excerpt"
+  | "profile_excerpt_en"
   | "profile_photo"
   | "published"
   | "user_id"
@@ -38,7 +39,7 @@ export interface SupabaseLightClient {
     limit?: number
   ) => Promise<BlogPostMetaData[] | DbError>;
   getTerapheutMetaData: (onlyPublished: boolean) => Promise<TerapheutMetaData[] | DbError>;
-  getTerapheut: (userId: string) => Promise<Terapheut | DbError>;
+  getTerapheut: (idOrName: string, type?: "name" | "id") => Promise<Terapheut | DbError>;
   getBlogPosts: () => Promise<BlogPost[] | DbError>;
   getBlogPost: (slug: string) => Promise<BlogPost | DbError>;
   util: () => SupabaseUtil;

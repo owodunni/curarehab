@@ -23,5 +23,6 @@ export const admin: AdminTranslations = {
   headlineArticle: "Article",
   headlineProfile: "Profile",
   headlineFirstName: "First name",
-  headlineLastName: "Last name"
+  headlineLastName: "Last name",
+  editProfile: "Edit profile"
 };
