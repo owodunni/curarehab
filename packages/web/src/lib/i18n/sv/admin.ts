@@ -23,5 +23,6 @@ export const admin: AdminTranslations = {
   headlineArticle: "Artikel",
   headlineProfile: "Profil",
   headlineFirstName: "Förnamn",
-  headlineLastName: "Efternamn"
+  headlineLastName: "Efternamn",
+  editProfile: "Redigera profil"
 };

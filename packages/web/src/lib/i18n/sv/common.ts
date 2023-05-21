@@ -29,5 +29,15 @@ export const common: CommonTranslations = {
   readMore: "Läs mer",
   contact: "Kontakt",
   descriptionParagraph:
-    "Vi på Cura Rehab är ett team av legitimerade terapeuter som tillsammans arbetar för att du ska få en skräddarsydd behandling som passar just dina behov och mål."
+    "Vi på Cura Rehab är ett team av legitimerade terapeuter som tillsammans arbetar för att du ska få en skräddarsydd behandling som passar just dina behov och mål.",
+  titleFysio: "Fysioterapeut",
+  titleNaprapat: "Naprapat",
+  titleMassage: "Massageterapeut",
+  titleWeb: "Webansvarig",
+  terapheutsTitle: "Våra terapeuter",
+  terapheutsText:
+    "Träffa vårt team av legitimerade terapeuter som tillsammans arbetar för att du ska få en skräddarsydd behandling som passar just dina behov och mål.",
+  articlesTitle: "Våra artiklar",
+  articlesText: "Läs våra artiklar om smärta och hur du blir av med den.",
+  bokaNu: "Boka nu"
 };

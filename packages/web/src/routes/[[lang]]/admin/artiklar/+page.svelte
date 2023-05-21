@@ -150,7 +150,7 @@
           {/if}
         </button>
         {#if previewExcerpt}
-          <article class="prose border-b pb-16">
+          <article class="prose col-span-4 border-b pb-16">
             <!-- eslint-disable svelte/no-at-html-tags -->
             {@html excerptHtml}
           </article>
@@ -180,7 +180,7 @@
           {/if}
         </button>
         {#if preview}
-          <article class="prose border-b pb-16">
+          <article class="prose col-span-4 border-b pb-16">
             <!-- eslint-disable svelte/no-at-html-tags -->
             {@html postHtml}
           </article>

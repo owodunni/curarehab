@@ -1,19 +1,13 @@
 <script lang="ts">
-  import ArticleList from "$lib/components/ArticleList.svelte";
   import Container from "$lib/components/Container.svelte";
+  import Articles from "$lib/widgets/Articles.svelte";
   import type { PageData } from "./$types";
   export let data: PageData;
+  const { posts, l, t } = data;
 </script>
 
 <Container>
-  <header class="max-w-2xl">
-    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">
-      {data.t("artiklar", "description")}
-    </h1>
-  </header>
-  <div class="py-16">
-    <ArticleList posts={data.posts} l={data.l} />
-  </div>
+  <Articles {posts} {l} {t} />
 </Container>
 
 <svelte:head>

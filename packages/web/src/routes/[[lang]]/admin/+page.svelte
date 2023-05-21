@@ -27,17 +27,22 @@
       .join("&");
     return `${prefix}/admin/artiklar${querryParams.length > 0 ? `?${querryParams}` : ""}`;
   }
-  const { t } = data;
+  const { t, terapeut, l } = data;
 </script>
 
 <HeroComponent {t}>
   <div class="flex h-full max-w-sm flex-col lg:w-96">
     <h2 class="text-tertiary-900 flex-1 text-4xl font-bold tracking-tight">
       {t("admin", "welcome", { name: data.user.email || "" })}
+    </h2>
+    <div class="flex gap-4 pt-4">
+      <a class="btn variant-soft" href={`${l("admin")}/terapeuter?id=${terapeut.user_id}`}
+        >{t("admin", "editProfile")}</a
+      >
       <form method="post" action="/admin/login?/logout" use:enhance>
         <button class="btn variant-filled">{t("common", "logout")}</button>
       </form>
-    </h2>
+    </div>
   </div>
 </HeroComponent>
 <Container class="mt-8">

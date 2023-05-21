@@ -8,8 +8,9 @@ export const GET: RequestHandler = async (event) => {
   const supabase = event.locals.supabase;
 
   const { id } = event.params;
+  const name = event.url.searchParams.get("name");
 
-  const terapheut = await supabase.getTerapheut(id);
+  const terapheut = await supabase.getTerapheut(id, name !== null ? "name" : "id");
 
   if ("code" in terapheut) {
     return json(terapheut, {

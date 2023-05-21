@@ -10,8 +10,8 @@
 
 <main>
   <Hero {t} {l} />
-  <Terapheuts {terapheuts} {l} />
-  <Articles {posts} {l} />
+  <Terapheuts {terapheuts} {l} {t} />
+  <Articles {posts} {l} {t} />
   <!--MainTreatments /-->
 </main>
 

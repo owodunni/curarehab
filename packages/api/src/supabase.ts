@@ -11,6 +11,7 @@ export interface Database {
           created_at: string;
           excerpt: string;
           id: number;
+          keywords: string[] | null;
           locale: string;
           parent: number | null;
           post: string;
@@ -26,6 +27,7 @@ export interface Database {
           created_at?: string;
           excerpt?: string;
           id?: number;
+          keywords?: string[] | null;
           locale?: string;
           parent?: number | null;
           post?: string;
@@ -41,6 +43,7 @@ export interface Database {
           created_at?: string;
           excerpt?: string;
           id?: number;
+          keywords?: string[] | null;
           locale?: string;
           parent?: number | null;
           post?: string;
@@ -57,6 +60,7 @@ export interface Database {
           first_name: string;
           id: number;
           keywords: string[] | null;
+          keywords_en: string[] | null;
           last_name: string;
           profile_excerpt: string;
           profile_excerpt_en: string;
@@ -73,6 +77,7 @@ export interface Database {
           first_name?: string;
           id?: number;
           keywords?: string[] | null;
+          keywords_en?: string[] | null;
           last_name?: string;
           profile_excerpt?: string;
           profile_excerpt_en?: string;
@@ -89,6 +94,7 @@ export interface Database {
           first_name?: string;
           id?: number;
           keywords?: string[] | null;
+          keywords_en?: string[] | null;
           last_name?: string;
           profile_excerpt?: string;
           profile_excerpt_en?: string;
