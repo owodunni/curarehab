@@ -56,7 +56,7 @@
             />
             <div class="text-sm leading-6">
               <p class="text-tertiary-900 font-semibold">
-                <a href={`${l("terapeuter")}/${post.terapheut.user_id}`}>
+                <a href={`${l("terapeuter")}/${post.terapheut.first_name}-${post.terapheut.id}`}>
                   <span class="absolute inset-0" />
                   {post.terapheut.first_name}
                   {post.terapheut.last_name}
