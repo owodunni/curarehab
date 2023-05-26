@@ -1,5 +1,5 @@
 import { defaultLocale, locales } from "$lib/i18n";
-import type { BlogPostMetaData, DbError } from "@curarehab/api";
+import type { BlogPostMetaData, DbError, TerapheutMetaData } from "@curarehab/api";
 import type { RequestHandler } from "./$types";
 
 const seUrls = ["/artiklar"].flatMap((route) => {
@@ -9,14 +9,15 @@ const seUrls = ["/artiklar"].flatMap((route) => {
       </url>`.trim();
 });
 
-const urls = [...locales.filter((l) => l !== defaultLocale).map((l) => `/${l}`), ""].flatMap(
-  (locale) =>
-    ["", "/om"].map((route) => {
-      return `
+const localPrefix = [...locales.filter((l) => l !== defaultLocale).map((l) => `/${l}`), ""];
+
+const urls = localPrefix.flatMap((locale) =>
+  ["", "/om", "/terapeuter"].map((route) => {
+    return `
       <url>
         <loc>https://curarehab.se${locale}${route}</loc>
       </url>`.trim();
-    })
+  })
 );
 
 const postUrls = (posts: BlogPostMetaData[]) => {
@@ -31,13 +32,32 @@ const postUrls = (posts: BlogPostMetaData[]) => {
   });
 };
 
+const terapheutsUrls = (terapheuts: TerapheutMetaData[]): string[] => {
+  return terapheuts.flatMap((t) =>
+    localPrefix.flatMap((locale) => {
+      return `
+    <url>
+      <loc>https://curarehab.se${locale}/terapeuter/${t.first_name}-${t.id}</loc>
+    </url>`.trim();
+    })
+  );
+};
+
 export const GET: RequestHandler = async (event) => {
-  const posts = await (async (): Promise<BlogPostMetaData[]> => {
-    const posts = (await (await event.fetch("/api/artiklar")).json()) as
-      | DbError
-      | BlogPostMetaData[];
-    return "code" in posts ? [] : posts;
-  })();
+  const [posts, terapheuts] = await Promise.all([
+    (async (): Promise<BlogPostMetaData[]> => {
+      const posts = (await (await event.fetch("/api/artiklar")).json()) as
+        | DbError
+        | BlogPostMetaData[];
+      return "code" in posts ? [] : posts;
+    })(),
+    (async (): Promise<TerapheutMetaData[]> => {
+      const terapheuts = (await (await event.fetch("/api/terapeuter")).json()) as
+        | DbError
+        | TerapheutMetaData[];
+      return "code" in terapheuts ? [] : terapheuts;
+    })()
+  ]);
 
   return new Response(
     `
@@ -53,6 +73,7 @@ export const GET: RequestHandler = async (event) => {
       ${seUrls.join("\n")}
       ${urls.join("\n")}
       ${postUrls(posts)}
+      ${terapheutsUrls(terapheuts)}
     </urlset>`.trim(),
     {
       headers: {
