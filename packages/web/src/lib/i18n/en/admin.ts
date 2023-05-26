@@ -24,5 +24,7 @@ export const admin: AdminTranslations = {
   headlineProfile: "Profile",
   headlineFirstName: "First name",
   headlineLastName: "Last name",
-  editProfile: "Edit profile"
+  editProfile: "Edit profile",
+  headlineProfilePhoto: "Profile photo",
+  buttonUpdateProfile: "Update profile"
 };

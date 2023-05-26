@@ -49,5 +49,42 @@ export const actions = {
       return fail(500, { ...terapheut, error: res.error });
     }
     return terapheut;
+  },
+  profile: async ({ url, request, locals: { supabase } }) => {
+    const data = Object.fromEntries(await request.formData()) as { profile_photo: File };
+
+    const id = url.searchParams.get("id");
+
+    if (!id) {
+      return fail(400, {
+        idMissing: true
+      });
+    }
+
+    const s = supabase.s;
+
+    const res = await s.storage
+      .from("assets")
+      .upload(
+        `images/profiles/${id}/${crypto.randomUUID().slice(0, 2)}-${data.profile_photo.name}`,
+        data.profile_photo
+      );
+
+    if (res.error) {
+      return fail(500, { error: res.error });
+    }
+
+    const uploadedImage = s.storage.from("assets").getPublicUrl(res.data.path);
+
+    const res2 = await s
+      .from("terapheut")
+      .update({
+        profile_photo: uploadedImage.data.publicUrl
+      })
+      .eq("user_id", id);
+
+    if (res2.error) {
+      return fail(500, { error: res2.error });
+    }
   }
 } satisfies Actions;

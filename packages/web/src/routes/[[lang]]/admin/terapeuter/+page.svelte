@@ -15,6 +15,9 @@
   let profileEnData = terapheut?.profile_text_en ?? "";
   let excerptEnData = terapheut?.profile_excerpt_en ?? "";
 
+  let profileImage: string | null = terapheut?.profile_photo;
+  let showUploaded = false;
+
   $: profileHtml = marked.parse(profileData);
   $: excerptHtml = marked.parse(excerptData);
   $: profileEnHtml = marked.parse(profileEnData);
@@ -23,9 +26,21 @@
   let previewExcerpt = false;
   let previewEn = false;
   let previewExcerptEn = false;
+  let input: HTMLInputElement;
   const q = [`id=${$page.url.searchParams.get("id")}`]
     .filter((x) => !x.includes("=null"))
     .join("&");
+  function onChange() {
+    showUploaded = true;
+    if (input && input.files) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.addEventListener("load", function () {
+        profileImage = reader.result as string;
+      });
+      reader.readAsDataURL(file);
+    }
+  }
 </script>
 
 <Container class="pb-16">
@@ -36,6 +51,31 @@
     <p class="text-sm text-red-500">{form?.error.message}</p>
   {/if}
   <div class="space-y-12">
+    <form
+      id="profilePhotoForm"
+      method="POST"
+      action={`?/profile&${q}`}
+      enctype="multipart/form-data"
+      class="flex flex-col"
+    >
+      <label for="profile_photo" class="text-tertiary-900 block text-sm font-medium leading-6">
+        {t("admin", "headlineProfilePhoto")}
+        <img src={profileImage} alt="" class="max-w-xs py-6" />
+      </label>
+      <input
+        type="file"
+        name="profile_photo"
+        placeholder="profile_photo"
+        bind:this={input}
+        on:change={onChange}
+        class="pb-6"
+      />
+      {#if showUploaded}
+        <button type="submit" class="btn variant-ghost btn-sm w-32"
+          >{t("admin", "buttonUpdateProfile")}</button
+        >
+      {/if}
+    </form>
     <form id="editForm" method="POST" action={`?/update&${q}`}>
       <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div class="col-span-2">
@@ -109,7 +149,7 @@
           </div>
         </div>
         <button
-          class="btn variant-filled col-span-4"
+          class="btn variant-filled btn-sm col-span-4"
           type="button"
           on:click={() => (previewExcerpt = !previewExcerpt)}
         >
@@ -139,7 +179,7 @@
           />
         </div>
         <button
-          class="btn variant-filled col-span-4"
+          class="btn variant-filled btn-sm col-span-4"
           type="button"
           on:click={() => (preview = !preview)}
         >
@@ -174,7 +214,7 @@
           </div>
         </div>
         <button
-          class="btn variant-filled col-span-4"
+          class="btn variant-filled btn-sm col-span-4"
           type="button"
           on:click={() => (previewExcerptEn = !previewExcerptEn)}
         >
@@ -204,7 +244,7 @@
           />
         </div>
         <button
-          class="btn variant-filled col-span-4"
+          class="btn variant-filled btn-sm col-span-4"
           type="button"
           on:click={() => (previewEn = !previewEn)}
         >
@@ -223,6 +263,8 @@
         {/if}
       </div>
     </form>
-    <button class="btn variant-filled" type="submit" form="editForm">{t("common", "save")}</button>
+    <button class="btn variant-filled btn-sm" type="submit" form="editForm"
+      >{t("common", "save")}</button
+    >
   </div>
 </Container>
