@@ -120,6 +120,8 @@ export type AdminTranslations = {
   headlineLastName: string;
   headlineArticle: string;
   editProfile: string;
+  headlineProfilePhoto: string;
+  buttonUpdateProfile: string;
 };
 
 export type FindTranslations = {

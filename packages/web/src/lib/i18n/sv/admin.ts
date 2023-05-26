@@ -24,5 +24,7 @@ export const admin: AdminTranslations = {
   headlineProfile: "Profil",
   headlineFirstName: "Förnamn",
   headlineLastName: "Efternamn",
-  editProfile: "Redigera profil"
+  editProfile: "Redigera profil",
+  headlineProfilePhoto: "Profilbild",
+  buttonUpdateProfile: "Uppdatera profil"
 };
