@@ -1,0 +1,358 @@
+"""ISO8601 Date values"""
+scalar Date
+
+"""BigInt value"""
+scalar GraphQLBigInt
+
+"""A Float or a String"""
+scalar GraphQLStringOrFloat
+
+"""Hashed string values"""
+scalar Hash
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type Query {
+  artiklar(filter: artiklar_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [artiklar!]!
+  artiklar_aggregated(filter: artiklar_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [artiklar_aggregated!]!
+  artiklar_by_id(id: ID!): artiklar
+  terapeuter: terapeuter
+  terapeuter_directus_users(filter: terapeuter_directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [terapeuter_directus_users!]!
+  terapeuter_directus_users_aggregated(filter: terapeuter_directus_users_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [terapeuter_directus_users_aggregated!]!
+  terapeuter_directus_users_by_id(id: ID!): terapeuter_directus_users
+}
+
+type artiklar {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  etiketter: JSON
+  etiketter_func: count_functions
+  id: ID!
+  omslagsbild(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  sammanfattning: String
+  slug: String
+  status: String
+  text: JSON
+  text_func: count_functions
+  titel: String
+  user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+  user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+}
+
+type artiklar_aggregated {
+  count: artiklar_aggregated_count
+  countAll: Int
+  countDistinct: artiklar_aggregated_count
+  group: JSON
+}
+
+type artiklar_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  etiketter: Int
+  id: Int
+  omslagsbild: Int
+  sammanfattning: Int
+  slug: Int
+  status: Int
+  text: Int
+  titel: Int
+  user_created: Int
+  user_updated: Int
+}
+
+input artiklar_filter {
+  _and: [artiklar_filter]
+  _or: [artiklar_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  etiketter: string_filter_operators
+  etiketter_func: count_function_filter_operators
+  id: string_filter_operators
+  omslagsbild: directus_files_filter
+  sammanfattning: string_filter_operators
+  slug: string_filter_operators
+  status: string_filter_operators
+  text: string_filter_operators
+  text_func: count_function_filter_operators
+  titel: string_filter_operators
+  user_created: directus_users_filter
+  user_updated: directus_users_filter
+}
+
+input boolean_filter_operators {
+  _eq: Boolean
+  _neq: Boolean
+  _nnull: Boolean
+  _null: Boolean
+}
+
+input count_function_filter_operators {
+  count: number_filter_operators
+}
+
+type count_functions {
+  count: Int
+}
+
+input date_filter_operators {
+  _between: [GraphQLStringOrFloat]
+  _eq: String
+  _gt: String
+  _gte: String
+  _in: [String]
+  _lt: String
+  _lte: String
+  _nbetween: [GraphQLStringOrFloat]
+  _neq: String
+  _nin: [String]
+  _nnull: Boolean
+  _null: Boolean
+}
+
+input datetime_function_filter_operators {
+  day: number_filter_operators
+  hour: number_filter_operators
+  minute: number_filter_operators
+  month: number_filter_operators
+  second: number_filter_operators
+  week: number_filter_operators
+  weekday: number_filter_operators
+  year: number_filter_operators
+}
+
+type datetime_functions {
+  day: Int
+  hour: Int
+  minute: Int
+  month: Int
+  second: Int
+  week: Int
+  weekday: Int
+  year: Int
+}
+
+type directus_files {
+  charset: String
+  description: String
+  duration: Int
+  embed: String
+  filename_disk: String
+  filename_download: String!
+  filesize: GraphQLBigInt
+  folder: String
+  height: Int
+  id: ID!
+  location: String
+  metadata: JSON
+  metadata_func: count_functions
+  modified_by(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+  modified_on: Date
+  modified_on_func: datetime_functions
+  storage: String!
+  tags: JSON
+  tags_func: count_functions
+  title: String
+  type: String
+  uploaded_by(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+  uploaded_on: Date
+  uploaded_on_func: datetime_functions
+  width: Int
+}
+
+input directus_files_filter {
+  _and: [directus_files_filter]
+  _or: [directus_files_filter]
+  charset: string_filter_operators
+  description: string_filter_operators
+  duration: number_filter_operators
+  embed: string_filter_operators
+  filename_disk: string_filter_operators
+  filename_download: string_filter_operators
+  filesize: number_filter_operators
+  folder: string_filter_operators
+  height: number_filter_operators
+  id: string_filter_operators
+  location: string_filter_operators
+  metadata: string_filter_operators
+  metadata_func: count_function_filter_operators
+  modified_by: directus_users_filter
+  modified_on: date_filter_operators
+  modified_on_func: datetime_function_filter_operators
+  storage: string_filter_operators
+  tags: string_filter_operators
+  tags_func: count_function_filter_operators
+  title: string_filter_operators
+  type: string_filter_operators
+  uploaded_by: directus_users_filter
+  uploaded_on: date_filter_operators
+  uploaded_on_func: datetime_function_filter_operators
+  width: number_filter_operators
+}
+
+type directus_users {
+  auth_data: JSON
+  auth_data_func: count_functions
+  avatar(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  description: String
+  email: String
+  email_notifications: Boolean
+  external_identifier: String
+  first_name: String
+  id: ID!
+  language: String
+  last_access: Date
+  last_access_func: datetime_functions
+  last_name: String
+  last_page: String
+  location: String
+  password: Hash
+  profil_text: JSON
+  profil_text_func: count_functions
+  provider: String
+  role: String
+  sammanfattning: String
+  slug: String
+  status: String
+  tags: JSON
+  tags_func: count_functions
+  tfa_secret: Hash
+  theme: String
+  title: String
+  token: Hash
+  work_title: String
+}
+
+input directus_users_filter {
+  _and: [directus_users_filter]
+  _or: [directus_users_filter]
+  auth_data: string_filter_operators
+  auth_data_func: count_function_filter_operators
+  avatar: directus_files_filter
+  description: string_filter_operators
+  email: string_filter_operators
+  email_notifications: boolean_filter_operators
+  external_identifier: string_filter_operators
+  first_name: string_filter_operators
+  id: string_filter_operators
+  language: string_filter_operators
+  last_access: date_filter_operators
+  last_access_func: datetime_function_filter_operators
+  last_name: string_filter_operators
+  last_page: string_filter_operators
+  location: string_filter_operators
+  password: hash_filter_operators
+  profil_text: string_filter_operators
+  profil_text_func: count_function_filter_operators
+  provider: string_filter_operators
+  role: string_filter_operators
+  sammanfattning: string_filter_operators
+  slug: string_filter_operators
+  status: string_filter_operators
+  tags: string_filter_operators
+  tags_func: count_function_filter_operators
+  tfa_secret: hash_filter_operators
+  theme: string_filter_operators
+  title: string_filter_operators
+  token: hash_filter_operators
+  work_title: string_filter_operators
+}
+
+input hash_filter_operators {
+  _empty: Boolean
+  _nempty: Boolean
+  _nnull: Boolean
+  _null: Boolean
+}
+
+input number_filter_operators {
+  _between: [GraphQLStringOrFloat]
+  _eq: GraphQLStringOrFloat
+  _gt: GraphQLStringOrFloat
+  _gte: GraphQLStringOrFloat
+  _in: [GraphQLStringOrFloat]
+  _lt: GraphQLStringOrFloat
+  _lte: GraphQLStringOrFloat
+  _nbetween: [GraphQLStringOrFloat]
+  _neq: GraphQLStringOrFloat
+  _nin: [GraphQLStringOrFloat]
+  _nnull: Boolean
+  _null: Boolean
+}
+
+input string_filter_operators {
+  _contains: String
+  _empty: Boolean
+  _ends_with: String
+  _eq: String
+  _icontains: String
+  _in: [String]
+  _ncontains: String
+  _nempty: Boolean
+  _nends_with: String
+  _neq: String
+  _nin: [String]
+  _nnull: Boolean
+  _nstarts_with: String
+  _null: Boolean
+  _starts_with: String
+}
+
+type terapeuter {
+  id: ID!
+  terapeut(filter: terapeuter_directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [terapeuter_directus_users]
+  terapeut_func: count_functions
+}
+
+type terapeuter_directus_users {
+  directus_users_id(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+  id: ID!
+  terapeuter_id(filter: terapeuter_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): terapeuter
+}
+
+type terapeuter_directus_users_aggregated {
+  avg: terapeuter_directus_users_aggregated_fields
+  avgDistinct: terapeuter_directus_users_aggregated_fields
+  count: terapeuter_directus_users_aggregated_count
+  countAll: Int
+  countDistinct: terapeuter_directus_users_aggregated_count
+  group: JSON
+  max: terapeuter_directus_users_aggregated_fields
+  min: terapeuter_directus_users_aggregated_fields
+  sum: terapeuter_directus_users_aggregated_fields
+  sumDistinct: terapeuter_directus_users_aggregated_fields
+}
+
+type terapeuter_directus_users_aggregated_count {
+  directus_users_id: Int
+  id: Int
+  terapeuter_id: Int
+}
+
+type terapeuter_directus_users_aggregated_fields {
+  id: Float
+  terapeuter_id: Float
+}
+
+input terapeuter_directus_users_filter {
+  _and: [terapeuter_directus_users_filter]
+  _or: [terapeuter_directus_users_filter]
+  directus_users_id: directus_users_filter
+  id: number_filter_operators
+  terapeuter_id: terapeuter_filter
+}
+
+input terapeuter_filter {
+  _and: [terapeuter_filter]
+  _or: [terapeuter_filter]
+  id: number_filter_operators
+  terapeut: terapeuter_directus_users_filter
+  terapeut_func: count_function_filter_operators
+}
