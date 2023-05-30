@@ -1,7 +1,6 @@
 import type { LoadedTranslations, NamedPlaceholder } from "@curarehab/i18n";
 import { createTranslator } from "@curarehab/i18n/src/translator";
 import type {
-  AdminTranslations,
   ArticleTranslations,
   BokaTranslations,
   CommonTranslations,
@@ -31,7 +30,6 @@ export const createT = (translations: LoadedTranslations<TranslationGroup, Trans
   function r(group: "artiklar", key: keyof ArticleTranslations, params?: NamedPlaceholder): string;
   function r(group: "boka", key: keyof BokaTranslations, params?: NamedPlaceholder): string;
   function r(group: "login", key: keyof LogInTranslations, params?: NamedPlaceholder): string;
-  function r(group: "admin", key: keyof AdminTranslations, params?: NamedPlaceholder): string;
   function r(group: "hitta", key: keyof FindTranslations, params?: NamedPlaceholder): string;
   function r(
     group: "behandlingar",

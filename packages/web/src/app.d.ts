@@ -4,17 +4,12 @@
 
 import type { LoadedTranslations } from "@curarehab/i18n";
 import type { TranslationGroup, Translations } from "$lin/i18n";
-import type { SupabaseLightClient, Session } from "@curarehab/api";
 
 declare global {
   namespace App {
-    interface Locals {
-      supabase: SupabaseLightClient;
-      getSession(): Promise<Session | null>;
-    }
+    //interface Locals {}
     interface PageData {
       translations: LoadedTranslations<TranslationGroup, Translations>;
-      session: Session | null;
     }
     // interface Error {}
     // interface Platform {}

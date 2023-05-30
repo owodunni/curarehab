@@ -13,7 +13,6 @@ export const common: CommonTranslations = {
   boka: "Book",
   directions: "Click here to see how to get to us.",
   hem: "Home",
-  admin: "Admin",
   create: "Create article",
   cancel: "Cancel",
   save: "Save",

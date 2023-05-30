@@ -20,6 +20,5 @@ export const load: LayoutServerLoad = async (event) => {
 
   return {
     translations: await loadTranslations(locale, route as Route),
-    session: event.locals.getSession()
   };
 };
