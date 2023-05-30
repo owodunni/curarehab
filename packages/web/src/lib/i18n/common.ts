@@ -7,8 +7,6 @@ export type Route =
   | "/om"
   | "/artiklar"
   | "/boka"
-  | "/admin/login"
-  | "/admin"
   | "/"
   | "/hitta"
   | "/sekretess"
@@ -19,8 +17,6 @@ export const pageWithRoute = {
   om: "/om",
   artiklar: "/artiklar",
   boka: "/boka",
-  login: "/admin/login",
-  admin: "/admin",
   hitta: "/hitta",
   sekretess: "/sekretess",
   terapeuter: "/terapeuter",

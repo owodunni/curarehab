@@ -1,9 +1,6 @@
 {
   "references": [
     {
-      "path": "./packages/api"
-    },
-    {
       "path": "./packages/i18n"
     }
   ]

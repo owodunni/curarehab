@@ -15,7 +15,7 @@
   const linksWithCategory: Record<string, ([Page] | [string, string])[]>[] = [
     {
       [t("common", "ourServices")]: [["boka"], ["behandlingar"], ["terapeuter"], ["artiklar"]],
-      [t("common", "information")]: [["om"], ["hitta"], ["sekretess"], ["admin"]]
+      [t("common", "information")]: [["om"], ["hitta"], ["sekretess"]]
     },
     {
       [t("common", "partners")]: [

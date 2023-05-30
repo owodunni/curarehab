@@ -1,5 +1,4 @@
 import { defaultLocale, locales } from "$lib/i18n";
-import type { BlogPostMetaData, DbError, TerapheutMetaData } from "@curarehab/api";
 import type { RequestHandler } from "./$types";
 
 const seUrls = ["/artiklar"].flatMap((route) => {

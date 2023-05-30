@@ -21,8 +21,6 @@ export const loadTranslations = async (locale: Locale, route: Route) => {
     ? pageFromRoute[route]
     : route.startsWith("/artiklar")
     ? "artiklar"
-    : route.startsWith("/admin")
-    ? "admin"
     : route.startsWith("/terapeuter")
     ? "terapeuter"
     : undefined;
