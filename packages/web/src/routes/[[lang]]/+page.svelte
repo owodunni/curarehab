@@ -1,5 +1,5 @@
 <script lang="ts">
-  //import Articles from "$lib/widgets/Articles.svelte";
+  import Articles from "$lib/widgets/Articles.svelte";
   import Hero from "$lib/widgets/Hero.svelte";
   import Terapheuts from "$lib/widgets/Terapheuts.svelte";
   import type { PageData } from "./$types";
@@ -11,7 +11,7 @@
 <main>
   <Hero {t} {l} />
   <Terapheuts terapheuts={data?.data?.terapeuter_directus_users || []} {l} {t} />
-  <!--Articles store={data.ArticlesAndTerapeuts} {l} {t} /-->
+  <Articles articles={data?.data?.artiklar || []} {l} {t} />
 </main>
 
 <svelte:head>

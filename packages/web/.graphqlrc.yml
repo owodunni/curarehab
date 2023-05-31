@@ -1,0 +1,2 @@
+schema: "https://jardoole.xyz/graphql"
+documents: "./src/**/*.gql"

@@ -1,15 +1,13 @@
 <script lang="ts">
   import type { L, T } from "$lib/i18n/t";
-  //import type { PageData } from "../../routes/[[lang]]/$houdini";
+  import type { ArticlesAndTerapeutsQuery } from "src/routes/[[lang]]/query.gql";
   import { getAsset, getTitle } from "./util";
 
   export let l: L;
   export let t: T;
-  export let store: PageData["ArticlesAndTerapeuts"];
+  export let articles: ArticlesAndTerapeutsQuery["artiklar"];
   const toDate = (date: string | undefined) =>
     date ? new Date(date).toLocaleDateString("sv-se") : "";
-
-  $: articles = $store.data?.artiklar || [];
 </script>
 
 <div class="py-24 sm:py-32">
