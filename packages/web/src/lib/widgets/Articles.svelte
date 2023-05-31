@@ -1,12 +1,15 @@
 <script lang="ts">
   import type { L, T } from "$lib/i18n/t";
-  import type { BlogPostMetaData } from "@curarehab/api";
-  import { getTitle } from "./util";
+  //import type { PageData } from "../../routes/[[lang]]/$houdini";
+  import { getAsset, getTitle } from "./util";
 
   export let l: L;
   export let t: T;
-  export let posts: BlogPostMetaData[] = [];
-  const toDate = (post: BlogPostMetaData) => new Date(post.updated_at).toLocaleDateString("sv-se");
+  export let store: PageData["ArticlesAndTerapeuts"];
+  const toDate = (date: string | undefined) =>
+    date ? new Date(date).toLocaleDateString("sv-se") : "";
+
+  $: articles = $store.data?.artiklar || [];
 </script>
 
 <div class="py-24 sm:py-32">
@@ -22,47 +25,52 @@
     <div
       class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3"
     >
-      {#each posts as post}
-        <article class="flex flex-col items-start">
-          <a href={`${l("artiklar")}/${post.slug}`} class="group">
+      {#each articles as article}
+        <article class="flex flex-col justify-between">
+          <a href={`${l("artiklar")}/${article.slug}`} class="group">
             <div class="relative w-full max-w-xl">
               <img
-                src={post.cover_photo}
-                alt=""
+                src={getAsset(article?.omslagsbild?.id)}
+                alt={article?.omslagsbild?.title}
                 class="bg-tertiary-100 aspect-[16/9] w-full rounded-2xl object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
               />
               <div class="ring-tertiary-900/10 absolute inset-0 rounded-2xl ring-1 ring-inset" />
             </div>
             <div class="mt-8 flex items-center gap-x-4 text-xs">
-              <time datetime="2020-03-16" class="text-tertiary-500">{toDate(post)}</time>
+              <time datetime="2020-03-16" class="text-tertiary-500"
+                >{toDate(article?.date_updated ?? article?.date_created)}</time
+              >
             </div>
             <h3
               class="text-tertiary-900 group-hover:text-tertiary-600 mt-3 text-lg font-semibold leading-6"
             >
               <span class="absolute inset-0" />
-              {post.title}
+              {article?.titel}
             </h3>
 
             <article class="prose mt-5">
-              <!-- eslint-disable svelte/no-at-html-tags -->
-              {@html post.excerpt}
+              {article?.sammanfattning}
             </article>
           </a>
           <div class="relative mt-8 flex items-center gap-x-4">
             <img
-              src={post.terapheut.profile_photo}
-              alt=""
+              src={getAsset(article?.user_created?.avatar?.id, "height=32&width=32")}
+              alt={article?.user_created?.avatar?.title}
+              width="32"
+              height="32"
               class="bg-tertiary-100 h-10 w-10 rounded-full"
             />
             <div class="text-sm leading-6">
               <p class="text-tertiary-900 font-semibold">
-                <a href={`${l("terapeuter")}/${post.terapheut.first_name}-${post.terapheut.id}`}>
+                <a href={`${l("terapeuter")}/${article?.user_created?.slug}`}>
                   <span class="absolute inset-0" />
-                  {post.terapheut.first_name}
-                  {post.terapheut.last_name}
+                  {article?.user_created?.first_name}
+                  {article?.user_created?.last_name}
                 </a>
               </p>
-              <p class="text-tertiary-600">{getTitle(post.terapheut.title, t)}</p>
+              <p class="text-tertiary-600">
+                {getTitle(article?.user_created?.work_title || "", t)}
+              </p>
             </div>
           </div>
         </article>

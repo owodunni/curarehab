@@ -1,15 +1,13 @@
 <script lang="ts">
   import type { L, T } from "$lib/i18n/t";
-  import type { PageData } from "../../routes/[[lang]]/$houdini";
-  import { getTitle } from "./util";
+  import type { ArticlesAndTerapeutsQuery } from "src/__generated__/gql/graphql";
+  import { getAsset, getTitle } from "./util";
 
   export let l: L;
   export let t: T;
-  export let store: PageData["ArticlesAndTerapeuts"];
-  export let showExcerpt = false;
-  export let lang = "sv";
+  export let terapheuts: ArticlesAndTerapeutsQuery["terapeuter_directus_users"];
 
-  $: terapheuts = ($store.data?.terapeuter_directus_users || [])?.map((a) => a.directus_users_id);
+  export let showExcerpt = false;
 </script>
 
 <div class="py-24 sm:py-32">
@@ -25,45 +23,45 @@
     <ul
       class="mx-auto mt-20 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
     >
-      {#each terapheuts as terapheut}
-        {console.log(terapheut)}
-        <li>
-          <a href={`${l("terapeuter")}/${terapheut?.slug}`} class="group">
-            {#if terapheut?.avatar}
+        {#each terapheuts as { directus_users_id }}
+          <li>
+            <a href={`${l("terapeuter")}/${directus_users_id?.slug}`} class="group">
               <img
-                class="aspect-[3/2] w-full rounded-2xl object-cover"
-                src={`https://jardoole.xyz/assets/${terapheut.avatar.id}`}
-                alt=""
+                class="w-full rounded-2xl"
+                src={getAsset(directus_users_id?.avatar?.id, "width=600&height=400&format=webp")}
+                width="600"
+                height="400"
+                alt={directus_users_id?.avatar?.title}
               />
-            {/if}
-            <div class="mt-6 flex justify-between">
-              <div>
-                <h3
-                  class="text-tertiary-900 group-hover:text-tertiary-600 text-lg font-semibold leading-8 tracking-tight"
-                >
-                  {terapheut?.first_name}
-                  {terapheut?.last_name}
-                </h3>
-                <p class="text-base leading-7 text-gray-600">{getTitle(terapheut.title, t)}</p>
+              <div class="mt-6 flex justify-between">
+                <div>
+                  <h3
+                    class="text-tertiary-900 group-hover:text-tertiary-600 text-lg font-semibold leading-8 tracking-tight"
+                  >
+                    {directus_users_id?.first_name}
+                    {directus_users_id?.last_name}
+                  </h3>
+                  <p class="text-base leading-7 text-gray-600">
+                    {getTitle(directus_users_id?.work_title || "", t)}
+                  </p>
+                </div>
+                <div>
+                  <a
+                    href={`${l("terapeuter")}/${directus_users_id?.slug}`}
+                    class="btn btn-sm variant-filled hidden sm:block"
+                  >
+                    {t("common", "bokaNu")}
+                  </a>
+                </div>
               </div>
-              <div>
-                <a
-                  href={`${l("terapeuter")}/${terapheut?.slug}`}
-                  class="btn btn-sm variant-filled hidden sm:block"
-                >
-                  {t("common", "bokaNu")}
-                </a>
-              </div>
-            </div>
-            {#if showExcerpt}
-              <article class="prose mt-5">
-                <!-- eslint-disable svelte/no-at-html-tags -->
-                {@html lang === "sv" ? terapheut.profile_excerpt : terapheut.profile_excerpt_en}
-              </article>
-            {/if}
-          </a>
-        </li>
-      {/each}
+              {#if showExcerpt}
+                <article class="prose mt-5">
+                  {directus_users_id?.sammanfattning}
+                </article>
+              {/if}
+            </a>
+          </li>
+        {/each}
     </ul>
   </div>
 </div>

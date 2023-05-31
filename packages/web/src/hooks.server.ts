@@ -1,7 +1,8 @@
-import type { HandleServerError } from "@sveltejs/kit";
+import type { Handle, HandleServerError } from "@sveltejs/kit";
 import { sentry } from "$lib/sentry";
 import { Toucan } from "toucan-js";
 import { dev } from "$app/environment";
+import { Client, cacheExchange, fetchExchange } from "@urql/core";
 
 const toucan = new Toucan({
   dsn: sentry.dsn
@@ -30,4 +31,25 @@ export const handleError: HandleServerError = async ({ error, event }) => {
   return {
     message: toMessage()
   };
+};
+
+export const handle: Handle = async ({ event, resolve }) => {
+  const client = new Client({ url: "https://jardoole.xyz/graphql", exchanges: [cacheExchange, fetchExchange] });
+
+  return resolve(
+    {
+      ...event,
+      locals: { ...event.locals, client }
+    },
+    {
+      /**
+       * There´s an issue with `filterSerializedResponseHeaders` not working when using `sequence`
+       *
+       * https://github.com/sveltejs/kit/issues/8061
+       */
+      filterSerializedResponseHeaders(name) {
+        return name === "content-range";
+      }
+    }
+  );
 };

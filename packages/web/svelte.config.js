@@ -9,9 +9,6 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
-		alias: {
-			$houdini: './$houdini',
-		}
 	}
 };
 

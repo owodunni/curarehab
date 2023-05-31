@@ -2,19 +2,16 @@
   //import Articles from "$lib/widgets/Articles.svelte";
   import Hero from "$lib/widgets/Hero.svelte";
   import Terapheuts from "$lib/widgets/Terapheuts.svelte";
-  import type { PageData } from "./$houdini";
+  import type { PageData } from "./$types";
 
   export let data: PageData;
   const { t, l } = data;
-  console.log(data)
-
 </script>
 
 <main>
   <Hero {t} {l} />
-  <Terapheuts store={data.ArticlesAndTerapeuts} {l} {t} />
-  <!--Articles {posts} {l} {t} /-->
-  <!--MainTreatments /-->
+  <Terapheuts terapheuts={data?.data?.terapeuter_directus_users || []} {l} {t} />
+  <!--Articles store={data.ArticlesAndTerapeuts} {l} {t} /-->
 </main>
 
 <svelte:head>
