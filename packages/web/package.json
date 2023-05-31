@@ -14,14 +14,12 @@
     "test:system": "playwright test",
     "test:lighthouse": "lhci autorun --config ./lighthouserc.ssr.json",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write .",
-    "gql:update": "npx houdini@latest pull-schema",
-    "compile": "graphql-codegen",
-    "watch": "graphql-codegen -w"
+    "format": "prettier --plugin-search-dir . --write ."
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^4.0.0",
     "@graphql-codegen/client-preset": "^4.0.0",
+    "@graphql-codegen/near-operation-file-preset": "^2.5.0",
     "@graphql-codegen/typescript": "^4.0.0",
     "@graphql-codegen/typescript-operations": "^4.0.0",
     "@lhci/cli": "^0.12.0",
@@ -51,6 +49,7 @@
     "tslib": "^2.4.1",
     "typescript": "^5.0.4",
     "vite": "^4.3.0",
+    "vite-plugin-graphql-codegen": "^3.2.2",
     "vitest": "^0.25.3"
   },
   "type": "module",

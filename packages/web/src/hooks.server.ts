@@ -33,9 +33,12 @@ export const handleError: HandleServerError = async ({ error, event }) => {
   };
 };
 
-export const handle: Handle = async ({ event, resolve }) => {
-  const client = new Client({ url: "https://jardoole.xyz/graphql", exchanges: [cacheExchange, fetchExchange] });
+const client = new Client({
+  url: "https://jardoole.xyz/graphql",
+  exchanges: [cacheExchange, fetchExchange]
+});
 
+export const handle: Handle = async ({ event, resolve }) => {
   return resolve(
     {
       ...event,
