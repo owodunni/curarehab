@@ -7,7 +7,9 @@ import type { TranslationGroup, Translations } from "$lin/i18n";
 
 declare global {
   namespace App {
-    //interface Locals {}
+    interface Locals {
+      client: import("@urql/core").Client;
+    }
     interface PageData {
       translations: LoadedTranslations<TranslationGroup, Translations>;
     }

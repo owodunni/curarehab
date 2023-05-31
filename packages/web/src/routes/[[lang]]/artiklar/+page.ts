@@ -1,6 +1,5 @@
 import { error } from "@sveltejs/kit";
 import type { PageLoad } from "./$types";
-import type { BlogPostMetaData, DbError } from "@curarehab/api";
 import { marked } from "marked";
 
 export const load: PageLoad = async ({ fetch }) => {
