@@ -1,0 +1,13 @@
+query Slugs {
+  artiklar {
+    slug
+    date_updated
+    date_created
+    locale
+  }
+  terapeuter_directus_users {
+    directus_users_id {
+      slug
+    }
+  }
+}

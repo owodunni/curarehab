@@ -1,5 +1,7 @@
 import { defaultLocale, locales } from "$lib/i18n";
 import type { RequestHandler } from "./$types";
+import type { SlugsQuery } from "./$types.gql";
+import query from "./query.gql?raw";
 
 const seUrls = ["/artiklar"].flatMap((route) => {
   return `
@@ -19,44 +21,30 @@ const urls = localPrefix.flatMap((locale) =>
   })
 );
 
-const postUrls = (posts: BlogPostMetaData[]) => {
-  return posts.flatMap((post) => {
-    return `
-    <url>
-      <loc>https://curarehab.se/${post.locale === "sv" ? "" : `${post.locale}/`}artiklar/${
-      post.slug
-    }</loc>
-      <lastmod>${new Date(post.updated_at).toISOString().split("T")[0]}</lastmod>
-    </url>`.trim();
-  });
+const postUrls = (artiklar: SlugsQuery["artiklar"]) => {
+  return artiklar.flatMap((a) =>
+    `<url>
+      <loc>https://curarehab.se${a.locale === "en" ? "/en" : ""}/artiklar/${a.slug}</loc>
+      <lastmod>${new Date(a.date_updated ?? a.date_created).toISOString().split("T")[0]}</lastmod>
+    </url>`.trim()
+  );
 };
 
-const terapheutsUrls = (terapheuts: TerapheutMetaData[]): string[] => {
-  return terapheuts.flatMap((t) =>
-    localPrefix.flatMap((locale) => {
-      return `
+const terapheutsUrls = (terapheuts: SlugsQuery["terapeuter_directus_users"]): string[] => {
+  return terapheuts.flatMap(({ directus_users_id }) =>
+    localPrefix.flatMap((locale) =>
+      `
     <url>
-      <loc>https://curarehab.se${locale}/terapeuter/${t.first_name}-${t.id}</loc>
-    </url>`.trim();
-    })
+      <loc>https://curarehab.se${locale}/terapeuter/${directus_users_id?.slug}</loc>
+    </url>`.trim()
+    )
   );
 };
 
 export const GET: RequestHandler = async (event) => {
-  const [posts, terapheuts] = await Promise.all([
-    (async (): Promise<BlogPostMetaData[]> => {
-      const posts = (await (await event.fetch("/api/artiklar")).json()) as
-        | DbError
-        | BlogPostMetaData[];
-      return "code" in posts ? [] : posts;
-    })(),
-    (async (): Promise<TerapheutMetaData[]> => {
-      const terapheuts = (await (await event.fetch("/api/terapeuter")).json()) as
-        | DbError
-        | TerapheutMetaData[];
-      return "code" in terapheuts ? [] : terapheuts;
-    })()
-  ]);
+  const data = await event.locals.client.query<SlugsQuery>(query, []).toPromise();
+
+  const { artiklar, terapeuter_directus_users } = data.data ?? {};
 
   return new Response(
     `
@@ -71,8 +59,12 @@ export const GET: RequestHandler = async (event) => {
     >
       ${seUrls.join("\n")}
       ${urls.join("\n")}
-      ${postUrls(posts)}
-      ${terapheutsUrls(terapheuts)}
+      ${postUrls(artiklar || [])
+        .join("\n")
+        .trim()}
+      ${terapheutsUrls(terapeuter_directus_users || [])
+        .join("\n")
+        .trim()}
     </urlset>`.trim(),
     {
       headers: {
