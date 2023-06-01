@@ -1,8 +1,9 @@
-query ArticlesAndTerapeuts {
-  artiklar {
+query ArticlesAndTerapeuts($filter: artiklar_filter) {
+  artiklar(filter: $filter) {
     date_updated
     date_created
     etiketter
+    locale
     omslagsbild {
       id
       title
