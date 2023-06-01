@@ -1,0 +1,17 @@
+query Terapeuts($filter: directus_users_filter) {
+  terapeuter_directus_users {
+    directus_users_id(filter: $filter) {
+      first_name
+      last_name
+      profil_text
+      description
+      avatar {
+        id
+        title
+        filename_download
+      }
+      work_title
+      slug
+    }
+  }
+}
