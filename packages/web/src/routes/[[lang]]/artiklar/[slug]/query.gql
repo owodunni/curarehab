@@ -1,0 +1,26 @@
+query Articles($filter: artiklar_filter) {
+  artiklar(filter: $filter) {
+    date_updated
+    date_created
+    etiketter
+    text
+    omslagsbild {
+      id
+      title
+    }
+    sammanfattning
+    slug
+    titel
+    user_created {
+      first_name
+      last_name
+      work_title
+      slug
+      avatar {
+        id
+        title
+        filename_download
+      }
+    }
+  }
+}

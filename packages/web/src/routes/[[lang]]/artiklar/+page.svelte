@@ -3,11 +3,11 @@
   import Articles from "$lib/widgets/Articles.svelte";
   import type { PageData } from "./$types";
   export let data: PageData;
-  const { posts, l, t } = data;
+  const { l, t } = data;
 </script>
 
 <Container>
-  <Articles {posts} {l} {t} />
+  <Articles articles={data?.data?.artiklar || []} {l} {t} />
 </Container>
 
 <svelte:head>
