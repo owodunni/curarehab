@@ -4,11 +4,11 @@
   import type { PageData } from "./$types";
   export let data: PageData;
 
-  const { terapheuts, l, lang, t } = data;
+  const { l, t } = data;
 </script>
 
 <Container>
-  <Terapheuts {terapheuts} {l} {t} lang={lang ?? "sv"} showExcerpt={true} />
+  <Terapheuts terapheuts={data?.data?.terapeuter_directus_users || []} {l} {t} showExcerpt={true} />
 </Container>
 
 <svelte:head>

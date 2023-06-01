@@ -27,7 +27,6 @@ query ArticlesAndTerapeuts {
       first_name
       last_name
       work_title
-      sammanfattning
       slug
       avatar {
         id

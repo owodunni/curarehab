@@ -1,0 +1,16 @@
+query TerapeutsMetaData {
+  terapeuter_directus_users {
+    directus_users_id {
+      first_name
+      last_name
+      work_title
+      description
+      slug
+      avatar {
+        id
+        title
+        filename_download
+      }
+    }
+  }
+}

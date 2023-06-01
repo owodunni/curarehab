@@ -1,11 +1,11 @@
 <script lang="ts">
   import type { L, T } from "$lib/i18n/t";
-  import type { ArticlesAndTerapeutsQuery } from "src/routes/[[lang]]/query.gql";
+  import type { TerapeutsMetaDataQuery } from "src/routes/[[lang]]/terapeuter/$types.gql";
   import { getAsset, getTitle } from "./util";
 
   export let l: L;
   export let t: T;
-  export let terapheuts: ArticlesAndTerapeutsQuery["terapeuter_directus_users"];
+  export let terapheuts: TerapeutsMetaDataQuery["terapeuter_directus_users"];
 
   export let showExcerpt = false;
 </script>
@@ -56,7 +56,9 @@
             </div>
             {#if showExcerpt}
               <article class="prose mt-5">
-                {directus_users_id?.sammanfattning}
+                <p class="line-clamp-6">
+                  {directus_users_id?.description}
+                </p>
               </article>
             {/if}
           </a>
