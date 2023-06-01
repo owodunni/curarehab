@@ -1,27 +1,14 @@
-import { fail, type Actions } from "@sveltejs/kit";
+import { error } from "@sveltejs/kit";
+import type { PageServerLoad } from "./$types";
+import type { ArticlesQuery } from "./$types.gql";
+import query from "./query.gql?raw";
 
-export const actions = {
-  default: async (event) => {
-    const data = await event.request.formData();
+export const load: PageServerLoad = async (event) => {
+  const data = await event.locals.client
+    .query<ArticlesQuery>(query, { filter: { slug: { _eq: event.params.slug } } })
+    .toPromise();
 
-    const post = data.get("post");
-    const id = data.get("post_id");
-
-    if (!post || !id) {
-      return fail(400, { post, id, missing: true });
-    }
-
-    const res = await event.locals.supabase.s
-      .from("blog")
-      .update({
-        post: post.toString(),
-        updated_at: new Date().toISOString()
-      })
-      .eq("id", id);
-
-    if (res.error) {
-      return fail(400, { post, id, incorrect: true, error: res.error });
-    }
-    return { post, id };
-  }
-} satisfies Actions;
+  if (!data.data?.artiklar || data.data?.artiklar.length === 0)
+    throw error(404, { message: "Article not found" });
+  return { article: data.data.artiklar[0] };
+};

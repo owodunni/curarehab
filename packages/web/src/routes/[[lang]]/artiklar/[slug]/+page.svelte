@@ -2,16 +2,16 @@
   import Container from "$lib/components/Container.svelte";
   import type { PageData } from "./$types";
   export let data: PageData;
+  const { article } = data;
 </script>
 
 <svelte:head>
-  <title>{data.post.title}</title>
-  <meta name="description" content={data.post.excerpt} />
+  <title>{article.titel}</title>
+  <meta name="description" content={article.sammanfattning} />
 </svelte:head>
 
 <Container class="pb-16">
   <article class="prose">
-    <!-- eslint-disable svelte/no-at-html-tags -->
-    {@html data.post.html}
+    {JSON.stringify(article.text)}
   </article>
 </Container>
