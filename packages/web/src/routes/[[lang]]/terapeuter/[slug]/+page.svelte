@@ -43,7 +43,7 @@
     </div>
     <div class="lg:order-first lg:row-span-2">
       <article class="prose">
-        <BlocksRender blocks={terapeut.profil_text.blocks} />
+        <BlocksRender blocks={terapeut.profil_text?.blocks || []} />
       </article>
     </div>
   </div>
