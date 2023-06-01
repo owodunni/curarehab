@@ -3,6 +3,8 @@ import type { PageServerLoad } from "./$types";
 import type { TerapeutsQuery } from "./$types.gql";
 import query from "./query.gql?raw";
 
+export const prerender = false;
+
 export const load: PageServerLoad = async (event) => {
   const data = await event.locals.client
     .query<TerapeutsQuery>(query, {

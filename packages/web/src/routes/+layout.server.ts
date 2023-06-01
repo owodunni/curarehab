@@ -2,6 +2,8 @@ import type { LayoutServerLoad } from "./$types";
 import { error, redirect } from "@sveltejs/kit";
 import { locales, type Locale, defaultLocale, type Route, loadTranslations } from "$lib/i18n";
 
+export const prerender = true;
+
 export const load: LayoutServerLoad = async (event) => {
   const { pathname } = event.url;
   const { lang } = event.params;

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { L, T } from "$lib/i18n/t";
-  import type { ArticlesAndTerapeutsQuery } from "src/routes/[[lang]]/query.gql";
+  import type { ArticlesAndTerapeutsQuery } from "src/routes/[[lang]]/$types.gql";
   import { getAsset, getTitle } from "./util";
 
   export let l: L;

@@ -8,8 +8,6 @@ export const common: CommonTranslations = {
   artiklar: "Artiklar",
   smarta: "Smärta",
   menuAria: "Växla navigationsmenyn",
-  login: "Logga in",
-  logout: "Logga ut",
   boka: "Boka nu",
   directions: "Klicka här för att se hur du kommer till oss.",
   hem: "Hem",

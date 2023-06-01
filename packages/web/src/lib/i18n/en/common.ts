@@ -8,8 +8,6 @@ export const common: CommonTranslations = {
   artiklar: "Articles",
   smarta: "Pain",
   menuAria: "Toggle site navigation",
-  login: "Log in",
-  logout: "Log out",
   boka: "Book",
   directions: "Click here to see how to get to us.",
   hem: "Home",

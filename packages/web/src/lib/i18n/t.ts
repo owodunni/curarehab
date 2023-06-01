@@ -6,7 +6,6 @@ import type {
   CommonTranslations,
   FindTranslations,
   HemTranslations,
-  LogInTranslations,
   OmTranslations,
   Page,
   PrivacyTranslations,
@@ -29,7 +28,6 @@ export const createT = (translations: LoadedTranslations<TranslationGroup, Trans
   function r(group: "om", key: keyof OmTranslations, params?: NamedPlaceholder): string;
   function r(group: "artiklar", key: keyof ArticleTranslations, params?: NamedPlaceholder): string;
   function r(group: "boka", key: keyof BokaTranslations, params?: NamedPlaceholder): string;
-  function r(group: "login", key: keyof LogInTranslations, params?: NamedPlaceholder): string;
   function r(group: "hitta", key: keyof FindTranslations, params?: NamedPlaceholder): string;
   function r(
     group: "behandlingar",
