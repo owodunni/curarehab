@@ -4,7 +4,6 @@ export type Page =
   | "om"
   | "artiklar"
   | "boka"
-  | "login"
   | "hitta"
   | "behandlingar"
   | "terapeuter"
@@ -19,8 +18,6 @@ export type CommonTranslations = {
   artiklar: string;
   smarta: string;
   menuAria: string;
-  login: string;
-  logout: string;
   boka: string;
   directions: string;
   hem: string;
@@ -83,16 +80,6 @@ export type BokaTranslations = {
   description: string;
 };
 
-export type LogInTranslations = {
-  title: string;
-  description: string;
-  password: string;
-  email: string;
-  signUp: string;
-  emailError: string;
-  passwordError: string;
-};
-
 export type FindTranslations = {
   title: string;
   description: string;
@@ -119,7 +106,6 @@ export type TranslationsByGroup = {
   om: OmTranslations;
   artiklar: ArticleTranslations;
   boka: BokaTranslations;
-  login: LogInTranslations;
   hitta: FindTranslations;
   terapeuter: TerapheutTranslations;
   sekretess: PrivacyTranslations;
@@ -132,7 +118,6 @@ export type Translations =
   | keyof ArticleTranslations
   | keyof CommonTranslations
   | keyof BokaTranslations
-  | keyof LogInTranslations
   | keyof FindTranslations
   | keyof TerapheutTranslations
   | keyof PrivacyTranslations
