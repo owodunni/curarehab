@@ -1,5 +1,6 @@
 <script lang="ts">
   import Container from "$lib/components/Container.svelte";
+  import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import type { PageData } from "./$types";
   export let data: PageData;
   const { article } = data;
@@ -12,6 +13,6 @@
 
 <Container class="pb-16">
   <article class="prose">
-    {JSON.stringify(article.text)}
+    <BlocksRender blocks={article.text.blocks} />
   </article>
 </Container>

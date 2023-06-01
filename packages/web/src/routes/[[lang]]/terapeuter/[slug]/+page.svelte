@@ -1,5 +1,6 @@
 <script lang="ts">
   import Container from "$lib/components/Container.svelte";
+  import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import { getTitle, getAsset } from "$lib/widgets/util";
   import type { PageData } from "./$types";
   export let data: PageData;
@@ -42,7 +43,7 @@
     </div>
     <div class="lg:order-first lg:row-span-2">
       <article class="prose">
-        {JSON.stringify(terapeut.profil_text)}
+        <BlocksRender blocks={terapeut.profil_text.blocks} />
       </article>
     </div>
   </div>
