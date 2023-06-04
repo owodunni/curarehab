@@ -7,6 +7,7 @@
   },
   "scripts": {
     "dev": "npm run dev --workspace=@curarehab/web",
+    "docker": "npm run docker --workspace=@curarehab/directus",
     "build": "npm run build --workspaces",
     "build:app": "npm run build --workspace=@curarehab/web",
     "test": "npm run test --workspaces",
