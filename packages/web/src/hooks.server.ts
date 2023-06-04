@@ -2,6 +2,7 @@ import type { Handle, HandleServerError } from "@sveltejs/kit";
 import { sentry } from "$lib/sentry";
 import { Toucan } from "toucan-js";
 import { dev } from "$app/environment";
+import { PUBLIC_CMS_URL } from "$env/static/public";
 import { Client, cacheExchange, fetchExchange } from "@urql/core";
 
 const toucan = new Toucan({
@@ -34,7 +35,7 @@ export const handleError: HandleServerError = async ({ error, event }) => {
 };
 
 const client = new Client({
-  url: "https://jardoole.xyz/graphql",
+  url: `${PUBLIC_CMS_URL}/graphql`,
   exchanges: [cacheExchange, fetchExchange]
 });
 

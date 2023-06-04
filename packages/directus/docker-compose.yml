@@ -1,0 +1,39 @@
+version: "3"
+services:
+  directus:
+    container_name: directus
+    build:
+      context: "."
+      dockerfile: Dockerfile
+    ports:
+      - 8055:80
+    networks:
+      - directus
+    environment:
+      KEY: ${KEY}
+      SECRET: ${SECRET}
+      PORT: ${PORT}
+      DB_CLIENT: ${DB_CLIENT}
+      DB_CONNECTION_STRING: ${DB_CONNECTION_STRING}
+      CONFIG_PATH: "/var/directus/config.js"
+      CACHE_ENABLED: ${CACHE_ENABLED}
+      CACHE_TTL: ${CACHE_TTL}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      STORAGE_LOCATIONS: ${STORAGE_LOCATIONS}
+      STORAGE_S3_DRIVER: ${STORAGE_S3_DRIVER}
+      STORAGE_S3_BUCKET: ${STORAGE_S3_BUCKET}
+      STORAGE_S3_REGION: ${STORAGE_S3_REGION}
+      STORAGE_S3_ENDPOINT: ${STORAGE_S3_ENDPOINT}
+      STORAGE_S3_KEY: ${STORAGE_S3_KEY}
+      STORAGE_S3_SECRET: ${STORAGE_S3_SECRET}
+      STORAGE_S3_ROOT: ${STORAGE_S3_ROOT}
+      PUBLIC_URL: ${PUBLIC_URL}
+    healthcheck:
+      test: ["CMD-SHELL", curl -f http:localhost/server/health || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+networks:
+  directus:
