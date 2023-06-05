@@ -28,5 +28,5 @@ We use directus as our CMS and we deploy it to [cms.curarehab.se](https://cms.cu
    ```
 6. Deploy (not tested)
    ```bash
-    aws ecs update-service --cluster curarehab-cluster --service sample-app-service --force-new-deployment
+    aws ecs update-service --cluster directus-cluster --service sample-app-service --force-new-deployment
    ```
