@@ -1,7 +1,7 @@
 # Directus
 
 The following directory contains the tools to build directus for use on our local server and for AWS.
-We run directus on our local server, however we can use AWS as a backup in case our local server goes down.
+We run directus on our local server, however we can use AWS or other cloud providers as a backup in case our local server goes down.
 
 We switch between AWS and our local server by changing the CNAME record for [cms.curarehab.se](https://cms.curarehab.se) at cloudflare.
 
@@ -22,13 +22,16 @@ To deploy to our local server:
    ```
 4. Restart docker
    ```bash
-   docker compose up -d --build
+   ./init-letsencrypt.sh
    ```
 
-The following directory contains the tools to build directus for use on AWS.
-We use directus as our CMS and we deploy it to [cms.curarehab.se](https://cms.curarehab.se).
+## Deploying on Azure
 
-## Deploying to AWS
+In the future we will probably migrate to Azure. Instructions for doing so will be added here.
+
+## (legacy) Deploying to AWS
+
+We no longer host on AWS
 
 1. Authenticate
    ```bash
