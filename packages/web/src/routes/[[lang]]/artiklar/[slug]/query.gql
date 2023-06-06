@@ -2,19 +2,19 @@ query Articles($filter: artiklar_filter) {
   artiklar(filter: $filter) {
     date_updated
     date_created
-    etiketter
-    text
+    taggar
+    artikel
     omslagsbild {
       id
       title
     }
     sammanfattning
     slug
-    titel
+    title
     user_created {
       first_name
       last_name
-      work_title
+      title
       slug
       avatar {
         id

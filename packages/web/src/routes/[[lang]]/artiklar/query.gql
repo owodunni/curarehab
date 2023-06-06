@@ -2,14 +2,15 @@ query ArticlesMetaData {
   artiklar {
     date_updated
     date_created
-    etiketter
+    taggar
+    language
     omslagsbild {
       id
       title
     }
     sammanfattning
     slug
-    titel
+    title
     user_created {
       first_name
       last_name

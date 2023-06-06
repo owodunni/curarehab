@@ -2,15 +2,15 @@ query ArticlesAndTerapeuts($filter: artiklar_filter) {
   artiklar(filter: $filter) {
     date_updated
     date_created
-    etiketter
-    locale
+    taggar
+    language
     omslagsbild {
       id
       title
     }
     sammanfattning
     slug
-    titel
+    title
     user_created {
       first_name
       last_name

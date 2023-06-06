@@ -3,7 +3,7 @@ query Slugs {
     slug
     date_updated
     date_created
-    locale
+    language
   }
   terapeuter_directus_users {
     directus_users_id {

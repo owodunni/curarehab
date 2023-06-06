@@ -43,10 +43,10 @@
               class="text-tertiary-900 group-hover:text-tertiary-600 mt-3 text-lg font-semibold leading-6"
             >
               <span class="absolute inset-0" />
-              {article?.titel}
+              {article?.title}
             </h3>
 
-            <article class="prose mt-5">
+            <article class="prose mt-5 line-clamp-6">
               {article?.sammanfattning}
             </article>
           </a>

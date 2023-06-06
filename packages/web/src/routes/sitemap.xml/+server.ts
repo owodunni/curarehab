@@ -24,7 +24,7 @@ const urls = localPrefix.flatMap((locale) =>
 const postUrls = (artiklar: SlugsQuery["artiklar"]) => {
   return artiklar.flatMap((a) =>
     `<url>
-      <loc>https://curarehab.se${a.locale === "en" ? "/en" : ""}/artiklar/${a.slug}</loc>
+      <loc>https://curarehab.se${a.language === "en" ? "/en" : ""}/artiklar/${a.slug}</loc>
       <lastmod>${new Date(a.date_updated ?? a.date_created).toISOString().split("T")[0]}</lastmod>
     </url>`.trim()
   );

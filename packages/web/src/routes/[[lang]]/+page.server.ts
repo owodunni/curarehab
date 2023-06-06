@@ -5,7 +5,7 @@ import query from "./query.gql?raw";
 export const load: PageServerLoad = async (event) => {
   return event.locals.client
     .query<ArticlesAndTerapeutsQuery>(query, {
-      filter: { locale: { _eq: event.params.lang ?? "sv" } }
+      filter: { language: { _eq: event.params.lang ?? "sv" } }
     })
     .toPromise();
 };

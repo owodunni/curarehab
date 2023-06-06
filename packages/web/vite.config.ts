@@ -7,7 +7,15 @@ export default (params: { mode: string }) => {
   const env = loadEnv(params.mode, process.cwd());
 
   const config: CodegenConfig = {
-    schema: `${env.VITE_PUBLIC_CMS_URL}/graphql`,
+    schema: [
+      {
+        [`${env.VITE_PUBLIC_CMS_URL}/graphql`]: {
+          headers: {
+            Authorization: `Bearer ${env.VITE_CMS_TOKEN}`
+          }
+        }
+      }
+    ],
     documents: "./src/**/*.gql",
     generates: {
       ".gql/types/types.gql.ts": { plugins: ["typescript"] },
