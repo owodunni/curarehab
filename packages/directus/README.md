@@ -1,5 +1,30 @@
 # Directus
 
+The following directory contains the tools to build directus for use on our local server and for AWS.
+We run directus on our local server, however we can use AWS as a backup in case our local server goes down.
+
+We switch between AWS and our local server by changing the CNAME record for [cms.curarehab.se](https://cms.curarehab.se) at cloudflare.
+
+To deploy to our local server:
+
+0. (optional) Repoint cloudflare CNAME record to our local server
+1. Upload config
+   ```bash
+   scp .env owodunni@gluteus/home/owodunni/.directus/.env
+   ```
+2. Ssh into server
+   ```bash
+   ssh owodunni@gluteus
+   ```
+3. Pull changes
+   ```bash
+   cd .directus && git pull
+   ```
+4. Restart docker
+   ```bash
+   docker compose up -d --build
+   ```
+
 The following directory contains the tools to build directus for use on AWS.
 We use directus as our CMS and we deploy it to [cms.curarehab.se](https://cms.curarehab.se).
 
