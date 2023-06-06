@@ -56,9 +56,7 @@
             </div>
             {#if showExcerpt}
               <article class="prose mt-5">
-                <p class="line-clamp-6">
-                  {directus_users_id?.description}
-                </p>
+                <p class="line-clamp-6">Add sammanfattning</p>
               </article>
             {/if}
           </a>
