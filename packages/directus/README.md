@@ -10,7 +10,7 @@ To deploy to our local server:
 0. (optional) Repoint cloudflare CNAME record to our local server
 1. Upload config
    ```bash
-   scp .env owodunni@gluteus/home/owodunni/.directus/.env
+   scp .env owodunni@gluteus:/home/owodunni/.directus/.env
    ```
 2. Ssh into server
    ```bash

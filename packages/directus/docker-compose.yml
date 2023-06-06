@@ -26,6 +26,7 @@ services:
     #entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
   directus:
     container_name: directus
+    restart: unless-stopped
     build:
       context: "."
       dockerfile: Dockerfile
