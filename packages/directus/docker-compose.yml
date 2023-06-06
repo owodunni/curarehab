@@ -24,6 +24,15 @@ services:
     networks:
       - directus
     #entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  cache:
+    container_name: cache
+    image: redis:6
+    ports:
+      - 6379:6379
+    networks:
+      - directus
+
   directus:
     container_name: directus
     restart: unless-stopped
@@ -34,6 +43,8 @@ services:
       - 8055:80
     networks:
       - directus
+    depends_on:
+      - cache
     environment:
       KEY: ${KEY}
       SECRET: ${SECRET}
@@ -43,10 +54,11 @@ services:
       # DB
       DB_CLIENT: ${DB_CLIENT}
       DB_CONNECTION_STRING: ${DB_CONNECTION_STRING}
-      CONFIG_PATH: "/var/directus/config.js"
 
       # Cache
       CACHE_ENABLED: ${CACHE_ENABLED}
+      CACHE_STORE: ${CACHE_STORE}
+      CACHE_REDIS: ${CACHE_REDIS}
       CACHE_TTL: ${CACHE_TTL}
 
       # Admin
