@@ -28,7 +28,7 @@
   </ul>
 {:else if block.type === "image"}
   <img
-    src={`https://jardoole.xyz${block.data.file.url}`}
+    src={`https://cms.curarehab.se${block.data.file.url}`}
     width={block.data.file.width}
     height={block.data.file.height}
     alt={block.data.caption}

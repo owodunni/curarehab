@@ -3,7 +3,8 @@ import { sentry } from "$lib/sentry";
 import { Toucan } from "toucan-js";
 import { dev } from "$app/environment";
 import { PUBLIC_CMS_URL } from "$env/static/public";
-import { Client, cacheExchange, fetchExchange } from "@urql/core";
+import { CMS_TOKEN } from "$env/static/private";
+import { Client, fetchExchange } from "@urql/core";
 
 const toucan = new Toucan({
   dsn: sentry.dsn
@@ -36,7 +37,12 @@ export const handleError: HandleServerError = async ({ error, event }) => {
 
 const client = new Client({
   url: `${PUBLIC_CMS_URL}/graphql`,
-  exchanges: [cacheExchange, fetchExchange]
+  fetchOptions: {
+    headers: {
+      Authorization: `Bearer ${CMS_TOKEN}`
+    }
+  },
+  exchanges: [fetchExchange]
 });
 
 export const handle: Handle = async ({ event, resolve }) => {

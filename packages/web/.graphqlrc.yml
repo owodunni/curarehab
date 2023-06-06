@@ -1,2 +1,5 @@
-schema: "https://jardoole.xyz/graphql"
-documents: "./src/**/*.gql"
+schema:
+  - "https://cms.curarehab.se/graphql":
+      headers:
+        Authorization: "Bearer wIDWBMrjV_1PUYamFu-HNTfOTEceKl8O"
+documents: "src/**/*.gql"
