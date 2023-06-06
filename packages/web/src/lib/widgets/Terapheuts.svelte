@@ -28,7 +28,7 @@
           <a href={`${l("terapeuter")}/${directus_users_id?.slug}`} class="group">
             <img
               class="w-full rounded-2xl"
-              src={getAsset(directus_users_id?.avatar?.id, "width=600&height=400&format=webp")}
+              src={getAsset(directus_users_id?.avatar?.id, "width=600&height=400")}
               width="600"
               height="400"
               alt={directus_users_id?.avatar?.title}
