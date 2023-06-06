@@ -38,7 +38,7 @@ services:
       KEY: ${KEY}
       SECRET: ${SECRET}
       PORT: ${PORT}
-      PUBLIC_URL: ${PUBLIC_URL}
+      PUBLIC_URL: ${PUBLIC_URL} # When developing locally this variable needs to be removed
 
       # DB
       DB_CLIENT: ${DB_CLIENT}
@@ -76,6 +76,9 @@ services:
       AUTH_MICROSOFT_ISSUER_URL: ${AUTH_MICROSOFT_ISSUER_URL}
       AUTH_MICROSOFT_ALLOW_PUBLIC_REGISTRATION: ${AUTH_MICROSOFT_ALLOW_PUBLIC_REGISTRATION}
       AUTH_MICROSOFT_DEFAULT_ROLE_ID: ${AUTH_MICROSOFT_DEFAULT_ROLE_ID}
+
+      # CORS
+      CORS_ENABLED: ${CORS_ENABLED}
 
       # Debug
       # LOG_LEVEL: "trace"
