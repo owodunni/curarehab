@@ -1,5 +1,5 @@
-query ArticlesMetaData {
-  artiklar {
+query ArticlesMetaData($filter: artiklar_filter) {
+  artiklar(filter: $filter) {
     date_updated
     date_created
     taggar
