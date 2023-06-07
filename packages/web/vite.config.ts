@@ -32,6 +32,9 @@ export default (params: { mode: string }) => {
   };
 
   return defineConfig({
-    plugins: [codegen({ config }), sveltekit()]
+    plugins: [codegen({ config }), sveltekit()],
+    test: {
+      include: ["./src/**/*.test.ts"]
+    }
   });
 };
