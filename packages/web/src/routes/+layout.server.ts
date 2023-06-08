@@ -1,8 +1,13 @@
 import type { LayoutServerLoad } from "./$types";
 import { error, redirect } from "@sveltejs/kit";
 import { locales, type Locale, defaultLocale, type Route, loadTranslations } from "$lib/i18n";
+import { PUBLIC_RUNTIME } from "$env/static/public";
 
-export const prerender = true;
+/**
+ * We don't prerender in preview mode because we want to be able to update the content
+ * dynamically.
+ */
+export const prerender = PUBLIC_RUNTIME === "development" || PUBLIC_RUNTIME === "production";
 
 export const load: LayoutServerLoad = async (event) => {
   const { pathname } = event.url;
