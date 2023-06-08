@@ -7,9 +7,11 @@ query TerapeutsMetaData {
       description
       slug
       avatar {
-        id
         title
-        filename_download
+        type
+        width
+        height
+        filename_disk
       }
     }
   }

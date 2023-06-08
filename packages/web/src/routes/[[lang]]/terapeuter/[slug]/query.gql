@@ -6,9 +6,11 @@ query Terapeuts($filter: directus_users_filter) {
       profil_text
       description
       avatar {
-        id
         title
-        filename_download
+        type
+        width
+        height
+        filename_disk
       }
       work_title
       slug
