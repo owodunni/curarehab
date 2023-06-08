@@ -28,8 +28,9 @@
           <a href={`${l("artiklar")}/${article.slug}`} class="group">
             <div class="relative w-full max-w-xl">
               <img
-                src={getAsset(article?.omslagsbild?.id)}
+                src={getAsset(article?.omslagsbild?.filename_disk)}
                 alt={article?.omslagsbild?.title}
+                loading="lazy"
                 class="bg-tertiary-100 aspect-[16/9] w-full rounded-2xl object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
               />
               <div class="ring-tertiary-900/10 absolute inset-0 rounded-2xl ring-1 ring-inset" />
@@ -52,8 +53,9 @@
           </a>
           <div class="relative mt-8 flex items-center gap-x-4">
             <img
-              src={getAsset(article?.user_created?.avatar?.id, "height=32&width=32")}
+              src={getAsset(article?.user_created?.avatar?.filename_disk, "height=32&width=32")}
               alt={article?.user_created?.avatar?.title}
+              loading="lazy"
               width="32"
               height="32"
               class="bg-tertiary-100 h-10 w-10 rounded-full"
