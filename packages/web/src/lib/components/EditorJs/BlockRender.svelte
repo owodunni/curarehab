@@ -2,7 +2,6 @@
   import type { Block } from "./types";
   import { PUBLIC_ASSETS_URL } from "$env/static/public";
 
-
   export let block: Block;
 </script>
 
