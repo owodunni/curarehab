@@ -4,6 +4,7 @@ query ArticlesMetaData($filter: artiklar_filter) {
     date_created
     taggar
     language
+    status
     omslagsbild {
       title
       type
