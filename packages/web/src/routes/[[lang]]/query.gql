@@ -5,8 +5,11 @@ query ArticlesAndTerapeuts($filter: artiklar_filter) {
     taggar
     language
     omslagsbild {
-      id
       title
+      type
+      width
+      height
+      filename_disk
     }
     sammanfattning
     slug
@@ -17,9 +20,11 @@ query ArticlesAndTerapeuts($filter: artiklar_filter) {
       work_title
       slug
       avatar {
-        id
         title
-        filename_download
+        type
+        width
+        height
+        filename_disk
       }
     }
   }
@@ -30,9 +35,11 @@ query ArticlesAndTerapeuts($filter: artiklar_filter) {
       work_title
       slug
       avatar {
-        id
         title
-        filename_download
+        type
+        width
+        height
+        filename_disk
       }
     }
   }

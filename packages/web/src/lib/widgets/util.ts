@@ -1,4 +1,4 @@
-import { PUBLIC_CMS_URL } from "$env/static/public";
+import { PUBLIC_ASSETS_URL } from "$env/static/public";
 import type { T } from "$lib/i18n/t";
 
 export const getTitle = (title: string | undefined, t: T) => {
@@ -9,7 +9,7 @@ export const getTitle = (title: string | undefined, t: T) => {
   );
 };
 
-export function getAsset(id: string | undefined, query?: string): string {
+export function getAsset(id: string | null |undefined, query?: string): string {
   if (!id) return "";
-  return `${PUBLIC_CMS_URL}/assets/${id}${query ? `?${query}&format=auto` : "?format=auto"}`;
+  return `${PUBLIC_ASSETS_URL}/assets/${id}${query ? `?${query}&format=auto` : "?format=auto"}`;
 }

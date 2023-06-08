@@ -24,6 +24,7 @@
   <div class="bg-surface-50 hidden lg:absolute lg:inset-y-0 lg:right-0 lg:block lg:w-1/2">
     <img
       class="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
+      loading="lazy"
       src={rehab}
       alt={t("common", "heroImage")}
     />
