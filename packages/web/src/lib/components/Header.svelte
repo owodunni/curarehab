@@ -6,15 +6,11 @@
   import { fade, fly } from "svelte/transition";
   import Logo from "./Logo.svelte";
   import Flags from "./Flags.svelte";
-  import { page } from "$app/stores";
 
   export let t: T;
   export let l: L;
-
-  $: ({ url, locale } = (() => {
-    const _page = $page;
-    return { url: _page.url, locale: _page.params.lang === "en" ? "en" : "sv" };
-  })());
+  export let locale: "sv" | "en";
+  export let route: string;
 
   let open = false;
 
@@ -31,12 +27,8 @@
   const buttonLinks = ["boka"] satisfies Page[];
 
   $: localizedHref = ((): string => {
-    const path = url.href.split(url.hostname)[1].split(url.port)[1];
-    if (locale === "en") {
-      return path === "/en" ? "/" : path.split("/en")[1];
-    } else {
-      return `/en${path === "/" ? "" : path}`;
-    }
+    if (route === `/${locale}` || route === "/") return locale === "en" ? "/" : "/en";
+    else return locale === "en" ? route.split("/en")[1] : `/en${route.split("/sv")[1]}`;
   })();
 </script>
 

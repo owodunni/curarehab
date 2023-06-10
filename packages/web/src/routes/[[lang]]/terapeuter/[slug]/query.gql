@@ -3,8 +3,10 @@ query Terapeuts($filter: directus_users_filter) {
     directus_users_id(filter: $filter) {
       first_name
       last_name
+      profil_sammanfattning
+      profil_sammanfattning_en
       profil_text
-      description
+      profil_text_en
       avatar {
         title
         type
@@ -14,6 +16,11 @@ query Terapeuts($filter: directus_users_filter) {
       }
       work_title
       slug
+      links {
+        type
+        link
+        display_link
+      }
     }
   }
 }

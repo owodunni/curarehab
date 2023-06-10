@@ -34,6 +34,8 @@ query ArticlesAndTerapeuts($filter: artiklar_filter) {
       first_name
       last_name
       work_title
+      profil_sammanfattning_en
+      profil_sammanfattning
       slug
       avatar {
         title

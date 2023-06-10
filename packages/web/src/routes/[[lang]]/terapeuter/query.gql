@@ -4,7 +4,8 @@ query TerapeutsMetaData {
       first_name
       last_name
       work_title
-      description
+      profil_sammanfattning
+      profil_sammanfattning_en
       slug
       avatar {
         title

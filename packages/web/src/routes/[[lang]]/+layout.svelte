@@ -12,6 +12,6 @@
   export let data: LayoutData;
 </script>
 
-<Header t={data.t} l={data.l} />
+<Header t={data.t} l={data.l} locale={data.params.lang === "en" ? "en" : "sv"} route={data.route} />
 <slot />
 <Footer t={data.t} l={data.l} />
