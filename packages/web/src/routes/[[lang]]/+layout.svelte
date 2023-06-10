@@ -8,10 +8,11 @@
   import Footer from "$lib/components/Footer.svelte";
   import Header from "$lib/components/Header.svelte";
   import type { LayoutData } from "./$types";
+  import { page } from "$app/stores";
 
   export let data: LayoutData;
 </script>
 
-<Header t={data.t} l={data.l} />
+<Header t={data.t} l={data.l} url={$page.url} locale={$page.params.lang === "en" ? "en" : "sv"} />
 <slot />
 <Footer t={data.t} l={data.l} />

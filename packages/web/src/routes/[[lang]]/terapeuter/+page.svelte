@@ -4,7 +4,7 @@
   import type { PageData } from "./$types";
   export let data: PageData;
 
-  const { l, t } = data;
+  $: ({ l, t } = data);
 </script>
 
 <Container>
