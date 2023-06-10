@@ -7,8 +7,6 @@
   export let l: L;
   export let t: T;
   export let terapheuts: TerapeutsMetaDataQuery["terapeuter_directus_users"];
-
-  export let showExcerpt = false;
 </script>
 
 <div class="py-24 sm:py-32">
@@ -56,11 +54,13 @@
                 </a>
               </div>
             </div>
-            {#if showExcerpt}
-              <article class="prose mt-5">
-                <p class="line-clamp-6">Add sammanfattning</p>
-              </article>
-            {/if}
+            <article class="prose mt-5">
+              <p class="line-clamp-6">
+                {$page.params.lang === "en"
+                  ? directus_users_id?.profil_sammanfattning_en
+                  : directus_users_id?.profil_sammanfattning}
+              </p>
+            </article>
           </a>
         </li>
       {/each}

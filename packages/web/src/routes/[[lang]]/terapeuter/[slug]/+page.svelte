@@ -2,14 +2,23 @@
   import Container from "$lib/components/Container.svelte";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import { getTitle, getAsset } from "$lib/widgets/util";
+  import type { Link } from "$lib/components/Icons/types";
   import type { PageData } from "./$types";
+  import SocialLink from "$lib/components/SocialLink.svelte";
   export let data: PageData;
+  let links: Link[] = [];
   $: ({ t, l, terapeut } = data);
+  $: links = (terapeut?.links || []).filter(Boolean) as Link[];
 </script>
 
 <svelte:head>
   <title>{terapeut.first_name}</title>
-  <meta name="description" content={terapeut.description} />
+  <meta
+    name="description"
+    content={data.params.lang === "en"
+      ? terapeut?.profil_sammanfattning_en
+      : terapeut?.profil_sammanfattning}
+  />
 </svelte:head>
 
 <Container class="mt-16 sm:mt-32">
@@ -20,17 +29,21 @@
           src={getAsset(terapeut.avatar?.filename_disk)}
           alt={terapeut.avatar?.title}
           sizes="(min-width: 1024px) 32rem, 20rem"
-          class="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+          class="aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
         />
-        <div class="mt-6">
-          <h3
-            class="text-tertiary-900 group-hover:text-tertiary-600 text-lg font-semibold leading-8 tracking-tight"
-          >
-            {terapeut.first_name}
-            {terapeut.last_name}
-          </h3>
-          <p class="text-base leading-7 text-gray-600">{getTitle(terapeut.work_title || "", t)}</p>
-          <div class="mt-6 w-24">
+        <div class="mt-6 flex items-center justify-between space-x-24 lg:ml-10">
+          <div>
+            <h3
+              class="text-tertiary-900 group-hover:text-tertiary-600 text-lg font-semibold leading-8 tracking-tight"
+            >
+              {terapeut.first_name}
+              {terapeut.last_name}
+            </h3>
+            <p class="text-base leading-7 text-gray-600">
+              {getTitle(terapeut.work_title || "", t)}
+            </p>
+          </div>
+          <div>
             <a
               href={`${l("terapeuter")}/${terapeut.slug}/boka`}
               class="btn btn-sm variant-filled hidden sm:block"
@@ -39,11 +52,23 @@
             </a>
           </div>
         </div>
+        <div class="mt-6 flex flex-col space-y-6">
+          {#each links as link}
+            <SocialLink
+              {link}
+              onlyIcon={false}
+              class="text-tertiary-600 hover:text-tertiary-900 flex gap-x-4 text-sm leading-6"
+            />
+          {/each}
+        </div>
       </div>
     </div>
     <div class="lg:order-first lg:row-span-2">
       <article class="prose">
-        <BlocksRender blocks={terapeut.profil_text?.blocks || []} />
+        <BlocksRender
+          blocks={(data.params.lang === "en" ? terapeut.profil_text_en : terapeut.profil_text)
+            ?.blocks || []}
+        />
       </article>
     </div>
   </div>

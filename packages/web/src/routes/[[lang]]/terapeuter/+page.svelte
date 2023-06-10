@@ -3,12 +3,10 @@
   import Container from "$lib/components/Container.svelte";
   import type { PageData } from "./$types";
   export let data: PageData;
-
-  $: ({ l, t } = data);
 </script>
 
 <Container>
-  <Terapheuts terapheuts={data?.data?.terapeuter_directus_users || []} {l} {t} showExcerpt={true} />
+  <Terapheuts terapheuts={data?.data?.terapeuter_directus_users || []} l={data.l} t={data.t} />
 </Container>
 
 <svelte:head>
