@@ -36,5 +36,7 @@ export const common: CommonTranslations = {
     "Meat our a team of licensed therapists who work together to provide you with a tailored treatment that suits your needs and goals.",
   articlesTitle: "Our articles",
   articlesText: "Read our articles about pain and how to get rid of it.",
-  bokaNu: "Book now"
+  bokaNu: "Book now",
+  swedishFlag: "Flag of Sweden",
+  englishFlag: "Flag of the United Kingdom"
 };

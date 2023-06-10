@@ -45,6 +45,8 @@ export type CommonTranslations = {
   articlesTitle: string;
   articlesText: string;
   bokaNu: string;
+  swedishFlag: string;
+  englishFlag: string;
 };
 
 export type HemTranslations = {

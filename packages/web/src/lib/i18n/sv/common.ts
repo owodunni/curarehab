@@ -36,5 +36,7 @@ export const common: CommonTranslations = {
     "Träffa vårt team av legitimerade terapeuter som tillsammans arbetar för att du ska få en skräddarsydd behandling som passar just dina behov och mål.",
   articlesTitle: "Våra artiklar",
   articlesText: "Läs våra artiklar om smärta och hur du blir av med den.",
-  bokaNu: "Boka nu"
+  bokaNu: "Boka nu",
+  swedishFlag: "Svenska flaggan",
+  englishFlag: "Engelska flaggan"
 };

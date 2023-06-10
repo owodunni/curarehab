@@ -3,12 +3,18 @@
   import { ChevronUpIcon, MenuIcon } from "@rgossiaux/svelte-heroicons/outline";
   import type { T, L } from "$lib/i18n/t";
   import type { Page } from "$lib/i18n";
-  import { page } from "$app/stores";
   import { fade, fly } from "svelte/transition";
   import Logo from "./Logo.svelte";
+  import Flags from "./Flags.svelte";
+  import { page } from "$app/stores";
 
   export let t: T;
   export let l: L;
+
+  $: ({ url, locale } = (() => {
+    const _page = $page;
+    return { url: _page.url, locale: _page.params.lang === "en" ? "en" : "sv" };
+  })());
 
   let open = false;
 
@@ -16,12 +22,18 @@
     open = !open;
   }
 
-  const baseLinks = ["behandlingar", "hitta", "terapeuter"] as const;
+  const links = ["behandlingar", "hitta", "terapeuter", "artiklar"] as const;
 
-  const links = (locale: string | undefined) => {
-    return locale === "en" ? baseLinks : ([...baseLinks, "artiklar"] as const);
-  };
   const buttonLinks = ["boka"] satisfies Page[];
+
+  $: localizedHref = ((): string => {
+    const path = url.href.split(url.hostname)[1].split(url.port)[1];
+    if (locale === "en") {
+      return path === "/en" ? "/" : path.split("/en")[1];
+    } else {
+      return `/en${path === "/" ? "" : path}`;
+    }
+  })();
 </script>
 
 <header>
@@ -30,7 +42,7 @@
       <div class="relative z-10 flex items-center gap-16">
         <a href={l("hem")} class="btn-icon text-surface-700 m-0 h-10 w-20 p-0"><Logo /></a>
         <div class="hidden lg:flex lg:gap-10">
-          {#each links($page.params.lang) as link}
+          {#each links as link}
             <a href={l(link)} class="text-tertiary-700 hover:text-tertiary-900 text-sm">
               {t("common", link)}
             </a>
@@ -38,7 +50,13 @@
         </div>
       </div>
       <div class="flex items-center gap-6">
-        <div class="lg:hidden">
+        <div class="flex gap-4 lg:hidden">
+          <a
+            class="btn-icon ring-surface-500 relative z-10 h-8 w-8 ring ring-[2px]"
+            href={localizedHref}
+          >
+            <Flags {t} flag={locale === "en" ? "swedish" : "english"} class="p-[2px]" />
+          </a>
           <button
             type="button"
             aria-haspopup="menu"
@@ -49,9 +67,9 @@
             on:click={toggle}
           >
             {#if open}
-              <ChevronUpIcon class="h-6 w-6" />
+              <ChevronUpIcon class="h-8 w-8" />
             {:else}
-              <MenuIcon class="h-6 w-6" />
+              <MenuIcon class="h-8 w-8" />
             {/if}
           </button>
           {#if open}
@@ -71,7 +89,7 @@
                 class="bg-surface-50 shadow-surface-900/20 z-0 w-screen rounded-b-2xl px-6 pb-6 pt-32 shadow-2xl"
               >
                 <div class="flex flex-col items-start space-y-4">
-                  {#each links($page.params.lang) as link}
+                  {#each links as link}
                     <a
                       href={l(link)}
                       class="btn text-tertiary-700 hover:text-tertiary-900"
@@ -92,6 +110,13 @@
             </div>
           {/if}
         </div>
+        <a class="btn-icon m-0 hidden p-0 lg:block" href={localizedHref}>
+          <Flags
+            {t}
+            flag={locale === "en" ? "swedish" : "english"}
+            class="ring-surface-500 h-10 w-10 p-1  ring ring-[2px]"
+          />
+        </a>
         {#each buttonLinks as link}
           <a class="btn variant-filled hidden lg:block" href={l(link)}>
             {t("common", link)}

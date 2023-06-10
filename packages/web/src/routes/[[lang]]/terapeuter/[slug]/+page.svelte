@@ -4,7 +4,7 @@
   import { getTitle, getAsset } from "$lib/widgets/util";
   import type { PageData } from "./$types";
   export let data: PageData;
-  const { t, l, terapeut } = data;
+  $: ({ t, l, terapeut } = data);
 </script>
 
 <svelte:head>
