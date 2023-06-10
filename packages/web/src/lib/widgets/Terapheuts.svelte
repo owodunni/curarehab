@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import type { L, T } from "$lib/i18n/t";
   import type { TerapeutsMetaDataQuery } from "src/routes/[[lang]]/terapeuter/$types.gql";
   import { getAsset, getTitle } from "./util";

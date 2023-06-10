@@ -22,6 +22,10 @@
     open = !open;
   }
 
+  function close() {
+    open = false;
+  }
+
   const links = ["behandlingar", "hitta", "terapeuter", "artiklar"] as const;
 
   const buttonLinks = ["boka"] satisfies Page[];
@@ -40,7 +44,9 @@
   <nav>
     <Container class={"relative z-50 flex justify-between py-8"}>
       <div class="relative z-10 flex items-center gap-16">
-        <a href={l("hem")} class="btn-icon text-surface-700 m-0 h-10 w-20 p-0"><Logo /></a>
+        <a href={l("hem")} class="btn-icon text-surface-700 m-0 h-10 w-20 p-0" on:click={close}
+          ><Logo /></a
+        >
         <div class="hidden lg:flex lg:gap-10">
           {#each links as link}
             <a href={l(link)} class="text-tertiary-700 hover:text-tertiary-900 text-sm">
@@ -54,6 +60,7 @@
           <a
             class="btn-icon ring-surface-500 relative z-10 h-8 w-8 ring ring-[2px]"
             href={localizedHref}
+            on:click={close}
           >
             <Flags {t} flag={locale === "en" ? "swedish" : "english"} class="p-[2px]" />
           </a>
@@ -78,6 +85,7 @@
               class="bg-surface-300/60 fixed inset-0 z-0 backdrop-blur-sm"
               in:fade={{ duration: 150 }}
               out:fade={{ duration: 200 }}
+              on:click={close}
             />
             <div
               class="absolute inset-x-0 top-0 origin-top"
