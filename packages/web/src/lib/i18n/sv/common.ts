@@ -27,8 +27,8 @@ export const common: CommonTranslations = {
   contact: "Kontakt",
   descriptionParagraph:
     "Vi på Cura Rehab är ett team av legitimerade terapeuter som tillsammans arbetar för att du ska få en skräddarsydd behandling som passar just dina behov och mål.",
-  titleFysio: "Fysioterapeut",
-  titleNaprapat: "Naprapat",
+  titleFysio: "Leg. Fysioterapeut",
+  titleNaprapat: "Leg. Naprapat",
   titleMassage: "Massageterapeut",
   titleWeb: "Webansvarig",
   terapheutsTitle: "Våra terapeuter",
