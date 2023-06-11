@@ -14,7 +14,8 @@ test.describe("Test locale, SEO, status and redirects", () => {
     { route: "/en/om", data: enOm, status: 200 },
     { route: "/no", status: 404 },
     { route: "/sitemap.xml", status: 200 },
-    { route: "/robots.txt", status: 404 }
+    { route: "/robots.txt", status: 200 },
+    { route: "/apple-touch-icon.png", status: 200 }
   ]) {
     test(`${status}, ${route}`, async ({ page }) => {
       const response = await page.goto(route);
