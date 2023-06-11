@@ -5,7 +5,7 @@ export const getTitle = (title: string | undefined, t: T) => {
   const _t = title?.toLowerCase();
   return t(
     "common",
-    _t === "naprapat" ? "titleNaprapat" : _t === "fysioterapeut" ? "titleFysio" : "titleWeb"
+    _t === "naprapat" ? "titleNaprapat" : _t === "fyisoterapeut" ? "titleFysio" : "titleWeb"
   );
 };
 
