@@ -1,9 +1,10 @@
-query Slugs {
-  artiklar {
+query Slugs($filter: artiklar_filter) {
+  artiklar(filter: $filter) {
     slug
     date_updated
     date_created
     language
+    status
   }
   terapeuter_directus_users {
     directus_users_id {
