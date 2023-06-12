@@ -8,6 +8,7 @@ export type LinkType =
   | "email"
   | "phone"
   | "website"
+  | "tiktok"
   | "location";
 
 export type Link = {
