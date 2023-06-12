@@ -2,6 +2,8 @@ import type { LayoutServerLoad } from "./$types";
 import { error, redirect } from "@sveltejs/kit";
 import { locales, type Locale, defaultLocale, type Route, loadTranslations } from "$lib/i18n";
 import { PUBLIC_RUNTIME } from "$env/static/public";
+import query from "./query.gql?raw";
+import type { WidgetsQuery } from "./$types.gql";
 
 /**
  * We don't prerender in preview mode because we want to be able to update the content
@@ -25,7 +27,13 @@ export const load: LayoutServerLoad = async (event) => {
 
   if (localeExists === defaultLocale) throw redirect(308, route);
 
+  const [translations, widgets] = await Promise.all([
+    loadTranslations(locale, route as Route),
+    event.locals.client.query<WidgetsQuery>(query, []).toPromise()
+  ] as const);
+
   return {
-    translations: await loadTranslations(locale, route as Route)
+    translations,
+    widgets: widgets.data
   };
 };

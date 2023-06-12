@@ -8,48 +8,35 @@
 
   export let t: T;
   export let l: L;
-  export let socialLinks: Link[] = [
-    { type: "facebook", link: "/", display_link: "" },
-    { type: "instagram", link: "/", display_link: "" },
-    { type: "linkedin", link: "/", display_link: "" },
-    { type: "github", link: "/", display_link: "" },
-    { type: "email", link: "/", display_link: "" },
-    { type: "phone", link: "/", display_link: "" },
-    { type: "website", link: "/", display_link: "" }
-  ];
+  export let socialLinks: Link[] = [];
+  export let columnLinks: [Link[], Link[]] = [[], []];
+  export let email: Link | undefined;
+  export let location: Link | undefined;
+  export let phone: Link | undefined;
 
   /**
    * This structure is a bit complex, but it allows us to seperate out links from the html structure.
    * Its a list of two lists of links with titles, the first list is in the left column and the second in the right.
    * If we are on a small screen, the two lists are shown on top of each other.
    */
-  const linksWithCategory: Record<string, ([Page] | [string, string])[]>[] = [
+  let linksWithCategory: Record<string, ([Page] | Link)[]>[] = [];
+  $: linksWithCategory = [
     {
       [t("common", "ourServices")]: [["boka"], ["behandlingar"], ["terapeuter"], ["artiklar"]],
       [t("common", "information")]: [["om"], ["hitta"], ["sekretess"]]
     },
     {
-      [t("common", "partners")]: [
-        ["/", "Fysioreapeuterna"],
-        ["/", "Sveriges Naprapater"],
-        ["/", "Fysio"],
-        ["/", "LiU"]
-      ],
-      [t("common", "readMore")]: [
-        ["/", "1177"],
-        ["/", "Naprapati och Kiropraktik"],
-        ["/", "Kvinnohälsa"],
-        ["/", "Starta eget"]
-      ]
+      [t("common", "partners")]: columnLinks[0],
+      [t("common", "readMore")]: columnLinks[1]
     }
   ];
 
-  function toLinks(links: ([Page] | [string, string])[]): [string, string][] {
+  function toLinks(links: ([Page] | Link)[]): [string, string][] {
     return links.map((link) => {
-      if (link.length === 1) {
+      if (Array.isArray(link)) {
         return [l(link[0]), t("common", link[0])];
       }
-      return link;
+      return [link.link, link.display_link];
     });
   }
 </script>
@@ -74,15 +61,13 @@
           <h3 class="text-tertiary-900 text-sm font-semibold leading-6">{t("common", "hitta")}</h3>
           <ul class="mt-6 space-y-4">
             <li>
-              <SocialLink
-                link={{
-                  type: "location",
-                  link: "/",
-                  display_link: "Xxxxxxxxxx xx | xxx xx Linköping"
-                }}
-                class="text-tertiary-600 hover:text-tertiary-900 flex gap-x-4 text-sm leading-6 xl:-ml-10"
-                onlyIcon={false}
-              />
+              {#if location}
+                <SocialLink
+                  link={location}
+                  class="text-tertiary-600 hover:text-tertiary-900 flex gap-x-4 text-sm leading-6 xl:-ml-10"
+                  onlyIcon={false}
+                />
+              {/if}
             </li>
           </ul>
         </div>
@@ -92,26 +77,22 @@
           </h3>
           <ul class="mt-6 space-y-4">
             <li>
-              <SocialLink
-                link={{
-                  type: "email",
-                  link: "mailto: info@curarehab.se",
-                  display_link: "info@curarehab.se"
-                }}
-                class="text-tertiary-600 hover:text-tertiary-900 flex gap-x-4 text-sm leading-6 xl:-ml-10"
-                onlyIcon={false}
-              />
+              {#if email}
+                <SocialLink
+                  link={email}
+                  class="text-tertiary-600 hover:text-tertiary-900 flex gap-x-4 text-sm leading-6 xl:-ml-10"
+                  onlyIcon={false}
+                />
+              {/if}
             </li>
             <li>
-              <SocialLink
-                link={{
-                  type: "phone",
-                  link: "tel: +46700000000",
-                  display_link: "0700-000000"
-                }}
-                class="text-tertiary-600 hover:text-tertiary-900 flex gap-x-4 text-sm leading-6 xl:-ml-10"
-                onlyIcon={false}
-              />
+              {#if phone}
+                <SocialLink
+                  link={phone}
+                  class="text-tertiary-600 hover:text-tertiary-900 flex gap-x-4 text-sm leading-6 xl:-ml-10"
+                  onlyIcon={false}
+                />
+              {/if}
             </li>
           </ul>
         </div>
