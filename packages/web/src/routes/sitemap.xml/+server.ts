@@ -1,3 +1,4 @@
+import { PUBLIC_RUNTIME } from "$env/static/public";
 import { defaultLocale, locales } from "$lib/i18n";
 import type { RequestHandler } from "./$types";
 import type { SlugsQuery } from "./$types.gql";
@@ -42,7 +43,11 @@ const terapheutsUrls = (terapheuts: SlugsQuery["terapeuter_directus_users"]): st
 };
 
 export const GET: RequestHandler = async (event) => {
-  const data = await event.locals.client.query<SlugsQuery>(query, []).toPromise();
+  const data = await event.locals.client
+    .query<SlugsQuery>(query, {
+      ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } })
+    })
+    .toPromise();
 
   const { artiklar, terapeuter_directus_users } = data.data ?? {};
 
