@@ -9,6 +9,7 @@
   import Youtube from "./Icons/Youtube.svelte";
   import Github from "./Icons/Github.svelte";
   import Location from "./Icons/Location.svelte";
+  import TikTok from "./Icons/TikTok.svelte";
   export let type: LinkType;
 
   function component(type: LinkType) {
@@ -31,6 +32,8 @@
         return PhoneIcon;
       case "location":
         return Location;
+      case "tiktok":
+        return TikTok;
       case "website":
         return GlobeAltIcon;
       default:
