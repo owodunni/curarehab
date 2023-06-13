@@ -6,25 +6,16 @@
 </script>
 
 {#if block.type === "header"}
-  {#if block.data.level === 1}
-    <h1>{block.data.text}</h1>
-  {:else if block.data.level === 2}
-    <h2>{block.data.text}</h2>
-  {:else if block.data.level === 3}
-    <h3>{block.data.text}</h3>
-  {:else if block.data.level === 4}
-    <h4>{block.data.text}</h4>
-  {:else if block.data.level === 5}
-    <h5>{block.data.text}</h5>
-  {:else if block.data.level === 6}
-    <h6>{block.data.text}</h6>
-  {/if}
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html `<h${block.data.level}>${block.data.text}</h${block.data.level}>`}
 {:else if block.type === "paragraph"}
-  <p>{block.data.text}</p>
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html `<p>${block.data.text}</p>`}
 {:else if block.type === "nestedlist"}
   <ul>
     {#each block.data.items as { content }}
-      <li>{content}</li>
+      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+      <li>{@html content}</li>
     {/each}
   </ul>
 {:else if block.type === "image"}
@@ -37,12 +28,15 @@
   />
 {:else if block.type === "quote"}
   <blockquote>
-    <p>{block.data.text}</p>
-    <cite> {block.data.caption} </cite>
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    <p>{@html block.data.text}</p>
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    <cite>{@html block.data.caption} </cite>
   </blockquote>
 {:else if block.type === "code"}
   <pre>
-    <code>{block.data.code}</code>
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    <code>{@html block.data.code}</code>
   </pre>
 {:else if block.type === "delimiter"}
   <hr />
@@ -51,7 +45,8 @@
     <thead>
       <tr>
         {#each block.data.content[0] as header}
-          <th>{header}</th>
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+          <th>{@html header}</th>
         {/each}
       </tr>
     </thead>
@@ -59,7 +54,8 @@
       {#each block.data.content.slice(1) as row}
         <tr>
           {#each row as cell}
-            <td>{cell}</td>
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+            <td>{@html cell}</td>
           {/each}
         </tr>
       {/each}
