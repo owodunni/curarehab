@@ -14,12 +14,14 @@ query Articles($filter: artiklar_filter) {
     user_created {
       first_name
       last_name
-      title
+      work_title
       slug
       avatar {
-        id
         title
-        filename_download
+        type
+        width
+        height
+        filename_disk
       }
     }
   }
