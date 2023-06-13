@@ -44,10 +44,7 @@
             </p>
           </div>
           <div>
-            <a
-              href={`${l("terapeuter")}/${terapeut.slug}/boka`}
-              class="btn btn-sm variant-filled hidden sm:block"
-            >
+            <a href={`${l("terapeuter")}/${terapeut.slug}/boka`} class="btn btn-sm variant-filled">
               {t("common", "bokaNu")}
             </a>
           </div>

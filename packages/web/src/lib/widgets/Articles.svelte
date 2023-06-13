@@ -1,4 +1,5 @@
 <script lang="ts">
+  import TerapeutCard from "$lib/components/TerapeutCard.svelte";
   import type { L, T } from "$lib/i18n/t";
   import type { ArticlesAndTerapeutsQuery } from "src/routes/[[lang]]/$types.gql";
   import { getAsset, getTitle } from "./util";
@@ -36,7 +37,9 @@
               <div class="ring-tertiary-900/10 absolute inset-0 rounded-2xl ring-1 ring-inset" />
             </div>
             <div class="mt-8 flex items-center gap-x-4 text-xs">
-              <time datetime="2020-03-16" class="text-tertiary-500"
+              <time
+                datetime={article.date_updated ?? article.date_created ?? ""}
+                class="text-tertiary-500"
                 >{toDate(article?.date_updated ?? article?.date_created)}</time
               >
             </div>
@@ -51,28 +54,7 @@
               {article?.sammanfattning}
             </article>
           </a>
-          <div class="relative mt-8 flex items-center gap-x-4">
-            <img
-              src={getAsset(article?.user_created?.avatar?.filename_disk, "height=64&width=64")}
-              alt={article?.user_created?.avatar?.title}
-              loading="lazy"
-              width="64"
-              height="64"
-              class="bg-tertiary-100 h-10 w-10 rounded-full"
-            />
-            <div class="text-sm leading-6">
-              <p class="text-tertiary-900 font-semibold">
-                <a href={`${l("terapeuter")}/${article?.user_created?.slug}`}>
-                  <span class="absolute inset-0" />
-                  {article?.user_created?.first_name}
-                  {article?.user_created?.last_name}
-                </a>
-              </p>
-              <p class="text-tertiary-600">
-                {getTitle(article?.user_created?.work_title || "", t)}
-              </p>
-            </div>
-          </div>
+          <TerapeutCard terapeut={article?.user_created} {t} {l} />
         </article>
       {/each}
     </div>
