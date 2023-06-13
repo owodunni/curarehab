@@ -8,7 +8,7 @@
   import Footer from "$lib/components/Footer.svelte";
   import Header from "$lib/components/Header.svelte";
   import type { LayoutData } from "./$types";
-  import type { Link } from "$lib/components/Icons/types";
+  import type { Link } from "$lib/api";
 
   export let data: LayoutData;
 

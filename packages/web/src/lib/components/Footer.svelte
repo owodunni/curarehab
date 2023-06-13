@@ -3,7 +3,7 @@
   import type { T, L } from "$lib/i18n/t";
   import type { Page } from "$lib/i18n";
   import Logo from "./Logo.svelte";
-  import type { Link } from "./Icons/types";
+  import type { Link } from "$lib/api";
   import SocialLink from "./SocialLink.svelte";
 
   export let t: T;

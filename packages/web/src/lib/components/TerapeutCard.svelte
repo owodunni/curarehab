@@ -1,24 +1,14 @@
 <script lang="ts">
   import { getAsset, getTitle } from "$lib/widgets/util";
   import type { T, L } from "$lib/i18n/t";
+  import type { Terapeut } from "$lib/api";
 
-  export let terapeut:
-    | {
-        first_name?: string | null;
-        last_name?: string | null;
-        work_title?: string | null;
-        slug?: string | null;
-        avatar?: {
-          title?: string | null;
-          filename_disk?: string | null;
-        } | null;
-      }
-    | null
-    | undefined;
+  export let terapeut: Terapeut | null | undefined;
   export let t: T;
   export let l: L;
   let clazz = "";
   export { clazz as class };
+  export let time = "";
 </script>
 
 <div class={`relative mt-8 flex items-center gap-x-4 ${clazz}`}>
@@ -39,7 +29,13 @@
       </a>
     </p>
     <p class="text-tertiary-600">
-      {getTitle(terapeut?.work_title || "", t)}
+      <span>{getTitle(terapeut?.work_title || "", t)}</span>
+      {#if time}
+        <span class="mx-1">&middot;</span>
+        <time datetime={time} class="text-tertiary-500 text-xs">
+          {new Date(time).toLocaleDateString("sv-se")}
+        </time>
+      {/if}
     </p>
   </div>
 </div>
