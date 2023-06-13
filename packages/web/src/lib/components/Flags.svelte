@@ -15,7 +15,7 @@
   height="32"
   src={getAsset(
     `flags/${flag === "swedish" ? "Flag_of_Sweden.webp" : "Flag_of_the_United_Kingdom.png"}`,
-    "?width=32&height=32"
+    "width=64&height=64"
   )}
   alt={t("common", flag === "swedish" ? "swedishFlag" : "englishFlag")}
 />
