@@ -5,8 +5,11 @@ query Articles($filter: artiklar_filter) {
     taggar
     artikel
     omslagsbild {
-      id
       title
+      type
+      width
+      height
+      filename_disk
     }
     sammanfattning
     slug

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Link } from "./Icons/types";
+  import type { Link } from "$lib/api";
   import LinkIcon from "./LinkIcon.svelte";
 
   export let link: Link;

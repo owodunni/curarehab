@@ -25,6 +25,7 @@
     width={block.data.file.width}
     height={block.data.file.height}
     alt={block.data.caption}
+    class="rounded-2xl"
   />
 {:else if block.type === "quote"}
   <blockquote>

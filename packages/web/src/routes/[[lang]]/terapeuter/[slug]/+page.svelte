@@ -2,7 +2,7 @@
   import Container from "$lib/components/Container.svelte";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import { getTitle, getAsset } from "$lib/widgets/util";
-  import type { Link } from "$lib/components/Icons/types";
+  import type { Link } from "$lib/api";
   import type { PageData } from "./$types";
   import SocialLink from "$lib/components/SocialLink.svelte";
   export let data: PageData;
