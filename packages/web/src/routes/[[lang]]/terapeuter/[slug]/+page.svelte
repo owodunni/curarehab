@@ -31,7 +31,7 @@
           sizes="(min-width: 1024px) 32rem, 20rem"
           class="aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
         />
-        <div class="mt-6 flex items-center justify-between space-x-24 lg:ml-10">
+        <div class="mt-6 flex items-center justify-between space-x-24">
           <div>
             <h3
               class="text-tertiary-900 group-hover:text-tertiary-600 text-lg font-semibold leading-8 tracking-tight"
@@ -52,7 +52,7 @@
             </a>
           </div>
         </div>
-        <div class="mt-6 flex flex-col space-y-6">
+        <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
           {#each links as link}
             <SocialLink
               {link}
@@ -60,7 +60,7 @@
               class="text-tertiary-600 hover:text-tertiary-900 flex gap-x-4 text-sm leading-6"
             />
           {/each}
-        </div>
+        </ul>
       </div>
     </div>
     <div class="lg:order-first lg:row-span-2">
