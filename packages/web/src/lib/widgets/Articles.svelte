@@ -53,11 +53,11 @@
           </a>
           <div class="relative mt-8 flex items-center gap-x-4">
             <img
-              src={getAsset(article?.user_created?.avatar?.filename_disk, "height=32&width=32")}
+              src={getAsset(article?.user_created?.avatar?.filename_disk, "height=64&width=64")}
               alt={article?.user_created?.avatar?.title}
               loading="lazy"
-              width="32"
-              height="32"
+              width="64"
+              height="64"
               class="bg-tertiary-100 h-10 w-10 rounded-full"
             />
             <div class="text-sm leading-6">
