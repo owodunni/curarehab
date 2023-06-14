@@ -1,13 +1,14 @@
 <script lang="ts">
   import HeroComponent from "$lib/components/HeroComponent.svelte";
-
+  import type { Image } from "$lib/api";
   import type { T, L } from "$lib/i18n/t";
 
   export let t: T;
   export let l: L;
+  export let image: Image | undefined;
 </script>
 
-<HeroComponent {t}>
+<HeroComponent {image}>
   <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
     <h1 class="text-tertiary-900 text-4xl font-bold tracking-tight lg:text-6xl">
       {t("hem", "titleParagraph")}

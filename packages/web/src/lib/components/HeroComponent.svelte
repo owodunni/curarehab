@@ -1,9 +1,9 @@
 <script lang="ts">
-  import rehab from "$lib/assets/rehab-unsplash.webp";
   import Container from "./Container.svelte";
-  import type { T } from "$lib/i18n/t";
+  import { getAsset } from "$lib/widgets/util";
+  import type { Image } from "$lib/api";
 
-  export let t: T;
+  export let image: Image | undefined;
 </script>
 
 <Container class="relative">
@@ -24,11 +24,15 @@
   <div
     class="bg-surface-50 pt-10 sm:pt-20 lg:absolute lg:inset-y-0 lg:right-0 lg:block lg:w-1/2 lg:pt-0"
   >
-    <img
-      class="aspect-square w-full rounded-2xl object-cover lg:aspect-auto lg:h-full"
-      loading="lazy"
-      src={rehab}
-      alt={t("common", "heroImage")}
-    />
+    {#if image}
+      <img
+        class="aspect-square w-full rounded-2xl object-cover lg:aspect-auto lg:h-full"
+        width="1000"
+        height="1000"
+        loading="lazy"
+        src={getAsset(image.filename_disk, "width=800&height=800")}
+        alt={image.title}
+      />
+    {/if}
   </div>
 </Container>

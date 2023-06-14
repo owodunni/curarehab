@@ -6,6 +6,7 @@
   import type { PageData } from "./$types";
   import SocialLink from "$lib/components/SocialLink.svelte";
   import Section from "$lib/components/Section.svelte";
+  import Seo from "$lib/components/Seo.svelte";
   export let data: PageData;
   let links: Link[] = [];
   $: ({ t, l, terapeut } = data);
@@ -21,6 +22,8 @@
       : terapeut?.profil_sammanfattning}
   />
 </svelte:head>
+
+<Seo seo={data.params.lang === "en" ? terapeut.seo_en : terapeut.seo} />
 
 <Section>
   <Container>

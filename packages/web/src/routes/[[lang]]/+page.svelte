@@ -5,6 +5,7 @@
   import Section from "$lib/components/Section.svelte";
   import type { PageData } from "./$types";
   import Container from "$lib/components/Container.svelte";
+  import Seo from "$lib/components/Seo.svelte";
 
   export let data: PageData;
   $: ({ t, l } = data);
@@ -12,7 +13,7 @@
 
 <main>
   <Section class="py-20 sm:py-32 lg:py-0 lg:pb-32 xl:pb-36">
-    <Hero {t} {l} />
+    <Hero {t} {l} image={data?.data?.Hem?.omslagsbild} />
   </Section>
   <Section extras="bg-success-100">
     <Container>
@@ -25,8 +26,4 @@
     </Container>
   </Section>
 </main>
-
-<svelte:head>
-  <title>{data.t("hem", "title")}</title>
-  <meta name="description" content={data.t("hem", "description")} />
-</svelte:head>
+<Seo seo={data.params.lang === "en" ? data?.data?.Hem?.seo_en : data?.data?.Hem?.seo} />

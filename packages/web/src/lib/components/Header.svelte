@@ -28,7 +28,7 @@
 
   $: localizedHref = ((): string => {
     if (route === `/${locale}` || route === "/") return locale === "en" ? "/" : "/en";
-    else return locale === "en" ? route.split("/en")[1] : `/en${route.split("/sv")[1]}`;
+    else return locale === "en" ? route.substring(3) : `/en${route.substring(3)}`;
   })();
 </script>
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Seo from "$lib/components/Seo.svelte";
   import type { PageData } from "./$types";
   export let data: PageData;
 </script>
@@ -7,9 +8,6 @@
   <h1>{data.t("behandlingar", "title")}</h1>
   <p>{data.t("behandlingar", "description")}</p>
 </div>
-
-<svelte:head>
-  <!-- Simple SEO for now requires a title and description to be provided by the child route -->
-  <title>{data.t("behandlingar", "title")}</title>
-  <meta name="description" content={data.t("behandlingar", "description")} />
-</svelte:head>
+<Seo
+  seo={data.params.lang === "en" ? data?.data?.behandlingar?.seo_en : data?.data?.behandlingar?.seo}
+/>
