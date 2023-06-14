@@ -22,7 +22,7 @@
   <div class="mt-10">
     <a href={l(page)} class="text-primary-500 text-sm font-semibold leading-6"
       ><span aria-hidden="true">&larr;</span>
-      {t("common", "errorHome", { backTo: placeholders.backTo}) }</a
+      {t("common", "errorHome", { backTo: placeholders.backTo })}</a
     >
   </div>
 </main>
