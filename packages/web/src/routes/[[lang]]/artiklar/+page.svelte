@@ -1,14 +1,17 @@
 <script lang="ts">
   import Container from "$lib/components/Container.svelte";
+  import Section from "$lib/components/Section.svelte";
   import Articles from "$lib/widgets/Articles.svelte";
   import type { PageData } from "./$types";
   export let data: PageData;
   $: ({ l, t } = data);
 </script>
 
-<Container>
-  <Articles articles={data?.data?.artiklar || []} {l} {t} />
-</Container>
+<Section>
+  <Container>
+    <Articles articles={data?.data?.artiklar || []} {l} {t} />
+  </Container>
+</Section>
 
 <svelte:head>
   <title>{data.t("artiklar", "title")}</title>

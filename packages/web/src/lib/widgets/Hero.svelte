@@ -9,13 +9,13 @@
 
 <HeroComponent {t}>
   <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
-    <h1 class="text-tertiary-900 text-4xl font-bold tracking-tight sm:text-6xl">
+    <h1 class="text-tertiary-900 text-4xl font-bold tracking-tight lg:text-6xl">
       {t("hem", "titleParagraph")}
     </h1>
     <p class="text-tertiary-600 mt-6 text-lg leading-8">
       {t("hem", "subtitleParagraph")}
     </p>
-    <div class="mt-10 flex items-center gap-x-6">
+    <div class="mt-8 flex items-center gap-x-6">
       <a href={l("boka")} class="btn variant-filled">{t("hem", "boka")}</a>
       <a href={l("artiklar")} class="text-tertiary-900 text-sm font-semibold leading-6"
         >{t("hem", "readMore")} <span aria-hidden="true">→</span></a

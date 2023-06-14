@@ -42,7 +42,7 @@
 </script>
 
 <footer
-  class="border-tertiary-200 bg-error-50 mt-16 border-t pb-8 pt-16 sm:pt-24"
+  class="border-tertiary-200 bg-error-50 border-t pb-8 pt-16 sm:pt-24"
   aria-labelledby="footer-heading"
 >
   <Container>
