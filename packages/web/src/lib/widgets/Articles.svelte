@@ -8,22 +8,18 @@
   export let articles: ArticlesAndTerapeutsQuery["artiklar"];
 </script>
 
-<div class="py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl lg:mx-0">
-      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-        {t("common", "articlesTitle")}
-      </h2>
-      <p class="mt-6 text-lg leading-8 text-gray-600">
-        {t("common", "articlesText")}
-      </p>
-    </div>
-    <div
-      class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-    >
-      {#each articles as article}
-        <ArticleCard {article} {t} {l} sammanfattning={article.sammanfattning} />
-      {/each}
-    </div>
-  </div>
+<div class="mx-auto max-w-2xl lg:mx-0">
+  <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+    {t("common", "articlesTitle")}
+  </h2>
+  <p class="mt-6 text-lg leading-8 text-gray-600">
+    {t("common", "articlesText")}
+  </p>
+</div>
+<div
+  class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+>
+  {#each articles as article}
+    <ArticleCard {article} {t} {l} sammanfattning={article.sammanfattning} />
+  {/each}
 </div>
