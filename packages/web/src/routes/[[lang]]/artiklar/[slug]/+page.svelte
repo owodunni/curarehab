@@ -2,6 +2,7 @@
   import Container from "$lib/components/Container.svelte";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import Section from "$lib/components/Section.svelte";
+  import Seo from "$lib/components/Seo.svelte";
   import TerapeutCard from "$lib/components/TerapeutCard.svelte";
   import { getAsset } from "$lib/widgets/util";
   import type { PageData } from "./$types";
@@ -9,10 +10,7 @@
   $: ({ article } = data);
 </script>
 
-<svelte:head>
-  <title>{article.title}</title>
-  <meta name="description" content={article.sammanfattning} />
-</svelte:head>
+<Seo seo={article?.seo} />
 
 <Section extras="py-0 pb-20 sm:pb-32">
   <Container>

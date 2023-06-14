@@ -44,4 +44,22 @@ query ArticlesMetaData($filter: artiklar_filter) {
       }
     }
   }
+  Artiklar {
+    seo {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+    seo_en {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+  }
 }

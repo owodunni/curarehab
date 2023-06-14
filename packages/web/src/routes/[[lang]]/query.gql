@@ -46,4 +46,26 @@ query ArticlesAndTerapeuts($filter: artiklar_filter) {
       }
     }
   }
+  Hem {
+    omslagsbild {
+      title
+      filename_disk
+    }
+    seo {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+    seo_en {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+  }
 }

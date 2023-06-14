@@ -1,0 +1,27 @@
+query Hitta {
+  hitta {
+    text
+    text_en
+    location {
+      type
+      link
+      display_link
+    }
+    seo {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+    seo_en {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+  }
+}

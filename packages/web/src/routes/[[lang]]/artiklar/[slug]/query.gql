@@ -1,9 +1,18 @@
 query Articles($filter: artiklar_filter) {
   artiklar(filter: $filter) {
+    seo {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
     date_updated
     date_created
     taggar
     artikel
+    status
     omslagsbild {
       title
       type

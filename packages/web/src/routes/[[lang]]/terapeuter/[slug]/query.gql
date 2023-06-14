@@ -21,6 +21,22 @@ query Terapeuts($filter: directus_users_filter) {
         link
         display_link
       }
+      seo {
+        description
+        title
+        link_photo {
+          title
+          filename_disk
+        }
+      }
+      seo_en {
+        description
+        title
+        link_photo {
+          title
+          filename_disk
+        }
+      }
     }
   }
 }
