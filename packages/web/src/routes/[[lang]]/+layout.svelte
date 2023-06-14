@@ -42,7 +42,9 @@
 </script>
 
 <Header t={data.t} l={data.l} locale={data.params.lang === "en" ? "en" : "sv"} route={data.route} />
-<slot />
+<main>
+  <slot />
+</main>
 <Footer
   t={data.t}
   l={data.l}

@@ -27,13 +27,15 @@ export const common: CommonTranslations = {
   partners: "Partners",
   readMore: "Read more",
   contact: "Contact",
-  descriptionParagraph: "We at Cura Rehab are a team of licensed therapists who work together to provide you with a tailored treatment that suits your needs and goals.",
+  descriptionParagraph:
+    "We at Cura Rehab are a team of licensed therapists who work together to provide you with a tailored treatment that suits your needs and goals.",
   titleFysio: "Fysiotherapist",
   titleNaprapat: "Naprapath",
   titleMassage: "Massage therapist",
   titleWeb: "Web lord",
   terapheutsTitle: "Our therapists",
-  terapheutsText: "Meat our a team of licensed therapists who work together to provide you with a tailored treatment that suits your needs and goals.",
+  terapheutsText:
+    "Meat our a team of licensed therapists who work together to provide you with a tailored treatment that suits your needs and goals.",
   articlesTitle: "Our articles",
   articlesText: "Read our articles about pain and how to get rid of it.",
   bokaNu: "Book now",

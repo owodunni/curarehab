@@ -30,6 +30,10 @@
     if (route === `/${locale}` || route === "/") return locale === "en" ? "/" : "/en";
     else return locale === "en" ? route.substring(3) : `/en${route.substring(3)}`;
   })();
+  // We don't want to show the localization switch language when showing articles since they can't be localized
+  $: showLocalization = !(
+    localizedHref.startsWith("/en/artiklar/") || localizedHref.startsWith("/artiklar/")
+  );
 </script>
 
 <header>
@@ -49,13 +53,15 @@
       </div>
       <div class="flex items-center gap-6">
         <div class="flex gap-4 lg:hidden">
-          <a
-            class="btn-icon ring-surface-500 relative z-10 h-8 w-8 ring ring-[2px]"
-            href={localizedHref}
-            on:click={close}
-          >
-            <Flags {t} flag={locale === "en" ? "swedish" : "english"} class="p-[2px]" />
-          </a>
+          {#if showLocalization}
+            <a
+              class="btn-icon ring-surface-500 relative z-10 h-8 w-8 ring ring-[2px]"
+              href={localizedHref}
+              on:click={close}
+            >
+              <Flags {t} flag={locale === "en" ? "swedish" : "english"} class="p-[2px]" />
+            </a>
+          {/if}
           <button
             type="button"
             aria-haspopup="menu"
@@ -110,13 +116,15 @@
             </div>
           {/if}
         </div>
-        <a class="btn-icon m-0 hidden p-0 lg:block" href={localizedHref}>
-          <Flags
-            {t}
-            flag={locale === "en" ? "swedish" : "english"}
-            class="ring-surface-500 h-10 w-10 p-1  ring ring-[2px]"
-          />
-        </a>
+        {#if showLocalization}
+          <a class="btn-icon m-0 hidden p-0 lg:block" href={localizedHref}>
+            <Flags
+              {t}
+              flag={locale === "en" ? "swedish" : "english"}
+              class="ring-surface-500 h-10 w-10 p-1  ring ring-[2px]"
+            />
+          </a>
+        {/if}
         {#each buttonLinks as link}
           <a class="btn variant-filled hidden lg:block" href={l(link)}>
             {t("common", link)}

@@ -11,19 +11,17 @@
   $: ({ t, l } = data);
 </script>
 
-<main>
-  <Section class="py-20 sm:py-32 lg:py-0 lg:pb-32 xl:pb-36">
-    <Hero {t} {l} image={data?.data?.Hem?.omslagsbild} />
-  </Section>
-  <Section extras="bg-success-100">
-    <Container>
-      <Terapheuts terapheuts={data?.data?.terapeuter_directus_users || []} {l} {t} />
-    </Container>
-  </Section>
-  <Section>
-    <Container>
-      <Articles articles={data?.data?.artiklar || []} {l} {t} />
-    </Container>
-  </Section>
-</main>
+<Section class="py-20 sm:py-32 lg:py-0 lg:pb-32 xl:pb-36">
+  <Hero {t} {l} image={data?.data?.Hem?.omslagsbild ?? undefined} />
+</Section>
+<Section extras="bg-success-100">
+  <Container>
+    <Terapheuts terapheuts={data?.data?.terapeuter_directus_users || []} {l} {t} />
+  </Container>
+</Section>
+<Section>
+  <Container>
+    <Articles articles={data?.data?.artiklar || []} {l} {t} />
+  </Container>
+</Section>
 <Seo seo={data.params.lang === "en" ? data?.data?.Hem?.seo_en : data?.data?.Hem?.seo} />
