@@ -15,7 +15,9 @@ export type CommonTranslations = {
   title: string;
   subtitle: string;
   om: string;
+  artiklen: string;
   artiklar: string;
+  sidan: string;
   smarta: string;
   menuAria: string;
   boka: string;
@@ -47,6 +49,9 @@ export type CommonTranslations = {
   bokaNu: string;
   swedishFlag: string;
   englishFlag: string;
+  errorHome: string;
+  errorSubtitle: string;
+  errorTitle: string;
 };
 
 export type HemTranslations = {
