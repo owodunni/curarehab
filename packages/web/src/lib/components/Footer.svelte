@@ -27,7 +27,19 @@
     },
     {
       [t("common", "partners")]: columnLinks[0],
-      [t("common", "readMore")]: columnLinks[1]
+      [t("common", "readMore")]: [
+        {
+          link: t("common", "fysioHref"),
+          display_link: t("common", "fysioLinkTitle"),
+          type: "website"
+        },
+        {
+          link: t("common", "naprapatHref"),
+          display_link: t("common", "naprapatLinkTitle"),
+          type: "website"
+        },
+        ...columnLinks[1]
+      ]
     }
   ];
 
