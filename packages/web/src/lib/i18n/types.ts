@@ -1,13 +1,14 @@
 export type Locale = "en" | "sv";
 export type Page =
+  | "artiklar"
+  | "behandlingar"
+  | "boka"
+  | "cookies"
   | "hem"
   | "om"
-  | "artiklar"
-  | "boka"
+  | "personuppgiftspolicy"
   | "hitta"
-  | "behandlingar"
-  | "terapeuter"
-  | "personuppgiftspolicy";
+  | "terapeuter";
 export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
@@ -56,6 +57,7 @@ export type CommonTranslations = {
   fysioHref: string;
   naprapatLinkTitle: string;
   naprapatHref: string;
+  cookies: string;
 };
 
 export type HemTranslations = {
@@ -111,6 +113,11 @@ export type TreatmentsTranslations = {
   description: string;
 };
 
+export type CookiesTranslations = {
+  title: string;
+  description: string;
+};
+
 export type TranslationsByGroup = {
   common: CommonTranslations;
   hem: HemTranslations;
@@ -121,6 +128,7 @@ export type TranslationsByGroup = {
   terapeuter: TerapheutTranslations;
   personuppgiftspolicy: PrivacyTranslations;
   behandlingar: TreatmentsTranslations;
+  cookies: CookiesTranslations;
 };
 
 export type Translations =
@@ -132,4 +140,5 @@ export type Translations =
   | keyof FindTranslations
   | keyof TerapheutTranslations
   | keyof PrivacyTranslations
+  | keyof CookiesTranslations
   | keyof TreatmentsTranslations;
