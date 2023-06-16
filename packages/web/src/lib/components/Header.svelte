@@ -40,10 +40,12 @@
   <nav>
     <Container class={"relative z-50 flex justify-between py-8"}>
       <div class="relative z-10 flex items-center gap-16">
-        <a href={l("hem")} class="btn-icon text-surface-700 m-0 h-10 w-20 p-0" on:click={close}
-          ><Logo /></a
+        <a
+          href={l("hem")}
+          class="btn-icon btn-lg border-x-secondary-200 text-surface-700 absolute m-0 w-24 p-0"
+          on:click={close}><Logo class="w-32" /></a
         >
-        <div class="hidden lg:flex lg:gap-10">
+        <div class="hidden lg:flex lg:gap-10 lg:pl-40">
           {#each links as link}
             <a href={l(link)} class="text-tertiary-700 hover:text-tertiary-900 text-sm">
               {t("common", link)}

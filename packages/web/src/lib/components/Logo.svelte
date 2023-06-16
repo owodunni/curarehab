@@ -1,15 +1,9 @@
-<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 47.01 23.72"
   fill="currentColor"
   aria-hidden="true"
   {...$$restProps}
-  on:click
-  on:mouseover
-  on:mouseenter
-  on:mouseleave
-  on:keydown
   ><g
     ><path
       d="m16.58,2.67V.42l-4.24.99c.18.29.99.39.99,1.39v5.25c-1.18,2.56-2.61,5.2-5.52,5.2-3.32,0-4.47-3.09-4.47-6.3C3.35,3.42,4.47.24,6.95.24c1.36,0,2.4,1.49,2.61,2.67l1.75-.73c-.99-1.44-2.72-2.17-4.37-2.17C3.11,0,0,3.11,0,6.95s3.11,6.95,6.95,6.95c4.39,0,5.46-3.4,6.93-6.41.78-1.57,1.49-3.4,2.69-4.84Z"
