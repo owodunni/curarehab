@@ -23,7 +23,7 @@
   $: linksWithCategory = [
     {
       [t("common", "ourServices")]: [["boka"], ["behandlingar"], ["terapeuter"], ["artiklar"]],
-      [t("common", "information")]: [["om"], ["hitta"], ["personuppgiftspolicy"]]
+      [t("common", "information")]: [["om"], ["hitta"], ["personuppgiftspolicy"], ["cookies"]]
     },
     {
       [t("common", "partners")]: columnLinks[0],

@@ -48,5 +48,6 @@ export const common: CommonTranslations = {
   fysioHref: "https://sv.wikipedia.org/wiki/Fysioterapi",
   naprapatLinkTitle: "Kiropraktik och naprapati",
   naprapatHref:
-    "https://www.1177.se/behandling--hjalpmedel/smartbehandlingar-och-rehabilitering/kiropraktik-och-naprapati/"
+    "https://www.1177.se/behandling--hjalpmedel/smartbehandlingar-och-rehabilitering/kiropraktik-och-naprapati/",
+  cookies: "Cookies"
 };

@@ -48,5 +48,6 @@ export const common: CommonTranslations = {
   fysioHref: "https://www.nhs.uk/conditions/physiotherapy/",
   naprapatLinkTitle: "Chiropractic and naprapathy",
   naprapatHref:
-    "https://www.jointacademy.com/us/en/facts/osteoarthritis-treatment/naprapath-naprapathy/"
+    "https://www.jointacademy.com/us/en/facts/osteoarthritis-treatment/naprapath-naprapathy/",
+  cookies: "Cookies"
 };
