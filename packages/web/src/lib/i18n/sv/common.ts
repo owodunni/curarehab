@@ -21,7 +21,7 @@ export const common: CommonTranslations = {
   hitta: "Hitta hit",
   behandlingar: "Behandlingar",
   terapeuter: "Terapeuter",
-  sekretess: "Integritetspolicy",
+  personuppgiftspolicy: "Personuppgiftspolicy",
   ourServices: "Våra tjänster",
   information: "Mer information",
   partners: "Partners",

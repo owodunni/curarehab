@@ -9,7 +9,7 @@ export type Route =
   | "/boka"
   | "/"
   | "/hitta"
-  | "/sekretess"
+  | "/personuppgiftspolicy"
   | "/terapeuter"
   | "/behandlingar";
 export const pageWithRoute = {
@@ -18,7 +18,7 @@ export const pageWithRoute = {
   artiklar: "/artiklar",
   boka: "/boka",
   hitta: "/hitta",
-  sekretess: "/sekretess",
+  personuppgiftspolicy: "/personuppgiftspolicy",
   terapeuter: "/terapeuter",
   behandlingar: "/behandlingar"
 } satisfies Record<Page, Route>;

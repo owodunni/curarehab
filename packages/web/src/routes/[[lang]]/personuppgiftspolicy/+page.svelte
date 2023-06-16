@@ -7,6 +7,6 @@
 <TextPage
   data={data?.data?.sekretess}
   lang={data.params.lang}
-  title={data.t("sekretess", "title")}
-  description={data.t("sekretess", "description")}
+  title={data.t("personuppgiftspolicy", "title")}
+  description={data.t("personuppgiftspolicy", "description")}
 />

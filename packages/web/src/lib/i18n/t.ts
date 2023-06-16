@@ -34,7 +34,7 @@ export const createT = (translations: LoadedTranslations<TranslationGroup, Trans
     key: keyof TreatmentsTranslations,
     params?: NamedPlaceholder
   ): string;
-  function r(group: "sekretess", key: keyof PrivacyTranslations, params?: NamedPlaceholder): string;
+  function r(group: "personuppgiftspolicy", key: keyof PrivacyTranslations, params?: NamedPlaceholder): string;
   function r(
     group: "terapeuter",
     key: keyof TerapheutTranslations,
