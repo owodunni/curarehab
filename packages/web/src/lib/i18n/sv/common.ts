@@ -43,5 +43,10 @@ export const common: CommonTranslations = {
   englishFlag: "Engelska flaggan",
   errorHome: "Tillbaka till {backTo}",
   errorSubtitle: "Tyvärr kunde vi inte hitta {resource} du letade efter.",
-  errorTitle: "{page} hittades inte"
+  errorTitle: "{page} hittades inte",
+  fysioLinkTitle: "Fysioterapi",
+  fysioHref: "https://sv.wikipedia.org/wiki/Fysioterapi",
+  naprapatLinkTitle: "Kiropraktik och naprapati",
+  naprapatHref:
+    "https://www.1177.se/behandling--hjalpmedel/smartbehandlingar-och-rehabilitering/kiropraktik-och-naprapati/"
 };

@@ -52,6 +52,10 @@ export type CommonTranslations = {
   errorHome: string;
   errorSubtitle: string;
   errorTitle: string;
+  fysioLinkTitle: string;
+  fysioHref: string;
+  naprapatLinkTitle: string;
+  naprapatHref: string;
 };
 
 export type HemTranslations = {

@@ -43,5 +43,10 @@ export const common: CommonTranslations = {
   englishFlag: "Flag of the United Kingdom",
   errorHome: "Back to {backTo}",
   errorSubtitle: "Sorry we could not find the {resource} you where looking for.",
-  errorTitle: "{page} not found"
+  errorTitle: "{page} not found",
+  fysioLinkTitle: "Physiotherapy",
+  fysioHref: "https://www.nhs.uk/conditions/physiotherapy/",
+  naprapatLinkTitle: "Chiropractic and naprapathy",
+  naprapatHref:
+    "https://www.jointacademy.com/us/en/facts/osteoarthritis-treatment/naprapath-naprapathy/"
 };
