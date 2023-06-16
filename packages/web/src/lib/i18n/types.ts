@@ -7,7 +7,7 @@ export type Page =
   | "hitta"
   | "behandlingar"
   | "terapeuter"
-  | "sekretess";
+  | "personuppgiftspolicy";
 export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
@@ -31,7 +31,7 @@ export type CommonTranslations = {
   hitta: string;
   behandlingar: string;
   terapeuter: string;
-  sekretess: string;
+  personuppgiftspolicy: string;
   ourServices: string;
   information: string;
   partners: string;
@@ -119,7 +119,7 @@ export type TranslationsByGroup = {
   boka: BokaTranslations;
   hitta: FindTranslations;
   terapeuter: TerapheutTranslations;
-  sekretess: PrivacyTranslations;
+  personuppgiftspolicy: PrivacyTranslations;
   behandlingar: TreatmentsTranslations;
 };
 
