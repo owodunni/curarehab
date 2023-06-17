@@ -1,11 +1,18 @@
-const colors = require('tailwindcss/colors')
-
-function valueToHex(c) {
-  return c.toString(16);
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgba(var(${variableName}), ${opacityValue})`;
+    }
+    return `rgb(var(${variableName}))`;
+  };
 }
 
-function rgbToHex(r, g, b) {
-  return "#" + valueToHex(r) + valueToHex(g) + valueToHex(b);
+const colorStep = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+
+function createColor(name) {
+  return Object.fromEntries(
+    colorStep.map((step) => [step, withOpacity(`--color-${name}-${step}`)])
+  );
 }
 
 /** @type {import('tailwindcss').Config} */
@@ -15,19 +22,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ...colors,
-        surface: {
-          "50": rgbToHex(253, 246, 239),
-          "100": rgbToHex(252, 243, 234),
-          "200": rgbToHex(251, 240, 228),
-          "300": rgbToHex(249, 230, 212),
-          "400": rgbToHex(245, 212, 180),
-          "500": rgbToHex(240, 193, 148),
-          "600": rgbToHex(216, 174, 133),
-          "700": rgbToHex(180, 145, 111),
-          "800": rgbToHex(144, 116, 89),
-          "900": rgbToHex(118, 95, 73),
-        },
+        success: createColor("success"),
+        tertiary: createColor("tertiary"),
+        error: createColor("error"),
+        surface: createColor("surface")
       }
     }
   },
