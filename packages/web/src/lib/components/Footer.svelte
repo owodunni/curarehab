@@ -22,7 +22,16 @@
   let linksWithCategory: Record<string, ([Page] | Link)[]>[] = [];
   $: linksWithCategory = [
     {
-      [t("common", "ourServices")]: [["boka"], ["behandlingar"], ["terapeuter"], ["artiklar"]],
+      [t("common", "ourServices")]: [
+        {
+          link: t("common", "hanoLink"),
+          display_link: t("common", "boka"),
+          type: "website"
+        },
+        ["behandlingar"],
+        ["terapeuter"],
+        ["artiklar"]
+      ],
       [t("common", "information")]: [["om"], ["hitta"], ["personuppgiftspolicy"], ["cookies"]]
     },
     {

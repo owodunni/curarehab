@@ -17,7 +17,7 @@
       {t("hem", "subtitleParagraph")}
     </p>
     <div class="mt-8 flex items-center gap-x-6">
-      <a href={l("boka")} class="btn variant-filled">{t("hem", "boka")}</a>
+      <a href={t("common", "hanoLink")} class="btn variant-filled">{t("hem", "boka")}</a>
       <a href={l("artiklar")} class="text-tertiary-900 text-sm font-semibold leading-6"
         >{t("hem", "readMore")} <span aria-hidden="true">→</span></a
       >
