@@ -8,7 +8,6 @@ export type Route =
   | "/om"
   | "/artiklar"
   | "/behandlingar"
-  | "/boka"
   | "/cookies"
   | "/hitta"
   | "/personuppgiftspolicy"
@@ -16,7 +15,6 @@ export type Route =
 export const pageWithRoute = {
   artiklar: "/artiklar",
   behandlingar: "/behandlingar",
-  boka: "/boka",
   cookies: "/cookies",
   hem: "/",
   hitta: "/hitta",

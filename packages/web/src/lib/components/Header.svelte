@@ -2,7 +2,6 @@
   import Container from "./Container.svelte";
   import { ChevronUpIcon, MenuIcon } from "@rgossiaux/svelte-heroicons/outline";
   import type { T, L } from "$lib/i18n/t";
-  import type { Page } from "$lib/i18n";
   import { fade, fly } from "svelte/transition";
   import Logo from "./Logo.svelte";
   import Flags from "./Flags.svelte";
@@ -23,8 +22,6 @@
   }
 
   const links = ["behandlingar", "hitta", "terapeuter", "artiklar"] as const;
-
-  const buttonLinks = ["boka"] satisfies Page[];
 
   $: localizedHref = ((): string => {
     if (route === `/${locale}` || route === "/") return locale === "en" ? "/" : "/en";
@@ -105,15 +102,11 @@
                     >
                   {/each}
                 </div>
-                {#if buttonLinks.length > 0}
-                  <div class="mt-8 flex flex-col gap-4">
-                    {#each buttonLinks as link}
-                      <a class="btn variant-filled" href={l(link)} on:click={toggle}>
-                        {t("common", link)}
-                      </a>
-                    {/each}
-                  </div>
-                {/if}
+                <div class="mt-8 flex flex-col gap-4">
+                  <a class="btn variant-filled" href={t("common", "hanoLink")} on:click={toggle}>
+                    {t("common", "boka")}
+                  </a>
+                </div>
               </div>
             </div>
           {/if}
@@ -127,11 +120,9 @@
             />
           </a>
         {/if}
-        {#each buttonLinks as link}
-          <a class="btn variant-filled hidden lg:block" href={l(link)}>
-            {t("common", link)}
-          </a>
-        {/each}
+        <a class="btn variant-filled hidden lg:block" href={t("common", "hanoLink")}>
+          {t("common", "boka")}
+        </a>
       </div>
     </Container>
   </nav>

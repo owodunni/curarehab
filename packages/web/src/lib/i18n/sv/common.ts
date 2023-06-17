@@ -49,5 +49,6 @@ export const common: CommonTranslations = {
   naprapatLinkTitle: "Kiropraktik och naprapati",
   naprapatHref:
     "https://www.1177.se/behandling--hjalpmedel/smartbehandlingar-och-rehabilitering/kiropraktik-och-naprapati/",
-  cookies: "Cookies"
+  cookies: "Cookies",
+  hanoLink: "https://curarehab.bestille.no/OnCust2/"
 };

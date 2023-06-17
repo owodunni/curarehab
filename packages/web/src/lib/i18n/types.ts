@@ -2,7 +2,6 @@ export type Locale = "en" | "sv";
 export type Page =
   | "artiklar"
   | "behandlingar"
-  | "boka"
   | "cookies"
   | "hem"
   | "om"
@@ -22,6 +21,7 @@ export type CommonTranslations = {
   smarta: string;
   menuAria: string;
   boka: string;
+  hanoLink: string;
   directions: string;
   hem: string;
   create: string;
@@ -88,11 +88,6 @@ export type ArticleTranslations = {
   readArticle: string;
 };
 
-export type BokaTranslations = {
-  title: string;
-  description: string;
-};
-
 export type FindTranslations = {
   title: string;
   description: string;
@@ -123,7 +118,6 @@ export type TranslationsByGroup = {
   hem: HemTranslations;
   om: OmTranslations;
   artiklar: ArticleTranslations;
-  boka: BokaTranslations;
   hitta: FindTranslations;
   terapeuter: TerapheutTranslations;
   personuppgiftspolicy: PrivacyTranslations;
@@ -136,7 +130,6 @@ export type Translations =
   | keyof OmTranslations
   | keyof ArticleTranslations
   | keyof CommonTranslations
-  | keyof BokaTranslations
   | keyof FindTranslations
   | keyof TerapheutTranslations
   | keyof PrivacyTranslations

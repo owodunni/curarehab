@@ -9,7 +9,7 @@
   import Seo from "$lib/components/Seo.svelte";
   export let data: PageData;
   let links: Link[] = [];
-  $: ({ t, l, terapeut } = data);
+  $: ({ t, terapeut } = data);
   $: links = (terapeut?.links || []).filter(Boolean) as Link[];
 </script>
 
@@ -49,10 +49,7 @@
               </p>
             </div>
             <div>
-              <a
-                href={`${l("terapeuter")}/${terapeut.slug}/boka`}
-                class="btn btn-sm variant-filled"
-              >
+              <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled">
                 {t("common", "bokaNu")}
               </a>
             </div>

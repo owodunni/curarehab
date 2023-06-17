@@ -44,10 +44,7 @@
             </p>
           </div>
           <div>
-            <a
-              href={`${l("terapeuter")}/${directus_users_id?.slug}`}
-              class="btn btn-sm variant-filled hidden sm:block"
-            >
+            <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled hidden sm:block">
               {t("common", "bokaNu")}
             </a>
           </div>
