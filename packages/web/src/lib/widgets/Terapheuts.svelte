@@ -34,7 +34,7 @@
         <div class="mt-6 flex justify-between">
           <div>
             <h3
-              class="text-tertiary-900 group-hover:text-tertiary-600 text-lg font-semibold leading-8 tracking-tight"
+              class="text-lg font-semibold leading-8 tracking-tight text-gray-900 group-hover:text-gray-600"
             >
               {directus_users_id?.first_name}
               {directus_users_id?.last_name}

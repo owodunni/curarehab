@@ -39,7 +39,7 @@
           <div class="mt-6 flex items-center justify-between space-x-24">
             <div>
               <h3
-                class="text-tertiary-900 group-hover:text-tertiary-600 text-lg font-semibold leading-8 tracking-tight"
+                class="text-lg font-semibold leading-8 tracking-tight text-gray-900 group-hover:text-gray-600"
               >
                 {terapeut.first_name}
                 {terapeut.last_name}
@@ -59,7 +59,7 @@
               <SocialLink
                 {link}
                 onlyIcon={false}
-                class="text-tertiary-600 hover:text-tertiary-900 flex gap-x-4 text-sm leading-6"
+                class="flex gap-x-4 text-sm leading-6 text-gray-600 hover:text-gray-900"
               />
             {/each}
           </ul>

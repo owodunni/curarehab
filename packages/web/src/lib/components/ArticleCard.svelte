@@ -17,18 +17,16 @@
         src={getAsset(article?.omslagsbild?.filename_disk)}
         alt={article?.omslagsbild?.title}
         loading="lazy"
-        class="bg-tertiary-100 aspect-[16/9] w-full rounded-2xl object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+        class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
       />
-      <div class="ring-tertiary-900/10 absolute inset-0 rounded-2xl ring-1 ring-inset" />
+      <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
     </div>
     <div class="mt-8 flex items-center gap-x-4 text-xs">
-      <time datetime={article.date_updated ?? article.date_created ?? ""} class="text-tertiary-500">
+      <time datetime={article.date_updated ?? article.date_created ?? ""} class="text-gray-500">
         {new Date(article?.date_updated ?? article?.date_created ?? "").toLocaleDateString("sv-se")}
       </time>
     </div>
-    <h3
-      class="text-tertiary-900 group-hover:text-tertiary-600 mt-3 text-lg font-semibold leading-6"
-    >
+    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
       {article?.title}
     </h3>
 
