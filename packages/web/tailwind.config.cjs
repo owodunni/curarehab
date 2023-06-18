@@ -15,7 +15,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        success: {
+        sycamore: {
           50: withOpacity(236, 237, 228),
           100: withOpacity(229, 231, 219),
           200: withOpacity(223, 225, 211),
@@ -27,19 +27,7 @@ module.exports = {
           800: withOpacity(76, 80, 46),
           900: withOpacity(62, 66, 38)
         },
-        tertiary: {
-          50: withOpacity(249, 250, 251),
-          100: withOpacity(243, 244, 246),
-          200: withOpacity(229, 231, 235),
-          300: withOpacity(209, 213, 219),
-          400: withOpacity(156, 163, 175),
-          500: withOpacity(107, 114, 128),
-          600: withOpacity(75, 85, 99),
-          700: withOpacity(55, 65, 81),
-          800: withOpacity(31, 41, 55),
-          900: withOpacity(17, 24, 39)
-        },
-        error: {
+        tussock: {
           50: withOpacity(244, 236, 226),
           100: withOpacity(240, 230, 217),
           200: withOpacity(237, 224, 207),
@@ -51,7 +39,7 @@ module.exports = {
           800: withOpacity(109, 79, 38),
           900: withOpacity(89, 64, 31)
         },
-        surface: {
+        teak: {
           50: withOpacity(253, 246, 239),
           100: withOpacity(252, 243, 234),
           200: withOpacity(251, 240, 228),

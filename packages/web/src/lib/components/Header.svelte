@@ -39,12 +39,12 @@
       <div class="relative z-10 flex items-center gap-16">
         <a
           href={l("hem")}
-          class="btn-icon btn-lg border-x-secondary-200 text-surface-700 absolute m-0 w-24 p-0"
+          class="btn-icon btn-lg border-x-secondary-200 text-teak-700 absolute m-0 w-24 p-0"
           on:click={close}><Logo class="w-32" /></a
         >
         <div class="hidden lg:flex lg:gap-10 lg:pl-40">
           {#each links as link}
-            <a href={l(link)} class="text-tertiary-700 hover:text-tertiary-900 text-sm">
+            <a href={l(link)} class="text-sm text-gray-700 hover:text-gray-900">
               {t("common", link)}
             </a>
           {/each}
@@ -54,7 +54,7 @@
         <div class="flex gap-4 lg:hidden">
           {#if showLocalization}
             <a
-              class="btn-icon ring-surface-500 relative z-10 h-8 w-8 ring ring-[2px]"
+              class="btn-icon ring-teak-500 relative z-10 h-8 w-8 ring ring-[2px]"
               href={localizedHref}
               on:click={close}
             >
@@ -79,7 +79,7 @@
           {#if open}
             <div
               aria-hidden="true"
-              class="bg-surface-300/60 fixed inset-0 z-0 backdrop-blur-sm"
+              class="bg-teak-300/60 fixed inset-0 z-0 backdrop-blur-sm"
               in:fade={{ duration: 150 }}
               out:fade={{ duration: 200 }}
               on:click={close}
@@ -91,13 +91,13 @@
             >
               <div
                 id="popover-panel"
-                class="bg-surface-50 shadow-surface-900/20 z-0 w-screen rounded-b-2xl px-6 pb-6 pt-32 shadow-2xl"
+                class="bg-teak-50 shadow-teak-900/20 z-0 w-screen rounded-b-2xl px-6 pb-6 pt-32 shadow-2xl"
               >
                 <div class="flex flex-col items-start space-y-4">
                   {#each links as link}
                     <a
                       href={l(link)}
-                      class="btn text-tertiary-700 hover:text-tertiary-900"
+                      class="btn text-gray-700 hover:text-gray-900"
                       on:click={toggle}>{t("common", link)}</a
                     >
                   {/each}
@@ -116,7 +116,7 @@
             <Flags
               {t}
               flag={locale === "en" ? "swedish" : "english"}
-              class="ring-surface-500 h-10 w-10 p-1  ring ring-[2px]"
+              class="ring-teak-500 h-10 w-10 p-1  ring ring-[2px]"
             />
           </a>
         {/if}

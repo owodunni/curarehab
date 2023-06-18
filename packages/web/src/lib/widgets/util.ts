@@ -11,5 +11,7 @@ export const getTitle = (title: string | undefined, t: T) => {
 
 export function getAsset(id: string | null | undefined, query?: string): string {
   if (!id) return "";
-  return `${PUBLIC_ASSETS_URL}/assets/${id}${query ? `?${query}&format=auto` : "?format=auto"}`;
+  return `${PUBLIC_ASSETS_URL}/assets/${id}${
+    query ? `?${query}&quality=0.8&format=auto` : "?quality=0.8&format=auto"
+  }`;
 }

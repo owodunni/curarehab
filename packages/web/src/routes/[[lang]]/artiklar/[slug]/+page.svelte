@@ -15,13 +15,13 @@
 <Section extras="py-0 pb-20 sm:pb-32">
   <Container>
     <article>
-      <header class="border-1 border-b-surface-300 mb-8 flex w-full max-w-xl flex-col border-b">
+      <header class="border-1 border-b-teak-300 mb-8 flex w-full max-w-xl flex-col border-b">
         <div class="relative mb-8">
           <img
             src={getAsset(article?.omslagsbild?.filename_disk, "width=800&height=450")}
             alt={article?.omslagsbild?.title}
             loading="lazy"
-            class="bg-tertiary-100 aspect-[16/9] rounded-2xl object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+            class="aspect-[16/9] rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
           />
         </div>
         <h1 class="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
