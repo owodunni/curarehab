@@ -2,51 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-  --color-success-50: 236, 237, 228;
-  --color-success-100: 229, 231, 219;
-  --color-success-200: 223, 225, 211;
-  --color-success-300: 204, 207, 184;
-  --color-success-400: 165, 170, 130;
-  --color-success-500: 127, 134, 77;
-  --color-success-600: 114, 121, 69;
-  --color-success-700: 95, 101, 58;
-  --color-success-800: 76, 80, 46;
-  --color-success-900: 62, 66, 38;
+@layer components {
+  /* === States === */
 
+  button:disabled {
+    @apply !cursor-not-allowed !opacity-50 hover:brightness-100 active:scale-100;
+  }
 
-    --color-surface-50: 253, 246, 239;
-    --color-surface-100: 252, 243 ,234;
-    --color-surface-200: 251, 240 ,228;
-    --color-surface-300: 249, 230 ,212;
-    --color-surface-400: 245, 212 ,180;
-    --color-surface-500: 240, 193 ,148;
-    --color-surface-600: 216, 174 ,133;
-    --color-surface-700: 180, 145 ,111;
-    --color-surface-800: 144, 116 ,89;
-    --color-surface-900: 118, 95, 73;
+  .button-base-styles {
+    /* Size (match base) */
+    @apply text-base;
+    /* Padding */
+    @apply px-5 py-[9px];
+    /* Core */
+    @apply whitespace-nowrap text-center;
+    /* Flex Columns */
+    @apply inline-flex items-center justify-center space-x-2;
+    /* States */
+    @apply hover:brightness-[1.15];
+    /* Transitions */
+    @apply transition-all;
+  }
 
-    --color-tertiary-50: 249, 250, 251;
-    --color-tertiary-100: 243, 244, 246;
-    --color-tertiary-200: 229, 231, 235;
-    --color-tertiary-300: 209, 213, 219;
-    --color-tertiary-400: 156, 163, 175;
-    --color-tertiary-500: 107, 114, 128;
-    --color-tertiary-600: 75, 85, 99;
-    --color-tertiary-700: 55, 65, 81;
-    --color-tertiary-800: 31, 41, 55;
-    --color-tertiary-900: 17, 24, 39;
+  /* === Button === */
+  /* Standard button/anchor tag elements. */
 
-    --color-error-50: 244, 236, 226;
-    --color-error-100: 240, 230, 217;
-    --color-error-200: 237, 224, 207;
-    --color-error-300: 225, 205, 179;
-    --color-error-400: 203, 168, 121;
-    --color-error-500: 181, 131, 64;
-    --color-error-600: 163, 118, 58;
-    --color-error-700: 136, 98, 48;
-    --color-error-800: 109, 79, 38;
-    --color-error-900: 89, 64, 31;
+  .btn {
+    @apply button-base-styles active:scale-[95%] active:brightness-90;
+  }
+
+  .variant-filled {
+    @apply bg-surface-900 rounded-full text-white;
+  }
+
+  /* Button: Sizes */
+  /* Note: Default values are built into `.btn` */
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+  .btn-lg {
+    @apply px-7 py-3 text-lg;
+  }
+  .btn-xl {
+    @apply px-9 py-4 text-xl;
+  }
+
+  /* === Icon Button === */
+  /* A circular button meant for housing icons. */
+
+  .btn-icon {
+    /* Extend Base Button Classes */
+    @apply button-base-styles;
+    /* Padding */
+    @apply p-0;
+    /* Size (match base) */
+    @apply aspect-square w-[43px] text-base;
+    /* Rounded */
+    @apply rounded-full;
+    /* Active */
+    @apply active:scale-[95%] active:brightness-90;
+  }
+
+  /* Icon Button: Size */
+  .btn-icon-sm {
+    @apply aspect-square w-[33px] text-sm;
+  }
+  .btn-icon-base {
+    @apply aspect-square w-[43px] text-base;
+  }
+  .btn-icon-lg {
+    @apply aspect-square w-[53px] text-lg;
+  }
+  .btn-icon-xl {
+    @apply aspect-square w-[63px] text-xl;
   }
 }
