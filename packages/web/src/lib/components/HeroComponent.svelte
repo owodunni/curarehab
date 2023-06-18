@@ -29,7 +29,6 @@
         class="aspect-square w-full rounded-2xl object-cover lg:aspect-auto lg:h-full"
         width="1000"
         height="1000"
-        loading="lazy"
         src={getAsset(image.filename_disk, "width=800&height=800")}
         alt={image.title}
       />
