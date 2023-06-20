@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Block } from "./types";
-  import { PUBLIC_ASSETS_URL } from "$env/static/public";
+  import Image from "../Image.svelte";
 
   export let block: Block;
 </script>
@@ -19,8 +19,8 @@
     {/each}
   </ul>
 {:else if block.type === "image"}
-  <img
-    src={`${PUBLIC_ASSETS_URL}${block.data.file.url}.${block.data.file.extension}?format=auto`}
+  <Image
+    srcPath={`${block.data.file.url}.${block.data.file.extension}`}
     loading="lazy"
     width={block.data.file.width}
     height={block.data.file.height}

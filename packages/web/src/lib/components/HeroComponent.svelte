@@ -1,6 +1,6 @@
 <script lang="ts">
   import Container from "./Container.svelte";
-  import { getAsset } from "$lib/widgets/util";
+  import Img from "./Image.svelte";
   import type { Image } from "$lib/api";
 
   export let image: Image | undefined;
@@ -22,15 +22,16 @@
     </div>
   </div>
   <div
-    class="bg-teak-50 pt-10 sm:pt-20 lg:absolute lg:inset-y-0 lg:right-0 lg:block lg:w-1/2 lg:pt-0"
+    class="bg-teak-50 pt-10 sm:pt-20 lg:absolute lg:inset-y-0 lg:right-0 lg:my-10 lg:block lg:w-1/2 lg:pt-0"
   >
     {#if image}
-      <img
+      <Img
         class="aspect-square w-full rounded-2xl object-cover lg:aspect-auto lg:h-full"
-        width="1000"
-        height="1000"
-        src={getAsset(image.filename_disk, "width=800&height=800")}
-        alt={image.title}
+        width={1000}
+        height={1000}
+        srcPath={image.filename_disk || ""}
+        alt={image.title || ""}
+        lazy={false}
       />
     {/if}
   </div>
