@@ -3,8 +3,8 @@
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import Section from "$lib/components/Section.svelte";
   import Seo from "$lib/components/Seo.svelte";
+  import Image from "$lib/components/Image.svelte";
   import TerapeutCard from "$lib/components/TerapeutCard.svelte";
-  import { getAsset } from "$lib/widgets/util";
   import type { PageData } from "./$types";
   export let data: PageData;
   $: ({ article } = data);
@@ -17,10 +17,11 @@
     <article>
       <header class="border-1 border-b-teak-300 mb-8 flex w-full max-w-xl flex-col border-b">
         <div class="relative mb-8">
-          <img
-            src={getAsset(article?.omslagsbild?.filename_disk, "width=800&height=450")}
-            alt={article?.omslagsbild?.title}
-            loading="lazy"
+          <Image
+            srcPath={article?.omslagsbild?.filename_disk ?? ""}
+            width={800}
+            height={450}
+            alt={article?.omslagsbild?.title || ""}
             class="aspect-[16/9] rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
           />
         </div>

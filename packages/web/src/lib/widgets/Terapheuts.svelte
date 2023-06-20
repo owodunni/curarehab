@@ -1,8 +1,9 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import type { L, T } from "$lib/i18n/t";
+  import Image from "$lib/components/Image.svelte";
   import type { TerapeutsMetaDataQuery } from "src/routes/[[lang]]/terapeuter/$types.gql";
-  import { getAsset, getTitle } from "./util";
+  import { getTitle } from "./util";
 
   export let l: L;
   export let t: T;
@@ -23,13 +24,12 @@
   {#each terapheuts as { directus_users_id }}
     <li>
       <a href={`${l("terapeuter")}/${directus_users_id?.slug}`} class="group">
-        <img
+        <Image
           class="w-full rounded-2xl"
-          src={getAsset(directus_users_id?.avatar?.filename_disk, "width=600&height=400")}
-          loading="lazy"
-          width="600"
-          height="400"
-          alt={directus_users_id?.avatar?.title}
+          srcPath={directus_users_id?.avatar?.filename_disk || ""}
+          width={600}
+          height={400}
+          alt={directus_users_id?.avatar?.title || ""}
         />
         <div class="mt-6 flex justify-between">
           <div>

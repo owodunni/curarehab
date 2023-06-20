@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { getAsset, getTitle } from "$lib/widgets/util";
+  import { getTitle } from "$lib/widgets/util";
+  import Image from "$lib/components/Image.svelte";
   import type { T, L } from "$lib/i18n/t";
   import type { Terapeut } from "$lib/api";
 
@@ -12,12 +13,11 @@
 </script>
 
 <div class={`relative mt-8 flex items-center gap-x-4 ${clazz}`}>
-  <img
-    src={getAsset(terapeut?.avatar?.filename_disk, "height=64&width=64")}
-    alt={terapeut?.avatar?.title}
-    loading="lazy"
-    width="64"
-    height="64"
+  <Image
+    srcPath={terapeut?.avatar?.filename_disk || ""}
+    alt={terapeut?.avatar?.title || ""}
+    width={64}
+    height={64}
     class="h-10 w-10 rounded-full bg-gray-100"
   />
   <div class="text-sm leading-6">
