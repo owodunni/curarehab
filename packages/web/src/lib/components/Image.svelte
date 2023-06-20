@@ -41,12 +41,15 @@
 </script>
 
 <IntersectionObserver element={node} let:intersecting>
-  <picture bind:this={node} class={`image-in ${intersecting ? "image-in-place" : ""} `}>
+  <picture class={`image-in ${intersecting ? "image-in-place" : ""} `}>
     {#each sourceSet as { type, srcset }}
       <source {type} {srcset} sizes={`${width}px`} />
     {/each}
     <img
-      class={`image ${intersecting ? "image-in-place" : ""} ${clazz || ""}`}
+      bind:this={node}
+      class={`${width < 100 ? "image-sm" : "image"} ${intersecting ? "image-in-place" : ""} ${
+        clazz || ""
+      }`}
       {width}
       {height}
       src={getAsset2(srcPath, { width, height, format: "jpg", quality: 80 })}
@@ -59,9 +62,14 @@
 </IntersectionObserver>
 
 <style>
+  .image-sm {
+    transition: transform 2.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.95) translateY(12px);
+  }
+
   .image {
     transition: transform 2.4s cubic-bezier(0.16, 1, 0.3, 1);
-    transform: scale(0.96) translateY(24px);
+    transform: scale(0.95) translateY(24px);
   }
 
   .image-in {
@@ -72,7 +80,6 @@
     transition-duration: 0.8s, 0.8s;
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1), cubic-bezier(0.16, 1, 0.3, 1);
     transition-delay: 0s, 0s;
-    transform: scale(0.96) translateY(24px);
   }
 
   .image-in-place {
@@ -81,6 +88,10 @@
   }
 
   .image:hover {
+    transform: scale(1.03);
+  }
+
+  .image-sm:hover {
     transform: scale(1.03);
   }
 </style>
