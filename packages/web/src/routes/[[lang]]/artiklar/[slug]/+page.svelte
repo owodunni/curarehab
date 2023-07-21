@@ -15,7 +15,7 @@
 <Section extras="py-0 pb-20 sm:pb-32">
   <Container>
     <article>
-      <header class="border-1 border-b-teak-300 mb-8 flex w-full max-w-xl flex-col border-b">
+      <header class="border-1 border-b-moon-mist-300 mb-8 flex w-full max-w-xl flex-col border-b">
         <div class="relative mb-8">
           <Image
             srcPath={article?.omslagsbild?.filename_disk ?? ""}
