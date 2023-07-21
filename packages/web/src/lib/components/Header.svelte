@@ -39,8 +39,8 @@
       <div class="relative z-10 flex items-center gap-16">
         <a
           href={l("hem")}
-          class="btn-icon btn-lg border-x-secondary-200 text-lunar-green-700 absolute m-0 w-24 p-0"
-          on:click={close}><Logo class="w-32" /></a
+          class="btn-icon btn-lg border-x-secondary-200 absolute m-0 w-24 p-0"
+          on:click={close}><Logo class="text-lunar-green-600 w-32" /></a
         >
         <div class="hidden lg:flex lg:gap-10 lg:pl-40">
           {#each links as link}
@@ -54,7 +54,7 @@
         <div class="flex gap-4 lg:hidden">
           {#if showLocalization}
             <a
-              class="btn-icon ring-moon-mist-500 relative z-10 h-8 w-8 ring ring-[2px]"
+              class="btn-icon ring-lunar-green-600 relative z-10 h-8 w-8 ring ring-[2px]"
               href={localizedHref}
               on:click={close}
             >
@@ -116,7 +116,7 @@
             <Flags
               {t}
               flag={locale === "en" ? "swedish" : "english"}
-              class="ring-moon-mist-500 h-10 w-10 p-1  ring ring-[2px]"
+              class="ring-lunar-green-600 h-10 w-10 p-1  ring ring-[2px]"
             />
           </a>
         {/if}
