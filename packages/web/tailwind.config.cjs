@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 /** @param {number} r @param {number} g @param {number} b */
 function withOpacity(r, g, b) {
   return ({ opacityValue }) => {
@@ -87,6 +89,10 @@ module.exports = {
           800: withOpacity(101, 82, 71),
           900: withOpacity(44, 35, 30)
         }
+      },
+      fontFamily: {
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        sang: ["SangBleu", ...defaultTheme.fontFamily.sans]
       }
     }
   },
