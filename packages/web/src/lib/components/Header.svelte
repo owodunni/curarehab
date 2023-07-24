@@ -39,12 +39,15 @@
       <div class="relative z-10 flex items-center gap-16">
         <a
           href={l("hem")}
-          class="btn-icon btn-lg border-x-secondary-200 absolute m-0 w-24 p-0"
-          on:click={close}><Logo class="text-lunar-green-600 w-32" /></a
+          class="btn-icon btn-lg border-x-secondary-200 absolute m-0 w-32 p-0 pt-6"
+          on:click={close}><Logo class="text-lunar-green-600 w-48" /></a
         >
-        <div class="hidden lg:flex lg:gap-10 lg:pl-40">
+        <div class="hidden lg:flex lg:gap-12 lg:pl-48">
           {#each links as link}
-            <a href={l(link)} class="text-sm text-gray-700 hover:text-gray-900">
+            <a
+              href={l(link)}
+              class="hover:bg-moon-mist-200/50 -mx-3 -my-2 rounded-full px-3 py-2 text-base text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-[0ms]"
+            >
               {t("common", link)}
             </a>
           {/each}
