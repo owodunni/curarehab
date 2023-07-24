@@ -21,7 +21,7 @@
     open = false;
   }
 
-  const links = ["behandlingar", "hitta", "terapeuter", "artiklar"] as const;
+  const links = ["behandlingar", "hitta", "om", "artiklar"] as const;
 
   $: localizedHref = ((): string => {
     if (route === `/${locale}` || route === "/") return locale === "en" ? "/" : "/en";
