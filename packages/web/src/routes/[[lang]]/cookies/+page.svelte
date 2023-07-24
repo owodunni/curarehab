@@ -4,9 +4,4 @@
   export let data: PageData;
 </script>
 
-<TextPage
-  data={data?.data?.cookies}
-  lang={data.params.lang}
-  title={data.t("cookies", "title")}
-  description={data.t("cookies", "description")}
-/>
+<TextPage data={data?.data?.cookies} lang={data.params.lang} />

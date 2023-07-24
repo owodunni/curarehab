@@ -16,23 +16,13 @@
     | null
     | undefined;
   export let lang: string | undefined;
-  export let title: string;
-  export let description: string;
 </script>
 
 {#if data}
   <Section>
     <Container>
-      <div class="mx-auto max-w-2xl lg:mx-0">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          {title}
-        </h2>
-        <p class="my-6 text-lg leading-8 text-gray-600">
-          {description}
-        </p>
-        <div class="prose">
-          <BlocksRender blocks={(lang === "en" ? data.text_en : data.text)?.blocks || []} />
-        </div>
+      <div class="prose mx-auto max-w-2xl lg:mx-0">
+        <BlocksRender blocks={(lang === "en" ? data.text_en : data.text)?.blocks || []} />
       </div>
     </Container>
   </Section>
