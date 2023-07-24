@@ -4,9 +4,4 @@
   export let data: PageData;
 </script>
 
-<TextPage
-  data={data?.data?.om}
-  lang={data.params.lang}
-  title={data.t("om", "title")}
-  description={data.t("om", "description")}
-/>
+<TextPage data={data?.data?.om} lang={data.params.lang} />
