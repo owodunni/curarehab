@@ -22,12 +22,12 @@
   class="mx-auto mt-20 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
 >
   {#each terapheuts as { directus_users_id }}
-    <li>
+    <li class="max-w-[300px]">
       <a href={`${l("terapeuter")}/${directus_users_id?.slug}`} class="group">
         <Image
-          class="w-full rounded-2xl"
+          class="mx-auto h-32 w-32 sm:h-48 sm:w-48 rounded-full md:h-64 md:w-64"
           srcPath={directus_users_id?.avatar?.filename_disk || ""}
-          width={600}
+          width={400}
           height={400}
           alt={directus_users_id?.avatar?.title || ""}
         />
