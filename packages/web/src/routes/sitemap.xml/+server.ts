@@ -4,7 +4,10 @@ import type { RequestHandler } from "./$types";
 import type { SlugsQuery } from "./$types.gql";
 import query from "./query.gql?raw";
 
-const seUrls = ["/artiklar"].flatMap((route) => {
+// TODO(#85): Re add articles to sitemap
+const seUrls = [
+  /*"/artiklar"*/
+].flatMap((route) => {
   return `
       <url>
         <loc>https://curarehab.se${route}</loc>
@@ -14,7 +17,14 @@ const seUrls = ["/artiklar"].flatMap((route) => {
 const localPrefix = [...locales.filter((l) => l !== defaultLocale).map((l) => `/${l}`), ""];
 
 const urls = localPrefix.flatMap((locale) =>
-  ["", "/om", "/terapeuter"].map((route) => {
+  [
+    "",
+    "/om",
+    "/terapeuter",
+    "/behandlingar",
+    // TODO(#85): Re add cookies and personuppgiftspolicy to sitemap
+    "/hitta" /* "/cookies", "/personuppgiftspolicy" */
+  ].map((route) => {
     return `
       <url>
         <loc>https://curarehab.se${locale}${route}</loc>
