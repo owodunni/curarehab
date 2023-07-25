@@ -11,7 +11,9 @@ const config = {
     adapter: adapter(),
     prerender: {
       crawl: true,
-      entries: ["*", "/", "/en", "/sitemap.xml"]
+      // TODO(#85): Remove cookies, artiklar and personuppgiftspolicy from crawler list when those
+      // pages are implemented, and linked to.
+      entries: ["*", "/", "/en", "/sitemap.xml", "/cookies", "/artiklar", "/personuppgiftspolicy"]
     }
   }
 };

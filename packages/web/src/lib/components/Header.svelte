@@ -21,7 +21,8 @@
     open = false;
   }
 
-  const links = ["behandlingar", "hitta", "om", "artiklar"] as const;
+  // TODO(#85): Add articles to the links array
+  const links = ["behandlingar", "hitta", "om" /* artiklar*/] as const;
 
   $: localizedHref = ((): string => {
     if (route === `/${locale}` || route === "/") return locale === "en" ? "/" : "/en";

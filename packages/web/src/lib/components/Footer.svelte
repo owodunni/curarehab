@@ -29,10 +29,12 @@
           type: "website"
         },
         ["behandlingar"],
-        ["terapeuter"],
-        ["artiklar"]
+        ["terapeuter"]
+        // TODO(#85): Add artiklar to footer
+        //["artiklar"]
       ],
-      [t("common", "information")]: [["om"], ["hitta"], ["personuppgiftspolicy"], ["cookies"]]
+      // TODO(#85): Add cookies and personuppgiftspolicy to footer
+      [t("common", "information")]: [["om"], ["hitta"] /*["personuppgiftspolicy"], ["cookies"]*/]
     },
     {
       [t("common", "partners")]: columnLinks[0],
