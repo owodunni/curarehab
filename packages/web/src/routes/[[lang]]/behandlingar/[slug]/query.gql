@@ -1,5 +1,5 @@
-query Behandlingar($filter: Behandlingar_filter) {
-  behandlingar {
+query Behandling($filter: Behandlingar_filter) {
+  Behandlingar(filter: $filter) {
     seo {
       description
       title
@@ -16,13 +16,11 @@ query Behandlingar($filter: Behandlingar_filter) {
         filename_disk
       }
     }
-  }
-  Behandlingar(filter: $filter) {
     date_updated
     date_created
     status
-    behandling_sammanfattning
-    behandling_sammanfattning_en
+    behandling_text
+    behandling_text_en
     bild {
       title
       type

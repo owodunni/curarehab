@@ -19,6 +19,7 @@ export const common: CommonTranslations = {
   heroImage: "Old man rehabinating his back",
   comingSoon: "Coming soon",
   hitta: "Find us",
+  behandlingen: "Treatment",
   behandlingar: "Treatments",
   terapeuter: "Therapists",
   personuppgiftspolicy: "Privacy policy",
@@ -50,5 +51,8 @@ export const common: CommonTranslations = {
   naprapatHref:
     "https://www.jointacademy.com/us/en/facts/osteoarthritis-treatment/naprapath-naprapathy/",
   cookies: "Cookies",
-  hanoLink: "https://curarehab.bestille.no/OnCust2/"
+  hanoLink: "https://curarehab.bestille.no/OnCust2/",
+  treatmentsTitle: "Revive, Recover, Reclaim: Embrace Our Multitude of Rehabilitative Treatments",
+  treatmentsText:
+    "Embrace comprehensive care from Our highly skilled therapists - Your wellbeing and recovery are our passionate priority; Whether you seek relief from pain, rehabilitation from injury, or enhancing performance, our tailored treatments ensure your journey to optimal health."
 };

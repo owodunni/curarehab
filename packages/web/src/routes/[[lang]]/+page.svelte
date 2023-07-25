@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Articles from "$lib/widgets/Articles.svelte";
   import Hero from "$lib/widgets/Hero.svelte";
   import Terapheuts from "$lib/widgets/Terapheuts.svelte";
+  import Treatments from "$lib/widgets/Treatments.svelte";
   import Section from "$lib/components/Section.svelte";
   import type { PageData } from "./$types";
   import Container from "$lib/components/Container.svelte";
@@ -21,7 +21,13 @@
 </Section>
 <Section extras="theme-sand-light">
   <Container>
-    <Articles articles={data?.data?.artiklar || []} {l} {t} />
+    <Treatments treatments={data?.data?.Behandlingar || []} {l} {t} />
   </Container>
 </Section>
+<!-- TODO(#85): Re add articles -->
+<!--Section>
+  <Container>
+    <Articles articles={data?.data?.artiklar || []} {l} {t} />
+  </Container>
+</Section-->
 <Seo seo={data.params.lang === "en" ? data?.data?.Hem?.seo_en : data?.data?.Hem?.seo} />

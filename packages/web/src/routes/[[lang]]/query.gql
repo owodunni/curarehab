@@ -1,4 +1,23 @@
-query ArticlesAndTerapeuts($filter: artiklar_filter) {
+query ArticlesAndTerapeuts($filter: artiklar_filter, $filter2: Behandlingar_filter) {
+  Behandlingar(filter: $filter2) {
+    date_updated
+    date_created
+    status
+    behandling_sammanfattning
+    behandling_sammanfattning_en
+    bild {
+      title
+      type
+      width
+      height
+      filename_disk
+    }
+    pris
+    Slug
+    Primary_treatment
+    Title
+    Title_en
+  }
   artiklar(filter: $filter) {
     date_updated
     date_created

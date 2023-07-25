@@ -19,6 +19,7 @@ export const common: CommonTranslations = {
   heroImage: "Äldre man rehabiliterar sin rygg",
   comingSoon: "Kommer snart",
   hitta: "Hitta hit",
+  behandlingen: "Behandlingen",
   behandlingar: "Behandlingar",
   terapeuter: "Terapeuter",
   personuppgiftspolicy: "Personuppgiftspolicy",
@@ -50,5 +51,8 @@ export const common: CommonTranslations = {
   naprapatHref:
     "https://www.1177.se/behandling--hjalpmedel/smartbehandlingar-och-rehabilitering/kiropraktik-och-naprapati/",
   cookies: "Cookies",
-  hanoLink: "https://curarehab.bestille.no/OnCust2/"
+  hanoLink: "https://curarehab.bestille.no/OnCust2/",
+  treatmentsTitle: "Återhämtning och rehabilitering: Upptäck vårt breda utbud av behandlingar",
+  treatmentsText:
+    "Erfarna terapeuter vägleder dig till hälsa och välbefinnande - Frigör din potential för återställande, återfå livsglädjen och inspireras till en hälsosammare framtid"
 };

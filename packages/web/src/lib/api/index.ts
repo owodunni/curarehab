@@ -43,6 +43,16 @@ export type Article = {
   user_created?: Terapeut | null;
 };
 
+export type Treatment = {
+  Slug?: string | null;
+  bild?: {
+    title?: string | null;
+    filename_disk?: string | null;
+  } | null;
+  Primary_treatment?: string | null;
+  pris?: number | null;
+};
+
 export type SeoMetaData = {
   title?: string | null;
   description?: string | null;
