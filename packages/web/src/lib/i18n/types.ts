@@ -30,6 +30,7 @@ export type CommonTranslations = {
   heroImage: string;
   comingSoon: string;
   hitta: string;
+  behandlingen: string;
   behandlingar: string;
   terapeuter: string;
   personuppgiftspolicy: string;
@@ -47,6 +48,8 @@ export type CommonTranslations = {
   terapheutsText: string;
   articlesTitle: string;
   articlesText: string;
+  treatmentsTitle: string;
+  treatmentsText: string;
   bokaNu: string;
   swedishFlag: string;
   englishFlag: string;
@@ -106,6 +109,7 @@ export type PrivacyTranslations = {
 export type TreatmentsTranslations = {
   title: string;
   description: string;
+  pris: string;
 };
 
 export type CookiesTranslations = {
