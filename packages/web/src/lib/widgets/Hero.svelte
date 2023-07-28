@@ -10,7 +10,7 @@
 
 <HeroComponent {image}>
   <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
-    <h1 class="text-4xl font-bold tracking-tight text-gray-900 lg:text-6xl">
+    <h1 class="text-4xl font-bold tracking-tight text-skog-900 sm:text-5xl lg:text-6xl">
       {t("hem", "titleParagraph")}
     </h1>
     <p class="mt-6 text-lg leading-8 text-gray-600">

@@ -14,7 +14,7 @@
 <Section class="py-20 sm:py-32 lg:py-0 lg:pb-32 xl:pb-36">
   <Hero {t} {l} image={data?.data?.Hem?.omslagsbild ?? undefined} />
 </Section>
-<Section extras="bg-lunar-green-100">
+<Section extras="bg-skog-700">
   <Container>
     <Terapheuts terapheuts={data?.data?.terapeuter_directus_users || []} {l} {t} />
   </Container>

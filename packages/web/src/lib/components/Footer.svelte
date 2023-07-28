@@ -65,29 +65,29 @@
 </script>
 
 <footer
-  class="bg-error-50 border-t border-gray-200 pb-8 pt-16 sm:pt-24"
+  class="bg-skog-900 border-t pb-8 pt-16 sm:pt-24"
   aria-labelledby="footer-heading"
 >
   <Container>
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div class="flex flex-col items-center space-y-8">
-        <a href={l("hem")} class="btn-icon w-32"><Logo class="text-lunar-green-600 w-32" /> </a>
+        <a href={l("hem")} class="btn-icon w-32"><Logo class="text-white w-32" /> </a>
         <div class="flex space-x-6">
           {#each socialLinks as link}
-            <SocialLink {link} class="text-gray-400 hover:text-gray-500" />
+            <SocialLink {link} class="text-white hover:text-gray-500" />
           {/each}
         </div>
       </div>
       <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
         <div>
-          <h3 class="text-sm font-semibold leading-6 text-gray-900">{t("common", "hitta")}</h3>
+          <h3 class="text-sm font-semibold leading-6 text-white">{t("common", "hitta")}</h3>
           <ul class="mt-6 space-y-4">
             <li>
               {#if location}
                 <SocialLink
                   link={location}
-                  class="flex gap-x-4 text-sm leading-6 text-gray-600 hover:text-gray-900 xl:-ml-10"
+                  class="flex gap-x-4 text-sm leading-6 text-sand-100 hover:text-gray-900 xl:-ml-10"
                   onlyIcon={false}
                 />
               {/if}
@@ -95,7 +95,7 @@
           </ul>
         </div>
         <div>
-          <h3 class="text-sm font-semibold leading-6 text-gray-900">
+          <h3 class="text-sm font-semibold leading-6 text-white">
             {t("common", "contact")}
           </h3>
           <ul class="mt-6 space-y-4">
@@ -103,7 +103,7 @@
               {#if email}
                 <SocialLink
                   link={email}
-                  class="flex gap-x-4 text-sm leading-6 text-gray-600 hover:text-gray-900 xl:-ml-10"
+                  class="flex gap-x-4 text-sm leading-6 text-sand-100 hover:text-gray-900 xl:-ml-10"
                   onlyIcon={false}
                 />
               {/if}
@@ -112,7 +112,7 @@
               {#if phone}
                 <SocialLink
                   link={phone}
-                  class="flex gap-x-4 text-sm leading-6 text-gray-600 hover:text-gray-900 xl:-ml-10"
+                  class="flex gap-x-4 text-sm leading-6 text-sand-100 hover:text-gray-900 xl:-ml-10"
                   onlyIcon={false}
                 />
               {/if}
@@ -128,11 +128,11 @@
           <div class={"md:grid md:grid-cols-2 md:gap-8"}>
             {#each Object.entries(outerLinks) as [title, links], i}
               <div class={i % 2 === 0 ? "" : "mt-10 md:mt-0"}>
-                <h3 class="text-sm font-semibold leading-6 text-gray-900">{title}</h3>
+                <h3 class="text-sm font-semibold leading-6 text-white">{title}</h3>
                 <ul class="mt-6 space-y-4">
                   {#each toLinks(links) as [href, linkTitle]}
                     <li>
-                      <a {href} class="text-sm text-gray-600 hover:text-gray-900">{linkTitle}</a>
+                      <a {href} class="text-sm text-sand-100 hover:text-gray-900">{linkTitle}</a>
                     </li>
                   {/each}
                 </ul>
@@ -142,8 +142,8 @@
         {/each}
       </div>
     </div>
-    <div class="mt-16 flex space-x-1 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
-      <p class="text-xs leading-5 text-gray-500">
+    <div class="mt-16 flex space-x-1 border-t border-sand-100 pt-8 sm:mt-20 lg:mt-24">
+      <p class="text-xs leading-5 text-sand-200">
         &copy; {new Date().getFullYear()}
         {t("common", "title")} Linköping AB
       </p>
