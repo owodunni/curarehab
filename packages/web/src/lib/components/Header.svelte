@@ -36,18 +36,18 @@
 
 <header>
   <nav>
-    <Container class={"relative z-50 flex justify-between py-8"}>
+    <Container class={"relative z-50 flex justify-between py-8 "}>
       <div class="relative z-10 flex items-center gap-16">
         <a
           href={l("hem")}
-          class="btn-icon btn-lg border-x-secondary-200 absolute m-0 w-32 p-0 pt-6"
-          on:click={close}><Logo class="text-lunar-green-600 w-48" /></a
+          class="btn-icon btn-lg border-x-secondary-200 absolute m-0 w-32 p-0"
+          on:click={close}><Logo class="text-skog-700 w-48" /></a
         >
         <div class="hidden lg:flex lg:gap-12 lg:pl-48">
           {#each links as link}
             <a
               href={l(link)}
-              class="hover:bg-moon-mist-200/50 -mx-3 -my-2 rounded-full px-3 py-2 text-base text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-[0ms]"
+              class="hover:bg-sand-200/50 -mx-3 -my-2 rounded-full px-3 py-2 text-base text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-[0ms]"
             >
               {t("common", link)}
             </a>
@@ -58,7 +58,7 @@
         <div class="flex gap-4 lg:hidden">
           {#if showLocalization}
             <a
-              class="btn-icon ring-lunar-green-600 relative z-10 h-8 w-8 ring ring-[2px]"
+              class="btn-icon ring-red-500 relative z-10 h-8 w-8 ring ring-[2px]"
               href={localizedHref}
               on:click={close}
             >
@@ -83,7 +83,7 @@
           {#if open}
             <div
               aria-hidden="true"
-              class="bg-moon-mist-300/60 fixed inset-0 z-0 backdrop-blur-sm"
+              class="bg-sand-300/60 fixed inset-0 z-0 backdrop-blur-sm"
               in:fade={{ duration: 150 }}
               out:fade={{ duration: 200 }}
               on:click={close}
@@ -95,7 +95,7 @@
             >
               <div
                 id="popover-panel"
-                class="bg-moon-mist-50 shadow-moon-mist-900/20 z-0 w-screen rounded-b-2xl px-6 pb-6 pt-32 shadow-2xl"
+                class="bg-sand-50 shadow-sand-900/20 z-0 w-screen rounded-b-2xl px-6 pb-6 pt-32 shadow-2xl"
               >
                 <div class="flex flex-col items-start space-y-4">
                   {#each links as link}
@@ -120,7 +120,7 @@
             <Flags
               {t}
               flag={locale === "en" ? "swedish" : "english"}
-              class="ring-lunar-green-600 h-10 w-10 p-1  ring ring-[2px]"
+              class=" h-10 w-10 p-1 opacity-50" 
             />
           </a>
         {/if}
