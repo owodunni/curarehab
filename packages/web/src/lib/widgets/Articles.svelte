@@ -9,10 +9,10 @@
 </script>
 
 <div class="mx-auto max-w-2xl lg:mx-0">
-  <h2 class="text-3xl font-bold tracking-tight text-coal sm:text-4xl">
+  <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
     {t("common", "articlesTitle")}
   </h2>
-  <p class="mt-6 text-lg leading-8 text-gray-600">
+  <p class="text-theme-heading mt-6 text-lg">
     {t("common", "articlesText")}
   </p>
 </div>

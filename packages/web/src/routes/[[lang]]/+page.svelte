@@ -11,15 +11,15 @@
   $: ({ t, l } = data);
 </script>
 
-<Section class="py-20 sm:py-32 lg:py-0 lg:pb-32 xl:pb-36">
+<Section class="theme-sand-dark py-20 sm:py-32 lg:py-0 lg:pb-32 xl:pb-36">
   <Hero {t} {l} image={data?.data?.Hem?.omslagsbild ?? undefined} />
 </Section>
-<Section extras="bg-skog-700">
+<Section extras="theme-skog">
   <Container>
     <Terapheuts terapheuts={data?.data?.terapeuter_directus_users || []} {l} {t} />
   </Container>
 </Section>
-<Section>
+<Section extras="theme-sand-light">
   <Container>
     <Articles articles={data?.data?.artiklar || []} {l} {t} />
   </Container>

@@ -36,7 +36,8 @@ module.exports = {
           700: fromVariable("--color-skog"),
           900: fromVariable("--color-skog-minus")
         },
-        tegel: fromVariable("--color-tegel")
+        tegel: fromVariable("--color-tegel"),
+        section: fromVariable("--color-bg-section")
       },
       textColor: {
         theme: {
@@ -44,11 +45,6 @@ module.exports = {
           body: fromVariable("--color-text-body"),
           muted: fromVariable("--color-text-muted"),
           "muted-hover": fromVariable("--color-text-muted-hover")
-        }
-      },
-      backgroundColor: {
-        theme: {
-          section: fromVariable("--color-bg-section")
         }
       },
       borderColor: {

@@ -4,6 +4,6 @@
   export let extras = "";
 </script>
 
-<section class={`${clazz} ${extras}`}>
+<section class={`bg-section ${clazz} ${extras}`}>
   <slot />
 </section>

@@ -10,15 +10,15 @@
 
 <HeroComponent {image}>
   <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
-    <h1 class="text-4xl font-bold tracking-tight text-skog-900 sm:text-5xl lg:text-6xl">
+    <h1 class="text-theme-heading text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
       {t("hem", "titleParagraph")}
     </h1>
-    <p class="mt-6 text-lg leading-8 text-gray-600">
+    <p class="text-theme-body mt-6 text-lg">
       {t("hem", "subtitleParagraph")}
     </p>
     <div class="mt-8 flex items-center gap-x-6">
       <a href={t("common", "hanoLink")} class="btn variant-filled">{t("hem", "boka")}</a>
-      <a href={l("om")} class="text-sm font-semibold leading-6 text-gray-900"
+      <a href={l("om")} class="btn variant-ghost -mx-5"
         >{t("hem", "readMore")} <span aria-hidden="true">→</span></a
       >
     </div>
