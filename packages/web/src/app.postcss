@@ -58,7 +58,7 @@
     /* Size (match base) */
     @apply text-base;
     /* Padding */
-    @apply px-5 py-[9px];
+    @apply px-5 py-2;
     /* Core */
     @apply whitespace-nowrap text-center;
     /* Flex Columns */
@@ -66,24 +66,28 @@
     /* States */
     @apply hover:brightness-[1.15];
     /* Transitions */
-    @apply transition-all;
+    @apply transition-all delay-150 hover:delay-[0ms];
   }
 
   /* === Button === */
   /* Standard button/anchor tag elements. */
 
   .btn {
-    @apply button-base-styles active:scale-[95%] active:brightness-90;
+    @apply inline-flex justify-center rounded-lg  px-5 py-[10px] outline-2 outline-offset-2 transition-all delay-150 hover:delay-[0ms];
   }
 
   .variant-filled {
-    @apply bg-punch-600 rounded-full text-white;
+    @apply bg-tegel rounded-full text-sm font-medium text-white hover:brightness-[1.10];
+  }
+
+  .variant-ghost {
+    @apply hover:bg-sand-200/50 -mx-5 rounded-full text-sm font-medium text-gray-700  hover:text-gray-900;
   }
 
   /* Button: Sizes */
   /* Note: Default values are built into `.btn` */
   .btn-sm {
-    @apply px-3 py-1.5 text-sm;
+    @apply px-3 py-1.5 text-sm font-normal;
   }
   .btn-lg {
     @apply px-7 py-3 text-lg;
