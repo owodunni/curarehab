@@ -1,39 +1,68 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
-/** @param {number} r @param {number} g @param {number} b */
-function withOpacity(r, g, b) {
+function withOpacity(colorValue) {
   return ({ opacityValue }) => {
     if (opacityValue !== undefined) {
-      return `rgba(${r}, ${g}, ${b}, ${opacityValue})`;
+      return `rgba(${colorValue}, ${opacityValue})`;
     }
-    return `rgb(${r}, ${g}, ${b})`;
+    return `rgb(${colorValue})`;
   };
+}
+
+function fromVariable(variableName) {
+  return withOpacity(`var(${variableName})`);
+}
+
+/** @param {number} r @param {number} g @param {number} b */
+function fromRGB(r, g, b) {
+  return withOpacity(`${r}, ${g}, ${b}`);
 }
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
   content: ["./src/**/*.{html,js,svelte,ts}"],
-  // TODO make font-weight 300 default§
   theme: {
     extend: {
       colors: {
-        kol: withOpacity(37, 37, 35),
+        kol: fromVariable("--color-kol"),
         sand: {
-          100: withOpacity(243, 242, 236), // Sand+
-          200: withOpacity(224, 218, 207), // Sand
-          300: withOpacity(200, 193, 183), // Sand-
+          100: fromVariable("--color-sand-plus"),
+          200: fromVariable("--color-sand"),
+          300: fromVariable("--color-sand-minus")
         },
         skog: {
-          400: withOpacity(111, 129, 103), // <-- Skog+
-          700: withOpacity(74, 88, 73), // <-- Skog
-          900: withOpacity(57, 65, 53) // <-- Skog-
+          400: fromVariable("--color-skog-plus"),
+          700: fromVariable("--color-skog"),
+          900: fromVariable("--color-skog-minus")
         },
-        tegel:  withOpacity(213, 71, 33)
+        tegel: fromVariable("--color-tegel")
+      },
+      textColor: {
+        theme: {
+          heading: fromVariable("--color-text-heading"),
+          body: fromVariable("--color-text-body"),
+          muted: fromVariable("--color-text-muted"),
+          "muted-hover": fromVariable("--color-text-muted-hover")
+        }
+      },
+      backgroundColor: {
+        theme: {
+          section: fromVariable("--color-bg-section")
+        }
+      },
+      borderColor: {
+        theme: {
+          div: fromVariable("--color-border-div")
+        }
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
         sang: ["SangBleu", ...defaultTheme.fontFamily.sans]
+      },
+      fontSize: {
+        "6xl": ["3.75rem", { lineHeight: "1.1" }],
+        lg: ["1.125rem", { lineHeight: "2rem", fontWeight: "300" }]
       }
     }
   },

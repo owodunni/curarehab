@@ -2,6 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --color-kol: 37, 37, 35;
+    --color-vit: 255, 255, 255;
+    --color-svart: 0, 0, 0;
+    --color-sand-plus: 243, 242, 236;
+    --color-sand: 224, 218, 207;
+    --color-sand-minus: 200, 193, 183;
+
+    --color-skog-plus: 111, 129, 103;
+    --color-skog: 74, 88, 73;
+    --color-skog-minus: 57, 65, 53;
+
+    --color-tegel: 213, 71, 33;
+
+    --color-text-heading: var(--color-kol);
+    --color-text-body: var(--color-svart);
+    --color-text-muted: var(--color-kol);
+    --color-text-muted-hover: var(--color-skog);
+
+    --color-bg-section: var(--color-sand-plus);
+    --color-border-div: var(--color-sand-minus);
+  }
+  .theme-skog {
+    --color-text-heading: var(--color-vit);
+    --color-text-body: var(--color-vit);
+    --color-text-muted: var(--color-sand-plus);
+    --color-text-muted-hover: var(--color-sand);
+
+    --color-bg-section: var(--color-skog);
+    --color-border-div: var(--color-sand-plus);
+  }
+  .theme-sand-dark {
+    --color-text-heading: var(--color-skog-minus);
+    --color-text-body: var(--color-kol);
+  }
+  .theme-sand-light {
+    --color-text-body: var(--color-skog);
+  }
+  .theme-skog-dark {
+    @apply theme-skog;
+    --color-bg-section: var(--color-skog-minus);
+  }
+}
+
 @layer components {
   /* === States === */
 
