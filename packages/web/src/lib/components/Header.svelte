@@ -45,10 +45,7 @@
         >
         <div class="hidden lg:flex lg:gap-12 lg:pl-48">
           {#each links as link}
-            <a
-              href={l(link)}
-              class="hover:bg-sand-200/50 -mx-3 -my-2 rounded-full px-3 py-2 text-base text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-[0ms]"
-            >
+            <a href={l(link)} class="btn variant-ghost text-base font-normal">
               {t("common", link)}
             </a>
           {/each}
@@ -58,7 +55,7 @@
         <div class="flex gap-4 lg:hidden">
           {#if showLocalization}
             <a
-              class="btn-icon ring-red-500 relative z-10 h-8 w-8 ring ring-[2px]"
+              class="btn-icon relative z-10 h-8 w-8 opacity-70"
               href={localizedHref}
               on:click={close}
             >
@@ -120,7 +117,7 @@
             <Flags
               {t}
               flag={locale === "en" ? "swedish" : "english"}
-              class=" h-10 w-10 p-1 opacity-50" 
+              class=" h-10 w-10 p-1 opacity-70"
             />
           </a>
         {/if}

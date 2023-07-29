@@ -23,16 +23,18 @@
       <div class="absolute inset-0 rounded-2xl" />
     </div>
     <div class="mt-8 flex items-center gap-x-4 text-xs">
-      <time datetime={article.date_updated ?? article.date_created ?? ""} class="text-gray-500">
+      <time datetime={article.date_updated ?? article.date_created ?? ""} class="text-theme-muted">
         {new Date(article?.date_updated ?? article?.date_created ?? "").toLocaleDateString("sv-se")}
       </time>
     </div>
-    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+    <h3
+      class="text-theme-muted group-hover:text-theme-muted-hover mt-3 text-lg font-semibold leading-6"
+    >
       {article?.title}
     </h3>
 
     {#if sammanfattning}
-      <article class="prose mt-5 line-clamp-6">
+      <article class="text-theme-body text-light mt-5 line-clamp-6">
         {sammanfattning}
       </article>
     {/if}

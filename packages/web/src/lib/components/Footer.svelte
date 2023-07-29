@@ -65,29 +65,29 @@
 </script>
 
 <footer
-  class="bg-skog-900 border-t pb-8 pt-16 sm:pt-24"
+  class="theme-skog-dark bg-section border-theme-div border-t pb-8 pt-16 sm:pt-24"
   aria-labelledby="footer-heading"
 >
   <Container>
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div class="flex flex-col items-center space-y-8">
-        <a href={l("hem")} class="btn-icon w-32"><Logo class="text-white w-32" /> </a>
+        <a href={l("hem")} class="btn-icon w-32"><Logo class="text-theme-body w-32" /> </a>
         <div class="flex space-x-6">
           {#each socialLinks as link}
-            <SocialLink {link} class="text-white hover:text-gray-500" />
+            <SocialLink {link} class="text-theme-body hover:text-theme-muted-hover" />
           {/each}
         </div>
       </div>
       <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
         <div>
-          <h3 class="text-sm font-semibold leading-6 text-white">{t("common", "hitta")}</h3>
+          <h3 class="text-theme-heading text-sm font-semibold leading-6">{t("common", "hitta")}</h3>
           <ul class="mt-6 space-y-4">
             <li>
               {#if location}
                 <SocialLink
                   link={location}
-                  class="flex gap-x-4 text-sm leading-6 text-sand-100 hover:text-gray-900 xl:-ml-10"
+                  class="text-theme-muted hover:text-theme-muted-hover flex gap-x-4 text-sm leading-6 xl:-ml-10"
                   onlyIcon={false}
                 />
               {/if}
@@ -95,28 +95,21 @@
           </ul>
         </div>
         <div>
-          <h3 class="text-sm font-semibold leading-6 text-white">
+          <h3 class="text-theme-heading text-sm font-semibold leading-6">
             {t("common", "contact")}
           </h3>
           <ul class="mt-6 space-y-4">
-            <li>
-              {#if email}
-                <SocialLink
-                  link={email}
-                  class="flex gap-x-4 text-sm leading-6 text-sand-100 hover:text-gray-900 xl:-ml-10"
-                  onlyIcon={false}
-                />
-              {/if}
-            </li>
-            <li>
-              {#if phone}
-                <SocialLink
-                  link={phone}
-                  class="flex gap-x-4 text-sm leading-6 text-sand-100 hover:text-gray-900 xl:-ml-10"
-                  onlyIcon={false}
-                />
-              {/if}
-            </li>
+            {#each [email, phone] as link}
+              <li>
+                {#if link}
+                  <SocialLink
+                    {link}
+                    class="text-theme-muted hover:text-theme-muted-hover flex gap-x-4 text-sm leading-6 xl:-ml-10"
+                    onlyIcon={false}
+                  />
+                {/if}
+              </li>
+            {/each}
           </ul>
         </div>
       </div>
@@ -128,11 +121,13 @@
           <div class={"md:grid md:grid-cols-2 md:gap-8"}>
             {#each Object.entries(outerLinks) as [title, links], i}
               <div class={i % 2 === 0 ? "" : "mt-10 md:mt-0"}>
-                <h3 class="text-sm font-semibold leading-6 text-white">{title}</h3>
+                <h3 class="text-theme-body text-sm font-semibold leading-6">{title}</h3>
                 <ul class="mt-6 space-y-4">
                   {#each toLinks(links) as [href, linkTitle]}
                     <li>
-                      <a {href} class="text-sm text-sand-100 hover:text-gray-900">{linkTitle}</a>
+                      <a {href} class="text-theme-muted hover:text-theme-muted-hover text-sm"
+                        >{linkTitle}</a
+                      >
                     </li>
                   {/each}
                 </ul>
@@ -142,8 +137,8 @@
         {/each}
       </div>
     </div>
-    <div class="mt-16 flex space-x-1 border-t border-sand-100 pt-8 sm:mt-20 lg:mt-24">
-      <p class="text-xs leading-5 text-sand-200">
+    <div class="border-theme-div mt-16 flex space-x-1 border-t pt-8 sm:mt-20 lg:mt-24">
+      <p class="text-theme-muted text-xs leading-5">
         &copy; {new Date().getFullYear()}
         {t("common", "title")} Linköping AB
       </p>

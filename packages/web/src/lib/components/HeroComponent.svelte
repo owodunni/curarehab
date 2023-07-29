@@ -9,7 +9,7 @@
 <Container class="relative">
   <div class="relative z-[5] lg:w-full lg:max-w-2xl">
     <svg
-      class="fill-sand-100 absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform lg:block"
+      class="fill-section absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform lg:block"
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
       aria-hidden="true"
@@ -22,7 +22,7 @@
     </div>
   </div>
   <div
-    class="bg-sand-100 pt-10 sm:pt-20 lg:absolute lg:inset-y-0 lg:right-0 lg:my-10 lg:block lg:w-1/2 lg:pt-0"
+    class="bg-section pt-10 sm:pt-20 lg:absolute lg:inset-y-0 lg:right-0 lg:my-10 lg:block lg:w-1/2 lg:pt-0"
   >
     {#if image}
       <Img
