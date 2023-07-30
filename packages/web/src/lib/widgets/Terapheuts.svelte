@@ -34,12 +34,12 @@
         <div class="mt-6 flex justify-between">
           <div>
             <h3
-              class="text-theme-heading group-hover:text-theme-muted-hover text-lg font-medium leading-8 tracking-tight transition-colors delay-150 hover:delay-[0ms]"
+              class="text-theme-heading group-hover:text-theme-muted-hover text-lg font-medium leading-8 tracking-tight transition-colors"
             >
               {directus_users_id?.first_name}
               {directus_users_id?.last_name}
             </h3>
-            <p class="text-theme-body text-base font-light leading-7">
+            <p class="text-theme-body text-base leading-7">
               {getTitle(directus_users_id?.work_title || "", t)}
             </p>
           </div>
@@ -50,7 +50,7 @@
           </div>
         </div>
         <article class="prose mt-5">
-          <p class="text-theme-body line-clamp-6 font-light">
+          <p class="text-theme-body line-clamp-6">
             {$page.params.lang === "en"
               ? directus_users_id?.profil_sammanfattning_en
               : directus_users_id?.profil_sammanfattning}

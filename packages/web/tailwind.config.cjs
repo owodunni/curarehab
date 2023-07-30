@@ -24,12 +24,23 @@ module.exports = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
+      typography: (theme) => {
+        return {
+          DEFAULT: {
+            css: {
+              "--tw-prose-body": fromVariable("--color-text-body")(1),
+              "--tw-prose-heading": fromVariable("--color-text-heading")(1)
+            }
+          }
+        };
+      },
       colors: {
         kol: fromVariable("--color-kol"),
         sand: {
           100: fromVariable("--color-sand-plus"),
           200: fromVariable("--color-sand"),
-          300: fromVariable("--color-sand-minus")
+          300: fromVariable("--color-sand-minus"),
+          900: fromRGB(44, 35, 30)
         },
         skog: {
           400: fromVariable("--color-skog-plus"),

@@ -26,7 +26,7 @@
 
 <Seo seo={data.params.lang === "en" ? terapeut.seo_en : terapeut.seo} />
 
-<Section>
+<Section extras="theme-sand-dark">
   <Container>
     <div class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
       <div class="lg:pl-20">
@@ -42,12 +42,12 @@
           <div class="mt-6 flex items-center justify-between space-x-24">
             <div>
               <h3
-                class="text-lg font-semibold leading-8 tracking-tight text-gray-900 group-hover:text-gray-600"
+                class="text-skog-900 group-hover:text-skog-700 text-lg font-medium leading-8 tracking-tight"
               >
                 {terapeut.first_name}
                 {terapeut.last_name}
               </h3>
-              <p class="text-base leading-7 text-gray-600">
+              <p class="text-skog-700 text-base font-normal leading-7">
                 {getTitle(terapeut.work_title || "", t)}
               </p>
             </div>
@@ -62,7 +62,7 @@
               <SocialLink
                 {link}
                 onlyIcon={false}
-                class="flex gap-x-4 text-sm leading-6 text-gray-600 hover:text-gray-900"
+                class="text-skog-700 hover:text-skog-900 flex gap-x-4 text-sm leading-6"
               />
             {/each}
           </ul>
