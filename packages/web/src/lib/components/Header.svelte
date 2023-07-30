@@ -41,7 +41,8 @@
         <a
           href={l("hem")}
           class="btn-icon btn-lg border-x-secondary-200 absolute m-0 w-32 p-0"
-          on:click={close}><Logo class="text-skog-700 w-48" /></a
+          on:click={close}
+          ><Logo class="text-skog-700 hover:text-skog-900 w-48 transition-colors" /></a
         >
         <div class="hidden lg:flex lg:gap-12 lg:pl-48">
           {#each links as link}
@@ -88,7 +89,7 @@
             >
               <div
                 id="popover-panel"
-                class="bg-sand-50 shadow-sand-900/20 z-0 w-screen rounded-b-2xl px-6 pb-6 pt-32 shadow-2xl"
+                class="bg-sand-100 z-0 w-screen rounded-b-2xl px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
               >
                 <div class="flex flex-col items-start space-y-4">
                   {#each links as link}

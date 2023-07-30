@@ -73,7 +73,7 @@
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div class="flex flex-col items-center space-y-8">
         <a href={l("hem")} class="btn-icon w-32"
-          ><Logo class="text-theme-body hover:text-theme-muted-hover w-32" />
+          ><Logo class="text-theme-body hover:text-theme-muted-hover w-32 transition-colors" />
         </a>
         <div class="flex space-x-6">
           {#each socialLinks as link}
