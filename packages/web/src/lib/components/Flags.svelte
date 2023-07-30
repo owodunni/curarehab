@@ -9,7 +9,9 @@
 </script>
 
 <img
-  class={`aspect-square rounded-full ${clazz || ""}`}
+  class={`aspect-square rounded-full transition-all hover:brightness-[1.15] opacity-70 ${
+    clazz || ""
+  }`}
   loading="lazy"
   width="32"
   height="32"

@@ -72,7 +72,9 @@
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div class="flex flex-col items-center space-y-8">
-        <a href={l("hem")} class="btn-icon w-32"><Logo class="text-theme-body w-32" /> </a>
+        <a href={l("hem")} class="btn-icon w-32"
+          ><Logo class="text-theme-body hover:text-theme-muted-hover w-32" />
+        </a>
         <div class="flex space-x-6">
           {#each socialLinks as link}
             <SocialLink {link} class="text-theme-body hover:text-theme-muted-hover" />

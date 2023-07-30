@@ -27,7 +27,7 @@
   }
   .theme-skog {
     --color-text-heading: var(--color-vit);
-    --color-text-body: var(--color-vit);
+    --color-text-body: var(--color-sand-plus);
     --color-text-muted: var(--color-sand-plus);
     --color-text-muted-hover: var(--color-sand);
 
@@ -63,21 +63,17 @@
     @apply whitespace-nowrap text-center;
     /* Flex Columns */
     @apply inline-flex items-center justify-center space-x-2;
-    /* States */
-    @apply hover:brightness-[1.15];
-    /* Transitions */
-    @apply transition-all delay-150 hover:delay-[0ms];
   }
 
   /* === Button === */
   /* Standard button/anchor tag elements. */
 
   .btn {
-    @apply inline-flex justify-center rounded-lg  px-5 py-[10px] outline-2 outline-offset-2 transition-all delay-150 hover:delay-[0ms];
+    @apply inline-flex justify-center rounded-lg px-5 py-[10px] outline-2 outline-offset-2 transition-all;
   }
 
   .variant-filled {
-    @apply bg-tegel rounded-full text-sm font-medium text-white hover:brightness-[1.10];
+    @apply bg-tegel rounded-full text-sm font-medium text-white hover:brightness-110;
   }
 
   .variant-ghost {
@@ -108,8 +104,8 @@
     @apply aspect-square w-[43px] text-base;
     /* Rounded */
     @apply rounded-full;
-    /* Active */
-    @apply active:scale-[95%] active:brightness-90;
+
+    @apply transition-all;
   }
 
   /* Icon Button: Size */
