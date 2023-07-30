@@ -54,11 +54,7 @@
       <div class="flex items-center gap-6">
         <div class="flex gap-4 lg:hidden">
           {#if showLocalization}
-            <a
-              class="btn-icon relative z-10 h-8 w-8 opacity-70"
-              href={localizedHref}
-              on:click={close}
-            >
+            <a class="btn-icon relative z-10 h-8 w-8" href={localizedHref} on:click={close}>
               <Flags {t} flag={locale === "en" ? "swedish" : "english"} class="p-[2px]" />
             </a>
           {/if}
@@ -114,11 +110,7 @@
         </div>
         {#if showLocalization}
           <a class="btn-icon m-0 hidden p-0 lg:block" href={localizedHref}>
-            <Flags
-              {t}
-              flag={locale === "en" ? "swedish" : "english"}
-              class=" h-10 w-10 p-1 opacity-70"
-            />
+            <Flags {t} flag={locale === "en" ? "swedish" : "english"} class=" h-10 w-10 p-1" />
           </a>
         {/if}
         <a class="btn variant-filled hidden lg:block" href={t("common", "hanoLink")}>
