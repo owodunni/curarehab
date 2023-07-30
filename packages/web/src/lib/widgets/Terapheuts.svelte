@@ -25,7 +25,7 @@
     <li class="max-w-[300px]">
       <a href={`${l("terapeuter")}/${directus_users_id?.slug}`} class="group">
         <Image
-          class="mx-auto h-32 w-32 rounded-full sm:h-48 sm:w-48 md:h-64 md:w-64"
+          class="h-32 w-32 rounded-full sm:mx-auto sm:h-48 sm:w-48 md:h-64 md:w-64"
           srcPath={directus_users_id?.avatar?.filename_disk || ""}
           width={400}
           height={400}
@@ -34,7 +34,7 @@
         <div class="mt-6 flex justify-between">
           <div>
             <h3
-              class="text-theme-heading group-hover:text-theme-muted-hover text-lg font-medium leading-8 tracking-tight transition-colors"
+              class="text-theme-heading group-hover:text-theme-muted-hover text-lg font-medium leading-8 tracking-tight"
             >
               {directus_users_id?.first_name}
               {directus_users_id?.last_name}
@@ -42,6 +42,9 @@
             <p class="text-theme-body text-base leading-7">
               {getTitle(directus_users_id?.work_title || "", t)}
             </p>
+            <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled mt-6 sm:hidden">
+              {t("common", "bokaNu")}
+            </a>
           </div>
           <div>
             <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled hidden sm:block">
@@ -49,7 +52,7 @@
             </a>
           </div>
         </div>
-        <article class="prose mt-5">
+        <article class="prose mt-5 hidden sm:block">
           <p class="text-theme-body line-clamp-6">
             {$page.params.lang === "en"
               ? directus_users_id?.profil_sammanfattning_en
