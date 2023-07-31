@@ -69,7 +69,9 @@ module.exports = {
       },
       fontSize: {
         "6xl": ["3.75rem", { lineHeight: "1.1" }],
-        lg: ["1.125rem", { lineHeight: "2rem", fontWeight: "300" }]
+        "lg-heading": ["1.125rem", { lineHeight: "2rem", fontWeight: "500" }],
+        lg: ["1.125rem", { lineHeight: "2rem", fontWeight: "300" }],
+        base: ["1rem", { lineHeight: "1.5rem", fontWeight: "300" }]
       }
     }
   },
