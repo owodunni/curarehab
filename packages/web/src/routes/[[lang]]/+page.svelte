@@ -11,7 +11,7 @@
   $: ({ t, l } = data);
 </script>
 
-<Section class="theme-sand-dark py-20 sm:py-32 lg:py-0 lg:pb-32 xl:pb-36">
+<Section extras="theme-sand-dark">
   <Hero {t} {l} image={data?.data?.Hem?.omslagsbild ?? undefined} />
 </Section>
 <Section extras="theme-skog">
