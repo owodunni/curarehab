@@ -31,9 +31,7 @@
       <div class="absolute inset-0 rounded-2xl" />
     </div>
     <div class="sm:flex sm:justify-between">
-      <h3
-        class="text-theme-heading group-hover:text-theme-muted-hover mt-6 text-lg font-semibold leading-6"
-      >
+      <h3 class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading mt-6">
         {title}
       </h3>
 
@@ -46,7 +44,9 @@
     <div>
       {#if sammanfattning}
         <article
-          class={`text-theme-body text-light mt-5 line-clamp-4 ${primary ? "sm:line-clamp-6" : ""}`}
+          class={`text-theme-body text-base leading-7 mt-5 line-clamp-4 ${
+            primary ? "sm:line-clamp-6" : ""
+          }`}
         >
           {sammanfattning}
         </article>

@@ -19,7 +19,7 @@
     <Terapheuts terapheuts={data?.data?.terapeuter_directus_users || []} {l} {t} />
   </Container>
 </Section>
-<Section extras="theme-sand-light">
+<Section extras="theme-sand-dark">
   <Container>
     <Treatments treatments={data?.data?.Behandlingar || []} {l} {t} />
   </Container>
