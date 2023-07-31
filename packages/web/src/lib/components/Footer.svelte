@@ -64,10 +64,7 @@
   }
 </script>
 
-<footer
-  class="theme-skog-dark bg-section border-theme-div border-t pb-8 pt-16 sm:pt-24"
-  aria-labelledby="footer-heading"
->
+<footer class="theme-skog-dark bg-section pb-8 pt-16 sm:pt-24" aria-labelledby="footer-heading">
   <Container>
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">

@@ -19,4 +19,21 @@ query Om {
       }
     }
   }
+  terapeuter_directus_users {
+    directus_users_id {
+      first_name
+      last_name
+      work_title
+      profil_sammanfattning_en
+      profil_sammanfattning
+      slug
+      avatar {
+        title
+        type
+        width
+        height
+        filename_disk
+      }
+    }
+  }
 }
