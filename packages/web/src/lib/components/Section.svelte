@@ -1,5 +1,5 @@
 <script lang="ts">
-  let clazz = "py-20 sm:py-32 lg:pb-32 xl:pb-36";
+  let clazz = "py-10 sm:py-20";
   export { clazz as class };
   export let extras = "";
 </script>
