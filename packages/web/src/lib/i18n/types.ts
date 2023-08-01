@@ -110,6 +110,7 @@ export type TreatmentsTranslations = {
   title: string;
   description: string;
   pris: string;
+  tid: string;
 };
 
 export type CookiesTranslations = {

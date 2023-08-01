@@ -29,6 +29,7 @@ query Behandling($filter: Behandlingar_filter) {
       filename_disk
     }
     pris
+    tid
     Slug
     Primary_treatment
     Title

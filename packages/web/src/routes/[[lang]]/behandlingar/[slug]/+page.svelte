@@ -36,15 +36,17 @@
                 {data.params.lang === "en" ? behandling?.Title_en : behandling?.Title}
               </h3>
               <p class="text-skog-700 text-base leading-7">
-                {t("behandlingar", "pris")}
+                {t("behandlingar", "pris")}:
                 {behandling.pris} kr
               </p>
+              <p class="text-skog-700 text-base leading-7">
+                {t("behandlingar", "tid")}:
+                {behandling.tid} min
+              </p>
             </div>
-            <div>
-              <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled">
-                {t("common", "bokaNu")}
-              </a>
-            </div>
+            <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled self-start">
+              {t("common", "bokaNu")}
+            </a>
           </div>
         </div>
       </div>
