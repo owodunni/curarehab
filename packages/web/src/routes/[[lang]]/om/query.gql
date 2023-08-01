@@ -18,6 +18,13 @@ query Om {
         filename_disk
       }
     }
+    omslags_bild {
+      title
+      type
+      width
+      height
+      filename_disk
+    }
   }
   terapeuter_directus_users {
     directus_users_id {

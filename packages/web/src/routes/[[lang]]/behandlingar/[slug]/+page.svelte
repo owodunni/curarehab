@@ -5,13 +5,9 @@
   import Section from "$lib/components/Section.svelte";
   import Image from "$lib/components/Image.svelte";
   import Seo from "$lib/components/Seo.svelte";
-  import { behandlingar } from "$lib/i18n/en/behandlingar";
-  import { building } from "__sveltekit/environment";
-  import { terapeuter } from "$lib/i18n/en/terapeuter";
   export let data: PageData;
 
   $: ({ t, behandling } = data);
-  $: console.log(behandling);
 </script>
 
 <Seo seo={data.params.lang === "en" ? behandling?.seo_en : behandling?.seo} />
