@@ -1,0 +1,37 @@
+query TerapeutsMetaData {
+  terapeuter_directus_users {
+    directus_users_id {
+      first_name
+      last_name
+      work_title
+      profil_sammanfattning
+      profil_sammanfattning_en
+      slug
+      avatar {
+        title
+        type
+        width
+        height
+        filename_disk
+      }
+    }
+  }
+  Terapeuter {
+    seo {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+    seo_en {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+  }
+}

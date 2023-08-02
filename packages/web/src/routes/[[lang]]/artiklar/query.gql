@@ -1,0 +1,65 @@
+query ArticlesMetaData($filter: artiklar_filter) {
+  artiklar(filter: $filter) {
+    date_updated
+    date_created
+    taggar
+    language
+    status
+    omslagsbild {
+      title
+      type
+      width
+      height
+      filename_disk
+    }
+    sammanfattning
+    slug
+    title
+    user_created {
+      first_name
+      last_name
+      work_title
+      slug
+      avatar {
+        title
+        type
+        width
+        height
+        filename_disk
+      }
+    }
+  }
+  terapeuter_directus_users {
+    directus_users_id {
+      first_name
+      last_name
+      work_title
+      slug
+      avatar {
+        title
+        type
+        width
+        height
+        filename_disk
+      }
+    }
+  }
+  Artiklar {
+    seo {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+    seo_en {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+  }
+}

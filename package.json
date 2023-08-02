@@ -7,9 +7,10 @@
   },
   "scripts": {
     "dev": "npm run dev --workspace=@curarehab/web",
-    "build": "npm run build --workspaces",
+    "docker": "npm run docker --workspace=@curarehab/directus",
+    "build": "npm run build --workspaces --if-present",
     "build:app": "npm run build --workspace=@curarehab/web",
-    "test": "npm run test --workspaces",
+    "test": "npm run test --workspaces --if-present",
     "fix": "run-p format:eslint format:prettier",
     "format:prettier": "prettier --plugin-search-dir . --write .",
     "format:eslint": "eslint . --fix",

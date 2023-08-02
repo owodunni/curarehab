@@ -1,21 +1,19 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
-import { SupabaseLightClient, Session } from "@curarehab/api";
+// and what to do when importing types
+
+import type { LoadedTranslations } from "@curarehab/i18n";
+import type { TranslationGroup, Translations } from "$lin/i18n";
 
 declare global {
   namespace App {
     interface Locals {
-      supabase: SupabaseLightClient;
-      getSession(): Promise<Session | null>;
+      client: import("@urql/core").Client;
     }
     interface PageData {
-      session: Session | null;
+      translations: LoadedTranslations<TranslationGroup, Translations>;
     }
     // interface Error {}
-    // interface Locals {}
-    // interface PageData {}
     // interface Platform {}
   }
 }
-
-export {};

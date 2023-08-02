@@ -1,5 +1,13 @@
 export type Locale = "en" | "sv";
-export type Page = "hem" | "om" | "artiklar" | "boka" | "login" | "admin";
+export type Page =
+  | "artiklar"
+  | "behandlingar"
+  | "cookies"
+  | "hem"
+  | "om"
+  | "personuppgiftspolicy"
+  | "hitta"
+  | "terapeuter";
 export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
@@ -7,19 +15,52 @@ export type CommonTranslations = {
   title: string;
   subtitle: string;
   om: string;
+  artiklen: string;
   artiklar: string;
+  sidan: string;
   smarta: string;
   menuAria: string;
-  login: string;
-  logout: string;
   boka: string;
+  hanoLink: string;
   directions: string;
   hem: string;
-  admin: string;
   create: string;
   cancel: string;
   save: string;
   heroImage: string;
+  comingSoon: string;
+  hitta: string;
+  behandlingen: string;
+  behandlingar: string;
+  terapeuter: string;
+  personuppgiftspolicy: string;
+  ourServices: string;
+  information: string;
+  partners: string;
+  readMore: string;
+  contact: string;
+  descriptionParagraph: string;
+  titleFysio: string;
+  titleNaprapat: string;
+  titleMassage: string;
+  titleWeb: string;
+  terapheutsTitle: string;
+  terapheutsText: string;
+  articlesTitle: string;
+  articlesText: string;
+  treatmentsTitle: string;
+  treatmentsText: string;
+  bokaNu: string;
+  swedishFlag: string;
+  englishFlag: string;
+  errorHome: string;
+  errorSubtitle: string;
+  errorTitle: string;
+  fysioLinkTitle: string;
+  fysioHref: string;
+  naprapatLinkTitle: string;
+  naprapatHref: string;
+  cookies: string;
 };
 
 export type HemTranslations = {
@@ -50,33 +91,31 @@ export type ArticleTranslations = {
   readArticle: string;
 };
 
-export type BokaTranslations = {
+export type FindTranslations = {
   title: string;
   description: string;
 };
 
-export type LogInTranslations = {
+export type TerapheutTranslations = {
   title: string;
   description: string;
-  password: string;
-  email: string;
-  signUp: string;
-  emailError: string;
-  passwordError: string;
 };
 
-export type AdminTranslations = {
+export type PrivacyTranslations = {
   title: string;
   description: string;
-  welcome: string;
-  logOut: string;
-  articles: string;
-  tableTitle: string;
-  tableSlug: string;
-  tableExcerpt: string;
-  tableDescription: string;
-  tableParent: string;
-  newArticle: string;
+};
+
+export type TreatmentsTranslations = {
+  title: string;
+  description: string;
+  pris: string;
+  tid: string;
+};
+
+export type CookiesTranslations = {
+  title: string;
+  description: string;
 };
 
 export type TranslationsByGroup = {
@@ -84,9 +123,11 @@ export type TranslationsByGroup = {
   hem: HemTranslations;
   om: OmTranslations;
   artiklar: ArticleTranslations;
-  boka: BokaTranslations;
-  login: LogInTranslations;
-  admin: AdminTranslations;
+  hitta: FindTranslations;
+  terapeuter: TerapheutTranslations;
+  personuppgiftspolicy: PrivacyTranslations;
+  behandlingar: TreatmentsTranslations;
+  cookies: CookiesTranslations;
 };
 
 export type Translations =
@@ -94,6 +135,8 @@ export type Translations =
   | keyof OmTranslations
   | keyof ArticleTranslations
   | keyof CommonTranslations
-  | keyof BokaTranslations
-  | keyof AdminTranslations
-  | keyof LogInTranslations;
+  | keyof FindTranslations
+  | keyof TerapheutTranslations
+  | keyof PrivacyTranslations
+  | keyof CookiesTranslations
+  | keyof TreatmentsTranslations;

@@ -1,0 +1,40 @@
+query Articles($filter: artiklar_filter) {
+  artiklar(filter: $filter) {
+    seo {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+    date_updated
+    date_created
+    taggar
+    artikel
+    status
+    omslagsbild {
+      title
+      type
+      width
+      height
+      filename_disk
+    }
+    sammanfattning
+    slug
+    title
+    user_created {
+      first_name
+      last_name
+      work_title
+      slug
+      avatar {
+        title
+        type
+        width
+        height
+        filename_disk
+      }
+    }
+  }
+}

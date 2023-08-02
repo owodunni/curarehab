@@ -1,0 +1,39 @@
+query Behandlingar($filter: Behandlingar_filter) {
+  behandlingar {
+    seo {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+    seo_en {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+  }
+  Behandlingar(filter: $filter) {
+    date_updated
+    date_created
+    status
+    behandling_sammanfattning
+    behandling_sammanfattning_en
+    bild {
+      title
+      type
+      width
+      height
+      filename_disk
+    }
+    pris
+    Slug
+    Primary_treatment
+    Title
+    Title_en
+  }
+}

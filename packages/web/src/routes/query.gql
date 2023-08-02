@@ -1,0 +1,40 @@
+query Widgets {
+  footer {
+    phone {
+      link
+      display_link
+      type
+    }
+    email {
+      link
+      display_link
+      type
+    }
+    address {
+      display_link
+      link
+      type
+    }
+    social_links {
+      links_id {
+        link
+        type
+        display_link
+      }
+    }
+    partners {
+      links_id {
+        link
+        type
+        display_link
+      }
+    }
+    other_links {
+      links_id {
+        link
+        type
+        display_link
+      }
+    }
+  }
+}

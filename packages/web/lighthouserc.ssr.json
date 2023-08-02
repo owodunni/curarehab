@@ -1,11 +1,7 @@
 {
   "ci": {
     "collect": {
-      "url": [
-        "http://localhost:4173",
-        "http://localhost:4173/artiklar",
-        "http://localhost:4173/artiklar/vulvodyni"
-      ],
+      "url": ["http://localhost:4173", "http://localhost:4173/artiklar"],
       "startServerCommand": "npm run preview"
     },
     "upload": {

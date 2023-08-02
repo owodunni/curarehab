@@ -43,7 +43,7 @@ We want to get good search rankings. There are a couple of tools that we use to 
 
 ## Analytics
 
-We also use [Google Analytics](https://analytics.google.com/analytics/web/#/) to track the traffic to the site.
+We also use [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/) to track the traffic to the site.
 
 ## Fonts
 

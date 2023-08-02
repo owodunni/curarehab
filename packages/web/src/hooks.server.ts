@@ -1,9 +1,10 @@
-import { createSupabaseServerClient } from "@supabase/auth-helpers-sveltekit";
 import type { Handle, HandleServerError } from "@sveltejs/kit";
-import { supabaseApiKeys, supabaseLightClient } from "@curarehab/api";
 import { sentry } from "$lib/sentry";
 import { Toucan } from "toucan-js";
 import { dev } from "$app/environment";
+import { PUBLIC_CMS_URL } from "$env/static/public";
+import { CMS_TOKEN } from "$env/static/private";
+import { Client, fetchExchange } from "@urql/core";
 
 const toucan = new Toucan({
   dsn: sentry.dsn
@@ -34,26 +35,22 @@ export const handleError: HandleServerError = async ({ error, event }) => {
   };
 };
 
+const client = new Client({
+  url: `${PUBLIC_CMS_URL}/graphql`,
+  fetchOptions: {
+    headers: {
+      Authorization: `Bearer ${CMS_TOKEN}`
+    }
+  },
+  exchanges: [fetchExchange]
+});
+
 export const handle: Handle = async ({ event, resolve }) => {
-  const supabase = createSupabaseServerClient({
-    ...supabaseApiKeys(),
-    event
-  });
-
-  /**
-   * a little helper that is written for convenience so that instead
-   * of calling `const { data: { session } } = await supabase.auth.getSession()`
-   * you just call this `await getSession()`
-   */
-  const getSession = async () => {
-    const {
-      data: { session }
-    } = await supabase.auth.getSession();
-    return session;
-  };
-
   return resolve(
-    { ...event, locals: { ...event.locals, supabase: supabaseLightClient(supabase), getSession } },
+    {
+      ...event,
+      locals: { ...event.locals, client }
+    },
     {
       /**
        * There´s an issue with `filterSerializedResponseHeaders` not working when using `sequence`

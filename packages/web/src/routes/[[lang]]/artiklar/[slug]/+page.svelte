@@ -1,53 +1,44 @@
 <script lang="ts">
-  import { enhance } from "$app/forms";
-  import { Button, Container } from "$lib/components";
-  import { PencilIcon } from "@rgossiaux/svelte-heroicons/outline";
-  import { EyeIcon, SaveIcon } from "@rgossiaux/svelte-heroicons/solid";
-  import { marked } from "marked";
+  import Container from "$lib/components/Container.svelte";
+  import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
+  import Section from "$lib/components/Section.svelte";
+  import Seo from "$lib/components/Seo.svelte";
+  import Image from "$lib/components/Image.svelte";
+  import TerapeutCard from "$lib/components/TerapeutCard.svelte";
   import type { PageData } from "./$types";
   export let data: PageData;
-  export let showMarkdown = false;
-
-  $: editedHtml = marked.parse(data.post.post);
+  $: ({ article } = data);
 </script>
 
-<svelte:head>
-  <title>{data.post.title}</title>
-  <meta name="description" content={data.post.excerpt} />
-</svelte:head>
+<Seo seo={article?.seo} />
 
-<Container class="pb-16">
-  {#if data.session?.user}
-    <div class="flex w-full justify-end gap-1 pb-1">
-      <Button variant="outline" on:click={() => (showMarkdown = !showMarkdown)}
-        >{#if showMarkdown}<EyeIcon class="h-5 w-5" />
-        {:else}
-          <PencilIcon class="h-5 w-5" />
-        {/if}</Button
-      >
-      <Button variant="outline" type="submit" form="post_form">
-        <SaveIcon class="h-5 w-5" /></Button
-      >
-    </div>
-    {#if !showMarkdown}
-      <article class="prose">
-        {@html editedHtml}
-      </article>
-    {:else}
-      <form id="post_form" method="POST" use:enhance>
-        <textarea
-          name="post"
-          id="post"
-          class="h-96 w-full"
-          bind:value={data.post.post}
-          placeholder="Markdown"
+<Section extras="py-0 pb-20 sm:pb-32">
+  <Container>
+    <article>
+      <header class="border-1 border-b-sand-300 mb-8 flex w-full max-w-xl flex-col border-b">
+        <div class="relative mb-8">
+          <Image
+            srcPath={article?.omslagsbild?.filename_disk ?? ""}
+            width={800}
+            height={450}
+            alt={article?.omslagsbild?.title || ""}
+            class="aspect-[16/9] rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+          />
+        </div>
+        <h1 class="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+          {article?.title}
+        </h1>
+        <TerapeutCard
+          terapeut={article?.user_created}
+          t={data.t}
+          l={data.l}
+          class="mb-8 pl-3"
+          time={article?.date_updated ?? article?.date_created ?? ""}
         />
-        <input name="post_id" id="post_id" value={data.post.id} class="hidden" />
-      </form>
-    {/if}
-  {:else}
-    <article class="prose">
-      {@html data.post.html}
+      </header>
+      <div class="prose">
+        <BlocksRender blocks={article.artikel?.blocks || []} />
+      </div>
     </article>
-  {/if}
-</Container>
+  </Container>
+</Section>
