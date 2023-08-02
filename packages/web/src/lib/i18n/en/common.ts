@@ -36,7 +36,7 @@ export const common: CommonTranslations = {
   titleWeb: "Web lord",
   terapheutsTitle: "Our therapists",
   terapheutsText:
-    "Meat our a team of licensed therapists who work together to provide you with a tailored treatment that suits your needs and goals.",
+    "Meat our a team of licensed therapists who work together to provide you with tailored treatments that suits your needs and goals.",
   articlesTitle: "Our articles",
   articlesText: "Read our articles about pain and how to get rid of it.",
   bokaNu: "Book now",
@@ -52,7 +52,6 @@ export const common: CommonTranslations = {
     "https://www.jointacademy.com/us/en/facts/osteoarthritis-treatment/naprapath-naprapathy/",
   cookies: "Cookies",
   hanoLink: "https://curarehab.bestille.no/OnCust2/",
-  treatmentsTitle: "Revive, Recover, Reclaim: Embrace Our Multitude of Rehabilitative Treatments",
-  treatmentsText:
-    "Embrace comprehensive care from Our highly skilled therapists - Your wellbeing and recovery are our passionate priority; Whether you seek relief from pain, rehabilitation from injury, or enhancing performance, our tailored treatments ensure your journey to optimal health."
+  treatmentsTitle: "Our Treatments",
+  treatmentsText: "We have a wide range of treatments to help you towards a healthier lifestyle."
 };
