@@ -15,7 +15,12 @@
     --color-skog: 74, 88, 73;
     --color-skog-minus: 57, 65, 53;
 
-    --color-tegel: 213, 71, 33;
+    /* Changed slightly from the original color due to bad [WACG success criteria](https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast)
+     * we only got 4.42 and not 4.5 which is the cutoff frequency.
+     * Original color 213, 71, 33
+     * Test result can be seen here https://app.contrast-finder.org/result.html?foreground=%23FFFFFF&background=rgb%28213%2C71%2C33%29&ratio=4.5&isBackgroundTested=true&algo=Rgb&lang=en
+     */
+    --color-tegel: 213, 68, 20;
 
     --color-text-heading: var(--color-kol);
     --color-text-body: var(--color-svart);
