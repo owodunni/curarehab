@@ -39,7 +39,7 @@
             sizes="(min-width: 1024px) 32rem, 20rem"
             class="aspect-square rounded-2xl  object-cover"
           />
-          <div class="mt-6 flex items-center justify-between space-x-24">
+          <div class="mt-6 flex items-center justify-between">
             <div>
               <h3
                 class="text-skog-900 group-hover:text-skog-700 text-lg font-medium leading-8 tracking-tight"

@@ -1,5 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import Card from "$lib/components/Card.svelte";
+  import CardList from "$lib/components/CardList.svelte";
   import TreatmentCard from "$lib/components/TreatmentCard.svelte";
   import type { L, T } from "$lib/i18n/t";
   import type { ArticlesAndTerapeutsQuery } from "src/routes/[[lang]]/$types.gql";
@@ -17,9 +19,7 @@
     {t("common", "treatmentsText")}
   </p>
 </div>
-<div
-  class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3"
->
+<CardList>
   {#each treatments.filter((t) => t.Primary_treatment === "true") as treatment}
     <TreatmentCard
       {treatment}
@@ -31,10 +31,8 @@
       title={$page.params.lang !== "en" ? treatment?.Title : treatment?.Title_en}
     />
   {/each}
-</div>
-<div
-  class="border-theme-div mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-16 border-t pt-10 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
->
+</CardList>
+<CardList extras="border-t border-theme-div">
   {#each treatments.filter((t) => t.Primary_treatment !== "true") as treatment}
     <TreatmentCard
       {treatment}
@@ -46,4 +44,4 @@
       title={$page.params.lang !== "en" ? treatment?.Title : treatment?.Title_en}
     />
   {/each}
-</div>
+</CardList>
