@@ -34,7 +34,7 @@
           </div>
         </div>
         <div>
-          <div class="prose text-base leading-7 text-gray-700">
+          <div class="prose text-theme-body text-base leading-7">
             <BlocksRender blocks={(lang === "en" ? om.text_en : om.text)?.blocks || []} />
           </div>
           <ul
