@@ -52,14 +52,26 @@ const terapheutsUrls = (terapheuts: SlugsQuery["terapeuter_directus_users"]): st
   );
 };
 
+const behandlingarUrls = (behandlingar: SlugsQuery["Behandlingar"]): string[] => {
+  return behandlingar.flatMap(({ Slug }) =>
+    localPrefix.flatMap((locale) =>
+      `
+    <url>
+      <loc>https://curarehab.se${locale}/behandlingar/${Slug}</loc>
+    </url>`.trim()
+    )
+  );
+};
+
 export const GET: RequestHandler = async (event) => {
   const data = await event.locals.client
     .query<SlugsQuery>(query, {
-      ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } })
+      filter: { ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } }) },
+      f2: { ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } }) }
     })
     .toPromise();
 
-  const { artiklar, terapeuter_directus_users } = data.data ?? {};
+  const { artiklar, terapeuter_directus_users, Behandlingar } = data.data ?? {};
 
   return new Response(
     `
@@ -74,10 +86,11 @@ export const GET: RequestHandler = async (event) => {
     >
       ${seUrls.join("\n")}
       ${urls.join("\n")}
-      ${postUrls(artiklar || [])
+      ${postUrls(artiklar || [])}
+      ${terapheutsUrls(terapeuter_directus_users || [])
         .join("\n")
         .trim()}
-      ${terapheutsUrls(terapeuter_directus_users || [])
+      ${behandlingarUrls(Behandlingar || [])
         .join("\n")
         .trim()}
     </urlset>`.trim(),

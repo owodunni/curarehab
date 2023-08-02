@@ -1,4 +1,4 @@
-query Slugs($filter: artiklar_filter) {
+query Slugs($filter: artiklar_filter, $f2: Behandlingar_filter) {
   artiklar(filter: $filter) {
     slug
     date_updated
@@ -10,5 +10,8 @@ query Slugs($filter: artiklar_filter) {
     directus_users_id {
       slug
     }
+  }
+  Behandlingar(filter: $f2) {
+    Slug
   }
 }
