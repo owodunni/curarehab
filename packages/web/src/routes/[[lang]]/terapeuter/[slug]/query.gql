@@ -16,11 +16,6 @@ query Terapeuts($filter: directus_users_filter) {
       }
       work_title
       slug
-      links {
-        type
-        link
-        display_link
-      }
       seo {
         description
         title
