@@ -36,7 +36,7 @@ export const common: CommonTranslations = {
   titleWeb: "Webansvarig",
   terapheutsTitle: "Våra terapeuter",
   terapheutsText:
-    "Träffa vårt team av legitimerade terapeuter som tillsammans arbetar för att du ska få en skräddarsydd behandling som passar just dina behov och mål.",
+    "Träffa vårt team av legitimerade terapeuter som tillsammans arbetar för att du ska få skräddarsydda behandlingar som passar just dina behov och mål.",
   articlesTitle: "Våra artiklar",
   articlesText: "Läs våra artiklar om smärta och hur du blir av med den.",
   bokaNu: "Boka nu",
@@ -52,7 +52,7 @@ export const common: CommonTranslations = {
     "https://www.1177.se/behandling--hjalpmedel/smartbehandlingar-och-rehabilitering/kiropraktik-och-naprapati/",
   cookies: "Cookies",
   hanoLink: "https://curarehab.bestille.no/OnCust2/",
-  treatmentsTitle: "Återhämtning och rehabilitering: Upptäck vårt breda utbud av behandlingar",
+  treatmentsTitle: "Våra behandlingar",
   treatmentsText:
-    "Erfarna terapeuter vägleder dig till hälsa och välbefinnande - Frigör din potential för återställande, återfå livsglädjen och inspireras till en hälsosammare framtid"
+    "Vi har ett brett utbud av behandlingar för att hjälpa dig mot en hälsosammare livsstil."
 };
