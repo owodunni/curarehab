@@ -42,6 +42,7 @@
           href={l("hem")}
           class="btn-icon btn-lg border-x-secondary-200 absolute m-0 w-32 p-0"
           on:click={close}
+          aria-label={t("common", "title")}
           ><Logo class="text-skog-700 hover:text-skog-900 w-48 transition-colors" /></a
         >
         <div class="hidden lg:flex lg:gap-12 lg:pl-48">
