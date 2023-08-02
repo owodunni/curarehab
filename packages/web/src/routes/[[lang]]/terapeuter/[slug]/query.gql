@@ -32,6 +32,13 @@ query Terapeuts($filter: directus_users_filter) {
           filename_disk
         }
       }
+      social_links {
+        links_id {
+          type
+          link
+          display_link
+        }
+      }
     }
   }
 }

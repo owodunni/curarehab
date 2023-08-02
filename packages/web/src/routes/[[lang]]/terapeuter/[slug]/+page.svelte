@@ -2,16 +2,16 @@
   import Container from "$lib/components/Container.svelte";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import { getTitle } from "$lib/widgets/util";
-  //import type { Link } from "$lib/api";
+  import type { Link } from "$lib/api";
   import type { PageData } from "./$types";
   import SocialLink from "$lib/components/SocialLink.svelte";
   import Section from "$lib/components/Section.svelte";
   import Image from "$lib/components/Image.svelte";
   import Seo from "$lib/components/Seo.svelte";
   export let data: PageData;
-  //let links: Link[] = [];
+  let links: Link[] = [];
   $: ({ t, terapeut } = data);
-  //$: links = (terapeut?.links || []).filter(Boolean) as Link[];
+  $: links = (terapeut?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[];
 </script>
 
 <svelte:head>
@@ -57,7 +57,7 @@
               </a>
             </div>
           </div>
-          <!--ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
+          <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
             {#each links as link}
               <SocialLink
                 {link}
@@ -65,7 +65,7 @@
                 class="text-skog-700 hover:text-skog-900 flex gap-x-4 text-sm leading-6"
               />
             {/each}
-          </ul-->
+          </ul>
         </div>
       </div>
       <div class="lg:order-first lg:row-span-2">
