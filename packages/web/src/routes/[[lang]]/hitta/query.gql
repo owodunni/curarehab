@@ -7,6 +7,13 @@ query Hitta {
       link
       display_link
     }
+    social_links {
+      links_id {
+        type
+        link
+        display_link
+      }
+    }
     seo {
       description
       title

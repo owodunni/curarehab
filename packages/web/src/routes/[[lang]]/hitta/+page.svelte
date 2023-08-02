@@ -4,14 +4,14 @@
   import Section from "$lib/components/Section.svelte";
   import Container from "$lib/components/Container.svelte";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
-  //import SocialLink from "$lib/components/SocialLink.svelte";
-  // import type { Link } from "$lib/api";
+  import SocialLink from "$lib/components/SocialLink.svelte";
+  import type { Link } from "$lib/api";
   export let data: PageData;
   let lang = data.params.lang;
   let hitta = data?.data?.hitta ?? undefined;
   $: hitta = data?.data?.hitta ?? undefined;
   $: lang = data.params.lang;
-  //$: links = (hitta?.links?.links_id || []).filter(Boolean) as Link[];
+  $: links = (hitta?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[];
 </script>
 
 {#if hitta}
@@ -30,7 +30,7 @@
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
           />
-          <!--ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
+          <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
             {#each links as link}
               <SocialLink
                 {link}
@@ -38,7 +38,7 @@
                 class="text-skog-700 hover:text-skog-900 flex gap-x-4 text-sm leading-6"
               />
             {/each}
-          </ul-->
+          </ul>
         </div>
         <div>
           <div class="prose text-theme-body text-base leading-7">
