@@ -22,7 +22,7 @@
       <div
         class="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2"
       >
-        <div class="m-auto lg:pr-4">
+        <div class="mx-auto lg:pt-20">
           <div class="lg:max-w-lg">
             <Image
               srcPath={om.omslags_bild?.filename_disk || ""}
