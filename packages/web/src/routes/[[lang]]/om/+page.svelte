@@ -47,8 +47,8 @@
                     <Image
                       srcPath={directus_users_id?.avatar?.filename_disk || ""}
                       alt={directus_users_id?.avatar?.title || ""}
-                      width={64}
-                      height={64}
+                      width={400}
+                      height={400}
                       class="mx-auto h-24 w-24 rounded-full"
                     />
 
