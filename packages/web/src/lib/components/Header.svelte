@@ -34,7 +34,7 @@
   );
 </script>
 
-<header>
+<header lang={locale}>
   <nav>
     <Container class={"relative z-50 flex justify-between py-8 "}>
       <div class="relative z-10 flex items-center gap-16">
