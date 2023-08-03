@@ -22,7 +22,7 @@
           : "rounded-full aspect-square h-32 w-32 mx-auto sm:h-48 sm:w-48 md:h-64 md:w-64"
       } `}
     />
-    <div class="mt-6 flex justify-between">
+    <div class="mt-6 flex items-start justify-between">
       <slot />
     </div>
     {#if text}
