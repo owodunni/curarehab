@@ -26,17 +26,14 @@
       {title}
     </h3>
 
-    {#if primary}
-      <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled mt-6 sm:hidden">
-        {t("common", "bokaNu")}
-      </a>
-    {/if}
+    <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled mt-6 sm:hidden">
+      {t("common", "bokaNu")}
+    </a>
   </div>
-  {#if primary}
-    <div>
-      <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled hidden sm:block">
-        {t("common", "bokaNu")}
-      </a>
-    </div>
-  {/if}
+  <a
+    href={t("common", "hanoLink")}
+    class="btn btn-sm variant-filled hidden whitespace-nowrap sm:block"
+  >
+    {t("common", "bokaNu")}
+  </a>
 </Card>
