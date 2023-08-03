@@ -11,10 +11,10 @@
     <meta name="description" content={seo.description} />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.description} />
-    {#if seo.image && seo.image.filename_disk}
+    {#if seo.link_photo && seo.link_photo.filename_disk}
       <meta
         property="og:image"
-        content={getAsset2(seo.image.filename_disk, {
+        content={getAsset2(seo.link_photo.filename_disk, {
           width: 1200,
           height: 627,
           quality: 0.8,
@@ -23,7 +23,7 @@
       />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="627" />
-      <meta property="og:image:alt" content={seo.image.title} />
+      <meta property="og:image:alt" content={seo.link_photo.title} />
     {/if}
   {/if}
 </svelte:head>

@@ -56,5 +56,5 @@ export type Treatment = {
 export type SeoMetaData = {
   title?: string | null;
   description?: string | null;
-  image?: Image | null;
+  link_photo?: Image | null;
 };
