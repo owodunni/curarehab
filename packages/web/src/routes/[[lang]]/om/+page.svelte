@@ -34,7 +34,10 @@
           </div>
         </div>
         <div>
-          <div class="prose text-theme-body text-base leading-7">
+          <div
+            class="prose text-theme-body hyphens-auto text-base leading-7"
+            lang={t("common", "lang")}
+          >
             <BlocksRender blocks={(lang === "en" ? om.text_en : om.text)?.blocks || []} />
           </div>
           <ul

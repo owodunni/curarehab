@@ -20,9 +20,13 @@
   text={sammanfattning}
   shape={primary ? "square" : "circle"}
   hideTextOnSm={!primary}
+  lang={t("common", "lang")}
 >
-  <div>
-    <h3 class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading">
+  <div class="w-full">
+    <h3
+      class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading hyphens-auto"
+      lang={t("common", "lang")}
+    >
       {title}
     </h3>
 
@@ -30,10 +34,7 @@
       {t("common", "bokaNu")}
     </a>
   </div>
-  <a
-    href={t("common", "hanoLink")}
-    class="btn btn-sm variant-filled hidden sm:block"
-  >
+  <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled hidden sm:block">
     {t("common", "bokaNu")}
   </a>
 </Card>

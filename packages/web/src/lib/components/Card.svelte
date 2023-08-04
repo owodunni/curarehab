@@ -7,6 +7,7 @@
   export let shape: "circle" | "square" = "square";
   export let text: string | undefined | null = "";
   export let hideTextOnSm = true;
+  export let lang: string;
 </script>
 
 <a href={link} class="group">
@@ -27,7 +28,7 @@
     </div>
     {#if text}
       <article class={`prose mt-5 ${hideTextOnSm ? "hidden sm:block" : ""}`}>
-        <p class="text-theme-body line-clamp-6 text-base leading-7">
+        <p class="text-theme-body line-clamp-6 hyphens-auto text-base leading-7" {lang}>
           {text}
         </p>
       </article>

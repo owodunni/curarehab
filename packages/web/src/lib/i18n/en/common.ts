@@ -1,6 +1,7 @@
 import type { CommonTranslations } from "../types";
 
 export const common: CommonTranslations = {
+  lang: "en",
   link: "/en{link}",
   title: "CuraRehab",
   subtitle: "Pain-free rehab",

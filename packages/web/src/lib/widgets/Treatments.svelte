@@ -1,6 +1,5 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import Card from "$lib/components/Card.svelte";
   import CardList from "$lib/components/CardList.svelte";
   import TreatmentCard from "$lib/components/TreatmentCard.svelte";
   import type { L, T } from "$lib/i18n/t";
