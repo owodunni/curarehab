@@ -15,7 +15,7 @@
 </script>
 
 {#if om}
-  <Seo seo={lang === "en" ? om.seo : om.seo_en} />
+  <Seo seo={lang === "en" ? om.seo_en : om.seo} />
 
   <Section>
     <Container>
