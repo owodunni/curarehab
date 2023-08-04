@@ -15,7 +15,7 @@
 </script>
 
 {#if hitta}
-  <Seo seo={lang === "en" ? hitta.seo : hitta.seo_en} />
+  <Seo seo={lang === "en" ? hitta.seo_en : hitta.seo} />
 
   <Section>
     <Container>
