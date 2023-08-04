@@ -11,6 +11,7 @@ export type Page =
 export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
+  lang: string;
   link: string;
   title: string;
   subtitle: string;

@@ -86,7 +86,7 @@
       <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
         <div>
           <h3 class="text-theme-heading text-sm font-semibold leading-6">{t("common", "hitta")}</h3>
-          <ul class="mt-6 space-y-4">
+          <ul class="mt-6 w-full space-y-4">
             <li>
               {#if location}
                 <SocialLink
