@@ -28,9 +28,12 @@
       text={$page.params.lang === "en"
         ? directus_users_id?.profil_sammanfattning_en
         : directus_users_id?.profil_sammanfattning}
+      lang={t("common", "lang")}
     >
-      <div>
-        <h3 class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading">
+      <div class="w-full">
+        <h3
+          class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading overflow-hidden text-ellipsis"
+        >
           {directus_users_id?.first_name}
           {directus_users_id?.last_name}
         </h3>
