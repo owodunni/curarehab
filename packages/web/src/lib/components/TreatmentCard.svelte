@@ -32,7 +32,7 @@
   </div>
   <a
     href={t("common", "hanoLink")}
-    class="btn btn-sm variant-filled hidden whitespace-nowrap sm:block"
+    class="btn btn-sm variant-filled hidden sm:block"
   >
     {t("common", "bokaNu")}
   </a>
