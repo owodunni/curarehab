@@ -17,7 +17,7 @@
       <polygon points="0,0 90,0 50,100 0,100" />
     </svg>
 
-    <div class="relative lg:py-56 lg:pr-0">
+    <div class="relative lg:py-32 lg:pr-0">
       <slot />
     </div>
   </div>
