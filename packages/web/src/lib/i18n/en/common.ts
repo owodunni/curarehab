@@ -37,7 +37,7 @@ export const common: CommonTranslations = {
   titleWeb: "Web lord",
   terapheutsTitle: "Our therapists",
   terapheutsText:
-    "Meat our a team of licensed therapists who work together to provide you with tailored treatments that suits your needs and goals.",
+    "Meet our a team of licensed therapists who work together to provide you with tailored treatments that suits your needs and goals.",
   articlesTitle: "Our articles",
   articlesText: "Read our articles about pain and how to get rid of it.",
   bokaNu: "Book now",
