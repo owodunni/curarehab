@@ -20,11 +20,10 @@
   text={sammanfattning}
   shape={primary ? "square" : "circle"}
   hideTextOnSm={!primary}
-  lang={t("common", "lang")}
 >
   <div class="w-full">
     <h3
-      class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading hyphens-auto"
+      class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading overflow-hidden text-ellipsis"
       lang={t("common", "lang")}
     >
       {title}

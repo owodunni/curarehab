@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="lg:order-first lg:row-span-2">
-          <article class="prose hyphens-auto" {lang}>
+          <article class="prose">
             <BlocksRender blocks={(lang === "en" ? data.text_en : data.text)?.blocks || []} />
           </article>
         </div>

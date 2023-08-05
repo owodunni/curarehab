@@ -28,7 +28,6 @@
       text={$page.params.lang === "en"
         ? directus_users_id?.profil_sammanfattning_en
         : directus_users_id?.profil_sammanfattning}
-      lang={t("common", "lang")}
     >
       <div class="w-full">
         <h3
