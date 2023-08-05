@@ -11,7 +11,7 @@
   $: ({ t, l } = data);
 </script>
 
-<Section extras="theme-sand-dark">
+<Section extras="theme-sand-dark lg:pt-8">
   <Hero {t} {l} image={data?.data?.Hem?.omslagsbild ?? undefined} />
 </Section>
 <Section extras="theme-skog">
