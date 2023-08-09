@@ -22,7 +22,13 @@ jobs:
           npx playwright install --with-deps chromium
       - run: npm run lint
       - run: npm run build
+        env:
+          VITE_CMS_TOKEN: ${{ secrets.VITE_CMS_TOKEN }}
+          CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
       - run: npm run test
+        env:
+          VITE_CMS_TOKEN: ${{ secrets.VITE_CMS_TOKEN }}
+          CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
       - run: npm run lighthouse:test
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
