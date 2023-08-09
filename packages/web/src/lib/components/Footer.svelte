@@ -122,7 +122,7 @@
       <div />
       <div class="col-start-2 mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0 xl:grid-cols-4">
         {#each linksWithCategory as outerLinks}
-          {#each Object.entries(outerLinks) as [title, links], i}
+          {#each Object.entries(outerLinks) as [title, links]}
             <div class="mt-0">
               <h3 class="text-theme-body text-sm font-semibold leading-6">{title}</h3>
               <ul class="mt-6 space-y-4">

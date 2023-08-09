@@ -1,1 +1,2 @@
 packages/directus/config.js
+$types.gql.d.ts
