@@ -59,6 +59,6 @@
     "@sentry/tracing": "^7.46.0",
     "@urql/core": "^4.0.8",
     "marked": "^4.3.0",
-    "toucan-js": "^3.1.0"
+    "toucan-js": "^3.2.1"
   }
 }
