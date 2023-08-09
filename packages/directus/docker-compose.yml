@@ -10,8 +10,6 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    networks:
-      - directus
     depends_on:
       - directus
     #command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
@@ -21,8 +19,6 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    networks:
-      - directus
     #entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
   cache:
@@ -30,8 +26,6 @@ services:
     image: redis:6
     ports:
       - 6379:6379
-    networks:
-      - directus
 
   directus:
     container_name: directus
@@ -41,8 +35,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8055:80
-    networks:
-      - directus
     depends_on:
       - cache
     environment:
@@ -103,6 +95,3 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
-
-networks:
-  directus:
