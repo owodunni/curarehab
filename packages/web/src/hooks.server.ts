@@ -1,19 +1,25 @@
 import type { Handle, HandleServerError } from "@sveltejs/kit";
-import { sentry } from "$lib/sentry";
 import { Toucan } from "toucan-js";
 import { dev } from "$app/environment";
 import { PUBLIC_CMS_URL } from "$env/static/public";
-import { CMS_TOKEN } from "$env/static/private";
+import { CMS_TOKEN, SENTRY_DSN } from "$env/static/private";
 import { Client, fetchExchange } from "@urql/core";
 
-const toucan = new Toucan({
-  dsn: sentry.dsn
-});
+const toucan = (() => {
+  let instance: Toucan | null = null;
+
+  return () => {
+    if (!instance) {
+      instance = new Toucan({ dsn: SENTRY_DSN });
+    }
+    return instance;
+  };
+})();
 
 export const handleError: HandleServerError = async ({ error, event }) => {
   console.info("Handle error", error, event);
 
-  if (!dev) toucan.captureException(error, { data: { svelteKit: { event } } });
+  if (!dev) toucan().captureException(error, { data: { svelteKit: { event } } });
 
   const toMessage = (): string => {
     const message =
