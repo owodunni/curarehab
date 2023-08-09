@@ -13,10 +13,10 @@
     "test": "npm run test --workspaces --if-present",
     "fix": "run-p format:eslint format:prettier",
     "format:prettier": "prettier --plugin-search-dir . --write .",
-    "format:eslint": "eslint . --fix",
+    "format:eslint": "eslint . --fix --max-warnings 0",
     "lint": "run-p lint:prettier lint:eslint",
     "lint:prettier": "prettier --plugin-search-dir . --check .",
-    "lint:eslint": "eslint .",
+    "lint:eslint": "eslint . --max-warnings 0",
     "lighthouse:test": "npm run test:lighthouse --workspace=@curarehab/web",
     "lighthouse:badge": "npx lighthouse-badge-generator packages/web/build/lighthouse"
   },
