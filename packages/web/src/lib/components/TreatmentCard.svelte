@@ -19,7 +19,6 @@
   image={treatment?.bild}
   text={sammanfattning}
   shape={primary ? "square" : "circle"}
-  hideTextOnSm={!primary}
 >
   <div class="w-full">
     <h3
@@ -28,12 +27,8 @@
     >
       {title}
     </h3>
-
-    <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled mt-6 sm:hidden">
-      {t("common", "bokaNu")}
-    </a>
   </div>
-  <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled hidden sm:block">
+  <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled">
     {t("common", "bokaNu")}
   </a>
 </Card>
