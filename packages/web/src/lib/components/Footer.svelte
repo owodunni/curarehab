@@ -120,24 +120,22 @@
     </div>
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div />
-      <div class="col-start-2 mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+      <div class="col-start-2 mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0 xl:grid-cols-4">
         {#each linksWithCategory as outerLinks}
-          <div class={"md:grid md:grid-cols-2 md:gap-8"}>
-            {#each Object.entries(outerLinks) as [title, links], i}
-              <div class={i % 2 === 0 ? "" : "mt-10 md:mt-0"}>
-                <h3 class="text-theme-body text-sm font-semibold leading-6">{title}</h3>
-                <ul class="mt-6 space-y-4">
-                  {#each toLinks(links) as [href, linkTitle]}
-                    <li>
-                      <a {href} class="text-theme-muted hover:text-theme-muted-hover text-sm"
-                        >{linkTitle}</a
-                      >
-                    </li>
-                  {/each}
-                </ul>
-              </div>
-            {/each}
-          </div>
+          {#each Object.entries(outerLinks) as [title, links], i}
+            <div class="mt-0">
+              <h3 class="text-theme-body text-sm font-semibold leading-6">{title}</h3>
+              <ul class="mt-6 space-y-4">
+                {#each toLinks(links) as [href, linkTitle]}
+                  <li>
+                    <a {href} class="text-theme-muted hover:text-theme-muted-hover text-sm"
+                      >{linkTitle}</a
+                    >
+                  </li>
+                {/each}
+              </ul>
+            </div>
+          {/each}
         {/each}
       </div>
     </div>
