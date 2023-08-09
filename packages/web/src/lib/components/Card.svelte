@@ -18,7 +18,7 @@
       class={`bg-skog-400 object-cover ${
         shape === "square"
           ? "w-full  rounded-2xl  aspect-[16/9] sm:aspect-[2/1] lg:aspect-[3/2]"
-          : "rounded-full aspect-square h-32 w-32 mx-auto sm:h-48 sm:w-48 md:h-64 md:w-64"
+          : "rounded-full aspect-square h-52 w-52 mx-auto md:h-64 md:w-64"
       } `}
     />
     <div class="mt-6 flex items-start justify-between">
