@@ -39,12 +39,9 @@
         <p class="text-theme-muted text-sm leading-6">
           {getTitle(directus_users_id?.work_title || "", t)}
         </p>
-        <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled mt-6 sm:hidden">
-          {t("common", "bokaNu")}
-        </a>
       </div>
       <div>
-        <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled hidden sm:block">
+        <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled">
           {t("common", "bokaNu")}
         </a>
       </div>

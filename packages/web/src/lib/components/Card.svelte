@@ -6,7 +6,6 @@
   export let image: ImageType | undefined | null;
   export let shape: "circle" | "square" = "square";
   export let text: string | undefined | null = "";
-  export let hideTextOnSm = true;
 </script>
 
 <a href={link} class="group">
@@ -26,7 +25,7 @@
       <slot />
     </div>
     {#if text}
-      <article class={`prose mt-5 ${hideTextOnSm ? "hidden sm:block" : ""}`}>
+      <article class={`prose mt-5`}>
         <p class="text-theme-body line-clamp-6 overflow-hidden text-ellipsis text-base leading-7">
           {text}
         </p>
