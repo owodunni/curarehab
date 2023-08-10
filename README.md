@@ -1,32 +1,11 @@
 # Cura Rehab
 
-## Lighthouse
+## Unlighthouse
 
-We use [Google Lighthouse](https://pagespeed.web.dev/analysis/https-curarehab-se/7k96u87w6t) to monitor [curarehab.se](https://curarehab.se) performance. We automatically generate performance reports.
+We use [Unlighthouse](https://unlighthouse.dev) to automatically monitor performance. The reports are generated weekly and can be found here:
 
-### /
-
-[![accecibility](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_.accessibility.svg)
-![best-practices](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_.best-practices.svg)
-![performance](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_.performance.svg)
-![seo](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_.seo.svg)
-![pwa](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_.pwa.svg)](https://htmlpreview.github.io/?https://github.com/owodunni/curarehab-reports/blob/gh-pages/_.report.html)
-
-### /artiklar
-
-[![accecibility](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar.accessibility.svg)
-![best-practices](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar.best-practices.svg)
-![performance](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar.performance.svg)
-![seo](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_artiklar.seo.svg)
-![pwa](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_artiklar.pwa.svg)](https://htmlpreview.github.io/?https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar.report.html)
-
-### /artiklar/vulvodyni
-
-[![accecibility](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar_vulvodyni.accessibility.svg)
-![best-practices](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar_vulvodyni.best-practices.svg)
-![performance](https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar_vulvodyni.performance.svg)
-![seo](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_artiklar_vulvodyni.seo.svg)
-![pwa](https://raw.githubusercontent.com/owodunni/curarehab-reports/gh-pages/_artiklar_vulvodyni.pwa.svg)](https://htmlpreview.github.io/?https://github.com/owodunni/curarehab-reports/blob/gh-pages/_artiklar_vulvodyni.report.html)
+- [release](https://curarehab-reports.pages.dev/)
+- [master](https://master.curarehab-reports.pages.dev/)
 
 ## Release
 

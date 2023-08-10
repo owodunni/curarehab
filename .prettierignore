@@ -11,3 +11,7 @@ package-lock.json
 yarn.lock
 build
 .lighthouseci
+.unlighthouse
+dist
+$types.gql.d.ts
+.gql
