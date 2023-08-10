@@ -12,7 +12,6 @@
     "test": "run-s test:unit test:system",
     "test:unit": "vitest run",
     "test:system": "playwright test",
-    "test:lighthouse": "lhci autorun --config ./lighthouserc.ssr.json",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write ."
   },
@@ -22,8 +21,6 @@
     "@graphql-codegen/near-operation-file-preset": "^2.5.0",
     "@graphql-codegen/typescript": "^4.0.0",
     "@graphql-codegen/typescript-operations": "^4.0.0",
-    "@lhci/cli": "^0.12.0",
-    "@lighthouse-test/badge-generator": "^1.0.2",
     "@playwright/test": "^1.34.3",
     "@rgossiaux/svelte-heroicons": "^0.1.2",
     "@sveltejs/adapter-auto": "^2.0.0",
