@@ -46,7 +46,7 @@
     "typescript": "^5.0.4",
     "vite": "^4.3.0",
     "vite-plugin-graphql-codegen": "^3.2.2",
-    "vitest": "^0.25.3"
+    "vitest": "^0.34.1"
   },
   "type": "module",
   "dependencies": {
