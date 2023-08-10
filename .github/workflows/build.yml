@@ -5,6 +5,9 @@ on:
     branches: [master, release]
   pull_request:
     branches: [master]
+  schedule:
+    # Run once a week on thursday night
+    - cron: "0 4 * * 5"
 
 jobs:
   build:
@@ -29,36 +32,34 @@ jobs:
         env:
           VITE_CMS_TOKEN: ${{ secrets.VITE_CMS_TOKEN }}
           CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
-      - run: npm run lighthouse:test
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-      - run: npm run lighthouse:badge
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
+      - run: npm run unlighthouse:master
+        if: github.ref == 'refs/heads/master' && github.event.schedule == '0 4 * * 5'
       - name: Deploy lighthouse
         uses: cpina/github-action-push-to-another-repository@main
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/master' && github.event.schedule == '0 4 * * 5'
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
-          source-directory: "packages/web/build/lighthouse"
+          source-directory: ".unlighthouse"
           destination-github-username: "owodunni"
           destination-repository-name: "curarehab-reports"
           user-email: alex.o.poole@gmail.com
-          target-branch: gh-pages
+          target-branch: master
 
+      - run: npm run unlighthouse:release
+        if: github.ref == 'refs/heads/master' && github.event.schedule == '0 4 * * 5'
       - name: Deploy lighthouse release
         uses: cpina/github-action-push-to-another-repository@main
-        if: github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/master' && github.event.schedule == '0 4 * * 5'
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
-          source-directory: "packages/web/build/lighthouse"
+          source-directory: ".unlighthouse-release"
           destination-github-username: "owodunni"
           destination-repository-name: "curarehab-reports"
           user-email: alex.o.poole@gmail.com
-          target-branch: gh-pages-release
+          target-branch: release
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         if: github.ref == 'refs/heads/release'
