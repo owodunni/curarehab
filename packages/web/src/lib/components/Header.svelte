@@ -79,14 +79,14 @@
             <div
               aria-hidden="true"
               class="bg-sand-300/60 fixed inset-0 z-0 backdrop-blur-sm"
-              in:fade={{ duration: 150 }}
-              out:fade={{ duration: 200 }}
+              in:fade|global={{ duration: 150 }}
+              out:fade|global={{ duration: 200 }}
               on:click={close}
             />
             <div
               class="absolute inset-x-0 top-0 origin-top"
-              in:fly={{ y: -64, duration: 150 }}
-              out:fly={{ y: -64, duration: 200 }}
+              in:fly|global={{ y: -64, duration: 150 }}
+              out:fly|global={{ y: -64, duration: 200 }}
             >
               <div
                 id="popover-panel"
