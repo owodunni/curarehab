@@ -7,7 +7,7 @@ on:
     branches: [master]
   schedule:
     # Run once a week on thursday night
-    - cron: "0 4 * * 5"
+    - cron: "0 0 * * 5"
 
 jobs:
   build:
@@ -34,10 +34,10 @@ jobs:
           CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
 
       - run: npm run unlighthouse:master
-        if: github.ref == 'refs/heads/master' && github.event.schedule == '0 4 * * 5'
+        if: github.ref == 'refs/heads/master' && github.event.schedule == '0 * * * 5'
       - name: Deploy lighthouse
         uses: cpina/github-action-push-to-another-repository@main
-        if: github.ref == 'refs/heads/master' && github.event.schedule == '0 4 * * 5'
+        if: github.ref == 'refs/heads/master' && github.event.schedule == '0 * * * 5'
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
@@ -48,10 +48,10 @@ jobs:
           target-branch: master
 
       - run: npm run unlighthouse:release
-        if: github.ref == 'refs/heads/master' && github.event.schedule == '0 4 * * 5'
+        if: github.ref == 'refs/heads/master' && github.event.schedule == '0 * * * 5'
       - name: Deploy lighthouse release
         uses: cpina/github-action-push-to-another-repository@main
-        if: github.ref == 'refs/heads/master' && github.event.schedule == '0 4 * * 5'
+        if: github.ref == 'refs/heads/master' && github.event.schedule == '0 * * * 5'
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
