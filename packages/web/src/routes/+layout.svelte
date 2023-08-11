@@ -37,11 +37,10 @@
 </script>
 
 <Header t={data.t} l={data.l} locale={data.params.lang === "en" ? "en" : "sv"} route={data.route} />
-<main lang={data.params.lang}>
+<main>
   <slot />
 </main>
 <Footer
-  locale={data.params.lang === "en" ? "en" : "sv"}
   t={data.t}
   l={data.l}
   email={toLink(data.widgets?.footer?.email)}

@@ -58,6 +58,8 @@ export const handle: Handle = async ({ event, resolve }) => {
       locals: { ...event.locals, client }
     },
     {
+      transformPageChunk: ({ html }) =>
+        html.replace("%lang%", event.params.lang === "en" ? "en" : "sv"),
       /**
        * There´s an issue with `filterSerializedResponseHeaders` not working when using `sequence`
        *
