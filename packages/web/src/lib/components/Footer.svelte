@@ -13,7 +13,6 @@
   export let email: Link | undefined;
   export let location: Link | undefined;
   export let phone: Link | undefined;
-  export let locale: "sv" | "en";
 
   /**
    * This structure is a bit complex, but it allows us to seperate out links from the html structure.
@@ -65,11 +64,7 @@
   }
 </script>
 
-<footer
-  class="theme-skog-dark bg-section pb-8 pt-16 sm:pt-24"
-  aria-labelledby="footer-heading"
-  lang={locale}
->
+<footer class="theme-skog-dark bg-section pb-8 pt-16 sm:pt-24" aria-labelledby="footer-heading">
   <Container>
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
