@@ -1,11 +1,16 @@
-# Cura Rehab
+# CuraRehab
 
-## Unlighthouse
+This is the source code for the [CuraRehab](https://curarehab.se) website. This is a high performance static site, that is easy to work with
+and cheap to maintain. The site is built using [SvelteKit](https://kit.svelte.dev/) and uses a selfhosted [directus](https://directus.io/) instance as a headless CMS.
+The site is hosted on [Cloudflare Pages](https://pages.cloudflare.com/) where it is statically built, making it so that directus is only used when builing the site.
+This removes any worries about security and performance. Images are uploaded to s3 and served through CloudFront using [image-optimization](https://github.com/aws-samples/image-optimization)
+to get a cheap and fast image CDN that supports resizing and formatting.
 
-We use [Unlighthouse](https://unlighthouse.dev) to automatically monitor performance. The reports are generated weekly and can be found here:
+The result is a high performance site that is a joy to work with and doesn't limit what can be built.
+But don't take my word for it check out our [Unlighthouse](https://unlighthouse.dev) scores!
 
-- [release](https://curarehab-reports.pages.dev/)
-- [master](https://master.curarehab-reports.pages.dev/)
+- [release - static](https://curarehab-reports.pages.dev/)
+- [master - dynamic](https://master.curarehab-reports.pages.dev/)
 
 ## Release
 
