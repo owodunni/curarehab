@@ -1,9 +1,11 @@
 # CuraRehab
 
-This is the source code for the [CuraRehab](https://curarehab.se) website. This is a high performance static site, that is easy to work with
-and cheap to maintain. The site is built using [SvelteKit](https://kit.svelte.dev/) and uses a selfhosted [directus](https://directus.io/) instance as a headless CMS.
+This is the source code [curarehab.se](https://curarehab.se). This is a high performance static site, that is easy to work with
+and cheap to maintain.
+
+The site is built using [SvelteKit](https://kit.svelte.dev/), [tailwindcss](https://tailwindcss.com/) and [directus](https://directus.io/).
 The site is hosted on [Cloudflare Pages](https://pages.cloudflare.com/) where it is statically built, making it so that directus is only used when builing the site.
-This removes any worries about security and performance. Images are uploaded to s3 and served through CloudFront using [image-optimization](https://github.com/aws-samples/image-optimization)
+Images are uploaded to s3 and served through CloudFront using [image-optimization](https://github.com/aws-samples/image-optimization)
 to get a cheap and fast image CDN that supports resizing and formatting.
 
 The result is a high performance site that is a joy to work with and doesn't limit what can be built.
