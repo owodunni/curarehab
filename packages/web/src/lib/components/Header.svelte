@@ -1,6 +1,7 @@
 <script lang="ts">
   import Container from "./Container.svelte";
-  import { ChevronUpIcon, MenuIcon } from "@rgossiaux/svelte-heroicons/outline";
+  import MenuIcon from "../components/Icons/Menu.svelte";
+  import ChevronUpIcon from "../components/Icons/ChevronUp.svelte";
   import type { T, L } from "$lib/i18n/t";
   import { fade, fly } from "svelte/transition";
   import Logo from "./Logo.svelte";
