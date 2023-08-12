@@ -4,7 +4,7 @@
   import Header from "$lib/components/Header.svelte";
   import type { LayoutData } from "./$types";
   import type { Link } from "$lib/api";
-    import Analytics from "$lib/components/Analytics.svelte";
+  import Analytics from "$lib/components/Analytics.svelte";
 
   export let data: LayoutData;
 
