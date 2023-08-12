@@ -4,6 +4,7 @@
   import Header from "$lib/components/Header.svelte";
   import type { LayoutData } from "./$types";
   import type { Link } from "$lib/api";
+    import Analytics from "$lib/components/Analytics.svelte";
 
   export let data: LayoutData;
 
@@ -35,6 +36,8 @@
     return false;
   }
 </script>
+
+<Analytics />
 
 <Header t={data.t} l={data.l} locale={data.params.lang === "en" ? "en" : "sv"} route={data.route} />
 <main>

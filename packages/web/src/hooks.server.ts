@@ -1,7 +1,7 @@
 import type { Handle, HandleServerError } from "@sveltejs/kit";
 import { Toucan } from "toucan-js";
 import { dev } from "$app/environment";
-import { PUBLIC_CMS_URL } from "$env/static/public";
+import { PUBLIC_CMS_URL, PUBLIC_MEASUREMENTS_ID } from "$env/static/public";
 import { CMS_TOKEN, SENTRY_DSN } from "$env/static/private";
 import { Client, fetchExchange } from "@urql/core";
 
@@ -59,7 +59,9 @@ export const handle: Handle = async ({ event, resolve }) => {
     },
     {
       transformPageChunk: ({ html }) =>
-        html.replace("%lang%", event.params.lang === "en" ? "en" : "sv"),
+        html
+          .replace("%lang%", event.params.lang === "en" ? "en" : "sv")
+          .replaceAll("%MEASUREMENT_ID%", PUBLIC_MEASUREMENTS_ID),
       /**
        * There´s an issue with `filterSerializedResponseHeaders` not working when using `sequence`
        *
