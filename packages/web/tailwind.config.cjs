@@ -24,12 +24,16 @@ module.exports = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
-      typography: (theme) => {
+      typography: () => {
         return {
           DEFAULT: {
             css: {
               "--tw-prose-body": fromVariable("--color-text-body")(1),
-              "--tw-prose-heading": fromVariable("--color-text-heading")(1)
+              "--tw-prose-headings": fromVariable("--color-text-heading")(1),
+              h1: {
+                lineHeight: "1.3",
+                fontWeight: "700"
+              }
             }
           }
         };
