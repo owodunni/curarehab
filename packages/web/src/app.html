@@ -10,10 +10,11 @@
       }
 
       gtag("js", new Date());
-      /*gtag("consent", "default", {
+      gtag("consent", "default", {
         ad_storage: "denied",
-        analytics_storage: "denied"
-      });*/
+        analytics_storage: "denied",
+        wait_for_update: 500
+      });
       gtag("config", "%MEASUREMENT_ID%");
     </script>
 
