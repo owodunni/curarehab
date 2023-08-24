@@ -1,17 +1,20 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import { PUBLIC_MEASUREMENTS_ID } from "$env/static/public";
-  import type { L } from "$lib/i18n/t";
+  import type { L, T } from "$lib/i18n/t";
   import { setCookiePermissions, cookieSettings, getGtag } from "$lib/cookies";
+  import { fly } from "svelte/transition";
+  import { onMount } from "svelte";
 
   export let l: L;
+  export let t: T;
 
   $: {
     const settings = $cookieSettings;
     if (settings.permission !== undefined) {
       getGtag()?.("consent", "default", {
-        ad_storage: settings.cookiePermission.googleAnalytics ? "granted" : "denied",
-        analytics_storage: settings.cookiePermission.googleAnalytics ? "granted" : "denied"
+        ad_storage: settings.cookiePermissions.googleAnalytics ? "granted" : "denied",
+        analytics_storage: settings.cookiePermissions.googleAnalytics ? "granted" : "denied"
       });
     }
     getGtag()?.("config", PUBLIC_MEASUREMENTS_ID, {
@@ -19,34 +22,45 @@
       page_path: $page.url.pathname
     });
   }
+  let show = false;
+  onMount(() => setTimeout(() => (show = true), 400));
 </script>
 
-{#if $cookieSettings.permission === undefined}
-  <div class="pointer-events-none fixed inset-x-0 bottom-0 z-10 px-6 pb-6">
+{#if $cookieSettings.permission === undefined && show}
+  <div
+    class="theme-sand-dark pointer-events-none fixed inset-x-0 bottom-0 z-10 px-6 pb-6"
+    out:fly={{ y: 64, duration: 300 }}
+    in:fly={{ y: 64, duration: 500 }}
+  >
     <div
-      class="pointer-events-auto mx-auto max-w-xl rounded-xl bg-white p-6 shadow-lg ring-1 ring-gray-900/10"
+      class="bg-sand-100 ring-skog-900/10 pointer-events-auto mx-auto max-w-xl rounded-xl p-6 shadow-lg ring-1"
     >
-      <p class="text-sm leading-6 text-gray-900">
-        This website uses cookies to supplement a balanced diet and provide a much deserved reward
-        to the senses after consuming bland but nutritious meals. Accepting our cookies is optional
-        but recommended, as they are delicious. See our <a
-          href={l("cookies")}
-          class="font-semibold text-indigo-600">cookie policy</a
+      <p class="text-theme-body text-sm leading-6">
+        {t("common", "cookieBannerText")}
+        <a href={l("cookies")} class="text-skog-700 hover:text-skog-900 font-semibold"
+          >{t("common", "cookiePolicy")}</a
         >.
       </p>
-      <div class="mt-4 flex items-center gap-x-5">
+
+      <div class="mt-4 flex items-center gap-x-6">
         <button
           type="button"
-          on:click={() => setCookiePermissions(true)}
-          class="rounded-md bg-gray-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+          on:click={() => {
+            setCookiePermissions(true);
+          }}
+          class="btn variant-filled"
         >
-          Accept all
+          {t("common", "cookieBannerAcceptButton")}
         </button>
         <button
           type="button"
-          on:click={() => setCookiePermissions(false)}
-          class="text-sm font-semibold leading-6 text-gray-900">Reject all</button
+          on:click={() => {
+            setCookiePermissions(false);
+          }}
+          class="btn variant-ghost"
         >
+          {t("common", "cookieBannerRejectButton")}
+        </button>
       </div>
     </div>
   </div>

@@ -53,6 +53,10 @@ export type CommonTranslations = {
   naprapatLinkTitle: string;
   naprapatHref: string;
   cookies: string;
+  cookieBannerText: string;
+  cookieBannerAcceptButton: string;
+  cookieBannerRejectButton: string;
+  cookiePolicy: string;
 };
 
 export type HemTranslations = {

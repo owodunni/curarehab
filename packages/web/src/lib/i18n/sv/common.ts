@@ -45,5 +45,10 @@ export const common: CommonTranslations = {
   hanoLink: "https://curarehab.bestille.no/OnCust2/",
   treatmentsTitle: "Våra behandlingar",
   treatmentsText:
-    "Vi har ett brett utbud av behandlingar för att hjälpa dig mot en hälsosammare livsstil."
+    "Vi har ett brett utbud av behandlingar för att hjälpa dig mot en hälsosammare livsstil.",
+  cookieBannerText:
+    "Vi använder cookies för att förbättra din upplevelse på vår webbplats. Du kan anpassa dina inställningar och läsa mer om det i vår",
+  cookieBannerAcceptButton: "Godkänn alla",
+  cookieBannerRejectButton: "Godkänn nödvändiga",
+  cookiePolicy: "cookiepolicy"
 };

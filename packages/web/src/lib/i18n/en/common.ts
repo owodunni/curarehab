@@ -44,5 +44,10 @@ export const common: CommonTranslations = {
   cookies: "Cookies",
   hanoLink: "https://curarehab.bestille.no/OnCust2/",
   treatmentsTitle: "Our Treatments",
-  treatmentsText: "We have a wide range of treatments to help you towards a healthier lifestyle."
+  treatmentsText: "We have a wide range of treatments to help you towards a healthier lifestyle.",
+  cookieBannerText:
+    "We use cookies to enhance your browsing experience and analyze site traffic. You can customize your preferences and learn more in our",
+  cookieBannerAcceptButton: "Accept all",
+  cookieBannerRejectButton: "Reject all",
+  cookiePolicy: "cookie policy"
 };
