@@ -37,7 +37,7 @@
   }
 </script>
 
-<Analytics l={data.l} />
+<Analytics l={data.l} t={data.t} />
 
 <Header t={data.t} l={data.l} locale={data.params.lang === "en" ? "en" : "sv"} route={data.route} />
 <main>
