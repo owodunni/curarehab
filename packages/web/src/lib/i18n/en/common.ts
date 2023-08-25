@@ -41,7 +41,7 @@ export const common: CommonTranslations = {
   naprapatLinkTitle: "Chiropractic and naprapathy",
   naprapatHref:
     "https://www.jointacademy.com/us/en/facts/osteoarthritis-treatment/naprapath-naprapathy/",
-  cookies: "Cookies",
+  cookies: "Cookie Policy",
   hanoLink: "https://curarehab.bestille.no/OnCust2/",
   treatmentsTitle: "Our Treatments",
   treatmentsText: "We have a wide range of treatments to help you towards a healthier lifestyle.",
