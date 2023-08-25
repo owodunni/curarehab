@@ -3,7 +3,7 @@ import { writable } from "svelte/store";
 
 export const cookies = ["googleAnalytics", "googleAds"] as const;
 type Cookies = (typeof cookies)[number];
-type CookiePermission = Record<Cookies, boolean>;
+export type CookiePermission = Record<Cookies, boolean>;
 type CookieSettings =
   | { permission: boolean; updated: string; cookiePermission: CookiePermission }
   | { permission: undefined };
@@ -26,6 +26,14 @@ function parseDate(date: string): Date | undefined {
     console.warn(e);
     return undefined;
   }
+}
+
+function clearCookies() {
+  document.cookie.split(";").forEach(function (c) {
+    document.cookie = c
+      .replace(/^ +/, "")
+      .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+  });
 }
 
 function getCookiePermission(): CookieSettings {
@@ -51,12 +59,14 @@ function getCookiePermission(): CookieSettings {
         lastUpdated < threeDaysAgo
       ) {
         localStorage.removeItem("cookiePermission");
+        clearCookies();
         return defaultCookiePermission;
       }
       return settings;
     }
   }
 
+  clearCookies();
   return defaultCookiePermission;
 }
 
@@ -66,19 +76,20 @@ export const cookieSettings = writable<CookieSettings>(
 
 if (browser) {
   cookieSettings.subscribe((settings) => {
-    console.log(settings);
     if (settings.permission === undefined) {
       localStorage.removeItem("cookiePermission");
     } else localStorage.setItem("cookiePermission", JSON.stringify(settings));
   });
 }
 
-function updateCookiesPermission(cookiePermission: CookiePermission) {
+export function updateCookiesPermission(cookiePermission: CookiePermission) {
+  const permission = Object.values(cookiePermission).includes(true);
   cookieSettings.set({
-    permission: Object.values(cookiePermission).every(Boolean),
+    permission,
     updated: new Date().toISOString(),
     cookiePermission
   });
+  if (!permission) clearCookies();
 }
 export function setCookiePermissions(value: boolean) {
   updateCookiesPermission(

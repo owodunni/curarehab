@@ -112,6 +112,11 @@ export type TreatmentsTranslations = {
 export type CookiesTranslations = {
   title: string;
   description: string;
+  cookiePreferences: string;
+  statistics: string;
+  statisticsDescription: string;
+  marketing: string;
+  marketingDescription: string;
 };
 
 export type TranslationsByGroup = {
