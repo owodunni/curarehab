@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import TextPage from "$lib/components/TextPage.svelte";
+  import ContentPage from "$lib/components/ContentPage.svelte";
   export let data: PageData;
   $: ({ t } = data);
 </script>
 
-<TextPage data={data?.data?.sekretess} {t} />
+<ContentPage data={data?.data?.sekretess} {t} />
