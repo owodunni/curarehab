@@ -42,16 +42,7 @@
                 sizes="(min-width: 1024px) 32rem, 20rem"
                 class="aspect-square rounded-2xl  object-cover"
               />
-              <div class="mt-6 flex items-start justify-between">
-                <div>
-                  <slot />
-                </div>
-                <div>
-                  <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled">
-                    {t("common", "bokaNu")}
-                  </a>
-                </div>
-              </div>
+              <slot />
               {#if data.links}
                 <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
                   {#each data.links || [] as link}

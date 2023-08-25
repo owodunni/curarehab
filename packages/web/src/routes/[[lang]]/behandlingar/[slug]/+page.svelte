@@ -1,12 +1,12 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import TextPage from "$lib/components/TextPage.svelte";
+  import ContentPage from "$lib/components/ContentPage.svelte";
   export let data: PageData;
 
   $: ({ t, behandling } = data);
 </script>
 
-<TextPage
+<ContentPage
   data={{
     image: behandling.bild,
     seo: behandling.seo,
@@ -27,4 +27,4 @@
     {t("behandlingar", "tid")}:
     {behandling.tid} min
   </p>
-</TextPage>
+</ContentPage>
