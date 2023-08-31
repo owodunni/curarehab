@@ -3,9 +3,9 @@ import { writable } from "svelte/store";
 
 export const cookies = ["googleAnalytics", "googleAds"] as const;
 type Cookies = (typeof cookies)[number];
-export type CookiePermission = Record<Cookies, boolean>;
+export type CookiePermissions = Record<Cookies, boolean>;
 type CookieSettings =
-  | { permission: boolean; updated: string; cookiePermission: CookiePermission }
+  | { permission: boolean; updated: string; cookiePermissions: CookiePermissions }
   | { permission: undefined };
 
 const defaultCookiePermission = {
@@ -15,7 +15,7 @@ const defaultCookiePermission = {
 const serverCookiePermission = {
   permission: false,
   updated: new Date().toISOString(),
-  cookiePermission: { googleAnalytics: false, googleAds: false }
+  cookiePermissions: { googleAnalytics: false, googleAds: false }
 } satisfies CookieSettings;
 
 // parse sting to get date or return undefined
@@ -29,6 +29,7 @@ function parseDate(date: string): Date | undefined {
 }
 
 function clearCookies() {
+  if (!browser) return;
   document.cookie.split(";").forEach(function (c) {
     document.cookie = c
       .replace(/^ +/, "")
@@ -36,7 +37,7 @@ function clearCookies() {
   });
 }
 
-function getCookiePermission(): CookieSettings {
+function getCookiePermissions(): CookieSettings {
   const cookiePermission = localStorage.getItem("cookiePermission");
   if (cookiePermission) {
     const settings = JSON.parse(cookiePermission) as CookieSettings;
@@ -71,7 +72,7 @@ function getCookiePermission(): CookieSettings {
 }
 
 export const cookieSettings = writable<CookieSettings>(
-  browser ? getCookiePermission() : serverCookiePermission
+  browser ? getCookiePermissions() : serverCookiePermission
 );
 
 if (browser) {
@@ -82,18 +83,18 @@ if (browser) {
   });
 }
 
-export function updateCookiesPermission(cookiePermission: CookiePermission) {
+export function updateCookiePermissions(cookiePermission: CookiePermissions) {
   const permission = Object.values(cookiePermission).includes(true);
   cookieSettings.set({
     permission,
     updated: new Date().toISOString(),
-    cookiePermission
+    cookiePermissions: cookiePermission
   });
   if (!permission) clearCookies();
 }
 export function setCookiePermissions(value: boolean) {
-  updateCookiesPermission(
-    Object.fromEntries(cookies.map((key) => [key, value])) as CookiePermission
+  updateCookiePermissions(
+    Object.fromEntries(cookies.map((key) => [key, value])) as CookiePermissions
   );
 }
 
