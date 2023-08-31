@@ -21,10 +21,10 @@ const urls = localPrefix.flatMap((locale) =>
     "",
     "/om",
     "/om/personuppgiftspolicy",
+    "/om/cookies",
     "/terapeuter",
     "/behandlingar",
-    // TODO(#85): Re add cookies and personuppgiftspolicy to sitemap
-    "/hitta" /* "/cookies" */
+    "/hitta"
   ].map((route) => {
     return `
       <url>
