@@ -126,7 +126,7 @@ export type TranslationsByGroup = {
   artiklar: ArticleTranslations;
   hitta: FindTranslations;
   terapeuter: TerapheutTranslations;
-  privacyPolicy: PrivacyTranslations;
+  personuppgiftspolicy: PrivacyTranslations;
   behandlingar: TreatmentsTranslations;
   cookies: CookiesTranslations;
 };
