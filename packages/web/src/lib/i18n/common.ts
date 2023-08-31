@@ -6,20 +6,20 @@ export const defaultLocale: Locale = "sv";
 export type Route =
   | "/"
   | "/om"
+  | "/om/cookies"
   | "/artiklar"
   | "/behandlingar"
-  | "/cookies"
   | "/hitta"
-  | "/personuppgiftspolicy"
+  | "/om/personuppgiftspolicy"
   | "/terapeuter";
 export const pageWithRoute = {
   artiklar: "/artiklar",
   behandlingar: "/behandlingar",
-  cookies: "/cookies",
+  cookies: "/om/cookies",
   hem: "/",
   hitta: "/hitta",
   om: "/om",
-  personuppgiftspolicy: "/personuppgiftspolicy",
+  personuppgiftspolicy: "/om/personuppgiftspolicy",
   terapeuter: "/terapeuter"
 } satisfies Record<Page, Route>;
 

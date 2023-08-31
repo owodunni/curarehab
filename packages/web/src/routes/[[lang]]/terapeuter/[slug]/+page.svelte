@@ -2,14 +2,14 @@
   import { getTitle } from "$lib/widgets/util";
   import type { Link } from "$lib/api";
   import type { PageData } from "./$types";
-  import TextPage from "$lib/components/TextPage.svelte";
+  import ContentPage from "$lib/components/ContentPage.svelte";
   export let data: PageData;
   let links: Link[] = [];
   $: ({ t, terapeut } = data);
   $: links = (terapeut?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[];
 </script>
 
-<TextPage
+<ContentPage
   data={{
     image: terapeut.avatar,
     seo: terapeut.seo,
@@ -27,4 +27,4 @@
   <p class="text-skog-700 text-base leading-7">
     {getTitle(terapeut.work_title || "", t)}
   </p>
-</TextPage>
+</ContentPage>

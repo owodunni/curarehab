@@ -4,21 +4,13 @@ export const common: CommonTranslations = {
   lang: "en",
   link: "/en{link}",
   title: "CuraRehab",
-  subtitle: "Pain-free rehab",
   om: "About us",
   artiklen: "Article",
   artiklar: "Articles",
-  smarta: "Pain",
   sidan: "Page",
   menuAria: "Toggle site navigation",
   boka: "Book",
-  directions: "Click here to see how to get to us.",
   hem: "Home",
-  create: "Create article",
-  cancel: "Cancel",
-  save: "Save",
-  heroImage: "Old man rehabinating his back",
-  comingSoon: "Coming soon",
   hitta: "Find us",
   behandlingen: "Treatment",
   behandlingar: "Treatments",
@@ -29,8 +21,6 @@ export const common: CommonTranslations = {
   partners: "Partners",
   readMore: "Read more",
   contact: "Contact",
-  descriptionParagraph:
-    "We at Cura Rehab are a team of licensed therapists who work together to provide you with a tailored treatment that suits your needs and goals.",
   titleFysio: "Physical Therapist",
   titleNaprapat: "Naprapath",
   titleMassage: "Massage therapist",
@@ -51,8 +41,13 @@ export const common: CommonTranslations = {
   naprapatLinkTitle: "Chiropractic and naprapathy",
   naprapatHref:
     "https://www.jointacademy.com/us/en/facts/osteoarthritis-treatment/naprapath-naprapathy/",
-  cookies: "Cookies",
+  cookies: "Cookie Policy",
   hanoLink: "https://curarehab.bestille.no/OnCust2/",
   treatmentsTitle: "Our Treatments",
-  treatmentsText: "We have a wide range of treatments to help you towards a healthier lifestyle."
+  treatmentsText: "We have a wide range of treatments to help you towards a healthier lifestyle.",
+  cookieBannerText:
+    "We use cookies to enhance your browsing experience and analyze site traffic. You can customize your preferences and learn more in our",
+  cookieBannerAcceptButton: "Accept all",
+  cookieBannerRejectButton: "Reject all",
+  cookiePolicy: "cookie policy"
 };

@@ -14,22 +14,14 @@ export type CommonTranslations = {
   lang: string;
   link: string;
   title: string;
-  subtitle: string;
   om: string;
   artiklen: string;
   artiklar: string;
   sidan: string;
-  smarta: string;
   menuAria: string;
   boka: string;
   hanoLink: string;
-  directions: string;
   hem: string;
-  create: string;
-  cancel: string;
-  save: string;
-  heroImage: string;
-  comingSoon: string;
   hitta: string;
   behandlingen: string;
   behandlingar: string;
@@ -40,7 +32,6 @@ export type CommonTranslations = {
   partners: string;
   readMore: string;
   contact: string;
-  descriptionParagraph: string;
   titleFysio: string;
   titleNaprapat: string;
   titleMassage: string;
@@ -62,6 +53,10 @@ export type CommonTranslations = {
   naprapatLinkTitle: string;
   naprapatHref: string;
   cookies: string;
+  cookieBannerText: string;
+  cookieBannerAcceptButton: string;
+  cookieBannerRejectButton: string;
+  cookiePolicy: string;
 };
 
 export type HemTranslations = {
@@ -117,6 +112,11 @@ export type TreatmentsTranslations = {
 export type CookiesTranslations = {
   title: string;
   description: string;
+  cookiePreferences: string;
+  statistics: string;
+  statisticsDescription: string;
+  marketing: string;
+  marketingDescription: string;
 };
 
 export type TranslationsByGroup = {

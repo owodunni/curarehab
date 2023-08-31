@@ -1,0 +1,29 @@
+query Cookies {
+  cookies {
+    text
+    text_en
+    image {
+      title
+      type
+      width
+      height
+      filename_disk
+    }
+    seo {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+    seo_en {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@
   import Header from "$lib/components/Header.svelte";
   import type { LayoutData } from "./$types";
   import type { Link } from "$lib/api";
+  import Analytics from "$lib/components/Analytics.svelte";
 
   export let data: LayoutData;
 
@@ -36,12 +37,13 @@
   }
 </script>
 
+<Analytics l={data.l} t={data.t} />
+
 <Header t={data.t} l={data.l} locale={data.params.lang === "en" ? "en" : "sv"} route={data.route} />
-<main lang={data.params.lang}>
+<main>
   <slot />
 </main>
 <Footer
-  locale={data.params.lang === "en" ? "en" : "sv"}
   t={data.t}
   l={data.l}
   email={toLink(data.widgets?.footer?.email)}

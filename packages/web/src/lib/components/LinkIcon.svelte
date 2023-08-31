@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { PhoneIcon, GlobeAltIcon } from "@rgossiaux/svelte-heroicons/solid";
+  import PhoneIcon from "./Icons/Phone.svelte";
+  import GlobeAltIcon from "./Icons/GlobeAlt.svelte";
   import type { LinkType } from "$lib/api";
   import Email from "./Icons/Email.svelte";
   import Facebook from "./Icons/Facebook.svelte";
