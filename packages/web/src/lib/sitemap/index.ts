@@ -1,8 +1,8 @@
-import { PUBLIC_RUNTIME } from "$env/static/public";
-import { defaultLocale, locales } from "$lib/i18n";
-import type { RequestHandler } from "./$types";
+import type { Client } from "@urql/core";
 import type { SlugsQuery } from "./$types.gql";
-import query from "./query.gql?raw";
+
+export const locales = ["en", "sv"];
+export const defaultLocale = "sv";
 
 // TODO(#85): Re add articles to sitemap
 const seUrls = [
@@ -16,22 +16,24 @@ const seUrls = [
 
 const localPrefix = [...locales.filter((l) => l !== defaultLocale).map((l) => `/${l}`), ""];
 
-const urls = localPrefix.flatMap((locale) =>
-  [
-    "",
-    "/om",
-    "/om/personuppgiftspolicy",
-    "/om/cookies",
-    "/terapeuter",
-    "/behandlingar",
-    "/hitta"
-  ].map((route) => {
-    return `
+const urls = (data: SlugsQuery) =>
+  localPrefix.flatMap((locale) =>
+    [
+      ["", data.Hem?.date_updated],
+      ["/om", data.om?.date_updated],
+      ["/om/personuppgiftspolicy", data.sekretess?.date_updated],
+      ["/om/cookies", data.cookies?.date_updated],
+      ["/terapeuter", data.Terapeuter?.date_updated],
+      ["/behandlingar", data.behandlingar?.date_updated],
+      ["/hitta", data.hitta?.date_updated]
+    ].map(([route, lastmod]) => {
+      return `
       <url>
         <loc>https://curarehab.se${locale}${route}</loc>
+        ${lastmod ? `<lastmod>${new Date(lastmod).toISOString().split("T")[0]}</lastmod>` : ""}
       </url>`.trim();
-  })
-);
+    })
+  );
 
 const postUrls = (artiklar: SlugsQuery["artiklar"]) => {
   return artiklar.flatMap((a) =>
@@ -64,18 +66,19 @@ const behandlingarUrls = (behandlingar: SlugsQuery["Behandlingar"]): string[] =>
   );
 };
 
-export const GET: RequestHandler = async (event) => {
-  const data = await event.locals.client
+export const createSitemap = async (client: Client, query: string) => {
+  const data = await client
     .query<SlugsQuery>(query, {
-      filter: { ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } }) },
-      f2: { ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } }) }
+      filter: { status: { _eq: "published" } },
+      f2: { status: { _eq: "published" } }
     })
     .toPromise();
 
-  const { artiklar, terapeuter_directus_users, Behandlingar } = data.data ?? {};
+  if (data.data === undefined) throw new Error("No graphql data");
 
-  return new Response(
-    `
+  const { artiklar, terapeuter_directus_users, Behandlingar } = data.data;
+
+  return `
     <?xml version="1.0" encoding="UTF-8" ?>
     <urlset
       xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
@@ -86,7 +89,7 @@ export const GET: RequestHandler = async (event) => {
       xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
     >
       ${seUrls.join("\n")}
-      ${urls.join("\n")}
+      ${urls(data.data).join("\n")}
       ${postUrls(artiklar || [])}
       ${terapheutsUrls(terapeuter_directus_users || [])
         .join("\n")
@@ -94,11 +97,5 @@ export const GET: RequestHandler = async (event) => {
       ${behandlingarUrls(Behandlingar || [])
         .join("\n")
         .trim()}
-    </urlset>`.trim(),
-    {
-      headers: {
-        "Content-Type": "application/xml"
-      }
-    }
-  );
+    </urlset>`.trim();
 };
