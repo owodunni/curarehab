@@ -1,0 +1,45 @@
+query Slugs($filter: artiklar_filter, $f2: Behandlingar_filter) {
+  artiklar(filter: $filter) {
+    slug
+    date_updated
+    date_created
+    language
+    status
+  }
+  terapeuter_directus_users {
+    directus_users_id {
+      slug
+    }
+  }
+  Behandlingar(filter: $f2) {
+    Slug
+    date_updated
+  }
+  cookies {
+    date_updated
+  }
+  sekretess {
+    date_updated
+  }
+  om {
+    date_updated
+  }
+  Hem {
+    date_updated
+  }
+  hitta {
+    date_updated
+  }
+  behandlingar {
+    date_updated
+  }
+  Terapeuter {
+    date_updated
+  }
+  Artiklar {
+    date_updated
+  }
+  behandlingar {
+    date_updated
+  }
+}
