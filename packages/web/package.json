@@ -16,6 +16,7 @@
     "format": "prettier --plugin-search-dir . --write ."
   },
   "devDependencies": {
+    "isomorphic-unfetch": "^4.0.2",
     "@graphql-codegen/cli": "^4.0.0",
     "@graphql-codegen/client-preset": "^4.0.0",
     "@graphql-codegen/near-operation-file-preset": "^2.5.0",
