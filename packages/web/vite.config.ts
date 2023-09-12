@@ -2,6 +2,7 @@ import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig, loadEnv, type Plugin } from "vite";
 import codegen from "vite-plugin-graphql-codegen";
 import type { CodegenConfig } from "@graphql-codegen/cli";
+import "isomorphic-unfetch";
 import { Client, fetchExchange } from "@urql/core";
 import { createSitemap } from "./src/lib/sitemap";
 import { promises as fs } from "fs";
