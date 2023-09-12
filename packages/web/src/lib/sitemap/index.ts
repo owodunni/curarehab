@@ -4,66 +4,74 @@ import type { SlugsQuery } from "./$types.gql";
 export const locales = ["en", "sv"];
 export const defaultLocale = "sv";
 
-// TODO(#85): Re add articles to sitemap
-const seUrls = [
-  /*"/artiklar"*/
-].flatMap((route) => {
+const toString = (d: Date) => d.toISOString().split("T")[0];
+
+const createUrl = (
+  route: string,
+  lastmod?: string | { date_updated?: string; date_created?: string } | { date_updated?: string }
+) => {
+  let l: string | undefined = undefined;
+  if (lastmod) {
+    if (typeof lastmod === "string") l = lastmod;
+    else if (lastmod.date_updated) l = toString(new Date(lastmod.date_updated));
+    else if ("date_created" in lastmod && lastmod.date_created)
+      l = toString(new Date(lastmod.date_created));
+  }
   return `
       <url>
         <loc>https://curarehab.se${route}</loc>
+        ${l ? `<lastmod>${l}</lastmod>` : ""}
       </url>`.trim();
-});
+};
+
+// TODO(#85): Re add articles to sitemap
+const seUrls = [
+  /*"/artiklar"*/
+].flatMap((route) => createUrl(route));
 
 const localPrefix = [...locales.filter((l) => l !== defaultLocale).map((l) => `/${l}`), ""];
 
 const urls = (data: SlugsQuery) =>
   localPrefix.flatMap((locale) =>
     [
-      ["", data.Hem?.date_updated],
-      ["/om", data.om?.date_updated],
-      ["/om/personuppgiftspolicy", data.sekretess?.date_updated],
-      ["/om/cookies", data.cookies?.date_updated],
-      ["/terapeuter", data.Terapeuter?.date_updated],
-      ["/behandlingar", data.behandlingar?.date_updated],
-      ["/hitta", data.hitta?.date_updated]
-    ].map(([route, lastmod]) => {
-      return `
-      <url>
-        <loc>https://curarehab.se${locale}${route}</loc>
-        ${lastmod ? `<lastmod>${new Date(lastmod).toISOString().split("T")[0]}</lastmod>` : ""}
-      </url>`.trim();
+      ["", data.Hem],
+      ["/om", data.om],
+      ["/om/personuppgiftspolicy", data.sekretess],
+      ["/om/cookies", data.cookies],
+      ["/terapeuter", data.Terapeuter],
+      ["/hitta", data.hitta]
+    ].map(([route, lastmod]) => createUrl(locale + route, lastmod ?? undefined))
+  );
+
+// TODO: (#85) Use date_updated for articles
+const postUrls = (artiklar: SlugsQuery["artiklar"]) =>
+  artiklar.flatMap((a) => createUrl(`${a.language === "en" ? "/en" : ""}/artiklar/${a.slug}`, a));
+
+// TODO(#165): Change datastructure of terapeuter to get date_updated
+const terapheutsUrls = (terapheuts: SlugsQuery["terapeuter_directus_users"]): string[] => {
+  return terapheuts.flatMap(({ directus_users_id }) =>
+    localPrefix.flatMap((locale) => createUrl(`${locale}/terapeuter/${directus_users_id?.slug}`))
+  );
+};
+
+const behandlingarUrls = (
+  behandlingar: SlugsQuery["Behandlingar"],
+  dateUpdated?: string
+): string => {
+  let latestDate: Date | undefined = dateUpdated ? new Date(dateUpdated) : undefined;
+
+  const b = behandlingar.flatMap(({ Slug, date_updated, date_created }) =>
+    localPrefix.flatMap((locale) => {
+      const date = new Date(date_updated ?? date_created);
+      if (!latestDate || date > latestDate) latestDate = date;
+      return createUrl(`${locale}/behandlingar/${Slug}`, toString(date));
     })
   );
 
-const postUrls = (artiklar: SlugsQuery["artiklar"]) => {
-  return artiklar.flatMap((a) =>
-    `<url>
-      <loc>https://curarehab.se${a.language === "en" ? "/en" : ""}/artiklar/${a.slug}</loc>
-      <lastmod>${new Date(a.date_updated ?? a.date_created).toISOString().split("T")[0]}</lastmod>
-    </url>`.trim()
-  );
-};
-
-const terapheutsUrls = (terapheuts: SlugsQuery["terapeuter_directus_users"]): string[] => {
-  return terapheuts.flatMap(({ directus_users_id }) =>
-    localPrefix.flatMap((locale) =>
-      `
-    <url>
-      <loc>https://curarehab.se${locale}/terapeuter/${directus_users_id?.slug}</loc>
-    </url>`.trim()
-    )
-  );
-};
-
-const behandlingarUrls = (behandlingar: SlugsQuery["Behandlingar"]): string[] => {
-  return behandlingar.flatMap(({ Slug }) =>
-    localPrefix.flatMap((locale) =>
-      `
-    <url>
-      <loc>https://curarehab.se${locale}/behandlingar/${Slug}</loc>
-    </url>`.trim()
-    )
-  );
+  return `
+${b}
+${createUrl("/behandlingar", latestDate ? toString(latestDate) : undefined)}
+`.trim();
 };
 
 export const createSitemap = async (client: Client, query: string) => {
@@ -74,7 +82,7 @@ export const createSitemap = async (client: Client, query: string) => {
     })
     .toPromise();
 
-  if (data.data === undefined) throw new Error("No graphql data");
+  if (data.data === undefined) throw new Error("No graphql data",data.error);
 
   const { artiklar, terapeuter_directus_users, Behandlingar } = data.data;
 
@@ -94,8 +102,6 @@ export const createSitemap = async (client: Client, query: string) => {
       ${terapheutsUrls(terapeuter_directus_users || [])
         .join("\n")
         .trim()}
-      ${behandlingarUrls(Behandlingar || [])
-        .join("\n")
-        .trim()}
+      ${behandlingarUrls(Behandlingar || [], data.data.behandlingar?.date_updated).trim()}
     </urlset>`.trim();
 };
