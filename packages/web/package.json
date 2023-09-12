@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "isomorphic-unfetch": "^4.0.2",
-    "@graphql-codegen/cli": "^4.0.0",
+    "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/client-preset": "^4.0.0",
     "@graphql-codegen/near-operation-file-preset": "^2.5.0",
     "@graphql-codegen/typescript": "^4.0.0",
