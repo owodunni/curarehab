@@ -82,7 +82,7 @@ export const createSitemap = async (client: Client, query: string) => {
     })
     .toPromise();
 
-  if (data.data === undefined) throw new Error("No graphql data",data.error);
+  if (data.data === undefined) throw new Error("No graphql data", data.error);
 
   const { artiklar, terapeuter_directus_users, Behandlingar } = data.data;
 
