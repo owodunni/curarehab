@@ -6,6 +6,8 @@
   import type { PageData } from "./$types";
   import Container from "$lib/components/Container.svelte";
   import Seo from "$lib/components/Seo.svelte";
+  import Articles from "$lib/widgets/Articles.svelte";
+  import Behandling from "./behandling.svelte";
 
   export let data: PageData;
   $: ({ t, l } = data);
@@ -21,13 +23,17 @@
 </Section>
 <Section extras="theme-sand-dark">
   <Container>
+    <Behandling />
+  </Container>
+</Section>
+<Section extras="theme-skog">
+  <Container>
     <Treatments treatments={data?.data?.Behandlingar || []} {l} {t} />
   </Container>
 </Section>
-<!-- TODO(#85): Re add articles -->
-<!--Section>
+<Section extras="theme-sand-dark">
   <Container>
-    <Articles articles={data?.data?.artiklar || []} {l} {t} />
+    <Articles articles={data?.data?.Hem?.artiklar || []} {l} {t} />
   </Container>
-</Section-->
+</Section>
 <Seo seo={data.params.lang === "en" ? data?.data?.Hem?.seo_en : data?.data?.Hem?.seo} />
