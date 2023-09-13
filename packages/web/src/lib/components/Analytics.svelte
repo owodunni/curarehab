@@ -5,22 +5,25 @@
   import { setCookiePermissions, cookieSettings, getGtag } from "$lib/cookies";
   import { fly } from "svelte/transition";
   import { onMount } from "svelte";
+  import { browser } from "$app/environment";
 
   export let l: L;
   export let t: T;
 
   $: {
-    const settings = $cookieSettings;
-    if (settings.permission !== undefined) {
-      getGtag()?.("consent", "default", {
-        ad_storage: settings.cookiePermissions.googleAnalytics ? "granted" : "denied",
-        analytics_storage: settings.cookiePermissions.googleAnalytics ? "granted" : "denied"
+    if (browser) {
+      const settings = $cookieSettings;
+      if (settings.permission !== undefined) {
+        getGtag()?.("consent", "default", {
+          ad_storage: settings.cookiePermissions.googleAnalytics ? "granted" : "denied",
+          analytics_storage: settings.cookiePermissions.googleAnalytics ? "granted" : "denied"
+        });
+      }
+      getGtag()?.("config", PUBLIC_MEASUREMENTS_ID, {
+        page_title: document.title,
+        page_path: $page.url.pathname
       });
     }
-    getGtag()?.("config", PUBLIC_MEASUREMENTS_ID, {
-      page_title: document.title,
-      page_path: $page.url.pathname
-    });
   }
   let show = false;
   onMount(() => setTimeout(() => (show = true), 400));
