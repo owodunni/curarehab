@@ -8,6 +8,7 @@ query Articles($filter: artiklar_filter) {
         filename_disk
       }
     }
+    language
     date_updated
     date_created
     taggar
@@ -23,9 +24,24 @@ query Articles($filter: artiklar_filter) {
     sammanfattning
     slug
     title
+    user_updated {
+      first_name
+      last_name
+      email
+      work_title
+      slug
+      avatar {
+        title
+        type
+        width
+        height
+        filename_disk
+      }
+    }
     user_created {
       first_name
       last_name
+      email
       work_title
       slug
       avatar {
