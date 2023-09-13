@@ -69,8 +69,10 @@ const behandlingarUrls = (
   );
 
   return `
+${localPrefix.flatMap((l) =>
+  createUrl(`${l}/behandlingar`, latestDate ? toString(latestDate) : undefined)
+)}
 ${b}
-${createUrl("/behandlingar", latestDate ? toString(latestDate) : undefined)}
 `.trim();
 };
 
