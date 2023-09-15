@@ -14,7 +14,8 @@
       {t("hem", "titleParagraph")}
     </h1>
     <p class="text-theme-body mt-6 text-lg">
-      {t("hem", "subtitleParagraph")}
+      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+      {@html t("hem", "subtitleParagraph")}
     </p>
     <div class="mt-8 flex items-center gap-x-6">
       <a href={t("common", "hanoLink")} class="btn variant-filled">{t("common", "bokaNu")}</a>

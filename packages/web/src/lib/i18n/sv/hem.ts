@@ -5,7 +5,7 @@ export const hem: HemTranslations = {
   description: "En hemsida för Cura Rehab",
   titleParagraph: "Bli av med smärta och rehabilitera skador",
   subtitleParagraph:
-    "Välkommen till CuraRehab Linköping - Med spetskompetens och individuellt anpassade behandlingar hjälper vi dig mot ett smärtfritt och aktivt liv.",
+    "<b>Välkommen till CuraRehab Linköping</b> - Med spetskompetens och individuellt anpassade behandlingar hjälper vi dig mot ett smärtfritt och aktivt liv.",
   readMore: "Läs mer",
   boka: "Boka din tid",
   naprapathyTitle: "Naprapati - Smärtlindring för muskler och leder",

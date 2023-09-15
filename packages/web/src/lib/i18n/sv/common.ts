@@ -27,7 +27,7 @@ export const common: CommonTranslations = {
   titleWeb: "Webansvarig",
   terapheutsTitle: "Våra terapeuter",
   terapheutsText:
-    "Träffa vårt team av legitimerade terapeuter som tillsammans arbetar för att du ska få skräddarsydda behandlingar som passar just dina behov och mål.",
+    "<b>Hjälp mot en smärtfri vardag</b> - Vi legitimerade terapeuter hjälper dig mot bättre hälsa och välbefinnande. Vi skräddarsyr alltid våra behandlingar utefter dina behov och mål.",
   articlesTitle: "Våra artiklar",
   articlesText: "Läs våra artiklar om smärta och hur du blir av med den.",
   bokaNu: "Boka nu",
@@ -45,7 +45,7 @@ export const common: CommonTranslations = {
   hanoLink: "https://curarehab.bestille.no/OnCust2/",
   treatmentsTitle: "Våra behandlingar",
   treatmentsText:
-    "Vi har ett brett utbud av behandlingar för att hjälpa dig mot en hälsosammare livsstil.",
+    "<b>Varje patient är unik</b> - Vi förstår att olika besvär kräver olika lösningar. Tack vare vårt team av erfarna terapeuter kan vi erbjuda ett brett utbud av behandlingar för att hjälpa dig mot en hälsosammare livsstil.",
   cookieBannerText:
     "Vi använder cookies för att förbättra din upplevelse på vår webbplats. Du kan anpassa dina inställningar och läsa mer om det i vår",
   cookieBannerAcceptButton: "Godkänn alla",
