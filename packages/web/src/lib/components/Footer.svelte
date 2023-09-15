@@ -29,9 +29,8 @@
           type: "website"
         },
         ["behandlingar"],
-        ["terapeuter"]
-        // TODO(#85): Add artiklar to footer
-        //["artiklar"]
+        ["terapeuter"],
+        ["artiklar"]
       ],
       [t("common", "information")]: [["om"], ["hitta"], ["personuppgiftspolicy"], ["cookies"]]
     },

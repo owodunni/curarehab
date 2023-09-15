@@ -31,9 +31,11 @@
     <Treatments treatments={data?.data?.Behandlingar || []} {l} {t} />
   </Container>
 </Section>
-<Section extras="theme-sand-dark">
-  <Container>
-    <Articles articles={data?.data?.Hem?.artiklar || []} {l} {t} />
-  </Container>
-</Section>
+{#if data?.data?.Hem?.artiklar?.length || 0 > 0}
+  <Section extras="theme-sand-dark">
+    <Container>
+      <Articles articles={data?.data?.Hem?.artiklar || []} {l} {t} />
+    </Container>
+  </Section>
+{/if}
 <Seo seo={data.params.lang === "en" ? data?.data?.Hem?.seo_en : data?.data?.Hem?.seo} />
