@@ -4,8 +4,6 @@ import type { ArticlesQuery } from "./$types.gql";
 import query from "./query.gql?raw";
 import { PUBLIC_RUNTIME } from "$env/static/public";
 
-export const prerender = false;
-
 export const load: PageServerLoad = async (event) => {
   const data = await event.locals.client
     .query<ArticlesQuery>(query, {
