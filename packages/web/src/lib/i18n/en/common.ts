@@ -27,7 +27,7 @@ export const common: CommonTranslations = {
   titleWeb: "Web lord",
   terapheutsTitle: "Our therapists",
   terapheutsText:
-    "Meet our a team of licensed therapists who work together to provide you with tailored treatments that suits your needs and goals.",
+    "<b>Help for a pain-free everyday life</b> - As licensed therapists, we help you towards better health and well-being. We always tailor our treatments according to your needs and goals.",
   articlesTitle: "Our articles",
   articlesText: "Read our articles about pain and how to get rid of it.",
   bokaNu: "Book now",
@@ -44,7 +44,8 @@ export const common: CommonTranslations = {
   cookies: "Cookie Policy",
   hanoLink: "https://curarehab.bestille.no/OnCust2/",
   treatmentsTitle: "Our Treatments",
-  treatmentsText: "We have a wide range of treatments to help you towards a healthier lifestyle.",
+  treatmentsText:
+    "<b>Every patient is unique</b> - We understand that different problems require different solutions. Thanks to our team of experienced therapists, we can offer a wide range of treatments to help you towards a healthier lifestyle.",
   cookieBannerText:
     "We use cookies to enhance your browsing experience and analyze site traffic. You can customize your preferences and learn more in our",
   cookieBannerAcceptButton: "Accept all",
