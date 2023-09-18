@@ -74,6 +74,16 @@ export type HemTranslations = {
   massageParagraph: string;
   mainTreatmentTitle: string;
   mainTreatmentParagraph: string;
+  behandlingTitle: string;
+  behandlingParagraph: string;
+  behandlingUndersokningTitle: string;
+  behandlingUndersokningParagraph: string;
+  behandlingBehandlingTitle: string;
+  behandlingBehandlingParagraph: string;
+  behandlingOvningarTitle: string;
+  behandlingOvningarParagraph: string;
+  behandlingUppföljningTitle: string;
+  behandlingUppföljningParagraph: string;
 };
 
 export type OmTranslations = {

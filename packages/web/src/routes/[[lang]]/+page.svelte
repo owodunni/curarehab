@@ -23,7 +23,7 @@
 </Section>
 <Section extras="theme-sand-dark">
   <Container>
-    <Behandling />
+    <Behandling {t} />
   </Container>
 </Section>
 <Section extras="theme-skog">
