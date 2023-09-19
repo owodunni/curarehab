@@ -28,7 +28,7 @@
       </time>
     </div>
     <h3
-      class="text-theme-muted group-hover:text-theme-muted-hover mt-3 text-lg font-semibold leading-6"
+      class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading overflow-hidden text-ellipsis"
     >
       {article?.title}
     </h3>
