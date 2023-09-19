@@ -28,8 +28,6 @@ export const common: CommonTranslations = {
   terapheutsTitle: "Våra terapeuter",
   terapheutsText:
     "<b>Hjälp mot en smärtfri vardag</b> - Vi legitimerade terapeuter hjälper dig mot bättre hälsa och välbefinnande. Vi skräddarsyr alltid våra behandlingar utefter dina behov och mål.",
-  articlesTitle: "Våra artiklar",
-  articlesText: "Läs våra artiklar om smärta och hur du blir av med den.",
   bokaNu: "Boka nu",
   swedishFlag: "Svenska flaggan",
   englishFlag: "Engelska flaggan",
@@ -50,5 +48,9 @@ export const common: CommonTranslations = {
     "Vi använder cookies för att förbättra din upplevelse på vår webbplats. Du kan anpassa dina inställningar och läsa mer om det i vår",
   cookieBannerAcceptButton: "Godkänn alla",
   cookieBannerRejectButton: "Godkänn nödvändiga",
-  cookiePolicy: "cookiepolicy"
+  cookiePolicy: "cookiepolicy",
+  skadekompassenTitle: "Skadekompassen",
+  skadekompassenText:
+    "Lär dig mer om de vanligaste skadorna och besvären som vi behandlar. I våra artiklar ger vi dig mer information om dina besvär, så att du enklare kan förstå vad som orsakar dem.",
+  skadekompassen: "Skadekompassen"
 };

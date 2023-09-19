@@ -7,7 +7,8 @@ export type Page =
   | "om"
   | "personuppgiftspolicy"
   | "hitta"
-  | "terapeuter";
+  | "terapeuter"
+  | "skadekompassen";
 export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
@@ -38,10 +39,11 @@ export type CommonTranslations = {
   titleWeb: string;
   terapheutsTitle: string;
   terapheutsText: string;
-  articlesTitle: string;
-  articlesText: string;
   treatmentsTitle: string;
   treatmentsText: string;
+  skadekompassen: string;
+  skadekompassenTitle: string;
+  skadekompassenText: string;
   bokaNu: string;
   swedishFlag: string;
   englishFlag: string;
@@ -95,6 +97,8 @@ export type ArticleTranslations = {
   title: string;
   description: string;
   readArticle: string;
+  articlesTitle: string;
+  articlesText: string;
 };
 
 export type FindTranslations = {
@@ -119,6 +123,11 @@ export type TreatmentsTranslations = {
   tid: string;
 };
 
+export type SkadekompassenTranslations = {
+  title: string;
+  description: string;
+};
+
 export type CookiesTranslations = {
   title: string;
   description: string;
@@ -139,6 +148,7 @@ export type TranslationsByGroup = {
   personuppgiftspolicy: PrivacyTranslations;
   behandlingar: TreatmentsTranslations;
   cookies: CookiesTranslations;
+  skadekompassen: SkadekompassenTranslations;
 };
 
 export type Translations =
@@ -150,4 +160,5 @@ export type Translations =
   | keyof TerapheutTranslations
   | keyof PrivacyTranslations
   | keyof CookiesTranslations
+  | keyof SkadekompassenTranslations
   | keyof TreatmentsTranslations;

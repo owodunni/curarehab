@@ -35,15 +35,20 @@
     }
     return false;
   }
+
+  let locale: "sv" | "en" = "sv";
+
+  $: locale = data.params.lang === "en" ? "en" : "sv";
 </script>
 
 <Analytics l={data.l} t={data.t} />
 
-<Header t={data.t} l={data.l} locale={data.params.lang === "en" ? "en" : "sv"} route={data.route} />
+<Header t={data.t} l={data.l} {locale} route={data.route} />
 <main>
   <slot />
 </main>
 <Footer
+  {locale}
   t={data.t}
   l={data.l}
   email={toLink(data.widgets?.footer?.email)}

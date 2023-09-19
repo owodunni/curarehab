@@ -8,6 +8,7 @@
 
   export let t: T;
   export let l: L;
+  export let locale: "sv" | "en";
   export let socialLinks: Link[] = [];
   export let columnLinks: [Link[], Link[]] = [[], []];
   export let email: Link | undefined;
@@ -30,13 +31,14 @@
         },
         ["behandlingar"],
         ["terapeuter"],
-        ["artiklar"]
+        ...(locale === "sv" ? [["skadekompassen"] as [Page]] : [])
       ],
       [t("common", "information")]: [["om"], ["hitta"], ["personuppgiftspolicy"], ["cookies"]]
     },
     {
       [t("common", "partners")]: columnLinks[0],
       [t("common", "readMore")]: [
+        ...(locale === "sv" ? [["artiklar"] as [Page]] : []),
         {
           link: t("common", "fysioHref"),
           display_link: t("common", "fysioLinkTitle"),

@@ -10,7 +10,11 @@
 
 <Section>
   <Container>
-    <Articles articles={data?.data?.artiklar || []} {l} {t} />
+    <Articles articles={data?.data?.artiklar || []} {l} {t} text={t("artiklar", "articlesText")}>
+      <h1 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
+        {t("artiklar", "articlesTitle")}
+      </h1>
+    </Articles>
   </Container>
 </Section>
 
