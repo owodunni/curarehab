@@ -11,7 +11,8 @@ export type Route =
   | "/behandlingar"
   | "/hitta"
   | "/om/personuppgiftspolicy"
-  | "/terapeuter";
+  | "/terapeuter"
+  | "/skadekompassen";
 export const pageWithRoute = {
   artiklar: "/artiklar",
   behandlingar: "/behandlingar",
@@ -20,7 +21,8 @@ export const pageWithRoute = {
   hitta: "/hitta",
   om: "/om",
   personuppgiftspolicy: "/om/personuppgiftspolicy",
-  terapeuter: "/terapeuter"
+  terapeuter: "/terapeuter",
+  skadekompassen: "/skadekompassen"
 } satisfies Record<Page, Route>;
 
 export const pageFromRoute = Object.fromEntries(

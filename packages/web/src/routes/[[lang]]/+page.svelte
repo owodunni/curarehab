@@ -34,7 +34,16 @@
 {#if data?.data?.Hem?.artiklar?.length || 0 > 0}
   <Section extras="theme-sand-dark">
     <Container>
-      <Articles articles={data?.data?.Hem?.artiklar || []} {l} {t} />
+      <Articles
+        articles={data?.data?.Hem?.artiklar || []}
+        {l}
+        {t}
+        text={t("common", "skadekompassenText")}
+      >
+        <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
+          {t("common", "skadekompassenTitle")}
+        </h2>
+      </Articles>
     </Container>
   </Section>
 {/if}

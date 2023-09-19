@@ -6,6 +6,7 @@
   import { fade, fly } from "svelte/transition";
   import Logo from "./Logo.svelte";
   import Flags from "./Flags.svelte";
+  import type { Page } from "$lib/i18n";
 
   export let t: T;
   export let l: L;
@@ -22,8 +23,13 @@
     open = false;
   }
 
-  // TODO(#85): Add articles to the links array
-  const links = ["behandlingar", "hitta", "om" /* artiklar*/] as const;
+  let links: Page[] = [];
+  $: links = [
+    "behandlingar",
+    "hitta",
+    "om",
+    ...(locale === "sv" ? ["skadekompassen" as Page] : [])
+  ];
 
   $: localizedHref = ((): string => {
     if (route === `/${locale}` || route === "/") return locale === "en" ? "/" : "/en";
@@ -31,7 +37,10 @@
   })();
   // We don't want to show the localization switch language when showing articles since they can't be localized
   $: showLocalization = !(
-    localizedHref.startsWith("/en/artiklar/") || localizedHref.startsWith("/artiklar/")
+    localizedHref.startsWith("/en/artiklar") ||
+    localizedHref.startsWith("/sv/artiklar") ||
+    route.startsWith("/sv/skadekompassen") ||
+    route.startsWith("/en/skadekompassen")
   );
 </script>
 

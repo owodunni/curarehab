@@ -6,14 +6,13 @@
   export let l: L;
   export let t: T;
   export let articles: (Article | null)[];
+  export let text: string;
 </script>
 
 <div class="mx-auto max-w-2xl lg:mx-0">
-  <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
-    {t("common", "articlesTitle")}
-  </h2>
+  <slot />
   <p class="text-theme-heading mt-6 text-lg">
-    {t("common", "articlesText")}
+    {text}
   </p>
 </div>
 <div

@@ -28,8 +28,6 @@ export const common: CommonTranslations = {
   terapheutsTitle: "Our therapists",
   terapheutsText:
     "<b>Help for a pain-free everyday life</b> - As licensed therapists, we help you towards better health and well-being. We always tailor our treatments according to your needs and goals.",
-  articlesTitle: "Our articles",
-  articlesText: "Read our articles about pain and how to get rid of it.",
   bokaNu: "Book now",
   swedishFlag: "Flag of Sweden",
   englishFlag: "Flag of the United Kingdom",
@@ -50,5 +48,8 @@ export const common: CommonTranslations = {
     "We use cookies to enhance your browsing experience and analyze site traffic. You can customize your preferences and learn more in our",
   cookieBannerAcceptButton: "Accept all",
   cookieBannerRejectButton: "Reject all",
-  cookiePolicy: "cookie policy"
+  cookiePolicy: "cookie policy",
+  skadekompassenTitle: "Injuries",
+  skadekompassenText: "",
+  skadekompassen: "Injuries"
 };
