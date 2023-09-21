@@ -13,6 +13,7 @@ query Slugs($filter: artiklar_filter, $f2: Behandlingar_filter) {
   }
   Behandlingar(filter: $f2) {
     Slug
+    status
     date_updated
     date_created
   }
@@ -40,7 +41,17 @@ query Slugs($filter: artiklar_filter, $f2: Behandlingar_filter) {
   Artiklar {
     date_updated
   }
-  behandlingar {
+  skadekompassen {
     date_updated
+    date_created
+    artiklar {
+      artiklar_id(filter: $filter) {
+        date_updated
+        date_created
+        language
+        status
+        slug
+      }
+    }
   }
 }

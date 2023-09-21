@@ -43,10 +43,6 @@ const urls = (data: SlugsQuery) =>
     ].map(([route, lastmod]) => createUrl(locale + route, lastmod ?? undefined))
   );
 
-// TODO: (#85) Use date_updated for articles
-const postUrls = (artiklar: SlugsQuery["artiklar"]) =>
-  artiklar.flatMap((a) => createUrl(`${a.language === "en" ? "/en" : ""}/artiklar/${a.slug}`, a));
-
 // TODO(#165): Change datastructure of terapeuter to get date_updated
 const terapheutsUrls = (terapheuts: SlugsQuery["terapeuter_directus_users"]): string[] => {
   return terapheuts.flatMap(({ directus_users_id }) =>
@@ -54,25 +50,75 @@ const terapheutsUrls = (terapheuts: SlugsQuery["terapeuter_directus_users"]): st
   );
 };
 
+function urlsFromArticles(
+  urlGenerator: (updateDate: (date: Date) => void) => string[],
+  dateUpdated?: string
+): { urls: string[]; latestDate: Date | undefined } {
+  let latestDate: Date | undefined = dateUpdated ? new Date(dateUpdated) : undefined;
+
+  return {
+    urls: urlGenerator((date) => {
+      if (!latestDate || date > latestDate) latestDate = date;
+    }),
+    latestDate
+  };
+}
+
+const skadekompassenUrls = (skadekompassen: SlugsQuery["skadekompassen"], dateUpdated?: string) => {
+  const artiklar = skadekompassen?.artiklar?.map((i) => i?.artiklar_id).filter(Boolean) ?? [];
+  const { latestDate } = urlsFromArticles(
+    (updateDate) =>
+      artiklar.flatMap((a) => {
+        if (!a) return "";
+        const date = new Date(a.date_updated ?? a.date_created);
+        updateDate(date);
+        return "";
+      }),
+    dateUpdated
+  );
+  return `
+${createUrl("/skadekompassen", latestDate ? toString(latestDate) : undefined)}
+`.trim();
+};
+
+const artiklarUrls = (artiklar: SlugsQuery["artiklar"], dateUpdated?: string): string => {
+  const { urls, latestDate } = urlsFromArticles(
+    (updateDate) =>
+      artiklar.flatMap(({ slug, date_updated, date_created, language }) => {
+        const date = new Date(date_updated ?? date_created);
+        updateDate(date);
+        return createUrl(`${language === "en" ? "/en" : ""}/artiklar/${slug}`, toString(date));
+      }),
+    dateUpdated
+  );
+
+  return `
+${createUrl("/artiklar", latestDate ? toString(latestDate) : undefined)}
+${urls.join("\n")}
+`.trim();
+};
+
 const behandlingarUrls = (
   behandlingar: SlugsQuery["Behandlingar"],
   dateUpdated?: string
 ): string => {
-  let latestDate: Date | undefined = dateUpdated ? new Date(dateUpdated) : undefined;
-
-  const b = behandlingar.flatMap(({ Slug, date_updated, date_created }) =>
-    localPrefix.flatMap((locale) => {
-      const date = new Date(date_updated ?? date_created);
-      if (!latestDate || date > latestDate) latestDate = date;
-      return createUrl(`${locale}/behandlingar/${Slug}`, toString(date));
-    })
+  const { urls, latestDate } = urlsFromArticles(
+    (updateDate) =>
+      behandlingar.flatMap(({ Slug, date_updated, date_created }) =>
+        localPrefix.flatMap((locale) => {
+          const date = new Date(date_updated ?? date_created);
+          updateDate(date);
+          return createUrl(`${locale}/behandlingar/${Slug}`, toString(date));
+        })
+      ),
+    dateUpdated
   );
 
   return `
 ${localPrefix.flatMap((l) =>
   createUrl(`${l}/behandlingar`, latestDate ? toString(latestDate) : undefined)
 )}
-${b}
+${urls.join("\n")}
 `.trim();
 };
 
@@ -86,7 +132,7 @@ export const createSitemap = async (client: Client, query: string) => {
 
   if (data.data === undefined) throw new Error("No graphql data", data.error);
 
-  const { artiklar, terapeuter_directus_users, Behandlingar } = data.data;
+  const { artiklar, terapeuter_directus_users, Behandlingar, skadekompassen } = data.data;
 
   return `
     <?xml version="1.0" encoding="UTF-8" ?>
@@ -100,10 +146,11 @@ export const createSitemap = async (client: Client, query: string) => {
     >
       ${seUrls.join("\n")}
       ${urls(data.data).join("\n")}
-      ${postUrls(artiklar || [])}
       ${terapheutsUrls(terapeuter_directus_users || [])
         .join("\n")
         .trim()}
       ${behandlingarUrls(Behandlingar || [], data.data.behandlingar?.date_updated).trim()}
+      ${artiklarUrls(artiklar || []).trim()}
+${skadekompassenUrls(skadekompassen, skadekompassen?.date_updated).trim()}
     </urlset>`.trim();
 };
