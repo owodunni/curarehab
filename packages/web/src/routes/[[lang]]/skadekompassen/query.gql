@@ -1,0 +1,44 @@
+query SkadekompassenMetaData($filter: artiklar_filter) {
+  skadekompassen {
+    seo {
+      description
+      title
+      link_photo {
+        title
+        filename_disk
+      }
+    }
+    artiklar {
+      artiklar_id(filter: $filter) {
+        date_updated
+        date_created
+        taggar
+        language
+        status
+        omslagsbild {
+          title
+          type
+          width
+          height
+          filename_disk
+        }
+        sammanfattning
+        slug
+        title
+        user_created {
+          first_name
+          last_name
+          work_title
+          slug
+          avatar {
+            title
+            type
+            width
+            height
+            filename_disk
+          }
+        }
+      }
+    }
+  }
+}
