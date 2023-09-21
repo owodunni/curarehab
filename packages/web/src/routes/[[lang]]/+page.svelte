@@ -34,15 +34,16 @@
 {#if data?.data?.Hem?.artiklar?.length || 0 > 0}
   <Section extras="theme-sand-dark">
     <Container>
-      <Articles
-        articles={data?.data?.Hem?.artiklar || []}
-        {l}
-        {t}
-        text={t("common", "skadekompassenText")}
-      >
+      <Articles articles={data?.data?.Hem?.artiklar || []} {l} {t}>
         <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
           {t("common", "skadekompassenTitle")}
         </h2>
+        <p class="text-theme-heading mt-6 text-lg">
+          {t("common", "skadekompassenText")}
+          <a href={l("skadekompassen")} class="font-normal hover:font-medium"
+            >{t("hem", "readMore")} <span aria-hidden="true">→</span></a
+          >
+        </p>
       </Articles>
     </Container>
   </Section>
