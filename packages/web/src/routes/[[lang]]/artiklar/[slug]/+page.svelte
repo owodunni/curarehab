@@ -71,7 +71,22 @@
 <Section extras="py-0 pb-20 sm:pb-32">
   <Container>
     <article>
-      <header class="border-1 border-b-sand-300 mb-8 flex w-full max-w-xl flex-col border-b">
+      <header class="mb-8 flex w-full max-w-xl flex-col">
+        <h1
+          class="mb-8 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl"
+        >
+          {article?.title}
+        </h1>
+        <p class="text-theme-heading text-xl-summary md:text-2xl-summary">
+          {article?.sammanfattning}
+        </p>
+        <TerapeutCard
+          terapeut={article?.user_created}
+          t={data.t}
+          l={data.l}
+          class="border-1 border-b-sand-300 mb-8 border-t pl-3 pt-4"
+          time={article?.date_updated ?? article?.date_created ?? ""}
+        />
         <div class="relative mb-8">
           <Image
             srcPath={article?.omslagsbild?.filename_disk ?? ""}
@@ -81,16 +96,6 @@
             class="aspect-[16/9] rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
           />
         </div>
-        <h1 class="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-          {article?.title}
-        </h1>
-        <TerapeutCard
-          terapeut={article?.user_created}
-          t={data.t}
-          l={data.l}
-          class="mb-8 pl-3"
-          time={article?.date_updated ?? article?.date_created ?? ""}
-        />
       </header>
       <div class="prose">
         <BlocksRender blocks={article.artikel?.blocks || []} />
