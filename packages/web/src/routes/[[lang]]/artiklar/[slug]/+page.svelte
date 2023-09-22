@@ -78,7 +78,8 @@
           {article?.title}
         </h1>
         <p class="text-theme-heading text-xl-summary md:text-2xl-summary">
-          {article?.sammanfattning}
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+          {@html article?.sammanfattning}
         </p>
         <TerapeutCard
           terapeut={article?.user_created}

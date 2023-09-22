@@ -34,8 +34,9 @@
     </h3>
 
     {#if sammanfattning}
-      <article class="text-theme-body text-light mt-5 line-clamp-6">
-        {sammanfattning}
+      <article class="text-theme-body text-xl-summary mt-5 line-clamp-6">
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+        {@html sammanfattning}
       </article>
     {/if}
   </a>
