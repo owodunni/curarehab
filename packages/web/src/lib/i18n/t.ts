@@ -9,6 +9,7 @@ import type {
   OmTranslations,
   Page,
   PrivacyTranslations,
+  SkadekompassenTranslations,
   TerapheutTranslations,
   TranslationGroup,
   Translations,
@@ -29,6 +30,11 @@ export const createT = (translations: LoadedTranslations<TranslationGroup, Trans
   function r(group: "artiklar", key: keyof ArticleTranslations, params?: NamedPlaceholder): string;
   function r(group: "cookies", key: keyof CookiesTranslations, params?: NamedPlaceholder): string;
   function r(group: "hitta", key: keyof FindTranslations, params?: NamedPlaceholder): string;
+  function r(
+    group: "skadekompassen",
+    key: keyof SkadekompassenTranslations,
+    params?: NamedPlaceholder
+  ): string;
   function r(
     group: "behandlingar",
     key: keyof TreatmentsTranslations,

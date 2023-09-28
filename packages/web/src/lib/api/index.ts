@@ -32,15 +32,21 @@ export type Terapeut = {
 };
 
 export type Article = {
-  title?: string | null;
-  slug?: string | null;
-  omslagsbild?: {
-    title?: string | null;
-    filename_disk?: string | null;
-  } | null;
   date_updated?: string | null;
   date_created?: string | null;
   user_created?: Terapeut | null;
+  language?: string | null;
+  status?: string | null;
+  sammanfattning?: string | null;
+  slug?: string | null;
+  title?: string | null;
+  omslagsbild?: {
+    title?: string | null;
+    type?: string | null;
+    width?: number | null;
+    height?: number | null;
+    filename_disk?: string | null;
+  } | null;
 };
 
 export type Treatment = {

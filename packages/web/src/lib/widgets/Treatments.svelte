@@ -15,7 +15,8 @@
     {t("common", "treatmentsTitle")}
   </h2>
   <p class="text-theme-body mt-6 text-lg">
-    {t("common", "treatmentsText")}
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    {@html t("common", "treatmentsText")}
   </p>
 </div>
 <CardList>

@@ -6,6 +6,8 @@
   import type { PageData } from "./$types";
   import Container from "$lib/components/Container.svelte";
   import Seo from "$lib/components/Seo.svelte";
+  import Articles from "$lib/widgets/Articles.svelte";
+  import Behandling from "./behandling.svelte";
 
   export let data: PageData;
   $: ({ t, l } = data);
@@ -21,13 +23,29 @@
 </Section>
 <Section extras="theme-sand-dark">
   <Container>
+    <Behandling {t} />
+  </Container>
+</Section>
+<Section extras="theme-skog">
+  <Container>
     <Treatments treatments={data?.data?.Behandlingar || []} {l} {t} />
   </Container>
 </Section>
-<!-- TODO(#85): Re add articles -->
-<!--Section>
-  <Container>
-    <Articles articles={data?.data?.artiklar || []} {l} {t} />
-  </Container>
-</Section-->
+{#if data?.data?.Hem?.artiklar?.length || 0 > 0}
+  <Section extras="theme-sand-dark">
+    <Container>
+      <Articles articles={data?.data?.Hem?.artiklar || []} {l} {t}>
+        <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
+          {t("common", "skadekompassenTitle")}
+        </h2>
+        <p class="text-theme-heading mt-6 text-lg">
+          {t("common", "skadekompassenText")}
+          <a href={l("skadekompassen")} class="font-normal hover:font-medium"
+            >{t("hem", "readMore")} <span aria-hidden="true">→</span></a
+          >
+        </p>
+      </Articles>
+    </Container>
+  </Section>
+{/if}
 <Seo seo={data.params.lang === "en" ? data?.data?.Hem?.seo_en : data?.data?.Hem?.seo} />
