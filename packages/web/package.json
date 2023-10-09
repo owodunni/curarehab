@@ -29,7 +29,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@types/gtag.js": "^0.0.13",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.45.0",
+    "@typescript-eslint/parser": "^6.7.4",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
