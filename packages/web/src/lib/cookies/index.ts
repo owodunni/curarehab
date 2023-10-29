@@ -57,7 +57,7 @@ function getCookiePermissions(): CookieSettings {
       if (
         !lastUpdated ||
         (settings.permission && lastUpdated < twelveMonthsAgo) ||
-        lastUpdated < threeDaysAgo
+        (!settings.permission && lastUpdated < threeDaysAgo)
       ) {
         localStorage.removeItem("cookiePermission");
         clearCookies();
