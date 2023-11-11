@@ -45,9 +45,23 @@ const urls = (data: SlugsQuery) =>
 
 // TODO(#165): Change datastructure of terapeuter to get date_updated
 const terapheutsUrls = (terapheuts: SlugsQuery["terapeuter_directus_users"]): string[] => {
-  return terapheuts.flatMap(({ directus_users_id }) =>
-    localPrefix.flatMap((locale) => createUrl(`${locale}/terapeuter/${directus_users_id?.slug}`))
-  );
+  return terapheuts.flatMap(({ directus_users_id }) => {
+    const { latestDate } = urlsFromArticles(
+      (updateDate) =>
+        directus_users_id?.artiklar?.flatMap((a) => {
+          if (!a) return "";
+          const date = new Date(a.date_updated);
+          updateDate(date);
+          return "";
+        }) || []
+    );
+    return localPrefix.flatMap((locale) =>
+      createUrl(
+        `${locale}/terapeuter/${directus_users_id?.slug}`,
+        latestDate ? toString(latestDate) : undefined
+      )
+    );
+  });
 };
 
 function urlsFromArticles(
