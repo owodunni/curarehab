@@ -9,6 +9,9 @@ query Slugs($filter: artiklar_filter, $f2: Behandlingar_filter) {
   terapeuter_directus_users {
     directus_users_id {
       slug
+      artiklar(filter: $filter) {
+        date_updated
+      }
     }
   }
   Behandlingar(filter: $f2) {
