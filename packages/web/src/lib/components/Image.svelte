@@ -12,6 +12,18 @@
   type Format = "avif" | "webp" | "jpg";
   type ImageType = "image/avif" | "image/webp" | "image/jpeg";
 
+  const allowedSized = [64, 100, 112, 200, 250, 400, 450, 627, 800, 1000, 1200];
+
+  // Find first value in allowedSized that is smaller or equal to size
+  function findSize(size: number): number {
+    for (let i = 0; i < allowedSized.length; i++) {
+      if (allowedSized[i] >= size) {
+        return allowedSized[i];
+      }
+    }
+    return allowedSized[allowedSized.length - 1];
+  }
+
   function calculateSourceSet(): { type: ImageType; srcset: string }[] {
     const scales = [1, 0.75, 0.5, 0.25];
     const formats = [
@@ -24,8 +36,9 @@
       type: name,
       srcset: scales
         .map((scale) => {
-          const w = Math.floor(scale * width);
-          const h = Math.floor(scale * height);
+          const aspectRatio = width / height;
+          const w = findSize(scale * width);
+          const h = findSize(w / aspectRatio);
           const src = getAsset2(srcPath, { width: w, height: h, format, quality: 0.8 });
           return `${src} ${width}w`;
         })
