@@ -12,7 +12,7 @@ To deploy to our local server:
    ```bash
    scp .env owodunni@gluteus:/home/owodunni/.directus/.env
    ```
-2. Ssh into server
+2. ssh into server
    ```bash
    ssh owodunni@gluteus
    ```
@@ -23,6 +23,29 @@ To deploy to our local server:
 4. Restart docker
    ```bash
    ./init-letsencrypt.sh
+   ```
+
+## Deploying to GCP
+
+We plan to migrate to GCP because they support scaling to zero.
+
+1. Authenticate
+   ```bash
+   gcloud auth configure-docker \
+    europe-north1-docker.pkg.dev
+   ```
+2. Build
+   ```bash
+    docker build -t directus .
+    ```
+
+3. Tag
+   ```bash
+   docker tag directus:latest europe-north1-docker.pkg.dev/curarehab/directus/directus:latest
+   ```
+4. Push
+   ```bash
+   docker push europe-north1-docker.pkg.dev/curarehab/directus/directus:latest
    ```
 
 ## Deploying on Azure
