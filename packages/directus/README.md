@@ -35,9 +35,10 @@ We plan to migrate to GCP because they support scaling to zero.
     europe-north1-docker.pkg.dev
    ```
 2. Build
+
    ```bash
     docker build -t directus . --platform linux/amd64
-    ```
+   ```
 
 3. Tag
    ```bash
