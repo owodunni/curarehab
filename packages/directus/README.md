@@ -36,7 +36,7 @@ We plan to migrate to GCP because they support scaling to zero.
    ```
 2. Build
    ```bash
-    docker build -t directus .
+    docker build -t directus . --platform linux/amd64
     ```
 
 3. Tag
