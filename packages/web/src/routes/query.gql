@@ -37,4 +37,16 @@ query Widgets {
       }
     }
   }
+  header {
+    banner {
+      id
+      Text
+      Title
+      Link {
+        link
+        type
+        display_link
+      }
+    }
+  }
 }
