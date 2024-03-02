@@ -8,10 +8,15 @@
   import Seo from "$lib/components/Seo.svelte";
   import Articles from "$lib/widgets/Articles.svelte";
   import Behandling from "./behandling.svelte";
+  import Banner from "$lib/components/Banner.svelte";
 
   export let data: PageData;
   $: ({ t, l } = data);
 </script>
+
+{#if data.params.lang !== "en" && data?.data?.header?.banner}
+  <Banner banner={data?.data?.header?.banner} />
+{/if}
 
 <Section extras="theme-sand-dark lg:pt-8">
   <Hero {t} {l} image={data?.data?.Hem?.omslagsbild ?? undefined} />

@@ -18,6 +18,12 @@ export type Link = {
   display_link: string;
 };
 
+export type Banner = {
+  title: string;
+  text: string;
+  link: Link;
+};
+
 export type Image = {
   title?: string | null;
   filename_disk?: string | null;
