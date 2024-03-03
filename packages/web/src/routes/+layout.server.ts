@@ -41,6 +41,7 @@ export const load: LayoutServerLoad = async (event) => {
 
   // When navigating to a route that doesn't exist loadData can throw a No page found exception
   const [translations, widgets] = await loadData(locale, route).catch(() => loadData(locale, "/"));
+
   return {
     translations,
     widgets: widgets.data

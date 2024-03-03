@@ -87,4 +87,16 @@ query ArticlesAndTerapeuts($filter: artiklar_filter, $filter2: Behandlingar_filt
       }
     }
   }
+  header {
+    banner {
+      id
+      Text
+      Title
+      Link {
+        link
+        type
+        display_link
+      }
+    }
+  }
 }
