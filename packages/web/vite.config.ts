@@ -59,6 +59,7 @@ export default (params: { mode: string }) => {
   });
 
   return defineConfig({
+    // @ts-ignore
     plugins: [codegen({ config }), sitemapPlugin(client), sveltekit()],
     test: {
       include: ["./src/**/*.test.ts"]
