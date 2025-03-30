@@ -2,8 +2,9 @@ FROM directus/directus:10
 
 USER root
 
-RUN corepack enable \
-  && corepack prepare pnpm@8.3.1 --activate
+RUN npm install -g corepack@latest \
+  && corepack enable \
+  && corepack prepare pnpm --activate
 
 RUN apk --no-cache add curl
 
