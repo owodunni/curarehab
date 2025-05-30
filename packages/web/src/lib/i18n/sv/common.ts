@@ -40,7 +40,7 @@ export const common: CommonTranslations = {
   naprapatHref:
     "https://www.1177.se/behandling--hjalpmedel/smartbehandlingar-och-rehabilitering/kiropraktik-och-naprapati/",
   cookies: "Cookiepolicy",
-  hanoLink: "https://curarehab.bestille.no/OnCust2/",
+  hanoLink: "/boka",
   treatmentsTitle: "Våra behandlingar",
   treatmentsText:
     "<b>Varje patient är unik</b> - Vi förstår att olika besvär kräver olika lösningar. Tack vare vårt team av erfarna terapeuter kan vi erbjuda ett brett utbud av behandlingar för att hjälpa dig mot en hälsosammare livsstil.",

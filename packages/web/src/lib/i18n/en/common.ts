@@ -40,7 +40,7 @@ export const common: CommonTranslations = {
   naprapatHref:
     "https://www.jointacademy.com/us/en/facts/osteoarthritis-treatment/naprapath-naprapathy/",
   cookies: "Cookie Policy",
-  hanoLink: "https://curarehab.bestille.no/OnCust2/",
+  hanoLink: "/en/boka",
   treatmentsTitle: "Our Treatments",
   treatmentsText:
     "<b>Every patient is unique</b> - We understand that different problems require different solutions. Thanks to our team of experienced therapists, we can offer a wide range of treatments to help you towards a healthier lifestyle.",
