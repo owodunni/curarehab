@@ -1,0 +1,16 @@
+query Klinik($filter: Kliniker_list_filter) {
+  Kliniker_list(filter: $filter) {
+    date_updated
+    status
+    omslags_bild {
+      title
+      type
+      width
+      height
+      filename_disk
+    }
+    slug
+    title
+    title_en
+  }
+}
