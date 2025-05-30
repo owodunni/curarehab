@@ -19,7 +19,6 @@ jobs:
           cache-dependency-path: package-lock.json
       - run: |
           npm ci
-          npx playwright install --with-deps chromium
       # - run: npm run lint
       - run: npm run build
         env:

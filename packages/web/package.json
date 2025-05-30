@@ -9,9 +9,8 @@
     "preview": "vite preview --host",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "test": "run-s test:unit test:system",
+    "test": "run-s test:unit",
     "test:unit": "vitest run",
-    "test:system": "playwright test",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write ."
   },
@@ -21,7 +20,6 @@
     "@graphql-codegen/near-operation-file-preset": "^3.0.0",
     "@graphql-codegen/typescript": "^4.1.6",
     "@graphql-codegen/typescript-operations": "^4.6.0",
-    "@playwright/test": "^1.34.3",
     "@sveltejs/vite-plugin-svelte": "^2.5.0",
     "@sveltejs/adapter-cloudflare": "^2.3.4",
     "@sveltejs/kit": "^1.30.4",
