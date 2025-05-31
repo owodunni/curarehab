@@ -40,6 +40,11 @@
   <script
     src="https://ww1.clinicbuddy.com/onlinebooking/js/jquery.cbonlinebooking.js?v=20240327"
   ></script>
+  {#if locale === "en"}
+    <script
+      src="https://ww1.clinicbuddy.com/onlinebooking/js/jquery.cbonlinebooking-en.js"
+    ></script>
+  {/if}
 </svelte:head>
 
 <Section>
@@ -72,7 +77,11 @@
                       header: { show: 0 },
                     },
                     language,
-                    defaults: { locations: [3] },
+                    params: {
+                      activityGroup: [2],
+                      providerGroups: [2],
+                      locations: [2],
+                    },
                     appearance: { filters: { activity: "false" } },
                   },
                 };
