@@ -8,7 +8,8 @@ export type Page =
   | "personuppgiftspolicy"
   | "hitta"
   | "terapeuter"
-  | "skadekompassen";
+  | "skadekompassen"
+  | "boka";
 export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
@@ -101,6 +102,11 @@ export type ArticleTranslations = {
   articlesText: string;
 };
 
+export type BokaTranslations = {
+  title: string;
+  description: string;
+};
+
 export type FindTranslations = {
   title: string;
   description: string;
@@ -161,4 +167,5 @@ export type Translations =
   | keyof PrivacyTranslations
   | keyof CookiesTranslations
   | keyof SkadekompassenTranslations
-  | keyof TreatmentsTranslations;
+  | keyof TreatmentsTranslations
+  | keyof BokaTranslations;
