@@ -1,5 +1,32 @@
-<script>
+<script lang="ts">
   import { browser } from "$app/environment";
+  import Container from "$lib/components/Container.svelte";
+  import Section from "$lib/components/Section.svelte";
+  import { onMount } from "svelte";
+
+  let mount = false;
+
+  export let data;
+  $: ({ t } = data);
+
+  $: locale = t("common", "lang");
+
+  onMount(() => {
+    mount = true;
+    return () => {
+      const mainElement = document.querySelector("#container");
+
+      // Check if the main element exists
+      if (mainElement) {
+        // A loop to remove all child nodes
+        while (mainElement.firstChild) {
+          mainElement.removeChild(mainElement.firstChild);
+        }
+      } else {
+        console.error("Main element not found!");
+      }
+    };
+  });
 </script>
 
 <svelte:head>
@@ -16,27 +43,32 @@
   ></script>
 </svelte:head>
 
-{#if browser}
-  <script>
-    var ob_ = {
-      settings: {
-        uid: "-3177",
-        embedded: true,
-        customization: { footer: { show: 0 }, header: { show: 0 } },
-        data: { language: "en" },
-        language: "en",
-      },
-      language: "en",
-    };
-    $(document).ready(function () {
-      $('body').attr('data-sveltekit-preload-data', 'false');
-      $("main").cbOnlineBooking(ob_.settings);
-      if (window.top === window.self) {
-        cd_ = { language: "sv" };
-        /*$.getScript(
-      "https://ww1.clinicbuddy.com/onlinebooking/js/cbcookiedirective.js?v=20211219",
-    );*/
-      }
-    });
-  </script>
-{/if}
+<Section>
+  <Container>
+      <h1 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl -mt-6">
+        {t("boka", "title")}
+      </h1>
+      <p class="text-theme-heading my-6 text-lg">
+        {t("boka", "description")}
+      </p>
+
+    {#if mount && browser}
+      <div class="flex flex-grow" id="container" data-locale={locale}>
+        <script>
+          $(document).ready(function () {
+            const language = $("#container").data("locale"); // Access the locale data attribute
+            var ob_ = {
+              settings: {
+                uid: "-3177",
+                embedded: true,
+                customization: { footer: { show: 0 }, header: { show: 0 } },
+                language,
+              },
+            };
+            $("#container").cbOnlineBooking(ob_.settings);
+          });
+        </script>
+      </div>
+    {/if}
+  </Container>
+</Section>
