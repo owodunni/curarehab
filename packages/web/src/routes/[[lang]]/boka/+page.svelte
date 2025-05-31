@@ -37,9 +37,8 @@
   <script
     src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
   ></script>
-  <!--script src="/jquery.onlinebooking.js"></script-->
   <script
-    src="https://ww1.clinicbuddy.com/onlinebooking/js/jquery.cbonlinebooking.js?v=20240327&&defaults[language]=en"
+    src="https://ww1.clinicbuddy.com/onlinebooking/js/jquery.cbonlinebooking.js?v=20240327"
   ></script>
 </svelte:head>
 
@@ -57,23 +56,42 @@
     {#if mount && browser}
       <div class="flex flex-grow" id="container" data-locale={locale}>
         <script>
-          $(document).ready(function () {
-            const language = $("#container").data("locale"); // Access the locale data attribute
-            var ob_ = {
-              settings: {
-                uid: "-3177",
-                embedded: true,
-                customization: {
-                  footer: { show: 0 },
-                  header: { show: 0 },
-                },
-                language,
-                defaults: { locations: [3] },
-                appearance: { filters: { activity: "false" } },
-              },
-            };
-            $("#container").cbOnlineBooking(ob_.settings);
-          });
+          (() => {
+            // Check if jquery is defined and retry every 100ms if not
+            const handle = setInterval(() => {
+              if (!$) return;
+              clearInterval(handle);
+              $(document).ready(function () {
+                const language = $("#container").data("locale"); // Access the locale data attribute
+                var ob_ = {
+                  settings: {
+                    uid: "-3177",
+                    embedded: true,
+                    customization: {
+                      footer: { show: 0 },
+                      header: { show: 0 },
+                    },
+                    language,
+                    defaults: { locations: [3] },
+                    appearance: { filters: { activity: "false" } },
+                  },
+                };
+
+                const element = $("#container");
+                const fn = () => {
+                  if (!element.cbOnlineBooking) return false;
+                  element.cbOnlineBooking(ob_.settings);
+                  return true;
+                };
+                if (fn()) return;
+
+                // Check if cbOnlineBooking is injected jet and retry every 100ms if not
+                const handle2 = setInterval(() => {
+                  if (fn()) clearInterval(handle2);
+                }, 100);
+              });
+            }, 100);
+          })();
         </script>
       </div>
     {/if}
