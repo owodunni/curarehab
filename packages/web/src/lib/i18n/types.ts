@@ -155,6 +155,7 @@ export type TranslationsByGroup = {
   behandlingar: TreatmentsTranslations;
   cookies: CookiesTranslations;
   skadekompassen: SkadekompassenTranslations;
+  boka: BokaTranslations;
 };
 
 export type Translations =
