@@ -37,14 +37,6 @@
   <script
     src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
   ></script>
-  <script
-    src="https://ww1.clinicbuddy.com/onlinebooking/js/jquery.cbonlinebooking.js?v=20240327"
-  ></script>
-  {#if locale === "en"}
-    <script
-      src="https://ww1.clinicbuddy.com/onlinebooking/js/jquery.cbonlinebooking-en.js"
-    ></script>
-  {/if}
 </svelte:head>
 
 <Section>
@@ -86,20 +78,18 @@
                   },
                 };
 
-                const element = $("#container");
-                const fn = () => {
-                  if (!element.cbOnlineBooking) return false;
-                  element.cbOnlineBooking(ob_.settings);
-                  return true;
-                };
-                if (fn()) return;
-
-                // Check if cbOnlineBooking is injected jet and retry every 100ms if not
-                const handle2 = setInterval(() => {
-                  if (fn()) clearInterval(handle2);
-                }, 100);
+                $.getScript(
+                  "https://ww1.clinicbuddy.com/onlinebooking/js/jquery.cbonlinebooking.js?v=20240327",
+                  function () {
+                    if(language === "en")
+                      $.getScript("https://ww1.clinicbuddy.com/onlinebooking/js/jquery.cbonlinebooking-en.js",
+                        function () {/* no-op */});
+                    const element = $("#container");
+                    element.cbOnlineBooking(ob_.settings);
+                  },
+                );
               });
-            }, 100);
+            }, 50);
           })();
         </script>
       </div>
