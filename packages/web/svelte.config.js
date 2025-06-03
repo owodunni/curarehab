@@ -10,6 +10,7 @@ const config = {
   kit: {
     adapter: adapter(),
     prerender: {
+      concurrency: 4,
       crawl: true,
       entries: ["*", "/", "/en", "/sitemap.xml"]
     }

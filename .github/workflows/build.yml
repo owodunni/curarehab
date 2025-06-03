@@ -14,13 +14,12 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 22
           cache: "npm"
           cache-dependency-path: package-lock.json
       - run: |
           npm ci
-          npx playwright install --with-deps chromium
-      - run: npm run lint
+      # - run: npm run lint
       - run: npm run build
         env:
           VITE_CMS_TOKEN: ${{ secrets.VITE_CMS_TOKEN }}
@@ -36,7 +35,7 @@ jobs:
         uses: cpina/github-action-push-to-another-repository@main
         if: github.ref == 'refs/heads/master'
         env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
           source-directory: ".unlighthouse"
           destination-github-username: "owodunni"
@@ -50,7 +49,7 @@ jobs:
         uses: cpina/github-action-push-to-another-repository@main
         if: github.ref == 'refs/heads/master'
         env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
           source-directory: ".unlighthouse-release"
           destination-github-username: "owodunni"

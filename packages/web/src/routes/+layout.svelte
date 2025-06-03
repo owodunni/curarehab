@@ -44,7 +44,7 @@
 <Analytics l={data.l} t={data.t} />
 
 <Header t={data.t} l={data.l} {locale} route={data.route} />
-<main>
+<main class="flex-grow">
   <slot />
 </main>
 <Footer
