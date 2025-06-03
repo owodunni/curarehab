@@ -35,7 +35,7 @@ jobs:
         uses: cpina/github-action-push-to-another-repository@main
         if: github.ref == 'refs/heads/master'
         env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
           source-directory: ".unlighthouse"
           destination-github-username: "owodunni"
@@ -49,7 +49,7 @@ jobs:
         uses: cpina/github-action-push-to-another-repository@main
         if: github.ref == 'refs/heads/master'
         env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
           source-directory: ".unlighthouse-release"
           destination-github-username: "owodunni"
