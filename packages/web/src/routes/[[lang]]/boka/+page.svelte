@@ -70,7 +70,7 @@
                     },
                     language,
                     params: {
-                      activityGroup: [2],
+                      activityGroups: [2],
                       providerGroups: [2],
                       locations: [3],
                     },
