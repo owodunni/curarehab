@@ -80,7 +80,7 @@
                     params: {
                       activityGroup: [2],
                       providerGroups: [2],
-                      locations: [2],
+                      locations: [3],
                     },
                     appearance: { filters: { activity: "false" } },
                   },
