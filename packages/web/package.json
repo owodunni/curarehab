@@ -27,7 +27,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@types/gtag.js": "^0.0.13",
     "autoprefixer": "^10.4.14",
-    "graphql": "^16.6.0",
+    "graphql": "^16.11.0",
     "isomorphic-unfetch": "^4.0.2",
     "postcss": "^8.4.23",
     "schema-dts": "^1.1.2",
