@@ -38,6 +38,7 @@ export type CommonTranslations = {
   titleNaprapat: string;
   titleMassage: string;
   titleWeb: string;
+  titleSpecFysio: string;
   terapheutsTitle: string;
   terapheutsText: string;
   treatmentsTitle: string;

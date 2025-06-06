@@ -21,10 +21,11 @@ export const common: CommonTranslations = {
   partners: "Partners",
   readMore: "Read more",
   contact: "Contact",
-  titleFysio: "Physical Therapist",
+  titleFysio: "Physiotherapist",
   titleNaprapat: "Naprapath",
   titleMassage: "Massage therapist",
   titleWeb: "Web lord",
+  titleSpecFysio: "Spec. Physiotherapist",
   terapheutsTitle: "Our therapists",
   terapheutsText:
     "<b>Help for a pain-free everyday life</b> - As licensed therapists, we help you towards better health and well-being. We always tailor our treatments according to your needs and goals.",
