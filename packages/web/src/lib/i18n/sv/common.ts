@@ -25,6 +25,7 @@ export const common: CommonTranslations = {
   titleNaprapat: "Leg. Naprapat",
   titleMassage: "Massageterapeut",
   titleWeb: "Webansvarig",
+  titleSpecFysio: "Leg. Specialistfysioterapeut",
   terapheutsTitle: "Våra terapeuter",
   terapheutsText:
     "<b>Hjälp mot en smärtfri vardag</b> - Vi legitimerade terapeuter hjälper dig mot bättre hälsa och välbefinnande. Vi skräddarsyr alltid våra behandlingar utefter dina behov och mål.",
