@@ -62,7 +62,8 @@ export default (params: { mode: string }) => {
     // @ts-ignore
     plugins: [codegen({ config }), sitemapPlugin(client), sveltekit()],
     test: {
-      include: ["./src/**/*.test.ts"]
+      include: ["./src/**/*.test.ts"],
+      environment: "jsdom"
     }
   });
 };
