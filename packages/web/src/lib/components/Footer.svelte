@@ -114,7 +114,7 @@
       </div>
     </div>
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-      <div />
+      <div></div>
       <div class="col-start-2 mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0 xl:grid-cols-4">
         {#each linksWithCategory as outerLinks}
           {#each Object.entries(outerLinks) as [title, links]}

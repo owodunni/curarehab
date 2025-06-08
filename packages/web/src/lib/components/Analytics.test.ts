@@ -52,7 +52,8 @@ describe('Analytics', () => {
 
     cookieSettings.set({
       permission: true,
-      cookiePermissions: { googleAnalytics: true }
+      updated: new Date().toISOString(),
+      cookiePermissions: { googleAnalytics: true, googleAds: false }
     });
 
     const { container } = render(Analytics, {

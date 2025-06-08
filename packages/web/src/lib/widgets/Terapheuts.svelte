@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import type { L, T } from "$lib/i18n/t";
-  import type { TerapeutsMetaDataQuery } from "src/routes/[[lang]]/terapeuter/$types.gql";
+  import type { TerapeutsMetaDataQuery } from "../../routes/[[lang]]/terapeuter/$types.gql";
   import { getTitle } from "./util";
   import CardList from "$lib/components/CardList.svelte";
   import Card from "$lib/components/Card.svelte";

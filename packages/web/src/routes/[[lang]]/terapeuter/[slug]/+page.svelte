@@ -34,7 +34,7 @@
 {#if terapeut?.artiklar?.length || 0 > 0}
   <Section class="">
     <Container class="pb-14 sm:pb-20">
-      <div class="border-1 border-t sm:mx-4 lg:mx-0" />
+      <div class="border-1 border-t sm:mx-4 lg:mx-0"></div>
       <Articles articles={terapeut?.artiklar || []} {l} {t} />
     </Container>
   </Section>

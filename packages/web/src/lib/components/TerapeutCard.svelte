@@ -23,7 +23,7 @@
   <div class="text-sm leading-6">
     <p class="text-theme-muted hover:text-theme-muted-hover font-semibold">
       <a href={`${l("terapeuter")}/${terapeut?.slug}`}>
-        <span class="absolute inset-0" />
+        <span class="absolute inset-0"></span>
         {terapeut?.first_name}
         {terapeut?.last_name}
       </a>

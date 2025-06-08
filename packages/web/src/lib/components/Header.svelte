@@ -101,7 +101,7 @@
               in:fade|global={{ duration: 150 }}
               out:fade|global={{ duration: 200 }}
               on:click={close}
-            />
+            ></div>
             <div
               class="absolute inset-x-0 top-0 origin-top"
               in:fly|global={{ y: -64, duration: 150 }}

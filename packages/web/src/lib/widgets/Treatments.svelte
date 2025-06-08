@@ -3,7 +3,7 @@
   import CardList from "$lib/components/CardList.svelte";
   import TreatmentCard from "$lib/components/TreatmentCard.svelte";
   import type { L, T } from "$lib/i18n/t";
-  import type { ArticlesAndTerapeutsQuery } from "src/routes/[[lang]]/$types.gql";
+  import type { ArticlesAndTerapeutsQuery } from "../../routes/[[lang]]/$types.gql";
 
   export let l: L;
   export let t: T;
@@ -20,7 +20,7 @@
   </p>
 </div>
 <CardList>
-  {#each treatments.filter((t) => t.Primary_treatment === "true") as treatment}
+  {#each treatments.filter((treatment) => treatment.Primary_treatment === "true") as treatment}
     <TreatmentCard
       {treatment}
       {l}
@@ -33,7 +33,7 @@
   {/each}
 </CardList>
 <CardList extras="border-t border-theme-div">
-  {#each treatments.filter((t) => t.Primary_treatment !== "true") as treatment}
+  {#each treatments.filter((treatment) => treatment.Primary_treatment !== "true") as treatment}
     <TreatmentCard
       {treatment}
       {l}
