@@ -29,6 +29,14 @@ jobs:
           VITE_CMS_TOKEN: ${{ secrets.VITE_CMS_TOKEN }}
           CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
 
+      - name: Upload coverage artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: packages/web/coverage/
+          retention-days: 30
+
       - run: npm run unlighthouse:master
         if: github.ref == 'refs/heads/master'
       - name: Deploy lighthouse

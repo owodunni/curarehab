@@ -1,5 +1,7 @@
 # CuraRehab
 
+[![Build](https://github.com/owodunni/curarehab/actions/workflows/build.yml/badge.svg)](https://github.com/owodunni/curarehab/actions/workflows/build.yml)
+
 This is the source code [curarehab.se](https://curarehab.se). This is a high performance static site, that is easy to work with
 and cheap to maintain.
 
@@ -13,6 +15,25 @@ But don't take my word for it check out our [Unlighthouse](https://unlighthouse.
 
 - [release - static](https://curarehab-reports.pages.dev/)
 - [master - dynamic](https://master.curarehab-reports.pages.dev/)
+
+## Testing & Coverage
+
+The project uses [Vitest](https://vitest.dev/) for testing with [@testing-library/svelte](https://testing-library.com/docs/svelte-testing-library/intro/) for component testing.
+
+### Running Tests
+
+```bash
+# Run tests with coverage (default)
+npm run test
+
+# Run tests in watch mode (development)
+npm run test:unit -- --watch
+```
+
+### Coverage Reports
+
+- **Local**: Coverage reports are generated in `packages/web/coverage/index.html`
+- **CI/CD**: Coverage reports are uploaded as artifacts in GitHub Actions and can be downloaded from the build summary
 
 ## Release
 

@@ -63,7 +63,18 @@ export default (params: { mode: string }) => {
     plugins: [codegen({ config }), sitemapPlugin(client), sveltekit()],
     test: {
       include: ["./src/**/*.test.ts"],
-      environment: "jsdom"
+      environment: "jsdom",
+      coverage: {
+        provider: "v8",
+        reporter: ["text", "html", "lcov"],
+        include: ["src/**/*.{js,ts,svelte}"],
+        exclude: [
+          "src/**/*.test.ts",
+          "src/**/*.d.ts",
+          "src/**/*.gql.d.ts",
+          "src/app.html"
+        ]
+      }
     }
   });
 };
