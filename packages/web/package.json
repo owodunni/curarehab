@@ -37,7 +37,6 @@
     "schema-dts": "^1.1.2",
     "svelte": "^4.2.19",
     "svelte-check": "^3.0.0",
-    "svelte-intersection-observer": "^0.10.0",
     "tailwindcss": "^3.3.1",
     "tslib": "^2.8.1",
     "vite": "^4.0.0",
