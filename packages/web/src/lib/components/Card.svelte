@@ -2,15 +2,24 @@
   import Image from "$lib/components/Image.svelte";
   import type { Image as ImageType } from "$lib/api";
 
-  export let link: string;
-  export let image: ImageType | undefined | null;
-  export let shape: "circle" | "square" = "square";
-  export let text: string | undefined | null = "";
+  let {
+    link,
+    image,
+    shape = "square",
+    text = "",
+    children
+  }: {
+    link: string;
+    image: ImageType | undefined | null;
+    shape?: "circle" | "square";
+    text?: string | undefined | null;
+    children?: import('svelte').Snippet;
+  } = $props();
 </script>
 
-<div>
-  <a href={link} class="group">
-    <div class="relative w-full">
+<div class="group">
+  <div class="relative w-full">
+    <a href={link}>
       <Image
         srcPath={image?.filename_disk || ""}
         alt={image?.title || ""}
@@ -22,16 +31,18 @@
             : "mx-auto aspect-square h-52 w-52 rounded-full md:h-64 md:w-64"
         } `}
       />
-      <div class="mt-6 flex items-start justify-between">
-        <slot />
-      </div>
-      {#if text}
-        <article class={`prose mt-5`}>
-          <p class="text-theme-body line-clamp-6 overflow-hidden text-ellipsis text-base leading-7">
-            {text}
-          </p>
-        </article>
+    </a>
+    <div class="mt-6 flex items-start justify-between">
+      {#if children}
+        {@render children()}
       {/if}
     </div>
-  </a>
+    {#if text}
+      <article class={`prose mt-5`}>
+        <p class="text-theme-body line-clamp-6 overflow-hidden text-ellipsis text-base leading-7">
+          {text}
+        </p>
+      </article>
+    {/if}
+  </div>
 </div>

@@ -4,12 +4,11 @@
   import Section from "$lib/components/Section.svelte";
   import { onMount } from "svelte";
 
-  let mount = false;
+  let mount = $state(false);
 
-  export let data;
-  $: ({ t } = data);
-
-  $: locale = t("common", "lang");
+  let { data } = $props();
+  let { t } = $derived(data);
+  let locale = $derived(t("common", "lang"));
 
   onMount(() => {
     mount = true;

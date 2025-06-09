@@ -4,8 +4,8 @@
   import Section from "$lib/components/Section.svelte";
   import Seo from "$lib/components/Seo.svelte";
   import Treatments from "$lib/widgets/Treatments.svelte";
-  export let data: PageData;
-  $: ({ l, t } = data);
+  let { data }: { data: PageData } = $props();
+  let { l, t } = $derived(data);
 </script>
 
 <Section>

@@ -6,12 +6,10 @@
   import Seo from "$lib/components/Seo.svelte";
   import { getTitle } from "$lib/widgets/util";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
-  export let data: PageData;
-  $: ({ t, l } = data);
-  let lang = data.params.lang;
-  let om = data?.data?.om ?? undefined;
-  $: om = data?.data?.om ?? undefined;
-  $: lang = data.params.lang;
+  let { data }: { data: PageData } = $props();
+  let { t, l } = $derived(data);
+  let lang = $derived(data.params.lang);
+  let om = $derived(data?.data?.om ?? undefined);
 </script>
 
 {#if om}

@@ -6,12 +6,10 @@
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import SocialLink from "$lib/components/SocialLink.svelte";
   import type { Link } from "$lib/api";
-  export let data: PageData;
-  let lang = data.params.lang;
-  let hitta = data?.data?.hitta ?? undefined;
-  $: hitta = data?.data?.hitta ?? undefined;
-  $: lang = data.params.lang;
-  $: links = (hitta?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[];
+  let { data }: { data: PageData } = $props();
+  let lang = $derived(data.params.lang);
+  let hitta = $derived(data?.data?.hitta ?? undefined);
+  let links = $derived((hitta?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[]);
 </script>
 
 {#if hitta}
