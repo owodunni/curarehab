@@ -8,12 +8,9 @@
   import Flags from "./Flags.svelte";
   import type { Page } from "$lib/i18n";
 
-  export let t: T;
-  export let l: L;
-  export let locale: "sv" | "en";
-  export let route: string;
+  let { t, l, locale, route }: { t: T; l: L; locale: "sv" | "en"; route: string } = $props();
 
-  let open = false;
+  let open = $state(false);
 
   function toggle() {
     open = !open;
@@ -23,25 +20,26 @@
     open = false;
   }
 
-  let links: Page[] = [];
-  $: links = [
+  let links = $derived([
     "behandlingar",
     "hitta",
     "om",
-    ...(locale === "sv" ? ["skadekompassen" as Page] : [])
-  ];
+    ...(locale === "sv" ? ["skadekompassen"] as const : [])
+  ] as const satisfies readonly Page[]);
 
-  $: localizedHref = ((): string => {
+
+  let localizedHref = $derived((() => {
     if (route === `/${locale}` || route === "/") return locale === "en" ? "/" : "/en";
     else return locale === "en" ? route.substring(3) : `/en${route.substring(3)}`;
-  })();
+  })());
+
   // We don't want to show the localization switch language when showing articles since they can't be localized
-  $: showLocalization = !(
+  let showLocalization = $derived(!(
     localizedHref.startsWith("/en/artiklar") ||
     localizedHref.startsWith("/sv/artiklar") ||
     route.startsWith("/sv/skadekompassen") ||
     route.startsWith("/en/skadekompassen")
-  );
+  ));
 </script>
 
 <header lang={locale}>
@@ -51,7 +49,7 @@
         <a
           href={l("hem")}
           class="btn-icon btn-lg border-x-secondary-200 absolute m-0 w-32 p-0"
-          on:click={close}
+          onclick={close}
           aria-label={t("common", "title")}
           ><Logo class="text-skog-700 hover:text-skog-900 w-48 transition-colors" /></a
         >
@@ -70,7 +68,7 @@
               data-sveltekit-reload
               class="btn-icon relative z-10 h-8 w-8"
               href={localizedHref}
-              on:click={close}
+              onclick={close}
             >
               <Flags
                 {t}
@@ -86,7 +84,7 @@
             aria-label={t("common", "menuAria")}
             aria-controls={open ? "popover-panel" : undefined}
             class="btn-icon relative z-10 -m-2"
-            on:click={toggle}
+            onclick={toggle}
           >
             {#if open}
               <ChevronUpIcon class="h-8 w-8" />
@@ -100,7 +98,7 @@
               class="bg-sand-300/60 fixed inset-0 z-0 backdrop-blur-sm"
               in:fade|global={{ duration: 150 }}
               out:fade|global={{ duration: 200 }}
-              on:click={close}
+              onclick={close}
             ></div>
             <div
               class="absolute inset-x-0 top-0 origin-top"
@@ -116,12 +114,12 @@
                     <a
                       href={l(link)}
                       class="btn text-gray-700 hover:text-gray-900"
-                      on:click={toggle}>{t("common", link)}</a
+                      onclick={toggle}>{t("common", link)}</a
                     >
                   {/each}
                 </div>
                 <div class="mt-8 flex flex-col gap-4">
-                  <a class="btn variant-filled" href={t("common", "hanoLink")} on:click={toggle}>
+                  <a class="btn variant-filled" href={t("common", "hanoLink")} onclick={toggle}>
                     {t("common", "boka")}
                   </a>
                 </div>

@@ -7,10 +7,9 @@
   import { onMount } from "svelte";
   import { browser } from "$app/environment";
 
-  export let l: L;
-  export let t: T;
+  let { l, t }: { l: L; t: T } = $props();
 
-  $: {
+  $effect(() => {
     if (browser) {
       const settings = $cookieSettings;
       if (settings.permission !== undefined) {
@@ -24,8 +23,9 @@
         page_path: $page.url.pathname
       });
     }
-  }
-  let show = false;
+  });
+
+  let show = $state(false);
   onMount(() => setTimeout(() => (show = true), 400));
 </script>
 
@@ -48,7 +48,7 @@
       <div class="mt-4 flex items-center gap-x-6">
         <button
           type="button"
-          on:click={() => {
+          onclick={() => {
             setCookiePermissions(true);
           }}
           class="btn variant-filled"
@@ -57,7 +57,7 @@
         </button>
         <button
           type="button"
-          on:click={() => {
+          onclick={() => {
             setCookiePermissions(false);
           }}
           class="btn variant-ghost"

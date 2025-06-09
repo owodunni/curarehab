@@ -1,13 +1,25 @@
 <script lang="ts">
   import { getAsset2 } from "$lib/widgets/util";
   import { onMount } from "svelte";
+  import type { ComponentProps } from "./types";
+  import type { HTMLImgAttributes } from "svelte/elements";
 
-  export let width: number;
-  export let height: number;
-  export let alt = "";
-  export let lazy = true;
-
-  export let srcPath: string;
+  let {
+    width,
+    height,
+    alt = "",
+    lazy = true,
+    srcPath,
+    class: clazz = "",
+    ...restProps
+  }: ComponentProps<{
+    width: number;
+    height: number;
+    alt?: string;
+    lazy?: boolean;
+    srcPath: string;
+    class?: string;
+  }, HTMLImgAttributes> = $props();
 
   type Format = "avif" | "webp" | "jpg";
   type ImageType = "image/avif" | "image/webp" | "image/jpeg";
@@ -46,12 +58,10 @@
     }));
   }
 
-  $: sourceSet = calculateSourceSet();
+  let sourceSet = $derived(calculateSourceSet());
 
-  let clazz = "";
-  export { clazz as class };
   let node: HTMLElement;
-  let intersecting = false;
+  let intersecting = $state(false);
 
   onMount(() => {
     if (!node || typeof IntersectionObserver === 'undefined') {
@@ -98,7 +108,7 @@
     loading={lazy ? "lazy" : undefined}
     decoding={lazy ? "async" : undefined}
     {alt}
-    {...$$restProps}
+    {...restProps}
   />
 </picture>
 
