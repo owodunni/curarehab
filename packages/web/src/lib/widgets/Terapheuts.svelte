@@ -27,27 +27,14 @@
     <Card
       link={`${l("terapeuter")}/${directus_users_id?.slug}`}
       image={directus_users_id?.avatar}
+      t={t}
       shape="circle"
       text={$page.params.lang === "en"
         ? directus_users_id?.profil_sammanfattning_en
         : directus_users_id?.profil_sammanfattning}
     >
-      <div class="w-full">
-        <h3
-          class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading overflow-hidden text-ellipsis"
-        >
-          {directus_users_id?.first_name}
-          {directus_users_id?.last_name}
-        </h3>
-        <p class="text-theme-muted text-sm leading-6">
-          {getTitle(directus_users_id?.work_title || "", t)}
-        </p>
-      </div>
-      <div>
-        <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled">
-          {t("common", "bokaNu")}
-        </a>
-      </div>
+      {directus_users_id?.first_name}
+      {directus_users_id?.last_name}
     </Card>
   {/each}
 </CardList>

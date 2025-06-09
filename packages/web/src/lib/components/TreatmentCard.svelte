@@ -24,17 +24,8 @@
   link={`${l("behandlingar")}/${treatment.Slug}`}
   image={treatment?.bild}
   text={sammanfattning}
+  t={t}
   shape={primary ? "square" : "circle"}
 >
-  <div class="w-full">
-    <h3
-      class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading overflow-hidden text-ellipsis"
-      lang={t("common", "lang")}
-    >
-      {title}
-    </h3>
-  </div>
-  <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled">
-    {t("common", "bokaNu")}
-  </a>
+  {title}
 </Card>
