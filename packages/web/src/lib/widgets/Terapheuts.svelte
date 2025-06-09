@@ -6,9 +6,11 @@
   import CardList from "$lib/components/CardList.svelte";
   import Card from "$lib/components/Card.svelte";
 
-  export let l: L;
-  export let t: T;
-  export let terapheuts: TerapeutsMetaDataQuery["terapeuter_directus_users"];
+  let { l, t, terapheuts }: {
+    l: L;
+    t: T;
+    terapheuts: TerapeutsMetaDataQuery["terapeuter_directus_users"];
+  } = $props();
 </script>
 
 <div class="mx-auto max-w-2xl lg:mx-0">

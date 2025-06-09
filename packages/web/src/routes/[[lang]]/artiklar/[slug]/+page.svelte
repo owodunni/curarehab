@@ -25,45 +25,51 @@
     ];
   }
 
-  export let data: PageData;
-  $: ({ article } = data);
-  let ldJson: WithContext<NewsArticle> | undefined = undefined;
-  $: if (article) {
-    ldJson = {
-      "@context": "https://schema.org",
-      "@type": "NewsArticle",
-      dateCreated: article.date_created,
-      dateModified: article.date_updated,
-      datePublished: article.date_created,
-      ...(article.title && { headline: article.title, name: article.title }),
-      publisher: {
-        "@type": "Organization",
-        url: "https://curarehab.se",
-        email: "info@curarehab.se",
-        name: "CuraRehab",
-        legalName: "CuraRehab Linköping AB"
-      },
-      ...(article.sammanfattning && { description: article.sammanfattning }),
-      author: [
-        ...userToPerson(article.user_created, article.language),
-        ...(article.user_created?.slug !== article.user_updated?.slug
-          ? userToPerson(article.user_updated, article.language)
-          : [])
-      ],
-      url: `https://curarehab.se/${article.language === "sv" ? "" : "en/"}artiklar/${article.slug}`,
-      image: {
-        "@type": "ImageObject",
-        url: getAsset2(article?.omslagsbild?.filename_disk ?? "", {
-          width: 800,
-          height: 450,
-          format: "jpg",
-          quality: 80
-        }),
-        width: "800",
-        height: "450"
-      }
-    };
-  }
+  let { data }: { data: PageData } = $props();
+  let { article } = $derived(data);
+
+  let ldJson = $state<WithContext<NewsArticle> | undefined>(undefined);
+
+  $effect(() => {
+    if (article) {
+      ldJson = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        dateCreated: article.date_created,
+        dateModified: article.date_updated,
+        datePublished: article.date_created,
+        ...(article.title && { headline: article.title, name: article.title }),
+        publisher: {
+          "@type": "Organization",
+          url: "https://curarehab.se",
+          email: "info@curarehab.se",
+          name: "CuraRehab",
+          legalName: "CuraRehab Linköping AB"
+        },
+        ...(article.sammanfattning && { description: article.sammanfattning }),
+        author: [
+          ...userToPerson(article.user_created, article.language),
+          ...(article.user_created?.slug !== article.user_updated?.slug
+            ? userToPerson(article.user_updated, article.language)
+            : [])
+        ],
+        url: `https://curarehab.se/${article.language === "sv" ? "" : "en/"}artiklar/${article.slug}`,
+        image: {
+          "@type": "ImageObject",
+          url: getAsset2(article?.omslagsbild?.filename_disk ?? "", {
+            width: 800,
+            height: 450,
+            format: "jpg",
+            quality: 80
+          }),
+          width: "800",
+          height: "450"
+        }
+      };
+    } else {
+      ldJson = undefined;
+    }
+  });
 </script>
 
 <Seo seo={article?.seo} {ldJson} />
