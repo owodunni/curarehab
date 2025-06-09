@@ -3,15 +3,21 @@
   import type { L, T } from "$lib/i18n/t";
   import Card from "./Card.svelte";
 
-  export let treatment: Treatment;
-  export let l: L;
-  export let t: T;
-  export let sammanfattning: string | undefined | null = "";
-  export let title: string | undefined | null = "";
+  let {
+    treatment,
+    l,
+    t,
+    sammanfattning = "",
+    title = ""
+  }: {
+    treatment: Treatment;
+    l: L;
+    t: T;
+    sammanfattning?: string | undefined | null;
+    title?: string | undefined | null;
+  } = $props();
 
-  let primary = false;
-
-  $: primary = treatment.Primary_treatment === "true";
+  let primary = $derived(treatment.Primary_treatment === "true");
 </script>
 
 <Card
