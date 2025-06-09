@@ -6,6 +6,7 @@ import "isomorphic-unfetch";
 import { Client, fetchExchange } from "@urql/core";
 import { createSitemap } from "./src/lib/sitemap";
 import { promises as fs } from "fs";
+import { svelteTesting } from "@testing-library/svelte/vite";
 
 const sitemapPlugin = (client: Client): Plugin => {
   const sitemap = async () =>
@@ -60,7 +61,7 @@ export default (params: { mode: string }) => {
 
   return defineConfig({
     // @ts-ignore
-    plugins: [codegen({ config }), sitemapPlugin(client), sveltekit()],
+    plugins: [codegen({ config }), sitemapPlugin(client), sveltekit(), svelteTesting()],
     test: {
       include: ["./src/**/*.test.ts"],
       environment: "jsdom",
