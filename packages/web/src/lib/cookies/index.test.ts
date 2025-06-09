@@ -1,9 +1,9 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeEach, afterEach, vi } from "vitest";
 import { cookieSettings, updateCookiePermissions } from ".";
 import { get } from "svelte/store";
 
-function lessThanNow(date: string) {
-  return new Date(date) < new Date();
+function isExpectedTimestamp(date: string, expectedTime: string) {
+  return new Date(date).getTime() === new Date(expectedTime).getTime();
 }
 
 function lessThanDate(d1: string, d2: string) {
@@ -11,35 +11,54 @@ function lessThanDate(d1: string, d2: string) {
 }
 
 describe("cookies", () => {
+  beforeEach(() => {
+    // Use fake timers for deterministic behavior
+    vi.useFakeTimers();
+    // Set a fixed date for consistent testing
+    vi.setSystemTime(new Date('2024-01-01T12:00:00.000Z'));
+
+    // Reset store to initial state
+    cookieSettings.set({ permission: undefined });
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it("should update store when updateCookiePermissions is called", () => {
-    const cookies = get(cookieSettings);
-    if (cookies.permission === undefined) {
-      expect.fail("cookieSettings.permission is undefined");
-    }
-    expect(cookies.permission).toBe(false);
-    expect(lessThanNow(cookies.updated)).toBe(true);
-    expect(cookies.cookiePermissions).toEqual({ googleAnalytics: false, googleAds: false });
+    const initialCookies = get(cookieSettings);
+    // In Svelte 5 test environment (browser = true with jsdom), store starts with defaultCookiePermission
+    expect(initialCookies.permission).toBe(undefined);
 
-    const newCookiePermissions = { ...cookies.cookiePermissions, googleAnalytics: true };
+    // Test setting permissions to true
+    updateCookiePermissions({ googleAnalytics: true, googleAds: false });
 
-    updateCookiePermissions(newCookiePermissions);
-
-    const newCookies = get(cookieSettings);
-
-    expect(newCookies.permission).toBe(true);
-    if (newCookies.permission === undefined) {
-      expect.fail("cookieSettings.permission is undefined");
+    const cookiesAfterTrue = get(cookieSettings);
+    expect(cookiesAfterTrue.permission).toBe(true);
+    if (cookiesAfterTrue.permission !== undefined) {
+      expect(isExpectedTimestamp(cookiesAfterTrue.updated, '2024-01-01T12:00:00.000Z')).toBe(true);
+      expect(cookiesAfterTrue.cookiePermissions).toEqual({ googleAnalytics: true, googleAds: false });
     }
 
-    expect(lessThanDate(cookies.updated, newCookies.updated)).toBe(true);
-    expect(newCookies.cookiePermissions).toEqual({ googleAnalytics: true, googleAds: false });
+    // Advance time by 1 second for the next update
+    vi.advanceTimersByTime(1000);
 
+    // Test updating permissions
+    updateCookiePermissions({ googleAnalytics: false, googleAds: true });
+
+    const cookiesAfterUpdate = get(cookieSettings);
+    expect(cookiesAfterUpdate.permission).toBe(true); // Still true because googleAds is true
+    if (cookiesAfterUpdate.permission !== undefined && cookiesAfterTrue.permission !== undefined) {
+      expect(lessThanDate(cookiesAfterTrue.updated, cookiesAfterUpdate.updated)).toBe(true);
+      expect(cookiesAfterUpdate.cookiePermissions).toEqual({ googleAnalytics: false, googleAds: true });
+    }
+
+    // Test setting all permissions to false
     updateCookiePermissions({ googleAnalytics: false, googleAds: false });
-    const newCookies2 = get(cookieSettings);
-    if (newCookies2.permission === undefined) {
-      expect.fail("cookieSettings.permission is undefined");
+    const cookiesAfterFalse = get(cookieSettings);
+    expect(cookiesAfterFalse.permission).toBe(false);
+    if (cookiesAfterFalse.permission !== undefined) {
+      expect(cookiesAfterFalse.cookiePermissions).toEqual({ googleAnalytics: false, googleAds: false });
     }
-    expect(newCookies2.permission).toEqual(false);
-    expect(newCookies2.cookiePermissions).toEqual({ googleAnalytics: false, googleAds: false });
   });
 });

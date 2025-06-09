@@ -2,6 +2,19 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, fireEvent } from '@testing-library/svelte';
 import Header from './Header.svelte';
 
+// Mock Web Animations API for jsdom
+Object.defineProperty(Element.prototype, 'animate', {
+  value: vi.fn(() => ({
+    finished: Promise.resolve(),
+    cancel: vi.fn(),
+    pause: vi.fn(),
+    play: vi.fn(),
+    reverse: vi.fn(),
+    finish: vi.fn()
+  })),
+  writable: true
+});
+
 // Mock the i18n functions
 const mockT = vi.fn((category: string, key: string) => `${category}.${key}`);
 const mockL = vi.fn((page: string) => `/${page}`);
