@@ -1,16 +1,28 @@
 <script lang="ts">
   import Image from "$lib/components/Image.svelte";
   import type { Image as ImageType } from "$lib/api";
+  import type { T } from "$lib/i18n/t";
 
-  export let link: string;
-  export let image: ImageType | undefined | null;
-  export let shape: "circle" | "square" = "square";
-  export let text: string | undefined | null = "";
+  let {
+    link,
+    image,
+    shape = "square",
+    text = "",
+    t,
+    children
+  }: {
+    link: string;
+    t: T;
+    image: ImageType | undefined | null;
+    shape?: "circle" | "square";
+    text?: string | undefined | null;
+    children?: import('svelte').Snippet;
+  } = $props();
 </script>
 
-<div>
-  <a href={link} class="group">
-    <div class="relative w-full">
+<div class="group">
+  <div class="relative w-full">
+    <a href={link}>
       <Image
         srcPath={image?.filename_disk || ""}
         alt={image?.title || ""}
@@ -22,16 +34,30 @@
             : "mx-auto aspect-square h-52 w-52 rounded-full md:h-64 md:w-64"
         } `}
       />
-      <div class="mt-6 flex items-start justify-between">
-        <slot />
-      </div>
-      {#if text}
-        <article class={`prose mt-5`}>
-          <p class="text-theme-body line-clamp-6 overflow-hidden text-ellipsis text-base leading-7">
-            {text}
-          </p>
-        </article>
-      {/if}
+      </a>
+    <div class="mt-6 flex items-start justify-between">
+      {#if children}
+      <a class="w-full" href={link}>
+        <h3
+          class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading overflow-hidden text-ellipsis"
+          lang={t("common", "lang")}
+        >
+        {@render children()}
+        </h3>
+      </a>
+      <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled">
+        {t("common", "bokaNu")}
+      </a>
+    {/if}
     </div>
-  </a>
+    {#if text}
+    <a href={link}>
+      <article class={`prose mt-5`}>
+        <p class="text-theme-body line-clamp-6 overflow-hidden text-ellipsis text-base leading-7">
+          {text}
+        </p>
+      </article>
+      </a>
+    {/if}
+  </div>
 </div>

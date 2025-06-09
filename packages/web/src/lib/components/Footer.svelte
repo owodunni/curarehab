@@ -6,22 +6,32 @@
   import type { Link } from "$lib/api";
   import SocialLink from "./SocialLink.svelte";
 
-  export let t: T;
-  export let l: L;
-  export let locale: "sv" | "en";
-  export let socialLinks: Link[] = [];
-  export let columnLinks: [Link[], Link[]] = [[], []];
-  export let email: Link | undefined;
-  export let location: Link | undefined;
-  export let phone: Link | undefined;
+  let {
+    t,
+    l,
+    locale,
+    socialLinks = [],
+    columnLinks = [[], []],
+    email,
+    location,
+    phone
+  }: {
+    t: T;
+    l: L;
+    locale: "sv" | "en";
+    socialLinks?: Link[];
+    columnLinks?: [Link[], Link[]];
+    email?: Link | undefined;
+    location?: Link | undefined;
+    phone?: Link | undefined;
+  } = $props();
 
   /**
    * This structure is a bit complex, but it allows us to seperate out links from the html structure.
    * Its a list of two lists of links with titles, the first list is in the left column and the second in the right.
    * If we are on a small screen, the two lists are shown on top of each other.
    */
-  let linksWithCategory: Record<string, ([Page] | Link)[]>[] = [];
-  $: linksWithCategory = [
+  let linksWithCategory = $derived([
     {
       [t("common", "ourServices")]: [
         {
@@ -31,14 +41,14 @@
         },
         ["behandlingar"],
         ["terapeuter"],
-        ...(locale === "sv" ? [["skadekompassen"] as [Page]] : [])
+        ...(locale === "sv" ? [["skadekompassen"] as const satisfies [Page]] : [])
       ],
       [t("common", "information")]: [["om"], ["hitta"], ["personuppgiftspolicy"], ["cookies"]]
     },
     {
       [t("common", "partners")]: columnLinks[0],
       [t("common", "readMore")]: [
-        ...(locale === "sv" ? [["artiklar"] as [Page]] : []),
+        ...(locale === "sv" ? [["artiklar"] as const satisfies [Page]] : []),
         {
           link: t("common", "fysioHref"),
           display_link: t("common", "fysioLinkTitle"),
@@ -52,7 +62,7 @@
         ...columnLinks[1]
       ]
     }
-  ];
+  ] as const satisfies readonly Record<string, ([Page] | Link)[]>[]);
 
   function toLinks(links: ([Page] | Link)[]): [string, string][] {
     return links.map((link) => {
@@ -114,7 +124,7 @@
       </div>
     </div>
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-      <div />
+      <div></div>
       <div class="col-start-2 mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0 xl:grid-cols-4">
         {#each linksWithCategory as outerLinks}
           {#each Object.entries(outerLinks) as [title, links]}

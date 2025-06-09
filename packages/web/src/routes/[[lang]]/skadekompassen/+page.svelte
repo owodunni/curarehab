@@ -5,11 +5,10 @@
   import Seo from "$lib/components/Seo.svelte";
   import Articles from "$lib/widgets/Articles.svelte";
   import type { PageData } from "./$types";
-  export let data: PageData;
-
-  $: ({ l, t } = data);
-  $: artiklar = (data?.data?.skadekompassen?.artiklar?.map((i) => i?.artiklar_id).filter(Boolean) ??
-    []) as (Article | null)[];
+  let { data }: { data: PageData } = $props();
+  let { l, t } = $derived(data);
+  let artiklar = $derived((data?.data?.skadekompassen?.artiklar?.map((i) => i?.artiklar_id).filter(Boolean) ??
+    []) as (Article | null)[]);
 </script>
 
 <Section>

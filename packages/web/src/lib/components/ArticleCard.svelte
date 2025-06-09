@@ -20,7 +20,7 @@
         height={450}
         class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
       />
-      <div class="absolute inset-0 rounded-2xl" />
+      <div class="absolute inset-0 rounded-2xl"></div>
     </div>
     <div class="mt-8 flex items-center gap-x-4 text-xs">
       <time datetime={article.date_updated ?? article.date_created ?? ""} class="text-theme-muted">

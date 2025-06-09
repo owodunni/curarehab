@@ -1,9 +1,17 @@
 <script lang="ts">
-  let clazz = "py-14 sm:py-20";
-  export { clazz as class };
-  export let extras = "";
+  let {
+    class: clazz = "py-14 sm:py-20",
+    extras = "",
+    children
+  }: {
+    class?: string;
+    extras?: string;
+    children?: import('svelte').Snippet;
+  } = $props();
 </script>
 
 <section class={`bg-section ${clazz} ${extras}`}>
-  <slot />
+  {#if children}
+    {@render children()}
+  {/if}
 </section>

@@ -9,11 +9,6 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "baseUrl": ".",
-    "paths": {
-      "$lib": ["src/lib"],
-      "$lib/*": ["src/lib/*"]
-    },
     "rootDirs": [".", "./.svelte-kit/types", "./.gql/types"]
   },
   "references": [

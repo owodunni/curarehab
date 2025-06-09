@@ -6,10 +6,9 @@
   import Container from "$lib/components/Container.svelte";
   import ContentPage from "$lib/components/ContentPage.svelte";
   import Articles from "$lib/widgets/Articles.svelte";
-  export let data: PageData;
-  let links: Link[] = [];
-  $: ({ t, terapeut, l } = data);
-  $: links = (terapeut?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[];
+  let { data }: { data: PageData } = $props();
+  let { t, terapeut, l } = $derived(data);
+  let links = $derived((terapeut?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[]);
 </script>
 
 <ContentPage
@@ -34,7 +33,7 @@
 {#if terapeut?.artiklar?.length || 0 > 0}
   <Section class="">
     <Container class="pb-14 sm:pb-20">
-      <div class="border-1 border-t sm:mx-4 lg:mx-0" />
+      <div class="border-1 border-t sm:mx-4 lg:mx-0"></div>
       <Articles articles={terapeut?.artiklar || []} {l} {t} />
     </Container>
   </Section>

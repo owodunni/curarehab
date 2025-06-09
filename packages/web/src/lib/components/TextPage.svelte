@@ -9,20 +9,20 @@
   import type { T } from "$lib/i18n/t";
   import SocialLink from "./SocialLink.svelte";
 
-  export let data:
-    | {
-        text?: { blocks?: Block[] } | null;
-        text_en?: { blocks?: Block[] } | null;
-        seo?: SeoMetaData | null;
-        seo_en?: SeoMetaData | null;
-        image?: ImageType | null;
-        links?: Link[] | null;
-      }
-    | null
-    | undefined;
-  export let t: T;
-  let lang: string;
-  $: lang = t("common", "lang");
+  let { data, t, children }: {
+    data: {
+      text?: { blocks?: Block[] } | null;
+      text_en?: { blocks?: Block[] } | null;
+      seo?: SeoMetaData | null;
+      seo_en?: SeoMetaData | null;
+      image?: ImageType | null;
+      links?: Link[] | null;
+    } | null | undefined;
+    t: T;
+    children?: import('svelte').Snippet;
+  } = $props();
+
+  let lang = $derived(t("common", "lang"));
 </script>
 
 {#if data}
@@ -42,7 +42,9 @@
                 sizes="(min-width: 1024px) 32rem, 20rem"
                 class="aspect-square rounded-2xl  object-cover"
               />
-              <slot />
+              {#if children}
+                {@render children()}
+              {/if}
               {#if data.links}
                 <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
                   {#each data.links || [] as link}

@@ -1,13 +1,25 @@
 <script lang="ts">
   import { getAsset2 } from "$lib/widgets/util";
-  import IntersectionObserver from "svelte-intersection-observer";
+  import { onMount } from "svelte";
+  import type { ComponentProps } from "./types";
+  import type { HTMLImgAttributes } from "svelte/elements";
 
-  export let width: number;
-  export let height: number;
-  export let alt = "";
-  export let lazy = true;
-
-  export let srcPath: string;
+  let {
+    width,
+    height,
+    alt = "",
+    lazy = true,
+    srcPath,
+    class: clazz = "",
+    ...restProps
+  }: ComponentProps<{
+    width: number;
+    height: number;
+    alt?: string;
+    lazy?: boolean;
+    srcPath: string;
+    class?: string;
+  }, HTMLImgAttributes> = $props();
 
   type Format = "avif" | "webp" | "jpg";
   type ImageType = "image/avif" | "image/webp" | "image/jpeg";
@@ -46,33 +58,59 @@
     }));
   }
 
-  $: sourceSet = calculateSourceSet();
+  let sourceSet = $derived(calculateSourceSet());
 
-  let clazz = "";
-  export { clazz as class };
   let node: HTMLElement;
+  let intersecting = $state(false);
+
+  onMount(() => {
+    if (!node || typeof IntersectionObserver === 'undefined') {
+      // Fallback for SSR or browsers without IntersectionObserver
+      intersecting = true;
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            intersecting = true;
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: '50px',
+        threshold: 0.1
+      }
+    );
+
+    observer.observe(node);
+
+    return () => {
+      observer.disconnect();
+    };
+  });
 </script>
 
-<IntersectionObserver element={node} let:intersecting>
-  <picture class={`image-in ${intersecting ? "image-in-place" : ""} `}>
-    {#each sourceSet as { type, srcset }}
-      <source {type} {srcset} sizes={`${width}px`} />
-    {/each}
-    <img
-      bind:this={node}
-      class={`${width < 100 ? "image-sm" : "image"} ${intersecting ? "image-in-place" : ""} ${
-        clazz || ""
-      }`}
-      {width}
-      {height}
-      src={getAsset2(srcPath, { width, height, format: "jpg", quality: 80 })}
-      loading={lazy ? "lazy" : undefined}
-      decoding={lazy ? "async" : undefined}
-      {alt}
-      {...$$restProps}
-    />
-  </picture>
-</IntersectionObserver>
+<picture class={`image-in ${intersecting ? "image-in-place" : ""} `}>
+  {#each sourceSet as { type, srcset }}
+    <source {type} {srcset} sizes={`${width}px`} />
+  {/each}
+  <img
+    bind:this={node}
+    class={`${width < 100 ? "image-sm" : "image"} ${intersecting ? "image-in-place" : ""} ${
+      clazz || ""
+    }`}
+    {width}
+    {height}
+    src={getAsset2(srcPath, { width, height, format: "jpg", quality: 80 })}
+    loading={lazy ? "lazy" : undefined}
+    decoding={lazy ? "async" : undefined}
+    {alt}
+    {...restProps}
+  />
+</picture>
 
 <style>
   .image-sm {

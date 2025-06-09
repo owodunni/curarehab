@@ -1,6 +1,12 @@
 <script lang="ts">
-  let clazz = "";
-  export { clazz as class };
+  let { class: clazz = "", children }: {
+    class?: string;
+    children?: import('svelte').Snippet;
+  } = $props();
 </script>
 
-<div class={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${clazz || ""}`}><slot /></div>
+<div class={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${clazz || ""}`}>
+  {#if children}
+    {@render children()}
+  {/if}
+</div>

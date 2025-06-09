@@ -4,8 +4,8 @@
   import Seo from "$lib/components/Seo.svelte";
   import Articles from "$lib/widgets/Articles.svelte";
   import type { PageData } from "./$types";
-  export let data: PageData;
-  $: ({ l, t } = data);
+  let { data }: { data: PageData } = $props();
+  let { l, t } = $derived(data);
 </script>
 
 <Section>

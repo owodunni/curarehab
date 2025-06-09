@@ -6,12 +6,10 @@
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import SocialLink from "$lib/components/SocialLink.svelte";
   import type { Link } from "$lib/api";
-  export let data: PageData;
-  let lang = data.params.lang;
-  let hitta = data?.data?.hitta ?? undefined;
-  $: hitta = data?.data?.hitta ?? undefined;
-  $: lang = data.params.lang;
-  $: links = (hitta?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[];
+  let { data }: { data: PageData } = $props();
+  let lang = $derived(data.params.lang);
+  let hitta = $derived(data?.data?.hitta ?? undefined);
+  let links = $derived((hitta?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[]);
 </script>
 
 {#if hitta}
@@ -29,7 +27,7 @@
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2089.998104473312!2d15.619948099670486!3d58.41029210761383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46596fea219e43e3%3A0xc1e59a8518bd515c!2sCuraRehab%20Link%C3%B6ping!5e0!3m2!1ssv!2sse!4v1690967042446!5m2!1ssv!2sse"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-          />
+          ></iframe>
           <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
             {#each links as link}
               <SocialLink

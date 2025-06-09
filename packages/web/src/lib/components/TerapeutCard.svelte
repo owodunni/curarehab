@@ -4,12 +4,19 @@
   import type { T, L } from "$lib/i18n/t";
   import type { Terapeut } from "$lib/api";
 
-  export let terapeut: Terapeut | null | undefined;
-  export let t: T;
-  export let l: L;
-  let clazz = "";
-  export { clazz as class };
-  export let time = "";
+  let {
+    terapeut,
+    t,
+    l,
+    class: clazz = "",
+    time = ""
+  }: {
+    terapeut: Terapeut | null | undefined;
+    t: T;
+    l: L;
+    class?: string;
+    time?: string;
+  } = $props();
 </script>
 
 <div class={`relative mt-8 flex items-center gap-x-4 ${clazz}`}>
@@ -23,7 +30,7 @@
   <div class="text-sm leading-6">
     <p class="text-theme-muted hover:text-theme-muted-hover font-semibold">
       <a href={`${l("terapeuter")}/${terapeut?.slug}`}>
-        <span class="absolute inset-0" />
+        <span class="absolute inset-0"></span>
         {terapeut?.first_name}
         {terapeut?.last_name}
       </a>
