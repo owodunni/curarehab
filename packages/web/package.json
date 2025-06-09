@@ -1,6 +1,6 @@
 {
   "name": "@curarehab/web",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "private": true,
   "scripts": {
     "dev": "vite dev --host",
@@ -44,7 +44,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@urql/core": "^4.0.8",
-    "toucan-js": "^3.1.0"
+    "@urql/core": "^4.0.8"
   }
 }
