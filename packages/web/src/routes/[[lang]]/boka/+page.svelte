@@ -66,6 +66,7 @@
                     customization: {
                       footer: { show: 0 },
                       header: { show: 0 },
+                      streetview: "",
                     },
                     language,
                     params: {
