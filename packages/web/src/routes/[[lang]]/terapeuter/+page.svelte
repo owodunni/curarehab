@@ -4,7 +4,7 @@
   import type { PageData } from './$types';
   import Section from '$lib/components/Section.svelte';
   import Seo from '$lib/components/Seo.svelte';
-  let { data }: { data: PageData } = $props();
+  const { data }: { data: PageData } = $props();
 </script>
 
 <Section>

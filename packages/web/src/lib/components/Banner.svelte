@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Banner } from '$lib/api';
 
-  let { banner }: { banner: Banner } = $props();
+  const { banner }: { banner: Banner } = $props();
 </script>
 
 <div

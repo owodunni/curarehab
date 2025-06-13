@@ -8,7 +8,7 @@
   import Flags from './Flags.svelte';
   import type { Page } from '$lib/i18n';
 
-  let { t, l, locale, route }: { t: T; l: L; locale: 'sv' | 'en'; route: string } = $props();
+  const { t, l, locale, route }: { t: T; l: L; locale: 'sv' | 'en'; route: string } = $props();
 
   let open = $state(false);
 
@@ -20,22 +20,25 @@
     open = false;
   }
 
-  let links = $derived([
+  const links = $derived([
     'behandlingar',
     'hitta',
     'om',
     ...(locale === 'sv' ? (['skadekompassen'] as const) : []),
   ] as const satisfies readonly Page[]);
 
-  let localizedHref = $derived(
+  const localizedHref = $derived(
     (() => {
-      if (route === `/${locale}` || route === '/') return locale === 'en' ? '/' : '/en';
-      else return locale === 'en' ? route.substring(3) : `/en${route.substring(3)}`;
+      if (route === `/${locale}` || route === '/') {
+        return locale === 'en' ? '/' : '/en';
+      } else {
+        return locale === 'en' ? route.substring(3) : `/en${route.substring(3)}`;
+      }
     })()
   );
 
   // We don't want to show the localization switch language when showing articles since they can't be localized
-  let showLocalization = $derived(
+  const showLocalization = $derived(
     !(
       localizedHref.startsWith('/en/artiklar') ||
       localizedHref.startsWith('/sv/artiklar') ||

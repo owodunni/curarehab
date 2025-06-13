@@ -114,11 +114,6 @@ export default tseslint.config(
       'svelte/html-closing-bracket-new-line': 'off', // Conflicts with Prettier
       'svelte/prefer-destructured-store-props': 'off', // Good suggestion but requires refactoring
       'svelte/no-ignored-unsubscribe': 'off', // Good suggestion but requires refactoring
-
-      // Relax some rules for Svelte props and reactive statements
-      'prefer-const': 'off', // Svelte props are often declared with let but never reassigned
-      curly: 'off', // Svelte reactive statements often use single-line if statements
-      '@typescript-eslint/no-non-null-assertion': 'off', // Sometimes needed in Svelte
     },
   },
 

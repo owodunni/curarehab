@@ -10,8 +10,8 @@
   import Behandling from './behandling.svelte';
   import Banner from '$lib/components/Banner.svelte';
 
-  let { data }: { data: PageData } = $props();
-  let { t, l } = $derived(data);
+  const { data }: { data: PageData } = $props();
+  const { t, l } = $derived(data);
 </script>
 
 {#if data.params.lang !== 'en' && data?.data?.header?.banner}

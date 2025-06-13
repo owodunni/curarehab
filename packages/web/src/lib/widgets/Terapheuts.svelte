@@ -5,7 +5,7 @@
   import CardList from '$lib/components/CardList.svelte';
   import Card from '$lib/components/Card.svelte';
 
-  let {
+  const {
     l,
     t,
     terapheuts,

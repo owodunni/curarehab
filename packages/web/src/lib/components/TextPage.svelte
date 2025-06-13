@@ -9,7 +9,7 @@
   import type { T } from '$lib/i18n/t';
   import SocialLink from './SocialLink.svelte';
 
-  let {
+  const {
     data,
     t,
     children,
@@ -29,7 +29,7 @@
     children?: import('svelte').Snippet;
   } = $props();
 
-  let lang = $derived(t('common', 'lang'));
+  const lang = $derived(t('common', 'lang'));
 </script>
 
 {#if data}

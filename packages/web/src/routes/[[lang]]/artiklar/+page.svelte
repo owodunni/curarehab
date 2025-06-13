@@ -4,8 +4,8 @@
   import Seo from '$lib/components/Seo.svelte';
   import Articles from '$lib/widgets/Articles.svelte';
   import type { PageData } from './$types';
-  let { data }: { data: PageData } = $props();
-  let { l, t } = $derived(data);
+  const { data }: { data: PageData } = $props();
+  const { l, t } = $derived(data);
 </script>
 
 <Section>

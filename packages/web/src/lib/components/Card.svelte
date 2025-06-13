@@ -3,7 +3,7 @@
   import type { Image as ImageType } from '$lib/api';
   import type { T } from '$lib/i18n/t';
 
-  let {
+  const {
     link,
     image,
     shape = 'square',

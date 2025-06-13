@@ -6,9 +6,9 @@
 
   let mount = $state(false);
 
-  let { data } = $props();
-  let { t } = $derived(data);
-  let locale = $derived(t('common', 'lang'));
+  const { data } = $props();
+  const { t } = $derived(data);
+  const locale = $derived(t('common', 'lang'));
 
   onMount(() => {
     mount = true;

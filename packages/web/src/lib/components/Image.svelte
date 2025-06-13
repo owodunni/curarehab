@@ -4,7 +4,7 @@
   import type { ComponentProps } from './types';
   import type { HTMLImgAttributes } from 'svelte/elements';
 
-  let {
+  const {
     width,
     height,
     alt = '',
@@ -61,7 +61,7 @@
     }));
   }
 
-  let sourceSet = $derived(calculateSourceSet());
+  const sourceSet = $derived(calculateSourceSet());
 
   let node: HTMLElement;
   let intersecting = $state(false);
