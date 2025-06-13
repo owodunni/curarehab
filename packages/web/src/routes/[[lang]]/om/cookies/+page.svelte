@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
-  import TextPage from "$lib/components/TextPage.svelte";
-  import ToggleButton from "$lib/components/ToggleButton.svelte";
-  import { cookieSettings, type CookiePermissions, updateCookiePermissions } from "$lib/cookies";
+  import type { PageData } from './$types';
+  import TextPage from '$lib/components/TextPage.svelte';
+  import ToggleButton from '$lib/components/ToggleButton.svelte';
+  import { cookieSettings, type CookiePermissions, updateCookiePermissions } from '$lib/cookies';
   let { data }: { data: PageData } = $props();
   let { t } = $derived(data);
 
@@ -15,12 +15,12 @@
 
 <TextPage data={data?.data?.cookies} {t}>
   <div class="prose mt-6 flex flex-col">
-    <h3>{t("cookies", "cookiePreferences")}</h3>
+    <h3>{t('cookies', 'cookiePreferences')}</h3>
     <div class="justify-betwee flex items-center">
       <div class="flex flex-grow flex-col">
-        <h4>{t("cookies", "statistics")}</h4>
+        <h4>{t('cookies', 'statistics')}</h4>
         <p>
-          {t("cookies", "statisticsDescription")}
+          {t('cookies', 'statisticsDescription')}
         </p>
       </div>
       <ToggleButton
@@ -32,10 +32,10 @@
     <div class="flex items-center justify-between">
       <div class="flex flex-grow flex-col">
         <h4>
-          {t("cookies", "marketing")}
+          {t('cookies', 'marketing')}
         </h4>
         <p>
-          {t("cookies", "marketingDescription")}
+          {t('cookies', 'marketingDescription')}
         </p>
       </div>
       <ToggleButton
