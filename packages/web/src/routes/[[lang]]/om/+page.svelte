@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
-  import Section from "$lib/components/Section.svelte";
-  import Container from "$lib/components/Container.svelte";
-  import Image from "$lib/components/Image.svelte";
-  import Seo from "$lib/components/Seo.svelte";
-  import { getTitle } from "$lib/widgets/util";
-  import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
+  import type { PageData } from './$types';
+  import Section from '$lib/components/Section.svelte';
+  import Container from '$lib/components/Container.svelte';
+  import Image from '$lib/components/Image.svelte';
+  import Seo from '$lib/components/Seo.svelte';
+  import { getTitle } from '$lib/widgets/util';
+  import BlocksRender from '$lib/components/EditorJs/BlocksRender.svelte';
   let { data }: { data: PageData } = $props();
   let { t, l } = $derived(data);
   let lang = $derived(data.params.lang);
@@ -13,7 +13,7 @@
 </script>
 
 {#if om}
-  <Seo seo={lang === "en" ? om.seo_en : om.seo} />
+  <Seo seo={lang === 'en' ? om.seo_en : om.seo} />
 
   <Section>
     <Container>
@@ -23,8 +23,8 @@
         <div class="mx-auto lg:pt-20">
           <div class="lg:max-w-lg">
             <Image
-              srcPath={om.omslags_bild?.filename_disk || ""}
-              alt={om.omslags_bild?.title || ""}
+              srcPath={om.omslags_bild?.filename_disk || ''}
+              alt={om.omslags_bild?.title || ''}
               width={800}
               height={800}
               class="h-full w-full rounded-2xl object-cover"
@@ -34,20 +34,20 @@
         <div>
           <div
             class="prose text-theme-body hyphens-auto text-base leading-7"
-            lang={t("common", "lang")}
+            lang={t('common', 'lang')}
           >
-            <BlocksRender blocks={(lang === "en" ? om.text_en : om.text)?.blocks || []} />
+            <BlocksRender blocks={(lang === 'en' ? om.text_en : om.text)?.blocks || []} />
           </div>
           <ul
             class="border-theme-div mt-10 grid grid-cols-2 gap-8 border-t pt-10 text-center sm:grid-cols-3"
           >
             {#if data?.data?.terapeuter_directus_users}
-              {#each data?.data?.terapeuter_directus_users || [] as { directus_users_id }}
+              {#each data?.data?.terapeuter_directus_users || [] as { directus_users_id } (directus_users_id?.slug)}
                 <li>
-                  <a href={`${l("terapeuter")}/${directus_users_id?.slug}`} class="group">
+                  <a href={`${l('terapeuter')}/${directus_users_id?.slug}`} class="group">
                     <Image
-                      srcPath={directus_users_id?.avatar?.filename_disk || ""}
-                      alt={directus_users_id?.avatar?.title || ""}
+                      srcPath={directus_users_id?.avatar?.filename_disk || ''}
+                      alt={directus_users_id?.avatar?.title || ''}
                       width={400}
                       height={400}
                       class="mx-auto h-24 w-24 rounded-full"
@@ -60,7 +60,7 @@
                       {directus_users_id?.last_name}
                     </h3>
                     <p class="text-theme-muted text-sm leading-6">
-                      {getTitle(directus_users_id?.work_title || "", t)}
+                      {getTitle(directus_users_id?.work_title || '', t)}
                     </p>
                   </a>
                 </li>

@@ -1,19 +1,21 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
-  import Seo from "$lib/components/Seo.svelte";
-  import Section from "$lib/components/Section.svelte";
-  import Container from "$lib/components/Container.svelte";
-  import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
-  import SocialLink from "$lib/components/SocialLink.svelte";
-  import type { Link } from "$lib/api";
+  import type { PageData } from './$types';
+  import Seo from '$lib/components/Seo.svelte';
+  import Section from '$lib/components/Section.svelte';
+  import Container from '$lib/components/Container.svelte';
+  import BlocksRender from '$lib/components/EditorJs/BlocksRender.svelte';
+  import SocialLink from '$lib/components/SocialLink.svelte';
+  import type { Link } from '$lib/api';
   let { data }: { data: PageData } = $props();
   let lang = $derived(data.params.lang);
   let hitta = $derived(data?.data?.hitta ?? undefined);
-  let links = $derived((hitta?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[]);
+  let links = $derived(
+    (hitta?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[]
+  );
 </script>
 
 {#if hitta}
-  <Seo seo={lang === "en" ? hitta.seo_en : hitta.seo} />
+  <Seo seo={lang === 'en' ? hitta.seo_en : hitta.seo} />
 
   <Section>
     <Container>
@@ -29,7 +31,7 @@
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
           <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
-            {#each links as link}
+            {#each links as link (link.link)}
               <SocialLink
                 {link}
                 onlyIcon={false}
@@ -40,7 +42,7 @@
         </div>
         <div>
           <div class="prose text-theme-body text-base leading-7">
-            <BlocksRender blocks={(lang === "en" ? hitta.text_en : hitta.text)?.blocks || []} />
+            <BlocksRender blocks={(lang === 'en' ? hitta.text_en : hitta.text)?.blocks || []} />
           </div>
         </div>
       </div>
