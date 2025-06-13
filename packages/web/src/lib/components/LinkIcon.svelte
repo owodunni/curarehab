@@ -1,50 +1,49 @@
 <script lang="ts">
-  import PhoneIcon from "./Icons/Phone.svelte";
-  import GlobeAltIcon from "./Icons/GlobeAlt.svelte";
-  import type { LinkType } from "$lib/api";
-  import Email from "./Icons/Email.svelte";
-  import Facebook from "./Icons/Facebook.svelte";
-  import Instagram from "./Icons/Instagram.svelte";
-  import Linkedin from "./Icons/Linkedin.svelte";
-  import Twitter from "./Icons/Twitter.svelte";
-  import Youtube from "./Icons/Youtube.svelte";
-  import Github from "./Icons/Github.svelte";
-  import Location from "./Icons/Location.svelte";
-  import TikTok from "./Icons/TikTok.svelte";
+  import PhoneIcon from './Icons/Phone.svelte';
+  import GlobeAltIcon from './Icons/GlobeAlt.svelte';
+  import type { LinkType } from '$lib/api';
+  import Email from './Icons/Email.svelte';
+  import Facebook from './Icons/Facebook.svelte';
+  import Instagram from './Icons/Instagram.svelte';
+  import Linkedin from './Icons/Linkedin.svelte';
+  import Twitter from './Icons/Twitter.svelte';
+  import Youtube from './Icons/Youtube.svelte';
+  import Github from './Icons/Github.svelte';
+  import Location from './Icons/Location.svelte';
+  import TikTok from './Icons/TikTok.svelte';
   export let type: LinkType;
 
   function component(type: LinkType) {
     switch (type) {
-      case "email":
+      case 'email':
         return Email;
-      case "facebook":
+      case 'facebook':
         return Facebook;
-      case "instagram":
+      case 'instagram':
         return Instagram;
-      case "linkedin":
+      case 'linkedin':
         return Linkedin;
-      case "twitter":
+      case 'twitter':
         return Twitter;
-      case "youtube":
+      case 'youtube':
         return Youtube;
-      case "github":
+      case 'github':
         return Github;
-      case "phone":
+      case 'phone':
         return PhoneIcon;
-      case "location":
+      case 'location':
         return Location;
-      case "tiktok":
+      case 'tiktok':
         return TikTok;
-      case "website":
-      case "webpage":
+      case 'website':
+      case 'webpage':
         return GlobeAltIcon;
       default:
-        console.warn(`No icon for ${type}`);
         return null;
     }
   }
 
-  let clazz = "";
+  let clazz = '';
   export { clazz as class };
 </script>
 
