@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import svelte from 'eslint-plugin-svelte';
 import globals from 'globals';
+import graphql from '@graphql-eslint/eslint-plugin';
 
 export default tseslint.config(
   // Base configurations
@@ -106,6 +107,38 @@ export default tseslint.config(
       // Relax some rules for Svelte props and reactive statements
       'prefer-const': 'off', // Svelte props are often declared with let but never reassigned
       curly: 'off', // Svelte reactive statements often use single-line if statements
+    },
+  },
+
+  // GraphQL query files
+  {
+    files: ['**/*.gql', '**/*.graphql'],
+    languageOptions: {
+      parser: graphql.parser,
+      parserOptions: {
+        // Use programmatic config since we don't have a schema file
+        graphQLConfig: {
+          documents: ['**/*.gql', '**/*.graphql'],
+          // No schema validation for now - just syntax checking
+        },
+      },
+    },
+    plugins: {
+      '@graphql-eslint': graphql,
+    },
+    rules: {
+      // Basic GraphQL syntax validation (no schema required)
+      '@graphql-eslint/no-anonymous-operations': 'error',
+      '@graphql-eslint/naming-convention': [
+        'error',
+        {
+          OperationDefinition: 'PascalCase',
+          FragmentDefinition: 'PascalCase',
+          VariableDefinition: 'camelCase',
+        },
+      ],
+      '@graphql-eslint/no-duplicate-fields': 'error',
+      // Note: no-unused-variables and no-unused-fragments require schema
     },
   },
 
