@@ -1,7 +1,7 @@
-import { browser } from "$app/environment";
-import { writable } from "svelte/store";
+import { browser } from '$app/environment';
+import { writable } from 'svelte/store';
 
-export const cookies = ["googleAnalytics", "googleAds"] as const;
+export const cookies = ['googleAnalytics', 'googleAds'] as const;
 type Cookies = (typeof cookies)[number];
 export type CookiePermissions = Record<Cookies, boolean>;
 type CookieSettings =
@@ -9,13 +9,13 @@ type CookieSettings =
   | { permission: undefined };
 
 const defaultCookiePermission = {
-  permission: undefined
+  permission: undefined,
 } satisfies CookieSettings;
 
 const serverCookiePermission = {
   permission: false,
   updated: new Date().toISOString(),
-  cookiePermissions: { googleAnalytics: false, googleAds: false }
+  cookiePermissions: { googleAnalytics: false, googleAds: false },
 } satisfies CookieSettings;
 
 // parse sting to get date or return undefined
@@ -23,6 +23,7 @@ function parseDate(date: string): Date | undefined {
   try {
     return new Date(date);
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.warn(e);
     return undefined;
   }
@@ -30,15 +31,15 @@ function parseDate(date: string): Date | undefined {
 
 function clearCookies() {
   if (!browser) return;
-  document.cookie.split(";").forEach(function (c) {
+  document.cookie.split(';').forEach(function (c) {
     document.cookie = c
-      .replace(/^ +/, "")
-      .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+      .replace(/^ +/, '')
+      .replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
   });
 }
 
 function getCookiePermissions(): CookieSettings {
-  const cookiePermission = localStorage.getItem("cookiePermission");
+  const cookiePermission = localStorage.getItem('cookiePermission');
   if (cookiePermission) {
     const settings = JSON.parse(cookiePermission) as CookieSettings;
 
@@ -59,7 +60,7 @@ function getCookiePermissions(): CookieSettings {
         (settings.permission && lastUpdated < twelveMonthsAgo) ||
         (!settings.permission && lastUpdated < threeDaysAgo)
       ) {
-        localStorage.removeItem("cookiePermission");
+        localStorage.removeItem('cookiePermission');
         clearCookies();
         return defaultCookiePermission;
       }
@@ -78,8 +79,8 @@ export const cookieSettings = writable<CookieSettings>(
 if (browser) {
   cookieSettings.subscribe((settings) => {
     if (settings.permission === undefined) {
-      localStorage.removeItem("cookiePermission");
-    } else localStorage.setItem("cookiePermission", JSON.stringify(settings));
+      localStorage.removeItem('cookiePermission');
+    } else localStorage.setItem('cookiePermission', JSON.stringify(settings));
   });
 }
 
@@ -88,7 +89,7 @@ export function updateCookiePermissions(cookiePermission: CookiePermissions) {
   cookieSettings.set({
     permission,
     updated: new Date().toISOString(),
-    cookiePermissions: cookiePermission
+    cookiePermissions: cookiePermission,
   });
   if (!permission) clearCookies();
 }
@@ -99,7 +100,7 @@ export function setCookiePermissions(value: boolean) {
 }
 
 export function getGtag(): Gtag.Gtag | undefined {
-  if (typeof gtag !== "undefined")
+  if (typeof gtag !== 'undefined')
     /* global gtag */
     return gtag;
   return undefined;
