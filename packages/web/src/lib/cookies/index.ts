@@ -79,6 +79,7 @@ export const cookieSettings = writable<CookieSettings>(
 );
 
 if (browser) {
+  // eslint-disable-next-line svelte/no-ignored-unsubscribe
   cookieSettings.subscribe((settings) => {
     if (settings.permission === undefined) {
       localStorage.removeItem('cookiePermission');

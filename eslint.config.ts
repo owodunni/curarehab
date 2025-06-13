@@ -9,7 +9,7 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   // @ts-expect-error - Svelte config types are not fully compatible with flat config
-  ...svelte.configs['flat/recommended'],
+  ...svelte.configs['flat/all'],
 
   // Svelte 5 parser configuration
   {
@@ -146,6 +146,16 @@ export default tseslint.config(
 
       // Console usage - allow in Svelte for debugging
       'no-console': 'off',
+
+      // Disable problematic rules that don't work well with Tailwind/modern Svelte
+      'svelte/no-unused-class-name': 'off', // False positives with Tailwind CSS
+      'svelte/block-lang': 'off', // We want to keep TypeScript lang attributes
+      'svelte/experimental-require-strict-events': 'off', // Too strict for current setup
+      'svelte/experimental-require-slot-types': 'off', // Too strict for current setup
+      'svelte/no-navigation-without-base': 'off', // We handle base paths differently
+      'svelte/html-closing-bracket-new-line': 'off', // Conflicts with Prettier
+      'svelte/prefer-destructured-store-props': 'off', // Good suggestion but requires refactoring
+      'svelte/no-ignored-unsubscribe': 'off', // Good suggestion but requires refactoring
 
       // Relax some rules for Svelte props and reactive statements
       'prefer-const': 'off', // Svelte props are often declared with let but never reassigned
