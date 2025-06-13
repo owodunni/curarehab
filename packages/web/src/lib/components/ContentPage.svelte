@@ -1,8 +1,8 @@
 <script lang="ts">
-  import TextPage from "./TextPage.svelte";
-  import type { SeoMetaData, Image as ImageType, Link } from "$lib/api";
-  import type { Block } from "./EditorJs/types";
-  import type { T } from "$lib/i18n/t";
+  import TextPage from './TextPage.svelte';
+  import type { SeoMetaData, Image as ImageType, Link } from '$lib/api';
+  import type { Block } from './EditorJs/types';
+  import type { T } from '$lib/i18n/t';
   export let data:
     | {
         text?: { blocks?: Block[] } | null;
@@ -20,11 +20,11 @@
 <TextPage {data} {t}>
   <div class="mt-6 flex items-start justify-between">
     <div>
-      <slot />
+      <slot></slot>
     </div>
     <div>
-      <a href={t("common", "hanoLink")} class="btn btn-sm variant-filled">
-        {t("common", "bokaNu")}
+      <a class="btn btn-sm variant-filled" href={t('common', 'hanoLink')}>
+        {t('common', 'bokaNu')}
       </a>
     </div>
   </div>

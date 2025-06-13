@@ -12,9 +12,11 @@ const createUrl = (
 ) => {
   let l: string | undefined = undefined;
   if (lastmod) {
-    if (typeof lastmod === 'string') l = lastmod;
-    else if (lastmod.date_updated) l = toString(new Date(lastmod.date_updated));
-    else if ('date_created' in lastmod && lastmod.date_created) {
+    if (typeof lastmod === 'string') {
+      l = lastmod;
+    } else if (lastmod.date_updated) {
+      l = toString(new Date(lastmod.date_updated));
+    } else if ('date_created' in lastmod && lastmod.date_created) {
       l = toString(new Date(lastmod.date_created));
     }
   }
@@ -50,7 +52,9 @@ const terapheutsUrls = (terapheuts: SlugsQuery['terapeuter_directus_users']): st
     const { latestDate } = urlsFromArticles(
       (updateDate) =>
         directus_users_id?.artiklar?.flatMap((a) => {
-          if (!a) return '';
+          if (!a) {
+            return '';
+          }
           const date = new Date(a.date_updated);
           updateDate(date);
           return '';
@@ -73,7 +77,9 @@ function urlsFromArticles(
 
   return {
     urls: urlGenerator((date) => {
-      if (!latestDate || date > latestDate) latestDate = date;
+      if (!latestDate || date > latestDate) {
+        latestDate = date;
+      }
     }),
     latestDate,
   };
@@ -84,7 +90,9 @@ const skadekompassenUrls = (skadekompassen: SlugsQuery['skadekompassen'], dateUp
   const { latestDate } = urlsFromArticles(
     (updateDate) =>
       artiklar.flatMap((a) => {
-        if (!a) return '';
+        if (!a) {
+          return '';
+        }
         const date = new Date(a.date_updated ?? a.date_created);
         updateDate(date);
         return '';
@@ -145,7 +153,9 @@ export const createSitemap = async (client: Client, query: string) => {
     })
     .toPromise();
 
-  if (data.data === undefined) throw new Error('No graphql data', data.error);
+  if (data.data === undefined) {
+    throw new Error('No graphql data', data.error);
+  }
 
   const { artiklar, terapeuter_directus_users, Behandlingar, skadekompassen } = data.data;
 

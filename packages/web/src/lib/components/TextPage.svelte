@@ -42,12 +42,12 @@
           <div class="lg:pl-20">
             <div class="max-w-xs px-2.5 lg:max-w-none">
               <Image
-                srcPath={data.image?.filename_disk || ''}
+                class="aspect-square rounded-2xl  object-cover"
                 alt={data.image?.title || ''}
-                width={800}
                 height={800}
                 sizes="(min-width: 1024px) 32rem, 20rem"
-                class="aspect-square rounded-2xl  object-cover"
+                srcPath={data.image?.filename_disk || ''}
+                width={800}
               />
               {#if children}
                 {@render children()}
@@ -56,9 +56,9 @@
                 <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
                   {#each data.links || [] as link (link.link)}
                     <SocialLink
+                      class="text-skog-700 hover:text-skog-900 flex gap-x-4 text-sm leading-6"
                       {link}
                       onlyIcon={false}
-                      class="text-skog-700 hover:text-skog-900 flex gap-x-4 text-sm leading-6"
                     />
                   {/each}
                 </ul>

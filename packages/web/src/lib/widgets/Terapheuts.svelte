@@ -28,10 +28,10 @@
 <CardList>
   {#each terapheuts as { directus_users_id } (directus_users_id?.slug)}
     <Card
-      link={`${l('terapeuter')}/${directus_users_id?.slug}`}
       image={directus_users_id?.avatar}
-      {t}
+      link={`${l('terapeuter')}/${directus_users_id?.slug}`}
       shape="circle"
+      {t}
       text={$page.params.lang === 'en'
         ? directus_users_id?.profil_sammanfattning_en
         : directus_users_id?.profil_sammanfattning}

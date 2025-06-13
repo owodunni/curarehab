@@ -22,7 +22,6 @@
           mainElement.removeChild(mainElement.firstChild);
         }
       } else {
-        // eslint-disable-next-line no-console
         console.error('Main element not found!');
       }
     };
@@ -31,8 +30,8 @@
 
 <svelte:head>
   <link
-    rel="stylesheet"
     href="https://ww1.clinicbuddy.com/onlinebooking/css/cbonlinebooking.css?v=20240327"
+    rel="stylesheet"
   />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </svelte:head>
@@ -47,7 +46,7 @@
     </p>
 
     {#if mount && browser}
-      <div class="flex flex-grow" id="container" data-locale={locale}>
+      <div id="container" class="flex flex-grow" data-locale={locale}>
         <script>
           (() => {
             // Check if jquery is defined and retry every 100ms if not

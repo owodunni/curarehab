@@ -10,9 +10,9 @@ Object.defineProperty(Element.prototype, 'animate', {
     pause: vi.fn(),
     play: vi.fn(),
     reverse: vi.fn(),
-    finish: vi.fn()
+    finish: vi.fn(),
   })),
-  writable: true
+  writable: true,
 });
 
 // Mock the i18n functions
@@ -25,7 +25,7 @@ describe('Header', () => {
       t: mockT,
       l: mockL,
       locale: 'sv',
-      route: '/'
+      route: '/',
     });
 
     // Check that header element exists
@@ -43,12 +43,14 @@ describe('Header', () => {
       t: mockT,
       l: mockL,
       locale: 'sv',
-      route: '/'
+      route: '/',
     });
 
     // Should show skadekompassen for Swedish locale
     const links = container.querySelectorAll('a');
-    const linkTexts = Array.from(links).map(link => link.textContent?.trim()).filter(Boolean);
+    const linkTexts = Array.from(links)
+      .map((link) => link.textContent?.trim())
+      .filter(Boolean);
 
     expect(linkTexts).toContain('common.behandlingar');
     expect(linkTexts).toContain('common.hitta');
@@ -61,11 +63,13 @@ describe('Header', () => {
       t: mockT,
       l: mockL,
       locale: 'en',
-      route: '/en'
+      route: '/en',
     });
 
     const links = container.querySelectorAll('a');
-    const linkTexts = Array.from(links).map(link => link.textContent?.trim()).filter(Boolean);
+    const linkTexts = Array.from(links)
+      .map((link) => link.textContent?.trim())
+      .filter(Boolean);
 
     expect(linkTexts).toContain('common.behandlingar');
     expect(linkTexts).toContain('common.hitta');
@@ -78,7 +82,7 @@ describe('Header', () => {
       t: mockT,
       l: mockL,
       locale: 'sv',
-      route: '/'
+      route: '/',
     });
 
     // Find the menu button
@@ -87,7 +91,9 @@ describe('Header', () => {
     expect(menuButton?.getAttribute('aria-expanded')).toBe('false');
 
     // Click to open menu
-    await fireEvent.click(menuButton!);
+    if (menuButton) {
+      await fireEvent.click(menuButton);
+    }
     expect(menuButton?.getAttribute('aria-expanded')).toBe('true');
 
     // Check that mobile menu panel appears

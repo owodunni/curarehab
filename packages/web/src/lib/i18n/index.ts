@@ -7,7 +7,9 @@ export { locales, defaultLocale } from './common';
 const config: Config<TranslationGroup, Locale> = {
   loader: async (locale: Locale, category: TranslationGroup): Promise<Record<string, string>> => {
     const translations = (await import(`./${locale}/${category}.ts`)) as TranslationsByGroup;
-    if (!translations) throw new Error(`No translations found for ${locale} in ${category}`);
+    if (!translations) {
+      throw new Error(`No translations found for ${locale} in ${category}`);
+    }
     if (!translations[category]) {
       throw new Error(`Translation category ${category} not found for ${locale}`);
     }

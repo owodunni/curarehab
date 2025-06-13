@@ -1,5 +1,8 @@
 <script lang="ts">
-  let { extras = "", children }: {
+  let {
+    extras = '',
+    children,
+  }: {
     extras?: string;
     children?: import('svelte').Snippet;
   } = $props();

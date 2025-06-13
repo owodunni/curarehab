@@ -4,7 +4,7 @@
   import Error from '$lib/components/Error.svelte';
 
   export let data: PageData;
-  // eslint-disable-next-line no-console
+
   console.error($page.status, $page.error?.message);
   $: placeholders = {
     page: data.t('common', 'artiklen'),
@@ -13,4 +13,4 @@
   };
 </script>
 
-<Error status={$page.status} l={data.l} t={data.t} page="hem" {placeholders} />
+<Error l={data.l} page="hem" {placeholders} status={$page.status} t={data.t} />
