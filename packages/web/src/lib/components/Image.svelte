@@ -1,28 +1,31 @@
 <script lang="ts">
-  import { getAsset2 } from "$lib/widgets/util";
-  import { onMount } from "svelte";
-  import type { ComponentProps } from "./types";
-  import type { HTMLImgAttributes } from "svelte/elements";
+  import { getAsset2 } from '$lib/widgets/util';
+  import { onMount } from 'svelte';
+  import type { ComponentProps } from './types';
+  import type { HTMLImgAttributes } from 'svelte/elements';
 
   let {
     width,
     height,
-    alt = "",
+    alt = '',
     lazy = true,
     srcPath,
-    class: clazz = "",
+    class: clazz = '',
     ...restProps
-  }: ComponentProps<{
-    width: number;
-    height: number;
-    alt?: string;
-    lazy?: boolean;
-    srcPath: string;
-    class?: string;
-  }, HTMLImgAttributes> = $props();
+  }: ComponentProps<
+    {
+      width: number;
+      height: number;
+      alt?: string;
+      lazy?: boolean;
+      srcPath: string;
+      class?: string;
+    },
+    HTMLImgAttributes
+  > = $props();
 
-  type Format = "avif" | "webp" | "jpg";
-  type ImageType = "image/avif" | "image/webp" | "image/jpeg";
+  type Format = 'avif' | 'webp' | 'jpg';
+  type ImageType = 'image/avif' | 'image/webp' | 'image/jpeg';
 
   const allowedSized = [64, 100, 112, 200, 250, 400, 450, 627, 800, 1000, 1200];
 
@@ -39,9 +42,9 @@
   function calculateSourceSet(): { type: ImageType; srcset: string }[] {
     const scales = [1, 0.75, 0.5, 0.25];
     const formats = [
-      { format: "webp", name: "image/webp" },
-      { format: "avif", name: "image/avif" },
-      { name: "image/jpeg", format: "jpg" }
+      { format: 'webp', name: 'image/webp' },
+      { format: 'avif', name: 'image/avif' },
+      { name: 'image/jpeg', format: 'jpg' },
     ] as const satisfies readonly { readonly format: Format; readonly name: ImageType }[];
 
     return formats.map(({ format, name }) => ({
@@ -54,7 +57,7 @@
           const src = getAsset2(srcPath, { width: w, height: h, format, quality: 0.8 });
           return `${src} ${width}w`;
         })
-        .join(",")
+        .join(','),
     }));
   }
 
@@ -81,7 +84,7 @@
       },
       {
         rootMargin: '50px',
-        threshold: 0.1
+        threshold: 0.1,
       }
     );
 
@@ -93,20 +96,20 @@
   });
 </script>
 
-<picture class={`image-in ${intersecting ? "image-in-place" : ""} `}>
-  {#each sourceSet as { type, srcset }}
+<picture class={`image-in ${intersecting ? 'image-in-place' : ''} `}>
+  {#each sourceSet as { type, srcset } (type)}
     <source {type} {srcset} sizes={`${width}px`} />
   {/each}
   <img
     bind:this={node}
-    class={`${width < 100 ? "image-sm" : "image"} ${intersecting ? "image-in-place" : ""} ${
-      clazz || ""
+    class={`${width < 100 ? 'image-sm' : 'image'} ${intersecting ? 'image-in-place' : ''} ${
+      clazz || ''
     }`}
     {width}
     {height}
-    src={getAsset2(srcPath, { width, height, format: "jpg", quality: 80 })}
-    loading={lazy ? "lazy" : undefined}
-    decoding={lazy ? "async" : undefined}
+    src={getAsset2(srcPath, { width, height, format: 'jpg', quality: 80 })}
+    loading={lazy ? 'lazy' : undefined}
+    decoding={lazy ? 'async' : undefined}
     {alt}
     {...restProps}
   />
@@ -125,7 +128,8 @@
 
   .image-in {
     opacity: 0.01;
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
       transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     transition-property: opacity, transform;
     transition-duration: 0.8s, 0.8s;

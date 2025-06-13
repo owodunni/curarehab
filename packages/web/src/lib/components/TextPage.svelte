@@ -1,32 +1,39 @@
 <script lang="ts">
-  import type { SeoMetaData, Image as ImageType, Link } from "$lib/api";
-  import Container from "./Container.svelte";
-  import BlocksRender from "./EditorJs/BlocksRender.svelte";
-  import type { Block } from "./EditorJs/types";
-  import Section from "./Section.svelte";
-  import Seo from "./Seo.svelte";
-  import Image from "./Image.svelte";
-  import type { T } from "$lib/i18n/t";
-  import SocialLink from "./SocialLink.svelte";
+  import type { SeoMetaData, Image as ImageType, Link } from '$lib/api';
+  import Container from './Container.svelte';
+  import BlocksRender from './EditorJs/BlocksRender.svelte';
+  import type { Block } from './EditorJs/types';
+  import Section from './Section.svelte';
+  import Seo from './Seo.svelte';
+  import Image from './Image.svelte';
+  import type { T } from '$lib/i18n/t';
+  import SocialLink from './SocialLink.svelte';
 
-  let { data, t, children }: {
-    data: {
-      text?: { blocks?: Block[] } | null;
-      text_en?: { blocks?: Block[] } | null;
-      seo?: SeoMetaData | null;
-      seo_en?: SeoMetaData | null;
-      image?: ImageType | null;
-      links?: Link[] | null;
-    } | null | undefined;
+  let {
+    data,
+    t,
+    children,
+  }: {
+    data:
+      | {
+          text?: { blocks?: Block[] } | null;
+          text_en?: { blocks?: Block[] } | null;
+          seo?: SeoMetaData | null;
+          seo_en?: SeoMetaData | null;
+          image?: ImageType | null;
+          links?: Link[] | null;
+        }
+      | null
+      | undefined;
     t: T;
     children?: import('svelte').Snippet;
   } = $props();
 
-  let lang = $derived(t("common", "lang"));
+  let lang = $derived(t('common', 'lang'));
 </script>
 
 {#if data}
-  <Seo seo={lang === "en" ? data.seo_en : data.seo} />
+  <Seo seo={lang === 'en' ? data.seo_en : data.seo} />
 
   <Section extras="theme-sand-dark">
     <Container>
@@ -35,8 +42,8 @@
           <div class="lg:pl-20">
             <div class="max-w-xs px-2.5 lg:max-w-none">
               <Image
-                srcPath={data.image?.filename_disk || ""}
-                alt={data.image?.title || ""}
+                srcPath={data.image?.filename_disk || ''}
+                alt={data.image?.title || ''}
                 width={800}
                 height={800}
                 sizes="(min-width: 1024px) 32rem, 20rem"
@@ -47,7 +54,7 @@
               {/if}
               {#if data.links}
                 <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
-                  {#each data.links || [] as link}
+                  {#each data.links || [] as link (link.link)}
                     <SocialLink
                       {link}
                       onlyIcon={false}
@@ -61,7 +68,7 @@
         {/if}
         <div class="lg:order-first lg:row-span-2">
           <article class="prose">
-            <BlocksRender blocks={(lang === "en" ? data.text_en : data.text)?.blocks || []} />
+            <BlocksRender blocks={(lang === 'en' ? data.text_en : data.text)?.blocks || []} />
           </article>
         </div>
       </div>
