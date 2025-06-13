@@ -41,6 +41,13 @@
       "options": {
         "singleQuote": false
       }
+    },
+    {
+      "files": ["*.gql", "*.graphql"],
+      "options": {
+        "parser": "graphql",
+        "printWidth": 80
+      }
     }
   ]
 }

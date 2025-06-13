@@ -4,14 +4,23 @@ import Image from './Image.svelte';
 
 // Mock the utility function
 vi.mock('$lib/widgets/util', () => ({
-  getAsset2: vi.fn((srcPath: string, options: any) => 
-    `https://example.com/image/${srcPath}?w=${options.width}&h=${options.height}&f=${options.format}&q=${options.quality}`
-  )
+  getAsset2: vi.fn(
+    (
+      srcPath: string,
+      options: { width: number; height: number; format: string; quality: number }
+    ) =>
+      `https://example.com/image/${srcPath}?w=${options.width}&h=${options.height}&f=${options.format}&q=${options.quality}`
+  ),
 }));
 
 // Mock svelte-intersection-observer
 vi.mock('svelte-intersection-observer', () => ({
-  default: vi.fn().mockImplementation(({ children }: any) => children?.({ intersecting: true }))
+  default: vi
+    .fn()
+    .mockImplementation(
+      ({ children }: { children?: (params: { intersecting: boolean }) => unknown }) =>
+        children?.({ intersecting: true })
+    ),
 }));
 
 describe('Image', () => {
@@ -24,12 +33,12 @@ describe('Image', () => {
       width: 800,
       height: 600,
       srcPath: 'test-image.jpg',
-      alt: 'Test image'
+      alt: 'Test image',
     });
-    
+
     const picture = container.querySelector('picture');
     expect(picture).toBeTruthy();
-    
+
     const img = container.querySelector('img');
     expect(img).toBeTruthy();
     expect(img?.getAttribute('alt')).toBe('Test image');
@@ -42,14 +51,14 @@ describe('Image', () => {
       width: 800,
       height: 600,
       srcPath: 'test-image.jpg',
-      alt: 'Test image'
+      alt: 'Test image',
     });
-    
+
     const sources = container.querySelectorAll('source');
     expect(sources.length).toBe(3); // webp, avif, jpeg
-    
+
     // Check that different formats are generated
-    const types = Array.from(sources).map(source => source.getAttribute('type'));
+    const types = Array.from(sources).map((source) => source.getAttribute('type'));
     expect(types).toContain('image/webp');
     expect(types).toContain('image/avif');
     expect(types).toContain('image/jpeg');
@@ -60,7 +69,7 @@ describe('Image', () => {
       width: 800,
       height: 600,
       srcPath: 'test-image.jpg',
-      alt: 'Test image'
+      alt: 'Test image',
     });
 
     const picture = container.querySelector('picture');
