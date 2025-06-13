@@ -1,14 +1,16 @@
 <script lang="ts">
-  import { getTitle } from "$lib/widgets/util";
-  import type { Link } from "$lib/api";
-  import type { PageData } from "./$types";
-  import Section from "$lib/components/Section.svelte";
-  import Container from "$lib/components/Container.svelte";
-  import ContentPage from "$lib/components/ContentPage.svelte";
-  import Articles from "$lib/widgets/Articles.svelte";
+  import { getTitle } from '$lib/widgets/util';
+  import type { Link } from '$lib/api';
+  import type { PageData } from './$types';
+  import Section from '$lib/components/Section.svelte';
+  import Container from '$lib/components/Container.svelte';
+  import ContentPage from '$lib/components/ContentPage.svelte';
+  import Articles from '$lib/widgets/Articles.svelte';
   let { data }: { data: PageData } = $props();
   let { t, terapeut, l } = $derived(data);
-  let links = $derived((terapeut?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[]);
+  let links = $derived(
+    (terapeut?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[]
+  );
 </script>
 
 <ContentPage
@@ -18,7 +20,7 @@
     seo_en: terapeut.seo_en,
     text: terapeut.profil_text,
     text_en: terapeut.profil_text_en,
-    links
+    links,
   }}
   {t}
 >
@@ -27,7 +29,7 @@
     {terapeut.last_name}
   </h3>
   <p class="text-skog-700 text-base leading-7">
-    {getTitle(terapeut.work_title || "", t)}
+    {getTitle(terapeut.work_title || '', t)}
   </p>
 </ContentPage>
 {#if terapeut?.artiklar?.length || 0 > 0}

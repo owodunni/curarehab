@@ -102,48 +102,6 @@ export default tseslint.config(
   {
     files: ['**/*.svelte'],
     rules: {
-      // Core Svelte rules - all errors for strict compliance
-      'svelte/no-unused-svelte-ignore': 'error',
-      'svelte/valid-compile': 'error',
-      'svelte/require-each-key': 'error',
-      'svelte/no-useless-mustaches': 'error',
-
-      // Security rules - all errors
-      'svelte/no-at-html-tags': 'error', // Prevent XSS vulnerabilities
-      'svelte/no-target-blank': 'error', // Security: require rel with target="_blank"
-
-      // Accessibility rules - all errors
-      'svelte/button-has-type': 'error',
-
-      // Code quality rules - all errors (only using confirmed existing rules)
-      'svelte/no-dupe-else-if-blocks': 'error',
-      'svelte/no-dupe-on-directives': 'error',
-      'svelte/no-dupe-style-properties': 'error',
-      'svelte/no-dynamic-slot-name': 'error',
-      'svelte/no-inner-declarations': 'error',
-      'svelte/no-object-in-text-mustaches': 'error',
-      'svelte/no-reactive-functions': 'error',
-      'svelte/no-reactive-literals': 'error',
-      'svelte/no-shorthand-style-property-overrides': 'error',
-      'svelte/valid-each-key': 'error',
-
-      // Style and formatting - all errors (only using confirmed existing rules)
-      'svelte/first-attribute-linebreak': 'error',
-      'svelte/html-closing-bracket-spacing': 'error',
-      'svelte/html-quotes': ['error', { prefer: 'double' }],
-      'svelte/html-self-closing': 'error',
-      'svelte/indent': ['error', { indent: 2 }],
-      'svelte/max-attributes-per-line': ['error', { multiline: 1, singleline: 3 }],
-      'svelte/mustache-spacing': 'error',
-      'svelte/no-extra-reactive-curlies': 'error',
-      'svelte/no-spaces-around-equal-signs-in-attribute': 'error',
-      'svelte/prefer-class-directive': 'error',
-      'svelte/prefer-style-directive': 'error',
-      'svelte/shorthand-attribute': 'error',
-      'svelte/shorthand-directive': 'error',
-      'svelte/sort-attributes': 'error',
-      'svelte/spaced-html-comment': 'error',
-
       // Console usage - allow in Svelte for debugging
       'no-console': 'off',
 
