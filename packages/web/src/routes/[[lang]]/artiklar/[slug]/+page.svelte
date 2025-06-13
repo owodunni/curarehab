@@ -13,8 +13,12 @@
     user: PageData['article']['user_created'] | PageData['article']['user_updated'],
     language: PageData['article']['language']
   ): [Person] | [] {
-    if (!user || !language) return [];
-    if (user.slug === 'admin-user') return [];
+    if (!user || !language) {
+      return [];
+    }
+    if (user.slug === 'admin-user') {
+      return [];
+    }
     return [
       {
         '@type': 'Person',
@@ -25,8 +29,8 @@
     ];
   }
 
-  let { data }: { data: PageData } = $props();
-  let { article } = $derived(data);
+  const { data }: { data: PageData } = $props();
+  const { article } = $derived(data);
 
   let ldJson = $state<WithContext<NewsArticle> | undefined>(undefined);
 

@@ -1,8 +1,8 @@
 <script lang="ts">
-  let {
-    class: clazz = "py-14 sm:py-20",
-    extras = "",
-    children
+  const {
+    class: clazz = 'py-14 sm:py-20',
+    extras = '',
+    children,
   }: {
     class?: string;
     extras?: string;

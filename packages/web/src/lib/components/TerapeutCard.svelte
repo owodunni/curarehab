@@ -4,7 +4,7 @@
   import type { T, L } from '$lib/i18n/t';
   import type { Terapeut } from '$lib/api';
 
-  let {
+  const {
     terapeut,
     t,
     l,

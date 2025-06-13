@@ -7,7 +7,7 @@
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
 
-  let { l, t }: { l: L; t: T } = $props();
+  const { l, t }: { l: L; t: T } = $props();
 
   $effect(() => {
     if (browser) {

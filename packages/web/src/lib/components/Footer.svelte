@@ -6,7 +6,7 @@
   import type { Link } from '$lib/api';
   import SocialLink from './SocialLink.svelte';
 
-  let {
+  const {
     t,
     l,
     locale,
@@ -31,7 +31,7 @@
    * Its a list of two lists of links with titles, the first list is in the left column and the second in the right.
    * If we are on a small screen, the two lists are shown on top of each other.
    */
-  let linksWithCategory = $derived([
+  const linksWithCategory = $derived([
     {
       [t('common', 'ourServices')]: [
         {

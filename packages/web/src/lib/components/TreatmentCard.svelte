@@ -3,7 +3,7 @@
   import type { L, T } from '$lib/i18n/t';
   import Card from './Card.svelte';
 
-  let {
+  const {
     treatment,
     l,
     t,
@@ -17,7 +17,7 @@
     title?: string | undefined | null;
   } = $props();
 
-  let primary = $derived(treatment.Primary_treatment === 'true');
+  const primary = $derived(treatment.Primary_treatment === 'true');
 </script>
 
 <Card

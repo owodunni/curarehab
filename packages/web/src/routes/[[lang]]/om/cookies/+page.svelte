@@ -3,10 +3,10 @@
   import TextPage from '$lib/components/TextPage.svelte';
   import ToggleButton from '$lib/components/ToggleButton.svelte';
   import { cookieSettings, type CookiePermissions, updateCookiePermissions } from '$lib/cookies';
-  let { data }: { data: PageData } = $props();
-  let { t } = $derived(data);
+  const { data }: { data: PageData } = $props();
+  const { t } = $derived(data);
 
-  let cookies = $derived<CookiePermissions>(
+  const cookies = $derived<CookiePermissions>(
     $cookieSettings.permission !== undefined
       ? $cookieSettings.cookiePermissions
       : { googleAds: false, googleAnalytics: false }

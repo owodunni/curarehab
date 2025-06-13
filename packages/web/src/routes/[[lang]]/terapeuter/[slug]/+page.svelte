@@ -6,9 +6,9 @@
   import Container from '$lib/components/Container.svelte';
   import ContentPage from '$lib/components/ContentPage.svelte';
   import Articles from '$lib/widgets/Articles.svelte';
-  let { data }: { data: PageData } = $props();
-  let { t, terapeut, l } = $derived(data);
-  let links = $derived(
+  const { data }: { data: PageData } = $props();
+  const { t, terapeut, l } = $derived(data);
+  const links = $derived(
     (terapeut?.social_links || []).filter(Boolean).map((l) => l?.links_id) as Link[]
   );
 </script>

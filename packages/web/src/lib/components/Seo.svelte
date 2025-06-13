@@ -3,7 +3,7 @@
   import { getAsset2 } from '$lib/widgets/util';
   import type { NewsArticle, WebPage, WithContext } from 'schema-dts';
 
-  let {
+  const {
     seo,
     ldJson = undefined,
   }: {
