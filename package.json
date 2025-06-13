@@ -9,6 +9,7 @@
     "dev": "npm run dev --workspace=@curarehab/web",
     "docker": "npm run docker --workspace=@curarehab/directus",
     "build": "npm run build --workspaces --if-present",
+    "check": "npm run check --workspaces --if-present",
     "build:app": "npm run build --workspace=@curarehab/web",
     "test": "npm run test --workspaces --if-present",
     "lint": "run-p lint:*",
