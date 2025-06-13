@@ -4,6 +4,7 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "vitest run",
-    "build": "tsc --build --verbose"
+    "build": "tsc --build --verbose",
+    "check": "tsc --build --verbose"
   }
 }
