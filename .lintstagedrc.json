@@ -4,6 +4,7 @@
   "*.{css,scss,postcss}": ["stylelint --fix", "prettier --write"],
   "*.html": ["eslint --fix", "prettier --write"],
   "*.{md,mdx}": ["eslint --fix", "prettier --write"],
+  "*.{gql,graphql}": ["eslint --fix", "prettier --write"],
   "*.{json,jsonc,yaml,yml}": ["prettier --write"],
   "Dockerfile*": ["prettier --write"]
 }

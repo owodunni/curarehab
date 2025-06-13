@@ -100,8 +100,9 @@ export function setCookiePermissions(value: boolean) {
 }
 
 export function getGtag(): Gtag.Gtag | undefined {
-  if (typeof gtag !== 'undefined')
+  if (typeof gtag !== 'undefined') {
     /* global gtag */
     return gtag;
+  }
   return undefined;
 }
