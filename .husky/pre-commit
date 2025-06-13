@@ -1,1 +1,8 @@
 npx lint-staged
+
+# Run tests and type checking before commit
+echo "🧪 Running tests..."
+npm test
+
+echo "🔍 Running type checking..."
+cd packages/web && npm run check
