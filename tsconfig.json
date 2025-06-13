@@ -1,4 +1,12 @@
 {
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": false,
+    "incremental": false,
+    "declaration": false,
+    "declarationMap": false
+  },
+  "include": ["eslint.config.ts"],
   "references": [
     {
       "path": "./packages/i18n"

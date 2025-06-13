@@ -1,0 +1,9 @@
+{
+  "*.{js,ts,mjs,cjs}": ["eslint --fix", "prettier --write"],
+  "*.{svelte}": ["eslint --fix", "prettier --write"],
+  "*.{css,scss,postcss}": ["stylelint --fix", "prettier --write"],
+  "*.{html}": ["eslint --fix", "prettier --write"],
+  "*.{md,mdx}": ["eslint --fix", "prettier --write"],
+  "*.{json,jsonc,yaml,yml}": ["prettier --write"],
+  "Dockerfile*": ["prettier --write"]
+}
