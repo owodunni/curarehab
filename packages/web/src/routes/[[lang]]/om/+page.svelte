@@ -23,11 +23,11 @@
         <div class="mx-auto lg:pt-20">
           <div class="lg:max-w-lg">
             <Image
-              srcPath={om.omslags_bild?.filename_disk || ''}
-              alt={om.omslags_bild?.title || ''}
-              width={800}
-              height={800}
               class="h-full w-full rounded-2xl object-cover"
+              alt={om.omslags_bild?.title || ''}
+              height={800}
+              srcPath={om.omslags_bild?.filename_disk || ''}
+              width={800}
             />
           </div>
         </div>
@@ -44,13 +44,13 @@
             {#if data?.data?.terapeuter_directus_users}
               {#each data?.data?.terapeuter_directus_users || [] as { directus_users_id } (directus_users_id?.slug)}
                 <li>
-                  <a href={`${l('terapeuter')}/${directus_users_id?.slug}`} class="group">
+                  <a class="group" href={`${l('terapeuter')}/${directus_users_id?.slug}`}>
                     <Image
-                      srcPath={directus_users_id?.avatar?.filename_disk || ''}
-                      alt={directus_users_id?.avatar?.title || ''}
-                      width={400}
-                      height={400}
                       class="mx-auto h-24 w-24 rounded-full"
+                      alt={directus_users_id?.avatar?.title || ''}
+                      height={400}
+                      srcPath={directus_users_id?.avatar?.filename_disk || ''}
+                      width={400}
                     />
 
                     <h3

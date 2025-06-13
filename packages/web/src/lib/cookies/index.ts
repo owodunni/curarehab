@@ -30,7 +30,9 @@ function parseDate(date: string): Date | undefined {
 }
 
 function clearCookies() {
-  if (!browser) return;
+  if (!browser) {
+    return;
+  }
   document.cookie.split(';').forEach(function (c) {
     document.cookie = c
       .replace(/^ +/, '')
@@ -80,7 +82,9 @@ if (browser) {
   cookieSettings.subscribe((settings) => {
     if (settings.permission === undefined) {
       localStorage.removeItem('cookiePermission');
-    } else localStorage.setItem('cookiePermission', JSON.stringify(settings));
+    } else {
+      localStorage.setItem('cookiePermission', JSON.stringify(settings));
+    }
   });
 }
 
@@ -91,7 +95,9 @@ export function updateCookiePermissions(cookiePermission: CookiePermissions) {
     updated: new Date().toISOString(),
     cookiePermissions: cookiePermission,
   });
-  if (!permission) clearCookies();
+  if (!permission) {
+    clearCookies();
+  }
 }
 export function setCookiePermissions(value: boolean) {
   updateCookiePermissions(

@@ -98,19 +98,19 @@
 
 <picture class={`image-in ${intersecting ? 'image-in-place' : ''} `}>
   {#each sourceSet as { type, srcset } (type)}
-    <source {type} {srcset} sizes={`${width}px`} />
+    <source sizes={`${width}px`} {srcset} {type} />
   {/each}
   <img
     bind:this={node}
     class={`${width < 100 ? 'image-sm' : 'image'} ${intersecting ? 'image-in-place' : ''} ${
       clazz || ''
     }`}
-    {width}
-    {height}
-    src={getAsset2(srcPath, { width, height, format: 'jpg', quality: 80 })}
-    loading={lazy ? 'lazy' : undefined}
-    decoding={lazy ? 'async' : undefined}
     {alt}
+    decoding={lazy ? 'async' : undefined}
+    {height}
+    loading={lazy ? 'lazy' : undefined}
+    src={getAsset2(srcPath, { width, height, format: 'jpg', quality: 80 })}
+    {width}
     {...restProps}
   />
 </picture>

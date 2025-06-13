@@ -38,7 +38,7 @@ export default tseslint.config(
     },
     rules: {
       // Console usage
-      'no-console': 'warn',
+      'no-console': 'error', // Stricter: no console statements by default
 
       // TypeScript rules
       '@typescript-eslint/no-unused-vars': [
@@ -49,17 +49,24 @@ export default tseslint.config(
           destructuredArrayIgnorePattern: '^_',
         },
       ],
-      '@typescript-eslint/no-explicit-any': 'error', // Stricter now that we're clean
-      '@typescript-eslint/ban-ts-comment': 'warn',
-      '@typescript-eslint/no-empty-object-type': 'warn',
-      '@typescript-eslint/prefer-as-const': 'warn',
-      '@typescript-eslint/no-inferrable-types': 'warn',
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/ban-ts-comment': 'error', // Stricter: no ts-ignore comments
+      '@typescript-eslint/no-empty-object-type': 'error',
+      '@typescript-eslint/prefer-as-const': 'error',
+      '@typescript-eslint/no-inferrable-types': 'error',
+      '@typescript-eslint/no-unused-expressions': 'error',
+      '@typescript-eslint/no-non-null-assertion': 'error', // Avoid ! operator
 
       // General code quality
-      'prefer-const': 'warn', // Warn instead of error for gradual adoption
+      'prefer-const': 'error', // Now strict since we're clean
       'no-var': 'error',
+
       eqeqeq: ['error', 'always', { null: 'ignore' }],
-      curly: ['warn', 'multi-line'], // Only require braces for multi-line statements
+      curly: ['error', 'all'], // Require braces everywhere for consistency
+      'no-debugger': 'error',
+      'no-alert': 'error',
+      'no-eval': 'error',
+      'no-implied-eval': 'error',
     },
   },
 
@@ -95,18 +102,55 @@ export default tseslint.config(
   {
     files: ['**/*.svelte'],
     rules: {
-      'svelte/no-unused-svelte-ignore': 'error', // Stricter since we cleaned these up
-      'no-console': 'warn',
+      // Core Svelte rules - all errors for strict compliance
+      'svelte/no-unused-svelte-ignore': 'error',
       'svelte/valid-compile': 'error',
-      'svelte/require-each-key': 'error', // Stricter since we fixed all instances
-      'svelte/no-useless-mustaches': 'error', // Stricter since we fixed all instances
-      'svelte/no-at-html-tags': 'warn', // Warn about potential XSS
-      'svelte/button-has-type': 'warn', // Ensure buttons have explicit type
-      'svelte/no-target-blank': 'warn', // Security: warn about target="_blank" without rel
+      'svelte/require-each-key': 'error',
+      'svelte/no-useless-mustaches': 'error',
+
+      // Security rules - all errors
+      'svelte/no-at-html-tags': 'error', // Prevent XSS vulnerabilities
+      'svelte/no-target-blank': 'error', // Security: require rel with target="_blank"
+
+      // Accessibility rules - all errors
+      'svelte/button-has-type': 'error',
+
+      // Code quality rules - all errors (only using confirmed existing rules)
+      'svelte/no-dupe-else-if-blocks': 'error',
+      'svelte/no-dupe-on-directives': 'error',
+      'svelte/no-dupe-style-properties': 'error',
+      'svelte/no-dynamic-slot-name': 'error',
+      'svelte/no-inner-declarations': 'error',
+      'svelte/no-object-in-text-mustaches': 'error',
+      'svelte/no-reactive-functions': 'error',
+      'svelte/no-reactive-literals': 'error',
+      'svelte/no-shorthand-style-property-overrides': 'error',
+      'svelte/valid-each-key': 'error',
+
+      // Style and formatting - all errors (only using confirmed existing rules)
+      'svelte/first-attribute-linebreak': 'error',
+      'svelte/html-closing-bracket-spacing': 'error',
+      'svelte/html-quotes': ['error', { prefer: 'double' }],
+      'svelte/html-self-closing': 'error',
+      'svelte/indent': ['error', { indent: 2 }],
+      'svelte/max-attributes-per-line': ['error', { multiline: 1, singleline: 3 }],
+      'svelte/mustache-spacing': 'error',
+      'svelte/no-extra-reactive-curlies': 'error',
+      'svelte/no-spaces-around-equal-signs-in-attribute': 'error',
+      'svelte/prefer-class-directive': 'error',
+      'svelte/prefer-style-directive': 'error',
+      'svelte/shorthand-attribute': 'error',
+      'svelte/shorthand-directive': 'error',
+      'svelte/sort-attributes': 'error',
+      'svelte/spaced-html-comment': 'error',
+
+      // Console usage - allow in Svelte for debugging
+      'no-console': 'off',
 
       // Relax some rules for Svelte props and reactive statements
       'prefer-const': 'off', // Svelte props are often declared with let but never reassigned
       curly: 'off', // Svelte reactive statements often use single-line if statements
+      '@typescript-eslint/no-non-null-assertion': 'off', // Sometimes needed in Svelte
     },
   },
 

@@ -79,12 +79,12 @@
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div class="flex flex-col items-center space-y-8">
-        <a href={l('hem')} class="btn-icon w-32" aria-label={t('common', 'title')}
+        <a class="btn-icon w-32" aria-label={t('common', 'title')} href={l('hem')}
           ><Logo class="text-theme-body hover:text-theme-muted-hover w-32 transition-colors" />
         </a>
         <div class="flex space-x-6">
           {#each socialLinks as link (link.link)}
-            <SocialLink {link} class="text-theme-body hover:text-theme-muted-hover" />
+            <SocialLink class="text-theme-body hover:text-theme-muted-hover" {link} />
           {/each}
         </div>
       </div>
@@ -95,8 +95,8 @@
             <li>
               {#if location}
                 <SocialLink
-                  link={location}
                   class="text-theme-muted hover:text-theme-muted-hover flex gap-x-4 text-sm leading-6 xl:-ml-10"
+                  link={location}
                   onlyIcon={false}
                 />
               {/if}
@@ -112,8 +112,8 @@
               <li>
                 {#if link}
                   <SocialLink
-                    {link}
                     class="text-theme-muted hover:text-theme-muted-hover flex gap-x-4 text-sm leading-6 xl:-ml-10"
+                    {link}
                     onlyIcon={false}
                   />
                 {/if}
@@ -133,7 +133,7 @@
               <ul class="mt-6 space-y-4">
                 {#each toLinks(links) as [href, linkTitle] (href)}
                   <li>
-                    <a {href} class="text-theme-muted hover:text-theme-muted-hover text-sm"
+                    <a class="text-theme-muted hover:text-theme-muted-hover text-sm" {href}
                       >{linkTitle}</a
                     >
                   </li>

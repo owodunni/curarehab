@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Page } from "$lib/i18n";
-  import type { T, L } from "$lib/i18n/t";
+  import type { Page } from '$lib/i18n';
+  import type { T, L } from '$lib/i18n/t';
 
   export let status: number;
   export let page: Page;
@@ -14,15 +14,15 @@
 >
   <p class="text-primary-500 text-base font-semibold leading-8">{status}</p>
   <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-    {t("common", "errorTitle", { page: placeholders.page })}
+    {t('common', 'errorTitle', { page: placeholders.page })}
   </h1>
   <p class="mt-6 text-base leading-7 text-gray-600">
-    {t("common", "errorSubtitle", { resource: placeholders.resource })}
+    {t('common', 'errorSubtitle', { resource: placeholders.resource })}
   </p>
   <div class="mt-10">
-    <a href={l(page)} class="text-primary-500 text-sm font-semibold leading-6"
+    <a class="text-primary-500 text-sm font-semibold leading-6" href={l(page)}
       ><span aria-hidden="true">&larr;</span>
-      {t("common", "errorHome", { backTo: placeholders.backTo })}</a
+      {t('common', 'errorHome', { backTo: placeholders.backTo })}</a
     >
   </div>
 </main>

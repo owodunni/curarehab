@@ -22,26 +22,26 @@
 <CardList>
   {#each treatments.filter((treatment) => treatment.Primary_treatment === 'true') as treatment (treatment.Slug)}
     <TreatmentCard
-      {treatment}
       {l}
-      {t}
       sammanfattning={$page.params.lang !== 'en'
         ? treatment?.behandling_sammanfattning
         : treatment?.behandling_sammanfattning_en}
+      {t}
       title={$page.params.lang !== 'en' ? treatment?.Title : treatment?.Title_en}
+      {treatment}
     />
   {/each}
 </CardList>
 <CardList extras="border-t border-theme-div">
   {#each treatments.filter((treatment) => treatment.Primary_treatment !== 'true') as treatment (treatment.Slug)}
     <TreatmentCard
-      {treatment}
       {l}
-      {t}
       sammanfattning={$page.params.lang !== 'en'
         ? treatment?.behandling_sammanfattning
         : treatment?.behandling_sammanfattning_en}
+      {t}
       title={$page.params.lang !== 'en' ? treatment?.Title : treatment?.Title_en}
+      {treatment}
     />
   {/each}
 </CardList>

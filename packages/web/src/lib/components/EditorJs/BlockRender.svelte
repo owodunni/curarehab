@@ -20,12 +20,12 @@
   </ul>
 {:else if block.type === 'image'}
   <Image
-    srcPath={`${block.data.file.url}.${block.data.file.extension}`}
-    loading="lazy"
-    width={block.data.file.width}
-    height={block.data.file.height}
-    alt={block.data.caption}
     class="rounded-2xl"
+    alt={block.data.caption}
+    height={block.data.file.height}
+    loading="lazy"
+    srcPath={`${block.data.file.url}.${block.data.file.extension}`}
+    width={block.data.file.width}
   />
 {:else if block.type === 'quote'}
   <blockquote>
