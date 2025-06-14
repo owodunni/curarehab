@@ -1,6 +1,6 @@
-import type { PrivacyTranslations } from "../types";
+import type { PrivacyTranslations } from '../types';
 
 export const personuppgiftspolicy: PrivacyTranslations = {
-  title: "Personuppgiftspolicy",
-  description: "Personuppgiftspolicy för CuraRehab"
+  title: 'Personuppgiftspolicy',
+  description: 'Personuppgiftspolicy för CuraRehab',
 };

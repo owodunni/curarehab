@@ -3,6 +3,7 @@ import tseslint from 'typescript-eslint';
 import svelte from 'eslint-plugin-svelte';
 import globals from 'globals';
 import graphql from '@graphql-eslint/eslint-plugin';
+import prettier from 'eslint-config-prettier';
 
 export default tseslint.config(
   // Base configurations
@@ -114,6 +115,14 @@ export default tseslint.config(
       'svelte/html-closing-bracket-new-line': 'off', // Conflicts with Prettier
       'svelte/prefer-destructured-store-props': 'off', // Good suggestion but requires refactoring
       'svelte/no-ignored-unsubscribe': 'off', // Good suggestion but requires refactoring
+
+      // Disable Svelte formatting rules that conflict with Prettier
+      'svelte/indent': 'off', // Let Prettier handle indentation
+      'svelte/max-attributes-per-line': 'off', // Let Prettier handle attribute formatting
+      'svelte/first-attribute-linebreak': 'off', // Let Prettier handle attribute linebreaks
+      'svelte/html-quotes': 'off', // Let Prettier handle quotes
+      'svelte/mustache-spacing': 'off', // Let Prettier handle mustache spacing
+      'svelte/no-spaces-around-equal-signs-in-attribute': 'off', // Let Prettier handle spacing
     },
   },
 
@@ -170,5 +179,8 @@ export default tseslint.config(
       // Tools
       '.unlighthouse*/',
     ],
-  }
+  },
+
+  // Prettier config - MUST BE LAST to override formatting rules
+  prettier
 );

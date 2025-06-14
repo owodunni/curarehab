@@ -6,25 +6,25 @@ import Analytics from './Analytics.svelte';
 // Mock modules with factory functions
 vi.mock('$app/stores', () => ({
   page: writable({
-    url: { pathname: '/test-path' }
-  })
+    url: { pathname: '/test-path' },
+  }),
 }));
 
 vi.mock('$app/environment', () => ({
-  browser: true
+  browser: true,
 }));
 
 vi.mock('$env/static/public', () => ({
-  PUBLIC_MEASUREMENTS_ID: 'test-measurement-id'
+  PUBLIC_MEASUREMENTS_ID: 'test-measurement-id',
 }));
 
 vi.mock('$lib/cookies', () => ({
   cookieSettings: writable({
     permission: undefined,
-    cookiePermissions: { googleAnalytics: false }
+    cookiePermissions: { googleAnalytics: false },
   }),
   setCookiePermissions: vi.fn(),
-  getGtag: vi.fn(() => vi.fn())
+  getGtag: vi.fn(() => vi.fn()),
 }));
 
 // Mock the i18n functions
@@ -39,7 +39,7 @@ describe('Analytics', () => {
   it('renders basic structure when permission is undefined', () => {
     const { container } = render(Analytics, {
       t: mockT,
-      l: mockL
+      l: mockL,
     });
 
     // Initially should not show banner (show starts as false)
@@ -53,12 +53,12 @@ describe('Analytics', () => {
     cookieSettings.set({
       permission: true,
       updated: new Date().toISOString(),
-      cookiePermissions: { googleAnalytics: true, googleAds: false }
+      cookiePermissions: { googleAnalytics: true, googleAds: false },
     });
 
     const { container } = render(Analytics, {
       t: mockT,
-      l: mockL
+      l: mockL,
     });
 
     // Should not show banner when permission is already set

@@ -7,9 +7,9 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  lint:
+    name: Code Quality
     runs-on: ubuntu-latest
-    permissions: write-all
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -17,10 +17,33 @@ jobs:
           node-version: 22
           cache: "npm"
           cache-dependency-path: package-lock.json
-      - run: |
-          npm ci
-      # - run: npm run lint
-      - run: npm run build
+      - run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint:eslint
+
+      - name: Run Prettier check
+        run: npm run lint:prettier
+
+      - name: Run TypeScript check
+        run: npm run check
+
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    permissions: write-all
+    needs: lint
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 22
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+
+      - name: Build application
+        run: npm run build
         env:
           VITE_CMS_TOKEN: ${{ secrets.VITE_CMS_TOKEN }}
           CMS_TOKEN: ${{ secrets.CMS_TOKEN }}

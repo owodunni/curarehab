@@ -9,7 +9,7 @@ export type LoadedTranslations<Category extends string, Key extends string> = Pa
 export type TranslationLoader<
   Category extends string,
   Key extends string,
-  Locale extends string
+  Locale extends string,
 > = {
   loadCategories: (
     categories: Category[],
@@ -24,7 +24,7 @@ export type Translator<C extends string, K extends string> = {
 export type TranslatorFactory = <
   Category extends string,
   Key extends string,
-  Locale extends string
+  Locale extends string,
 >(
   config: Config<Category, Locale>
 ) => TranslationLoader<Category, Key, Locale>;

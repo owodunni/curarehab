@@ -1,4 +1,7 @@
-query ArticlesAndTerapeuts($filter: artiklar_filter, $filter2: Behandlingar_filter) {
+query ArticlesAndTerapeuts(
+  $filter: artiklar_filter
+  $filter2: Behandlingar_filter
+) {
   Behandlingar(filter: $filter2) {
     date_updated
     date_created
