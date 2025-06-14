@@ -1,7 +1,7 @@
-import type { Handle } from '@sveltejs/kit';
-import { PUBLIC_CMS_URL, PUBLIC_MEASUREMENTS_ID } from '$env/static/public';
-import { CMS_TOKEN } from '$env/static/private';
-import { Client, fetchExchange } from '@urql/core';
+import type { Handle } from "@sveltejs/kit";
+import { PUBLIC_CMS_URL, PUBLIC_MEASUREMENTS_ID } from "$env/static/public";
+import { CMS_TOKEN } from "$env/static/private";
+import { Client, fetchExchange } from "@urql/core";
 
 const client = new Client({
   url: `${PUBLIC_CMS_URL}/graphql`,
@@ -22,8 +22,8 @@ export const handle: Handle = async ({ event, resolve }) => {
     {
       transformPageChunk: ({ html }) =>
         html
-          .replace('%lang%', event.params.lang === 'en' ? 'en' : 'sv')
-          .replaceAll('%MEASUREMENT_ID%', PUBLIC_MEASUREMENTS_ID),
+          .replace("%lang%", event.params.lang === "en" ? "en" : "sv")
+          .replaceAll("%MEASUREMENT_ID%", PUBLIC_MEASUREMENTS_ID),
     }
   );
 };

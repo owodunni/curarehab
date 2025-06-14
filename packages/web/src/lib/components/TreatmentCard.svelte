@@ -1,14 +1,14 @@
 <script lang="ts">
-  import type { Treatment } from '$lib/api';
-  import type { L, T } from '$lib/i18n/t';
-  import Card from './Card.svelte';
+  import type { Treatment } from "$lib/api";
+  import type { L, T } from "$lib/i18n/t";
+  import Card from "./Card.svelte";
 
   const {
     treatment,
     l,
     t,
-    sammanfattning = '',
-    title = '',
+    sammanfattning = "",
+    title = "",
   }: {
     treatment: Treatment;
     l: L;
@@ -17,15 +17,14 @@
     title?: string | undefined | null;
   } = $props();
 
-  const primary = $derived(treatment.Primary_treatment === 'true');
+  const primary = $derived(treatment.Primary_treatment === "true");
 </script>
 
 <Card
   image={treatment?.bild}
-  link={`${l('behandlingar')}/${treatment.Slug}`}
-  shape={primary ? 'square' : 'circle'}
+  link={`${l("behandlingar")}/${treatment.Slug}`}
+  shape={primary ? "square" : "circle"}
   {t}
-  text={sammanfattning}
->
+  text={sammanfattning}>
   {title}
 </Card>

@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { getAsset2 } from '$lib/widgets/util';
-  import { onMount } from 'svelte';
-  import type { ComponentProps } from './types';
-  import type { HTMLImgAttributes } from 'svelte/elements';
+  import { getAsset2 } from "$lib/widgets/util";
+  import { onMount } from "svelte";
+  import type { ComponentProps } from "./types";
+  import type { HTMLImgAttributes } from "svelte/elements";
 
   const {
     width,
     height,
-    alt = '',
+    alt = "",
     lazy = true,
     srcPath,
-    class: clazz = '',
+    class: clazz = "",
     ...restProps
   }: ComponentProps<
     {
@@ -24,8 +24,8 @@
     HTMLImgAttributes
   > = $props();
 
-  type Format = 'avif' | 'webp' | 'jpg';
-  type ImageType = 'image/avif' | 'image/webp' | 'image/jpeg';
+  type Format = "avif" | "webp" | "jpg";
+  type ImageType = "image/avif" | "image/webp" | "image/jpeg";
 
   const allowedSized = [64, 100, 112, 200, 250, 400, 450, 627, 800, 1000, 1200];
 
@@ -42,9 +42,9 @@
   function calculateSourceSet(): { type: ImageType; srcset: string }[] {
     const scales = [1, 0.75, 0.5, 0.25];
     const formats = [
-      { format: 'webp', name: 'image/webp' },
-      { format: 'avif', name: 'image/avif' },
-      { name: 'image/jpeg', format: 'jpg' },
+      { format: "webp", name: "image/webp" },
+      { format: "avif", name: "image/avif" },
+      { name: "image/jpeg", format: "jpg" },
     ] as const satisfies readonly { readonly format: Format; readonly name: ImageType }[];
 
     return formats.map(({ format, name }) => ({
@@ -57,7 +57,7 @@
           const src = getAsset2(srcPath, { width: w, height: h, format, quality: 0.8 });
           return `${src} ${width}w`;
         })
-        .join(','),
+        .join(","),
     }));
   }
 
@@ -67,7 +67,7 @@
   let intersecting = $state(false);
 
   onMount(() => {
-    if (!node || typeof IntersectionObserver === 'undefined') {
+    if (!node || typeof IntersectionObserver === "undefined") {
       // Fallback for SSR or browsers without IntersectionObserver
       intersecting = true;
       return;
@@ -83,7 +83,7 @@
         });
       },
       {
-        rootMargin: '50px',
+        rootMargin: "50px",
         threshold: 0.1,
       }
     );
@@ -96,23 +96,22 @@
   });
 </script>
 
-<picture class={`image-in ${intersecting ? 'image-in-place' : ''} `}>
+<picture class={`image-in ${intersecting ? "image-in-place" : ""} `}>
   {#each sourceSet as { type, srcset } (type)}
     <source sizes={`${width}px`} {srcset} {type} />
   {/each}
   <img
     bind:this={node}
-    class={`${width < 100 ? 'image-sm' : 'image'} ${intersecting ? 'image-in-place' : ''} ${
-      clazz || ''
+    class={`${width < 100 ? "image-sm" : "image"} ${intersecting ? "image-in-place" : ""} ${
+      clazz || ""
     }`}
     {alt}
-    decoding={lazy ? 'async' : undefined}
+    decoding={lazy ? "async" : undefined}
     {height}
-    loading={lazy ? 'lazy' : undefined}
-    src={getAsset2(srcPath, { width, height, format: 'jpg', quality: 80 })}
+    loading={lazy ? "lazy" : undefined}
+    src={getAsset2(srcPath, { width, height, format: "jpg", quality: 80 })}
     {width}
-    {...restProps}
-  />
+    {...restProps} />
 </picture>
 
 <style>

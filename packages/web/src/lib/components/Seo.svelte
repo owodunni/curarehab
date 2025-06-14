@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { SeoMetaData } from '$lib/api';
-  import { getAsset2 } from '$lib/widgets/util';
-  import type { NewsArticle, WebPage, WithContext } from 'schema-dts';
+  import type { SeoMetaData } from "$lib/api";
+  import { getAsset2 } from "$lib/widgets/util";
+  import type { NewsArticle, WebPage, WithContext } from "schema-dts";
 
   const {
     seo,
@@ -18,30 +18,30 @@
   $effect(() => {
     if (!ldJson && seo) {
       computedLdJson = {
-        '@context': 'https://schema.org',
-        '@type': 'WebPage',
+        "@context": "https://schema.org",
+        "@type": "WebPage",
         ...(seo.title && { name: seo.title }),
         ...(seo.description && { description: seo.description }),
         ...(seo.link_photo &&
           seo.link_photo.filename_disk && {
             image: {
-              '@type': 'ImageObject',
+              "@type": "ImageObject",
               url: getAsset2(seo.link_photo.filename_disk, {
                 width: 800,
                 height: 450,
-                format: 'jpg',
+                format: "jpg",
                 quality: 80,
               }),
-              width: '800',
-              height: '450',
+              width: "800",
+              height: "450",
             },
           }),
         publisher: {
-          '@type': 'Organization',
-          url: 'https://curarehab.se',
-          email: 'info@curarehab.se',
-          name: 'CuraRehab',
-          legalName: 'CuraRehab Linköping AB',
+          "@type": "Organization",
+          url: "https://curarehab.se",
+          email: "info@curarehab.se",
+          name: "CuraRehab",
+          legalName: "CuraRehab Linköping AB",
         },
       };
     } else {
@@ -62,10 +62,9 @@
           width: 1200,
           height: 627,
           quality: 0.8,
-          format: 'png',
+          format: "png",
         })}
-        property="og:image"
-      />
+        property="og:image" />
       <meta content="1200" property="og:image:width" />
       <meta content="627" property="og:image:height" />
       <meta content={seo.link_photo.title} property="og:image:alt" />
@@ -73,6 +72,6 @@
   {/if}
   {#if computedLdJson}
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-    {@html `<script type="application/ld+json">${JSON.stringify(computedLdJson)}${'</'}script>`}
+    {@html `<script type="application/ld+json">${JSON.stringify(computedLdJson)}${"</"}script>`}
   {/if}
 </svelte:head>

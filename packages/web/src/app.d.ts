@@ -2,13 +2,13 @@
 // for information about these interfaces
 // and what to do when importing types
 
-import type { LoadedTranslations } from '@curarehab/i18n';
-import type { TranslationGroup, Translations } from '$lin/i18n';
+import type { LoadedTranslations } from "@curarehab/i18n";
+import type { TranslationGroup, Translations } from "$lin/i18n";
 
 declare global {
   namespace App {
     interface Locals {
-      client: import('@urql/core').Client;
+      client: import("@urql/core").Client;
     }
     interface PageData {
       translations: LoadedTranslations<TranslationGroup, Translations>;

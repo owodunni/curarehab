@@ -1,9 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render } from '@testing-library/svelte';
-import Image from './Image.svelte';
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render } from "@testing-library/svelte";
+import Image from "./Image.svelte";
 
 // Mock the utility function
-vi.mock('$lib/widgets/util', () => ({
+vi.mock("$lib/widgets/util", () => ({
   getAsset2: vi.fn(
     (
       srcPath: string,
@@ -14,7 +14,7 @@ vi.mock('$lib/widgets/util', () => ({
 }));
 
 // Mock svelte-intersection-observer
-vi.mock('svelte-intersection-observer', () => ({
+vi.mock("svelte-intersection-observer", () => ({
   default: vi
     .fn()
     .mockImplementation(
@@ -23,57 +23,57 @@ vi.mock('svelte-intersection-observer', () => ({
     ),
 }));
 
-describe('Image', () => {
+describe("Image", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('renders basic image structure', () => {
+  it("renders basic image structure", () => {
     const { container } = render(Image, {
       width: 800,
       height: 600,
-      srcPath: 'test-image.jpg',
-      alt: 'Test image',
+      srcPath: "test-image.jpg",
+      alt: "Test image",
     });
 
-    const picture = container.querySelector('picture');
+    const picture = container.querySelector("picture");
     expect(picture).toBeTruthy();
 
-    const img = container.querySelector('img');
+    const img = container.querySelector("img");
     expect(img).toBeTruthy();
-    expect(img?.getAttribute('alt')).toBe('Test image');
-    expect(img?.getAttribute('width')).toBe('800');
-    expect(img?.getAttribute('height')).toBe('600');
+    expect(img?.getAttribute("alt")).toBe("Test image");
+    expect(img?.getAttribute("width")).toBe("800");
+    expect(img?.getAttribute("height")).toBe("600");
   });
 
-  it('generates correct source sets for different formats', () => {
+  it("generates correct source sets for different formats", () => {
     const { container } = render(Image, {
       width: 800,
       height: 600,
-      srcPath: 'test-image.jpg',
-      alt: 'Test image',
+      srcPath: "test-image.jpg",
+      alt: "Test image",
     });
 
-    const sources = container.querySelectorAll('source');
+    const sources = container.querySelectorAll("source");
     expect(sources.length).toBe(3); // webp, avif, jpeg
 
     // Check that different formats are generated
-    const types = Array.from(sources).map((source) => source.getAttribute('type'));
-    expect(types).toContain('image/webp');
-    expect(types).toContain('image/avif');
-    expect(types).toContain('image/jpeg');
+    const types = Array.from(sources).map((source) => source.getAttribute("type"));
+    expect(types).toContain("image/webp");
+    expect(types).toContain("image/avif");
+    expect(types).toContain("image/jpeg");
   });
 
-  it('applies intersection observer classes correctly', () => {
+  it("applies intersection observer classes correctly", () => {
     const { container } = render(Image, {
       width: 800,
       height: 600,
-      srcPath: 'test-image.jpg',
-      alt: 'Test image',
+      srcPath: "test-image.jpg",
+      alt: "Test image",
     });
 
-    const picture = container.querySelector('picture');
-    expect(picture?.className).toContain('image-in');
+    const picture = container.querySelector("picture");
+    expect(picture?.className).toContain("image-in");
 
     // In test environment, IntersectionObserver might not trigger immediately
     // so we just check that the base class is applied

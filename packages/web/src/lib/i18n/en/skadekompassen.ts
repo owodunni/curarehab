@@ -1,6 +1,6 @@
-import type { SkadekompassenTranslations } from '../types';
+import type { SkadekompassenTranslations } from "../types";
 
 export const skadekompassen: SkadekompassenTranslations = {
-  title: 'Injuries',
-  description: '',
+  title: "Injuries",
+  description: "",
 };

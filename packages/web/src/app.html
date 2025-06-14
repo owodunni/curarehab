@@ -9,13 +9,13 @@
         dataLayer.push(arguments);
       }
 
-      gtag('js', new Date());
-      gtag('consent', 'default', {
-        ad_storage: 'denied',
-        analytics_storage: 'denied',
+      gtag("js", new Date());
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        analytics_storage: "denied",
         wait_for_update: 500,
       });
-      gtag('config', '%MEASUREMENT_ID%');
+      gtag("config", "%MEASUREMENT_ID%");
     </script>
 
     <meta charset="utf-8" />
@@ -45,21 +45,21 @@
     %sveltekit.head%
     <style>
       @font-face {
-        font-family: 'Inter';
+        font-family: "Inter";
         font-weight: 100 900;
         font-display: block;
         font-style: normal;
-        font-named-instance: 'Regular';
-        src: url('/fonts/Inter-roman.var-minimal.woff2') format('woff2');
+        font-named-instance: "Regular";
+        src: url("/fonts/Inter-roman.var-minimal.woff2") format("woff2");
       }
 
       @font-face {
-        font-family: 'SangBleu';
+        font-family: "SangBleu";
         font-weight: 100 900;
         font-display: block;
         font-style: normal;
-        font-named-instance: 'Regular';
-        src: url('/fonts/SangBleu-sunrise.var-minimal.woff2') format('woff2');
+        font-named-instance: "Regular";
+        src: url("/fonts/SangBleu-sunrise.var-minimal.woff2") format("woff2");
       }
     </style>
   </head>

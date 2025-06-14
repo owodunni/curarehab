@@ -1,22 +1,22 @@
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig, loadEnv, type Plugin } from 'vite';
-import codegen from 'vite-plugin-graphql-codegen';
-import type { CodegenConfig } from '@graphql-codegen/cli';
-import 'isomorphic-unfetch';
-import { Client, fetchExchange } from '@urql/core';
-import { createSitemap } from './src/lib/sitemap';
-import { promises as fs } from 'fs';
-import { svelteTesting } from '@testing-library/svelte/vite';
+import { sveltekit } from "@sveltejs/kit/vite";
+import { defineConfig, loadEnv, type Plugin } from "vite";
+import codegen from "vite-plugin-graphql-codegen";
+import type { CodegenConfig } from "@graphql-codegen/cli";
+import "isomorphic-unfetch";
+import { Client, fetchExchange } from "@urql/core";
+import { createSitemap } from "./src/lib/sitemap";
+import { promises as fs } from "fs";
+import { svelteTesting } from "@testing-library/svelte/vite";
 
 const sitemapPlugin = (client: Client): Plugin => {
   const sitemap = async () =>
-    createSitemap(client, await fs.readFile('./src/lib/sitemap/query.gql', 'utf8'));
+    createSitemap(client, await fs.readFile("./src/lib/sitemap/query.gql", "utf8"));
   return {
-    name: 'sitemap-plugin',
+    name: "sitemap-plugin",
     buildStart() {
       setTimeout(() => {
         sitemap().then((s) => {
-          fs.writeFile('./static/sitemap.xml', s);
+          fs.writeFile("./static/sitemap.xml", s);
         });
       }, 1000);
     },
@@ -38,17 +38,17 @@ export default (params: { mode: string }) => {
         [graphqlUrl]: graphqlHeaders,
       },
     ],
-    documents: './src/**/*.gql',
+    documents: "./src/**/*.gql",
     generates: {
-      '.gql/types/types.gql.ts': { plugins: ['typescript'] },
-      'src/': {
-        preset: 'near-operation-file',
+      ".gql/types/types.gql.ts": { plugins: ["typescript"] },
+      "src/": {
+        preset: "near-operation-file",
         presetConfig: {
-          fileName: '$types',
-          extension: '.gql.d.ts',
-          baseTypesPath: '.gql/types/types.gql.ts',
+          fileName: "$types",
+          extension: ".gql.d.ts",
+          baseTypesPath: ".gql/types/types.gql.ts",
         },
-        plugins: ['typescript-operations'],
+        plugins: ["typescript-operations"],
       },
     },
   };
@@ -62,13 +62,13 @@ export default (params: { mode: string }) => {
   return defineConfig({
     plugins: [codegen({ config }), sitemapPlugin(client), sveltekit(), svelteTesting()],
     test: {
-      include: ['./src/**/*.test.ts'],
-      environment: 'jsdom',
+      include: ["./src/**/*.test.ts"],
+      environment: "jsdom",
       coverage: {
-        provider: 'v8',
-        reporter: ['text', 'html', 'lcov'],
-        include: ['src/**/*.{js,ts,svelte}'],
-        exclude: ['src/**/*.test.ts', 'src/**/*.d.ts', 'src/**/*.gql.d.ts', 'src/app.html'],
+        provider: "v8",
+        reporter: ["text", "html", "lcov"],
+        include: ["src/**/*.{js,ts,svelte}"],
+        exclude: ["src/**/*.test.ts", "src/**/*.d.ts", "src/**/*.gql.d.ts", "src/app.html"],
       },
     },
   });

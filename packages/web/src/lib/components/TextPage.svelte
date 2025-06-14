@@ -1,13 +1,13 @@
 <script lang="ts">
-  import type { SeoMetaData, Image as ImageType, Link } from '$lib/api';
-  import Container from './Container.svelte';
-  import BlocksRender from './EditorJs/BlocksRender.svelte';
-  import type { Block } from './EditorJs/types';
-  import Section from './Section.svelte';
-  import Seo from './Seo.svelte';
-  import Image from './Image.svelte';
-  import type { T } from '$lib/i18n/t';
-  import SocialLink from './SocialLink.svelte';
+  import type { SeoMetaData, Image as ImageType, Link } from "$lib/api";
+  import Container from "./Container.svelte";
+  import BlocksRender from "./EditorJs/BlocksRender.svelte";
+  import type { Block } from "./EditorJs/types";
+  import Section from "./Section.svelte";
+  import Seo from "./Seo.svelte";
+  import Image from "./Image.svelte";
+  import type { T } from "$lib/i18n/t";
+  import SocialLink from "./SocialLink.svelte";
 
   const {
     data,
@@ -26,14 +26,14 @@
       | null
       | undefined;
     t: T;
-    children?: import('svelte').Snippet;
+    children?: import("svelte").Snippet;
   } = $props();
 
-  const lang = $derived(t('common', 'lang'));
+  const lang = $derived(t("common", "lang"));
 </script>
 
 {#if data}
-  <Seo seo={lang === 'en' ? data.seo_en : data.seo} />
+  <Seo seo={lang === "en" ? data.seo_en : data.seo} />
 
   <Section extras="theme-sand-dark">
     <Container>
@@ -43,12 +43,11 @@
             <div class="max-w-xs px-2.5 lg:max-w-none">
               <Image
                 class="aspect-square rounded-2xl  object-cover"
-                alt={data.image?.title || ''}
+                alt={data.image?.title || ""}
                 height={800}
                 sizes="(min-width: 1024px) 32rem, 20rem"
-                srcPath={data.image?.filename_disk || ''}
-                width={800}
-              />
+                srcPath={data.image?.filename_disk || ""}
+                width={800} />
               {#if children}
                 {@render children()}
               {/if}
@@ -58,8 +57,7 @@
                     <SocialLink
                       class="text-skog-700 hover:text-skog-900 flex gap-x-4 text-sm leading-6"
                       {link}
-                      onlyIcon={false}
-                    />
+                      onlyIcon={false} />
                   {/each}
                 </ul>
               {/if}
@@ -68,7 +66,7 @@
         {/if}
         <div class="lg:order-first lg:row-span-2">
           <article class="prose">
-            <BlocksRender blocks={(lang === 'en' ? data.text_en : data.text)?.blocks || []} />
+            <BlocksRender blocks={(lang === "en" ? data.text_en : data.text)?.blocks || []} />
           </article>
         </div>
       </div>

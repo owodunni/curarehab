@@ -1,22 +1,22 @@
 <script lang="ts">
-  import Image from '$lib/components/Image.svelte';
-  import type { Image as ImageType } from '$lib/api';
-  import type { T } from '$lib/i18n/t';
+  import Image from "$lib/components/Image.svelte";
+  import type { Image as ImageType } from "$lib/api";
+  import type { T } from "$lib/i18n/t";
 
   const {
     link,
     image,
-    shape = 'square',
-    text = '',
+    shape = "square",
+    text = "",
     t,
     children,
   }: {
     link: string;
     t: T;
     image: ImageType | undefined | null;
-    shape?: 'circle' | 'square';
+    shape?: "circle" | "square";
     text?: string | undefined | null;
-    children?: import('svelte').Snippet;
+    children?: import("svelte").Snippet;
   } = $props();
 </script>
 
@@ -25,28 +25,26 @@
     <a href={link}>
       <Image
         class={`bg-skog-400 object-cover ${
-          shape === 'square'
-            ? 'aspect-[16/9]  w-full  rounded-2xl sm:aspect-[2/1] lg:aspect-[3/2]'
-            : 'mx-auto aspect-square h-52 w-52 rounded-full md:h-64 md:w-64'
+          shape === "square"
+            ? "aspect-[16/9]  w-full  rounded-2xl sm:aspect-[2/1] lg:aspect-[3/2]"
+            : "mx-auto aspect-square h-52 w-52 rounded-full md:h-64 md:w-64"
         } `}
-        alt={image?.title || ''}
-        height={shape === 'square' ? 450 : 400}
-        srcPath={image?.filename_disk || ''}
-        width={shape === 'square' ? 800 : 400}
-      />
+        alt={image?.title || ""}
+        height={shape === "square" ? 450 : 400}
+        srcPath={image?.filename_disk || ""}
+        width={shape === "square" ? 800 : 400} />
     </a>
     <div class="mt-6 flex items-start justify-between">
       {#if children}
         <a class="w-full" href={link}>
           <h3
             class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading overflow-hidden text-ellipsis"
-            lang={t('common', 'lang')}
-          >
+            lang={t("common", "lang")}>
             {@render children()}
           </h3>
         </a>
-        <a class="btn btn-sm variant-filled" href={t('common', 'hanoLink')}>
-          {t('common', 'bokaNu')}
+        <a class="btn btn-sm variant-filled" href={t("common", "hanoLink")}>
+          {t("common", "bokaNu")}
         </a>
       {/if}
     </div>
