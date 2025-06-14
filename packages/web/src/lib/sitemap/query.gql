@@ -57,4 +57,12 @@ query Slugs($filter: artiklar_filter, $f2: Behandlingar_filter) {
       }
     }
   }
+  kliniker {
+    date_updated
+  }
+  Kliniker_list {
+    slug
+    date_updated
+    date_created
+  }
 }
