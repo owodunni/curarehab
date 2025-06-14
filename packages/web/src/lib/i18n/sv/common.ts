@@ -54,4 +54,5 @@ export const common: CommonTranslations = {
   skadekompassenText:
     "Lär dig mer om de vanligaste skadorna och besvären som vi behandlar. I våra artiklar ger vi dig mer information om dina besvär, så att du enklare kan förstå vad som orsakar dem.",
   skadekompassen: "Skadekompassen",
+  kliniker: "Kliniker",
 };
