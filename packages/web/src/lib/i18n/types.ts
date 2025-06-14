@@ -9,7 +9,8 @@ export type Page =
   | "hitta"
   | "terapeuter"
   | "skadekompassen"
-  | "boka";
+  | "boka"
+  | "kliniker";
 export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
@@ -106,6 +107,41 @@ export type ArticleTranslations = {
 export type BokaTranslations = {
   title: string;
   description: string;
+  // New multi-clinic content
+  clinicsTitle: string;
+  clinicsDescription: string;
+  visitTitle: string;
+  visitDescription: string;
+};
+
+export type KlinikerTranslations = {
+  // Overview page
+  title: string;
+  description: string;
+  clinicsTitle: string;
+  clinicsDescription: string;
+
+  // Individual clinic pages
+  clinicTitle: string;
+  clinicDescription: string;
+  bokaTitle: string;
+  bokaDescription: string;
+  hittaTitle: string;
+  hittaDescription: string;
+  omTitle: string;
+  omDescription: string;
+
+  // Clinic-specific booking page
+  bookingTitle: string;
+  bookingDescription: string;
+
+  // Clinic-specific directions page
+  directionsTitle: string;
+  directionsDescription: string;
+
+  // Clinic-specific about page
+  aboutTitle: string;
+  aboutDescription: string;
 };
 
 export type FindTranslations = {
@@ -157,6 +193,7 @@ export type TranslationsByGroup = {
   cookies: CookiesTranslations;
   skadekompassen: SkadekompassenTranslations;
   boka: BokaTranslations;
+  kliniker: KlinikerTranslations;
 };
 
 export type Translations =
@@ -170,4 +207,5 @@ export type Translations =
   | keyof CookiesTranslations
   | keyof SkadekompassenTranslations
   | keyof TreatmentsTranslations
-  | keyof BokaTranslations;
+  | keyof BokaTranslations
+  | keyof KlinikerTranslations;

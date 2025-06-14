@@ -28,7 +28,9 @@ export const loadTranslations = async (locale: Locale, route: Route) => {
         ? "terapeuter"
         : route.startsWith("/behandlingar")
           ? "behandlingar"
-          : undefined;
+          : route.startsWith("/kliniker/") || route === "/kliniker"
+            ? "kliniker"
+            : undefined;
   if (!page) {
     throw new Error(`No page found for route ${route}`);
   }

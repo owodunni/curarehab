@@ -7,6 +7,7 @@ import type {
   CookiesTranslations,
   FindTranslations,
   HemTranslations,
+  KlinikerTranslations,
   OmTranslations,
   Page,
   PrivacyTranslations,
@@ -52,6 +53,7 @@ export const createT = (translations: LoadedTranslations<TranslationGroup, Trans
     key: keyof TerapheutTranslations,
     params?: NamedPlaceholder
   ): string;
+  function r(group: "kliniker", key: keyof KlinikerTranslations, params?: NamedPlaceholder): string;
   function r(group: TranslationGroup, key: Translations, params?: NamedPlaceholder): string {
     return t(group, key, params);
   }

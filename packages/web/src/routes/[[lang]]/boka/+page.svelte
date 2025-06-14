@@ -1,37 +1,10 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
   import Container from "$lib/components/Container.svelte";
   import Section from "$lib/components/Section.svelte";
-  import { onMount } from "svelte";
-
-  let mount = $state(false);
 
   const { data } = $props();
   const { t } = $derived(data);
-  const locale = $derived(t("common", "lang"));
-
-  onMount(() => {
-    mount = true;
-    return () => {
-      const mainElement = document.querySelector("#container");
-
-      // Check if the main element exists
-      if (mainElement) {
-        // A loop to remove all child nodes
-        while (mainElement.firstChild) {
-          mainElement.removeChild(mainElement.firstChild);
-        }
-      }
-    };
-  });
 </script>
-
-<svelte:head>
-  <link
-    href="https://ww1.clinicbuddy.com/onlinebooking/css/cbonlinebooking.css?v=20240327"
-    rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-</svelte:head>
 
 <Section>
   <Container>
@@ -42,54 +15,43 @@
       {t("boka", "description")}
     </p>
 
-    {#if mount && browser}
-      <div id="container" class="flex flex-grow" data-locale={locale}>
-        <script>
-          (() => {
-            // Check if jquery is defined and retry every 100ms if not
-            const handle = setInterval(() => {
-              if (!$) return;
-              clearInterval(handle);
-              $(document).ready(function () {
-                const language = $("#container").data("locale"); // Access the locale data attribute
-                var ob_ = {
-                  settings: {
-                    uid: "-3177",
-                    embedded: true,
-                    customization: {
-                      footer: { show: 0 },
-                      header: { show: 0 },
-                      streetview: "",
-                    },
-                    language,
-                    params: {
-                      activityGroups: [2],
-                      providerGroups: [2],
-                      locations: [3],
-                    },
-                    appearance: { filters: { activity: "false" } },
-                  },
-                };
+    <!-- Visit Information Section -->
+    <div class="my-12">
+      <h2 class="text-theme-heading mb-4 text-2xl font-semibold">
+        {t("boka", "visitTitle")}
+      </h2>
+      <p class="text-theme-text text-lg">
+        {t("boka", "visitDescription")}
+      </p>
+    </div>
 
-                $.getScript(
-                  "https://ww1.clinicbuddy.com/onlinebooking/js/jquery.cbonlinebooking.js?v=20240327",
-                  function () {
-                    if (language === "en")
-                      $.getScript(
-                        "https://ww1.clinicbuddy.com/onlinebooking/js/jquery.cbonlinebooking-en.js",
-                        function () {
-                          /* no-op */
-                        }
-                      );
-                    const element = $("#container");
-                    element.cbOnlineBooking(ob_.settings);
-                  }
-                );
-              });
-            }, 50);
-          })();
-        </script>
+    <!-- Clinic Selection Section -->
+    <div class="my-12">
+      <h2 class="text-theme-heading mb-4 text-2xl font-semibold">
+        {t("boka", "clinicsTitle")}
+      </h2>
+      <p class="text-theme-text mb-8 text-lg">
+        {t("boka", "clinicsDescription")}
+      </p>
+
+      <!-- TODO: Add clinic cards here when data is available -->
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-md">
+          <h3 class="mb-2 text-xl font-semibold">City Klinik</h3>
+          <p class="mb-4 text-gray-600">Placeholder for city clinic description</p>
+          <div class="inline-block cursor-not-allowed rounded-lg bg-gray-400 px-6 py-2 text-white">
+            Kommer snart
+          </div>
+        </div>
+
+        <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-md">
+          <h3 class="mb-2 text-xl font-semibold">Mjärdevi Klinik</h3>
+          <p class="mb-4 text-gray-600">Placeholder for mjärdevi clinic description</p>
+          <div class="inline-block cursor-not-allowed rounded-lg bg-gray-400 px-6 py-2 text-white">
+            Kommer snart
+          </div>
+        </div>
       </div>
-    {/if}
+    </div>
   </Container>
 </Section>

@@ -43,6 +43,7 @@ const urls = (data: SlugsQuery) =>
       ["/om/cookies", data.cookies],
       ["/terapeuter", data.Terapeuter],
       ["/hitta", data.hitta],
+      ["/kliniker", data.kliniker],
     ].map(([route, lastmod]) => createUrl(locale + route, lastmod ?? undefined))
   );
 
@@ -145,6 +146,20 @@ ${urls.join("\n")}
 `.trim();
 };
 
+const klinikerUrls = (kliniker: SlugsQuery["Kliniker_list"]): string[] => {
+  return kliniker.flatMap(({ slug, date_updated, date_created }) => {
+    const date = new Date(date_updated ?? date_created);
+    const dateString = toString(date);
+
+    return localPrefix.flatMap((locale) => [
+      createUrl(`${locale}/kliniker/${slug}`, dateString),
+      createUrl(`${locale}/kliniker/${slug}/boka`, dateString),
+      createUrl(`${locale}/kliniker/${slug}/hitta`, dateString),
+      createUrl(`${locale}/kliniker/${slug}/om`, dateString),
+    ]);
+  });
+};
+
 export const createSitemap = async (client: Client, query: string) => {
   const data = await client
     .query<SlugsQuery>(query, {
@@ -157,7 +172,8 @@ export const createSitemap = async (client: Client, query: string) => {
     throw new Error("No graphql data", data.error);
   }
 
-  const { artiklar, terapeuter_directus_users, Behandlingar, skadekompassen } = data.data;
+  const { artiklar, terapeuter_directus_users, Behandlingar, skadekompassen, Kliniker_list } =
+    data.data;
 
   return `
     <?xml version="1.0" encoding="UTF-8" ?>
@@ -175,6 +191,9 @@ export const createSitemap = async (client: Client, query: string) => {
         .join("\n")
         .trim()}
       ${behandlingarUrls(Behandlingar || [], data.data.behandlingar?.date_updated).trim()}
+      ${klinikerUrls(Kliniker_list || [])
+        .join("\n")
+        .trim()}
       ${artiklarUrls(artiklar || []).trim()}
 ${skadekompassenUrls(skadekompassen, skadekompassen?.date_updated).trim()}
     </urlset>`.trim();
