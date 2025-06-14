@@ -1,6 +1,6 @@
-import type { TerapheutTranslations } from '../types';
+import type { TerapheutTranslations } from "../types";
 
 export const terapeuter: TerapheutTranslations = {
-  title: 'Terapheuts',
-  description: 'Terapheuths working at CuraRehab',
+  title: "Terapheuts",
+  description: "Terapheuths working at CuraRehab",
 };

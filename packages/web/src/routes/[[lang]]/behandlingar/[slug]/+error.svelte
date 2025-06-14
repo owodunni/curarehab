@@ -1,16 +1,15 @@
 <script lang="ts">
-  import { page } from '$app/stores';
-  import type { PageData } from './$types';
-  import Error from '$lib/components/Error.svelte';
+  import { page } from "$app/state";
+  import type { PageData } from "./$types";
+  import Error from "$lib/components/Error.svelte";
 
-  export let data: PageData;
+  const { data }: { data: PageData } = $props();
 
-  console.error($page.status, $page.error?.message);
-  $: placeholders = {
-    page: data.t('common', 'behandlingen'),
-    resource: data.t('common', 'behandlingen').toLowerCase(),
-    backTo: data.t('common', 'behandlingar').toLowerCase(),
-  };
+  const placeholders = $derived({
+    page: data.t("common", "behandlingen"),
+    resource: data.t("common", "behandlingen").toLowerCase(),
+    backTo: data.t("common", "behandlingar").toLowerCase(),
+  });
 </script>
 
-<Error l={data.l} page="hem" {placeholders} status={$page.status} t={data.t} />
+<Error l={data.l} page="hem" {placeholders} status={page.status} t={data.t} />

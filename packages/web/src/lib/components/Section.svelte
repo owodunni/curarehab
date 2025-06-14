@@ -1,12 +1,12 @@
 <script lang="ts">
   const {
-    class: clazz = 'py-14 sm:py-20',
-    extras = '',
+    class: clazz = "py-14 sm:py-20",
+    extras = "",
     children,
   }: {
     class?: string;
     extras?: string;
-    children?: import('svelte').Snippet;
+    children?: import("svelte").Snippet;
   } = $props();
 </script>
 

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { PageData } from './$types';
-  import Container from '$lib/components/Container.svelte';
-  import Section from '$lib/components/Section.svelte';
-  import Seo from '$lib/components/Seo.svelte';
-  import Treatments from '$lib/widgets/Treatments.svelte';
+  import type { PageData } from "./$types";
+  import Container from "$lib/components/Container.svelte";
+  import Section from "$lib/components/Section.svelte";
+  import Seo from "$lib/components/Seo.svelte";
+  import Treatments from "$lib/widgets/Treatments.svelte";
   const { data }: { data: PageData } = $props();
   const { l, t } = $derived(data);
 </script>
@@ -15,5 +15,6 @@
 </Section>
 
 <Seo
-  seo={data.params.lang === 'en' ? data?.data?.behandlingar?.seo_en : data?.data?.behandlingar?.seo}
-/>
+  seo={data.params.lang === "en"
+    ? data?.data?.behandlingar?.seo_en
+    : data?.data?.behandlingar?.seo} />

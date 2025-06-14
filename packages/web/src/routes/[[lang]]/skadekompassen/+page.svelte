@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { Article } from '$lib/api';
-  import Container from '$lib/components/Container.svelte';
-  import Section from '$lib/components/Section.svelte';
-  import Seo from '$lib/components/Seo.svelte';
-  import Articles from '$lib/widgets/Articles.svelte';
-  import type { PageData } from './$types';
+  import type { Article } from "$lib/api";
+  import Container from "$lib/components/Container.svelte";
+  import Section from "$lib/components/Section.svelte";
+  import Seo from "$lib/components/Seo.svelte";
+  import Articles from "$lib/widgets/Articles.svelte";
+  import type { PageData } from "./$types";
   const { data }: { data: PageData } = $props();
   const { l, t } = $derived(data);
   const artiklar = $derived(
@@ -17,10 +17,10 @@
   <Container>
     <Articles articles={artiklar} {l} {t}>
       <h1 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
-        {t('common', 'skadekompassenTitle')}
+        {t("common", "skadekompassenTitle")}
       </h1>
       <p class="text-theme-heading mt-6 text-lg">
-        {t('common', 'skadekompassenText')}
+        {t("common", "skadekompassenText")}
       </p>
     </Articles>
   </Container>

@@ -1,12 +1,11 @@
 <script lang="ts">
-  import type { Banner } from '$lib/api';
+  import type { Banner } from "$lib/api";
 
   const { banner }: { banner: Banner } = $props();
 </script>
 
 <div
-  class="bg-skog-700 text-sand-100 flex flex-1 content-center items-center justify-center gap-x-6 px-6 py-3 text-lg sm:px-3.5"
->
+  class="bg-skog-700 text-sand-100 flex flex-1 content-center items-center justify-center gap-x-6 px-6 py-3 text-lg sm:px-3.5">
   <a class="text-sm leading-6 text-white" href={banner.link.link}>
     <strong class="font-semibold">{banner.title}</strong><svg
       class="mx-2 inline h-0.5 w-0.5 fill-current"

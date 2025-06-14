@@ -1,7 +1,7 @@
 {
   "semi": true,
   "trailingComma": "es5",
-  "singleQuote": true,
+  "singleQuote": false,
   "printWidth": 100,
   "tabWidth": 2,
   "useTabs": false,
@@ -12,12 +12,14 @@
   "quoteProps": "as-needed",
   "htmlWhitespaceSensitivity": "css",
   "embeddedLanguageFormatting": "auto",
+  "svelteAllowShorthand": true,
   "plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
   "overrides": [
     {
       "files": "*.svelte",
       "options": {
-        "parser": "svelte"
+        "parser": "svelte",
+        "bracketSameLine": true
       }
     },
     {

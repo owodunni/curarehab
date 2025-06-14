@@ -1,4 +1,4 @@
-import type { Config, TranslationLoader, TranslatorFactory } from './types';
+import type { Config, TranslationLoader, TranslatorFactory } from "./types";
 
 export const createTranslationLoader: TranslatorFactory = <
   Category extends string,

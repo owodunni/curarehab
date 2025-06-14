@@ -1,16 +1,16 @@
-export type Locale = 'en' | 'sv';
+export type Locale = "en" | "sv";
 export type Page =
-  | 'artiklar'
-  | 'behandlingar'
-  | 'cookies'
-  | 'hem'
-  | 'om'
-  | 'personuppgiftspolicy'
-  | 'hitta'
-  | 'terapeuter'
-  | 'skadekompassen'
-  | 'boka';
-export type TranslationGroup = 'common' | Page;
+  | "artiklar"
+  | "behandlingar"
+  | "cookies"
+  | "hem"
+  | "om"
+  | "personuppgiftspolicy"
+  | "hitta"
+  | "terapeuter"
+  | "skadekompassen"
+  | "boka";
+export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
   lang: string;

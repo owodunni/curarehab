@@ -1,4 +1,4 @@
-import type { NamedPlaceholder, LoadedTranslations, Translator } from './types';
+import type { NamedPlaceholder, LoadedTranslations, Translator } from "./types";
 
 export function createTranslator<Category extends string, Key extends string>(
   translations: LoadedTranslations<Category, Key>
