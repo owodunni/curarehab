@@ -1,15 +1,15 @@
 export type BlockType =
-  | "delimiter"
-  | "header"
-  | "paragraph"
-  | "nestedlist"
-  | "image"
-  | "quote"
-  | "code"
-  | "table";
+  | 'delimiter'
+  | 'header'
+  | 'paragraph'
+  | 'nestedlist'
+  | 'image'
+  | 'quote'
+  | 'code'
+  | 'table';
 //  | "embed";
 
-type Alignment = "left" | "right" | "center" | "justify";
+type Alignment = 'left' | 'right' | 'center' | 'justify';
 
 type Header = { level: 1 | 2 | 3 | 4 | 5 | 6; text: string };
 
@@ -42,7 +42,7 @@ type Code = { code: string };
 
 // Not tested
 type List = {
-  style: "ordered";
+  style: 'ordered';
   items: { content: string; items: string[] }[];
 };
 
@@ -55,42 +55,42 @@ type BaseBlock = {
 };
 
 interface HeaderBlock extends BaseBlock {
-  type: "header";
+  type: 'header';
   data: Header;
 }
 
 interface ParagraphBlock extends BaseBlock {
-  type: "paragraph";
+  type: 'paragraph';
   data: Paragraph;
 }
 
 interface ImageBlock extends BaseBlock {
-  type: "image";
+  type: 'image';
   data: Image;
 }
 
 interface QuoteBlock extends BaseBlock {
-  type: "quote";
+  type: 'quote';
   data: Quote;
 }
 
 interface TableBlock extends BaseBlock {
-  type: "table";
+  type: 'table';
   data: Table;
 }
 
 interface DelimiterBlock extends BaseBlock {
-  type: "delimiter";
+  type: 'delimiter';
   data: Delimiter;
 }
 
 interface ListBlock extends BaseBlock {
-  type: "nestedlist";
+  type: 'nestedlist';
   data: List;
 }
 
 interface CodeBlock extends BaseBlock {
-  type: "code";
+  type: 'code';
   data: Code;
 }
 

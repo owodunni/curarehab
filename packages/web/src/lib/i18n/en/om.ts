@@ -1,6 +1,6 @@
-import type { OmTranslations } from "../types";
+import type { OmTranslations } from '../types';
 
 export const om: OmTranslations = {
-  title: "About",
-  description: "About Cura Rehab"
+  title: 'About',
+  description: 'About Cura Rehab',
 };

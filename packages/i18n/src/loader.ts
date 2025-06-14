@@ -1,9 +1,9 @@
-import type { Config, TranslationLoader, TranslatorFactory } from "./types";
+import type { Config, TranslationLoader, TranslatorFactory } from './types';
 
 export const createTranslationLoader: TranslatorFactory = <
   Category extends string,
   Key extends string,
-  Locale extends string
+  Locale extends string,
 >(
   config: Config<Category, Locale>
 ) => {
@@ -14,6 +14,6 @@ export const createTranslationLoader: TranslatorFactory = <
           categories.map(async (category) => [category, await config.loader(locale, category)])
         )
       );
-    }
+    },
   } satisfies TranslationLoader<Category, Key, Locale>;
 };

@@ -1,9 +1,11 @@
 # Directus
 
-The following directory contains the tools to build directus for use on our local server and for AWS.
-We run directus on our local server, however we can use AWS or other cloud providers as a backup in case our local server goes down.
+The following directory contains the tools to build directus for use on our
+local server and for AWS. We run directus on our local server, however we can
+use AWS or other cloud providers as a backup in case our local server goes down.
 
-We switch between AWS and our local server by changing the CNAME record for [cms.curarehab.se](https://cms.curarehab.se) at cloudflare.
+We switch between AWS and our local server by changing the CNAME record for
+[cms.curarehab.se](https://cms.curarehab.se) at cloudflare.
 
 To deploy to our local server:
 
@@ -51,7 +53,8 @@ We plan to migrate to GCP because they support scaling to zero.
 
 ## Deploying on Azure
 
-In the future we will probably migrate to Azure. Instructions for doing so will be added here.
+In the future we will probably migrate to Azure. Instructions for doing so will
+be added here.
 
 ## (legacy) Deploying to AWS
 
@@ -73,8 +76,9 @@ We no longer host on AWS
    ```bash
    docker push 281435485557.dkr.ecr.eu-north-1.amazonaws.com/directus:latest
    ```
-5. (optional) Update .env. When running directus it uses environment variables from `directus.env` deployed in a s3 bucket. Any changes
-   to the local .env file needs to be pushed to the s3 bucket.
+5. (optional) Update .env. When running directus it uses environment variables
+   from `directus.env` deployed in a s3 bucket. Any changes to the local .env
+   file needs to be pushed to the s3 bucket.
    ```bash
    aws s3 cp .env s3://curarehab.se/directus.env
    ```
