@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-    name: Build & Test
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
@@ -18,13 +17,10 @@ jobs:
           node-version: 22
           cache: "npm"
           cache-dependency-path: package-lock.json
-      - run: npm ci
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Build application
-        run: npm run build
+      - run: |
+          npm ci
+      - run: npm run lint
+      - run: npm run build
         env:
           VITE_CMS_TOKEN: ${{ secrets.VITE_CMS_TOKEN }}
           CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
@@ -32,14 +28,6 @@ jobs:
         env:
           VITE_CMS_TOKEN: ${{ secrets.VITE_CMS_TOKEN }}
           CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
-
-      - name: Upload coverage artifacts
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: coverage-report
-          path: packages/web/coverage/
-          retention-days: 30
 
       - run: npm run unlighthouse:master
         if: github.ref == 'refs/heads/master'
@@ -76,4 +64,4 @@ jobs:
           automatic_release_tag: "latest"
           prerelease: false
           title: "Release Build"
-          files: packages/web/build/lighthouse
+          files: packages/web/build/lighthouse,
