@@ -67,7 +67,10 @@
   function toLinks(links: ([Page] | Link)[]): [string, string][] {
     return links.map((link) => {
       if (Array.isArray(link)) {
-        return [l(link[0]), t("common", link[0])];
+        return [
+          l(link[0]),
+          t("common", link[0] as keyof import("$lib/i18n/types").CommonTranslations),
+        ];
       }
       return [link.link, link.display_link];
     });
