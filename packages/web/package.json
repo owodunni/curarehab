@@ -43,6 +43,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@urql/core": "^4.0.8"
+    "@urql/core": "^5.1.1"
   }
 }
