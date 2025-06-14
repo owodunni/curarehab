@@ -89,32 +89,21 @@ export default tseslint.config(
     },
   },
 
-  // Generated GraphQL files
-  {
-    files: ['**/$types.gql.d.ts', '**/types.gql.ts', '**/.gql/**'],
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/ban-ts-comment': 'off',
-      '@typescript-eslint/no-empty-object-type': 'off',
-    },
-  },
-
   // Svelte component specific rules
   {
     files: ['**/*.svelte'],
     rules: {
-      // Console usage - allow in Svelte for debugging
-      'no-console': 'off',
-
       // Disable problematic rules that don't work well with Tailwind/modern Svelte
       'svelte/no-unused-class-name': 'off', // False positives with Tailwind CSS
-      'svelte/block-lang': 'off', // We want to keep TypeScript lang attributes
-      'svelte/experimental-require-strict-events': 'off', // Too strict for current setup
-      'svelte/experimental-require-slot-types': 'off', // Too strict for current setup
       'svelte/no-navigation-without-base': 'off', // We handle base paths differently
-      'svelte/html-closing-bracket-new-line': 'off', // Conflicts with Prettier
-      'svelte/prefer-destructured-store-props': 'off', // Good suggestion but requires refactoring
-      'svelte/no-ignored-unsubscribe': 'off', // Good suggestion but requires refactoring
+      'svelte/block-lang': [
+        'error',
+        {
+          enforceScriptPresent: false,
+          enforceStylePresent: false,
+          script: ['ts'], // a list of languages or null to signify no language specified
+        },
+      ],
 
       // Disable Svelte formatting rules that conflict with Prettier
       'svelte/indent': 'off', // Let Prettier handle indentation
