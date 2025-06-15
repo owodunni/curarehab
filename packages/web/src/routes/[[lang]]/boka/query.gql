@@ -1,6 +1,51 @@
-query KlinikerList {
+query BokaPage {
+  boka {
+    boka {
+      text
+      text_en
+      seo {
+        title
+        description
+        link_photo {
+          title
+          filename_disk
+        }
+      }
+      seo_en {
+        title
+        description
+        link_photo {
+          title
+          filename_disk
+        }
+      }
+      omslagsbild {
+        title
+        filename_disk
+        width
+        height
+      }
+      links {
+        links_id {
+          type
+          link
+          display_link
+        }
+      }
+    }
+  }
   Kliniker_list {
     id
     slug
+    klinik_page {
+      title
+      title_en
+      description
+      description_en
+      omslagsbild {
+        title
+        filename_disk
+      }
+    }
   }
 }
