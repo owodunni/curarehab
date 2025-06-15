@@ -147,15 +147,32 @@ ${urls.join("\n")}
 };
 
 const klinikerUrls = (kliniker: SlugsQuery["Kliniker_list"]): string[] => {
-  return kliniker.flatMap(({ slug, date_updated, date_created }) => {
-    const date = new Date(date_updated ?? date_created);
-    const dateString = toString(date);
+  return kliniker.flatMap(({ slug, klinik_page, boka, hitta, om }) => {
+    // Helper function to get the most recent date from a page
+    const getPageDate = (
+      page: { date_updated?: string; date_created?: string } | null | undefined
+    ) => {
+      if (!page) return null;
+      return new Date(page.date_updated ?? page.date_created ?? "");
+    };
+
+    // Get dates for each page
+    const mainPageDate = getPageDate(klinik_page);
+    const bokaPageDate = getPageDate(boka);
+    const hittaPageDate = getPageDate(hitta);
+    const omPageDate = getPageDate(om);
 
     return localPrefix.flatMap((locale) => [
-      createUrl(`${locale}/kliniker/${slug}`, dateString),
-      createUrl(`${locale}/kliniker/${slug}/boka`, dateString),
-      createUrl(`${locale}/kliniker/${slug}/hitta`, dateString),
-      createUrl(`${locale}/kliniker/${slug}/om`, dateString),
+      createUrl(`${locale}/kliniker/${slug}`, mainPageDate ? toString(mainPageDate) : undefined),
+      createUrl(
+        `${locale}/kliniker/${slug}/boka`,
+        bokaPageDate ? toString(bokaPageDate) : undefined
+      ),
+      createUrl(
+        `${locale}/kliniker/${slug}/hitta`,
+        hittaPageDate ? toString(hittaPageDate) : undefined
+      ),
+      createUrl(`${locale}/kliniker/${slug}/om`, omPageDate ? toString(omPageDate) : undefined),
     ]);
   });
 };
