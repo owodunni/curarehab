@@ -1,14 +1,39 @@
 <script lang="ts">
+  import { browser } from "$app/environment";
   import Container from "$lib/components/Container.svelte";
   import Section from "$lib/components/Section.svelte";
-  import Image from "$lib/components/Image.svelte";
   import Seo from "$lib/components/Seo.svelte";
+  import { onMount } from "svelte";
+
+  let mount = $state(false);
 
   const { data } = $props();
   const { t } = $derived(data);
   const locale = $derived(t("common", "lang"));
   const clinic = $derived(data.clinic);
+
+  onMount(() => {
+    mount = true;
+    return () => {
+      const mainElement = document.querySelector("#container");
+
+      // Check if the main element exists
+      if (mainElement) {
+        // A loop to remove all child nodes
+        while (mainElement.firstChild) {
+          mainElement.removeChild(mainElement.firstChild);
+        }
+      }
+    };
+  });
 </script>
+
+<svelte:head>
+  <link
+    href="https://ww1.clinicbuddy.com/onlinebooking/css/cbonlinebooking.css?v=20240327"
+    rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</svelte:head>
 
 <Seo
   seo={{
@@ -21,90 +46,69 @@
     description: t("kliniker", "bokaDescription"),
   }} />
 
-<Container>
-  <Section>
-    <div class="mb-12 text-center">
-      <h1 class="mb-4 text-4xl font-bold text-gray-900">
-        {t("kliniker", "bokaTitle")}
-      </h1>
-      <h2 class="mb-4 text-2xl text-gray-600">
-        {locale === "sv"
-          ? clinic.klinik_page?.title
-          : clinic.klinik_page?.title_en || clinic.klinik_page?.title}
-      </h2>
-      <p class="mx-auto max-w-3xl text-xl text-gray-600">
-        {t("kliniker", "bokaDescription")}
-      </p>
-    </div>
+<Section>
+  <Container>
+    <h1 class="text-theme-heading -mt-6 text-3xl font-bold tracking-tight sm:text-4xl">
+      {t("kliniker", "bokaTitle")} - {locale === "sv"
+        ? clinic.klinik_page?.title
+        : clinic.klinik_page?.title_en || clinic.klinik_page?.title}
+    </h1>
+    <p class="text-theme-heading my-6 text-lg">
+      {locale === "sv"
+        ? clinic.boka?.description
+        : clinic.boka?.description_en ||
+          clinic.boka?.description ||
+          t("kliniker", "bokaDescription")}
+    </p>
 
-    <div class="mx-auto max-w-4xl">
-      {#if clinic.boka?.omslagsbild}
-        <div class="mb-8">
-          <Image
-            class="h-64 w-full rounded-lg object-cover shadow-lg md:h-96"
-            alt={clinic.boka?.omslagsbild?.title ||
-              clinic.klinik_page?.title ||
-              clinic.klinik_page?.title_en ||
-              ""}
-            height={450}
-            srcPath={clinic.boka?.omslagsbild?.filename_disk || ""}
-            width={800} />
-        </div>
-      {/if}
+    {#if mount && browser}
+      <div id="container" class="flex flex-grow" data-locale={locale}>
+        <script>
+          (() => {
+            // Check if jquery is defined and retry every 100ms if not
+            const handle = setInterval(() => {
+              if (!$) return;
+              clearInterval(handle);
+              $(document).ready(function () {
+                const language = $("#container").data("locale"); // Access the locale data attribute
+                var ob_ = {
+                  settings: {
+                    uid: "-3177",
+                    embedded: true,
+                    customization: {
+                      footer: { show: 0 },
+                      header: { show: 0 },
+                      streetview: "",
+                    },
+                    language,
+                    params: {
+                      activityGroups: [2],
+                      providerGroups: [2],
+                      locations: [3],
+                    },
+                    appearance: { filters: { activity: "false" } },
+                  },
+                };
 
-      <div class="prose prose-lg max-w-none">
-        <div class="rounded-lg border border-gray-200 bg-white p-8 shadow-md">
-          <h3 class="mb-6 text-2xl font-semibold">Boka tid</h3>
-          <div class="space-y-4 text-gray-700">
-            <p>
-              {locale === "sv"
-                ? clinic.boka?.description
-                : clinic.boka?.description_en || clinic.boka?.description}
-            </p>
-            <p>
-              Vi erbjuder flexibla tider för att passa ditt schema. Boka enkelt online eller ring
-              oss direkt för att hitta en tid som passar dig.
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-8 grid gap-6 md:grid-cols-2">
-          <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-md">
-            <h4 class="mb-4 text-xl font-semibold">Online bokning</h4>
-            <p class="mb-4 text-gray-700">
-              Boka din tid enkelt online genom vår bokningsportal. Välj tid, behandling och
-              terapeut.
-            </p>
-            <a
-              class="inline-block rounded-lg bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700"
-              href="https://www.bokadirekt.se"
-              rel="noopener noreferrer"
-              target="_blank">
-              Boka online
-            </a>
-          </div>
-
-          <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-md">
-            <h4 class="mb-4 text-xl font-semibold">Ring oss</h4>
-            <div class="space-y-2 text-gray-700">
-              <p><strong>Telefon:</strong> 013-12 13 14</p>
-              <p><strong>Öppettider:</strong></p>
-              <p>Måndag-Fredag: 07:00-19:00</p>
-              <p>Lördag: 08:00-15:00</p>
-            </div>
-          </div>
-        </div>
+                $.getScript(
+                  "https://ww1.clinicbuddy.com/onlinebooking/js/jquery.cbonlinebooking.js?v=20240327",
+                  function () {
+                    if (language === "en")
+                      $.getScript(
+                        "https://ww1.clinicbuddy.com/onlinebooking/js/jquery.cbonlinebooking-en.js",
+                        function () {
+                          /* no-op */
+                        }
+                      );
+                    const element = $("#container");
+                    element.cbOnlineBooking(ob_.settings);
+                  }
+                );
+              });
+            }, 50);
+          })();
+        </script>
       </div>
-
-      <div class="mt-8 text-center">
-        <a
-          class="text-blue-600 transition-colors hover:text-blue-800"
-          href="/{locale}/kliniker/{clinic.slug}">
-          ← Tillbaka till {locale === "sv"
-            ? clinic.klinik_page?.title
-            : clinic.klinik_page?.title_en || clinic.klinik_page?.title}
-        </a>
-      </div>
-    </div>
-  </Section>
-</Container>
+    {/if}
+  </Container>
+</Section>

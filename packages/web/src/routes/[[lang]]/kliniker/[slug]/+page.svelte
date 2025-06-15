@@ -48,6 +48,63 @@
       </div>
     {/if}
 
+    <!-- Booking Section -->
+    {#if clinic.boka}
+      <div class="mb-12">
+        {#if clinic.boka?.omslagsbild}
+          <div class="mb-8">
+            <Image
+              class="h-64 w-full rounded-lg object-cover shadow-lg md:h-96"
+              alt={clinic.boka?.omslagsbild?.title ||
+                clinic.klinik_page?.title ||
+                clinic.klinik_page?.title_en ||
+                ""}
+              height={450}
+              srcPath={clinic.boka?.omslagsbild?.filename_disk || ""}
+              width={800} />
+          </div>
+        {/if}
+
+        <div class="prose prose-lg max-w-none">
+          <div class="rounded-lg border border-gray-200 bg-white p-8 shadow-md">
+            <h3 class="mb-6 text-2xl font-semibold">{t("kliniker", "bokaTitle")}</h3>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                {locale === "sv"
+                  ? clinic.boka?.description
+                  : clinic.boka?.description_en || clinic.boka?.description}
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-8 grid gap-6 md:grid-cols-2">
+            <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-md">
+              <h4 class="mb-4 text-xl font-semibold">Online bokning</h4>
+              <p class="mb-4 text-gray-700">
+                Boka din tid enkelt online genom vår bokningsportal. Välj tid, behandling och
+                terapeut.
+              </p>
+              <a
+                class="inline-block rounded-lg bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700"
+                href="/{locale}/kliniker/{clinic.slug}/boka">
+                {t("kliniker", "bokaTitle")}
+              </a>
+            </div>
+
+            <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-md">
+              <h4 class="mb-4 text-xl font-semibold">Ring oss</h4>
+              <div class="space-y-2 text-gray-700">
+                <p><strong>Telefon:</strong> 013-12 13 14</p>
+                <p><strong>Öppettider:</strong></p>
+                <p>Måndag-Fredag: 07:00-19:00</p>
+                <p>Lördag: 08:00-15:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {/if}
+
     <div class="grid gap-8 md:grid-cols-3">
       <!-- Boka tid -->
       <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-md">
