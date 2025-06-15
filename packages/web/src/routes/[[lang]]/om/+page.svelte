@@ -6,10 +6,24 @@
   import Seo from "$lib/components/Seo.svelte";
   import { getTitle } from "$lib/widgets/util";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
+  import ImageList, { type ImageType } from "$lib/components/ImageList.svelte";
+
   const { data }: { data: PageData } = $props();
   const { t, l } = $derived(data);
   const lang = $derived(data.params.lang);
   const om = $derived(data?.data?.om ?? undefined);
+  const users = $derived(
+    (data?.data?.terapeuter_directus_users || []).map(
+      ({ directus_users_id: user }) =>
+        ({
+          href: `${l("terapeuter")}/${user?.slug}`,
+          alt: user?.avatar?.title || "",
+          srcPath: user?.avatar?.filename_disk || "",
+          title: `${user?.first_name} ${user?.last_name}`,
+          subTitle: getTitle(user?.work_title || "", t),
+        }) satisfies ImageType
+    )
+  );
 </script>
 
 {#if om}
@@ -35,32 +49,7 @@
             lang={t("common", "lang")}>
             <BlocksRender blocks={(lang === "en" ? om.text_en : om.text)?.blocks || []} />
           </div>
-          <ul
-            class="border-theme-div mt-10 grid grid-cols-2 gap-8 border-t pt-10 text-center sm:grid-cols-3">
-            {#if data?.data?.terapeuter_directus_users}
-              {#each data?.data?.terapeuter_directus_users || [] as { directus_users_id } (directus_users_id?.slug)}
-                <li>
-                  <a class="group" href={`${l("terapeuter")}/${directus_users_id?.slug}`}>
-                    <Image
-                      class="mx-auto h-24 w-24 rounded-full"
-                      alt={directus_users_id?.avatar?.title || ""}
-                      height={400}
-                      srcPath={directus_users_id?.avatar?.filename_disk || ""}
-                      width={400} />
-
-                    <h3
-                      class="text-theme-heading group-hover:text-theme-muted-hover mt-6 text-base font-medium leading-7 tracking-tight">
-                      {directus_users_id?.first_name}
-                      {directus_users_id?.last_name}
-                    </h3>
-                    <p class="text-theme-muted text-sm leading-6">
-                      {getTitle(directus_users_id?.work_title || "", t)}
-                    </p>
-                  </a>
-                </li>
-              {/each}
-            {/if}
-          </ul>
+          <ImageList images={users} />
         </div>
       </div>
     </Container>
