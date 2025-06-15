@@ -28,10 +28,21 @@ export const loadTranslations = async (locale: Locale, route: Route) => {
         ? "terapeuter"
         : route.startsWith("/behandlingar")
           ? "behandlingar"
-          : undefined;
+          : route.startsWith("/kliniker")
+            ? "kliniker"
+            : undefined;
   if (!page) {
     throw new Error(`No page found for route ${route}`);
   }
 
   return await translator.loadCategories([page, "common"], locale);
 };
+
+export function localizedHelper(locale: string) {
+  return <T>(sv: T, en: T): T => {
+    if (locale === "en") {
+      return en;
+    }
+    return sv;
+  };
+}
