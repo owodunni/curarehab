@@ -1,8 +1,12 @@
 query BokaPage {
   boka {
     boka {
+      title
+      title_en
       text
       text_en
+      description
+      description_en
       seo {
         title
         description

@@ -9,4 +9,8 @@ export const boka: BokaTranslations = {
     "Vi har nu två kliniker där du kan boka tid för behandling. Välj den klinik som passar dig bäst.",
   visitTitle: "Vad händer under ett besök?",
   visitDescription: "Läs mer om vad som händer under ditt besök hos oss.",
+  // Clinic list component
+  bookAppointment: "Boka tid",
+  learnMore: "Läs mer",
+  viewClinic: "Se klinik",
 };
