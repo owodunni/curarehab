@@ -8,9 +8,12 @@
   let mount = $state(false);
 
   const { data } = $props();
-  const { t } = $derived(data);
+  const { t, localized } = $derived(data);
   const locale = $derived(t("common", "lang"));
-  const clinic = $derived(data.clinic);
+  const { clinic_buddy_activity, clinic_buddy_provider, clinic_buddy_location } = $derived(
+    data.clinic
+  );
+  const boka = $derived(data.clinic.boka);
 
   onMount(() => {
     mount = true;
@@ -26,6 +29,13 @@
       }
     };
   });
+
+  function getLocalized<T>(sv: T, en: T): T {
+    if (locale === "en") {
+      return en;
+    }
+    return sv;
+  }
 </script>
 
 <svelte:head>
@@ -35,34 +45,27 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </svelte:head>
 
-<Seo
-  seo={{
-    title:
-      t("kliniker", "bokaTitle") +
-      " - " +
-      (locale === "sv"
-        ? clinic.klinik_page?.title
-        : clinic.klinik_page?.title_en || clinic.klinik_page?.title),
-    description: t("kliniker", "bokaDescription"),
-  }} />
+<Seo seo={getLocalized(boka?.seo, boka?.seo_en)} />
 
 <Section>
   <Container>
-    <h1 class="text-theme-heading -mt-6 text-3xl font-bold tracking-tight sm:text-4xl">
-      {t("kliniker", "bokaTitle")} - {locale === "sv"
-        ? clinic.klinik_page?.title
-        : clinic.klinik_page?.title_en || clinic.klinik_page?.title}
-    </h1>
-    <p class="text-theme-heading my-6 text-lg">
-      {locale === "sv"
-        ? clinic.boka?.description
-        : clinic.boka?.description_en ||
-          clinic.boka?.description ||
-          t("kliniker", "bokaDescription")}
-    </p>
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
+        {localized(boka?.title, boka?.title_en)}
+      </h2>
+      <p class="text-theme-body mt-6 text-lg">
+        {localized(boka?.description, boka?.description_en)}
+      </p>
+    </div>
 
     {#if mount && browser}
-      <div id="container" class="flex flex-grow" data-locale={locale}>
+      <div
+        id="container"
+        class="min-h-[500px] w-full"
+        data-activity={clinic_buddy_activity}
+        data-locale={locale}
+        data-location={clinic_buddy_location}
+        data-provider={clinic_buddy_provider}>
         <script>
           (() => {
             // Check if jquery is defined and retry every 100ms if not
@@ -71,6 +74,9 @@
               clearInterval(handle);
               $(document).ready(function () {
                 const language = $("#container").data("locale"); // Access the locale data attribute
+                const location = $("#container").data("location"); // Access the locale data attribute
+                const provider = $("#container").data("provider"); // Access the locale data attribute
+                const activity = $("#container").data("activity"); // Access the locale data attribute
                 var ob_ = {
                   settings: {
                     uid: "-3177",
@@ -82,9 +88,9 @@
                     },
                     language,
                     params: {
-                      activityGroups: [2],
-                      providerGroups: [2],
-                      locations: [3],
+                      activityGroups: [activity],
+                      providerGroups: [provider],
+                      locations: [location],
                     },
                     appearance: { filters: { activity: "false" } },
                   },

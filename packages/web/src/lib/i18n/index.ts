@@ -37,3 +37,12 @@ export const loadTranslations = async (locale: Locale, route: Route) => {
 
   return await translator.loadCategories([page, "common"], locale);
 };
+
+export function localizedHelper(locale: string) {
+  return <T>(sv: T, en: T): T => {
+    if (locale === "en") {
+      return en;
+    }
+    return sv;
+  };
+}

@@ -1,0 +1,40 @@
+query KlinikOmBySlug($filter: Kliniker_list_filter) {
+  Kliniker_list(filter: $filter) {
+    id
+    slug
+    om {
+      id
+      title
+      title_en
+      seo {
+        title
+        description
+        link_photo {
+          id
+          filename_disk
+          width
+          height
+        }
+      }
+      seo_en {
+        title
+        description
+        link_photo {
+          id
+          filename_disk
+          width
+          height
+        }
+      }
+      description
+      description_en
+      omslagsbild {
+        id
+        title
+        filename_disk
+        width
+        height
+      }
+    }
+  }
+}
