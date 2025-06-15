@@ -12,14 +12,17 @@ export const load: PageServerLoad = async (event) => {
     })
     .toPromise();
 
-  const clinic = result.data?.Kliniker_list?.[0]?.hitta;
+  const clinicData = result.data?.Kliniker_list?.[0];
+  const clinic = clinicData?.hitta;
 
-  if (!clinic) {
+  if (!clinic || !clinicData) {
     throw error(404, "Clinic not found");
   }
 
   return {
     ...result,
     clinic,
+    params: { slug },
+    clinicData,
   };
 };

@@ -2,6 +2,11 @@ query KlinikHittaBySlug($filter: Kliniker_list_filter) {
   Kliniker_list(filter: $filter) {
     id
     slug
+    klinik_page {
+      id
+      title
+      title_en
+    }
     hitta {
       id
       title

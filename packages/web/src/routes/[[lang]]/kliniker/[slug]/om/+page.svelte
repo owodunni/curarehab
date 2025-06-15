@@ -3,17 +3,38 @@
   import Container from "$lib/components/Container.svelte";
   import Section from "$lib/components/Section.svelte";
   import Image from "$lib/components/Image.svelte";
+  import Breadcrumb from "$lib/components/Breadcrumb.svelte";
 
   const { data } = $props();
-  const { t, localized } = $derived(data);
+  const { t, localized, l } = $derived(data);
   const locale = $derived(t("common", "lang"));
   const om = $derived(data.clinic);
+
+  // Get clinic info
+  const clinicSlug = $derived(data.params?.slug);
+  const clinicTitle = $derived("Klinik"); // Simplified for now
 </script>
 
 <Seo seo={localized(om.seo, om.seo_en)} />
 
 <Container>
   <Section>
+    <!-- Breadcrumb -->
+    <div class="mb-6">
+      <Breadcrumb
+        items={[
+          {
+            title: clinicTitle,
+            href: `${l("kliniker")}/${clinicSlug}`,
+          },
+          {
+            title: localized(om?.title, om?.title_en) || t("kliniker", "omTitle"),
+            current: true,
+          },
+        ]}
+        {l} />
+    </div>
+
     <div class="mx-auto max-w-2xl lg:mx-0">
       <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
         {localized(om?.title, om?.title_en)}
