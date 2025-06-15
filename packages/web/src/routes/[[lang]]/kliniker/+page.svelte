@@ -2,11 +2,10 @@
   import Seo from "$lib/components/Seo.svelte";
   import Container from "$lib/components/Container.svelte";
   import Section from "$lib/components/Section.svelte";
-  import Card from "$lib/components/Card.svelte";
+  import ClinicList from "$lib/components/ClinicList.svelte";
 
   const { data } = $props();
-  const { t } = $derived(data);
-  const locale = $derived(t("common", "lang"));
+  const { t, l } = $derived(data);
 </script>
 
 <Seo
@@ -30,29 +29,11 @@
       </p>
     </div>
 
-    <div class="mb-12">
-      <h2 class="mb-6 text-center text-2xl font-semibold text-gray-900">
-        {t("kliniker", "clinicsTitle")}
-      </h2>
-      <p class="mb-8 text-center text-gray-600">
-        {t("kliniker", "clinicsDescription")}
-      </p>
-
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {#each data.klinikerList as clinic (clinic.slug)}
-          <Card
-            image={clinic.klinik_page?.omslagsbild}
-            link="/{locale}/kliniker/{clinic.slug}"
-            {t}
-            text={locale === "sv"
-              ? clinic.klinik_page?.description
-              : clinic.klinik_page?.description_en || clinic.klinik_page?.description}>
-            {locale === "sv"
-              ? clinic.klinik_page?.title
-              : clinic.klinik_page?.title_en || clinic.klinik_page?.title}
-          </Card>
-        {/each}
-      </div>
-    </div>
+    <ClinicList
+      clinics={data.klinikerList}
+      description={t("kliniker", "clinicsDescription")}
+      {l}
+      {t}
+      title={t("kliniker", "clinicsTitle")} />
   </Section>
 </Container>
