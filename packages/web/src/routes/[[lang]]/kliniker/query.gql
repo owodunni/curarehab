@@ -1,26 +1,30 @@
 query KlinikerOverview {
   kliniker {
     id
-    title
-    title_en
-    seo {
+    page {
       title
+      title_en
       description
-      link_photo {
-        id
-        filename_disk
-        width
-        height
+      description_en
+      seo {
+        title
+        description
+        link_photo {
+          id
+          filename_disk
+          width
+          height
+        }
       }
-    }
-    seo_en {
-      title
-      description
-      link_photo {
-        id
-        filename_disk
-        width
-        height
+      seo_en {
+        title
+        description
+        link_photo {
+          id
+          filename_disk
+          width
+          height
+        }
       }
     }
   }

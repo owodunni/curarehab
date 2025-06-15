@@ -2,6 +2,7 @@
   import Image from "$lib/components/Image.svelte";
   import type { Image as ImageType } from "$lib/api";
   import type { T } from "$lib/i18n/t";
+  import type { Snippet } from "svelte";
 
   const {
     link,
@@ -10,13 +11,15 @@
     text = "",
     t,
     children,
+    buttons,
   }: {
     link: string;
     t: T;
     image: ImageType | undefined | null;
     shape?: "circle" | "square";
     text?: string | undefined | null;
-    children?: import("svelte").Snippet;
+    children?: Snippet;
+    buttons?: Snippet;
   } = $props();
 </script>
 
@@ -34,18 +37,22 @@
         srcPath={image?.filename_disk || ""}
         width={shape === "square" ? 800 : 400} />
     </a>
-    <div class="mt-6 flex items-start justify-between">
+    <div class="mt-6 flex items-start justify-between gap-x-6">
       {#if children}
-        <a class="w-full" href={link}>
+        <a class="flex-1" href={link}>
           <h3
             class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading overflow-hidden text-ellipsis"
             lang={t("common", "lang")}>
             {@render children()}
           </h3>
         </a>
-        <a class="btn btn-sm variant-filled" href={t("common", "hanoLink")}>
-          {t("common", "bokaNu")}
-        </a>
+        {#if buttons}
+          {@render buttons()}
+        {:else}
+          <a class="btn btn-sm variant-filled" href={t("common", "hanoLink")}>
+            {t("common", "bokaNu")}
+          </a>
+        {/if}
       {/if}
     </div>
     {#if text}

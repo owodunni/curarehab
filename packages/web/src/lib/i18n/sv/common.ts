@@ -56,4 +56,6 @@ export const common: CommonTranslations = {
   skadekompassen: "Skadekompassen",
   kliniker: "Kliniker",
   kliniken: "Kliniken",
+  hittaHit: "Hitta hit",
+  bokaTid: "Boka tid",
 };

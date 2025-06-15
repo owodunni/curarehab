@@ -7,11 +7,9 @@ export const load: PageServerLoad = async (event) => {
   const { slug } = event.params;
 
   const result = await event.locals.client
-    .query<KlinikBySlugQuery>(query, [
-      {
-        filter: { slug: { _eq: slug } },
-      },
-    ])
+    .query<KlinikBySlugQuery>(query, {
+      filter: { slug: { _eq: slug } },
+    })
     .toPromise();
 
   const clinic = result.data?.Kliniker_list?.[0];
@@ -22,6 +20,10 @@ export const load: PageServerLoad = async (event) => {
 
   return {
     ...result,
-    clinic,
+    slug: clinic.slug,
+    clinic: clinic.klinik_page,
+    boka: clinic.boka,
+    om: clinic.om,
+    hitta: clinic.hitta,
   };
 };
