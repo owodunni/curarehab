@@ -41,13 +41,15 @@
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {#each data.klinikerList as clinic (clinic.slug)}
           <Card
-            image={clinic.omslags_bild}
+            image={clinic.klinik_page?.omslagsbild}
             link="/{locale}/kliniker/{clinic.slug}"
             {t}
             text={locale === "sv"
-              ? clinic.description
-              : clinic.description_en || clinic.description}>
-            {locale === "sv" ? clinic.title : clinic.title_en || clinic.title}
+              ? clinic.klinik_page?.description
+              : clinic.klinik_page?.description_en || clinic.klinik_page?.description}>
+            {locale === "sv"
+              ? clinic.klinik_page?.title
+              : clinic.klinik_page?.title_en || clinic.klinik_page?.title}
           </Card>
         {/each}
       </div>

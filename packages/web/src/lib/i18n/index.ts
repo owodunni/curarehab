@@ -28,7 +28,7 @@ export const loadTranslations = async (locale: Locale, route: Route) => {
         ? "terapeuter"
         : route.startsWith("/behandlingar")
           ? "behandlingar"
-          : route.startsWith("/kliniker/") || route === "/kliniker"
+          : route.startsWith("/kliniker")
             ? "kliniker"
             : undefined;
   if (!page) {

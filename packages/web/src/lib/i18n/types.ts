@@ -62,6 +62,7 @@ export type CommonTranslations = {
   cookieBannerAcceptButton: string;
   cookieBannerRejectButton: string;
   cookiePolicy: string;
+  kliniker: string;
 };
 
 export type HemTranslations = {

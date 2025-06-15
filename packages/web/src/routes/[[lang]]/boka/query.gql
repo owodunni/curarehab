@@ -2,17 +2,5 @@ query KlinikerList {
   Kliniker_list {
     id
     slug
-    title
-    title_en
-    description
-    description_en
-    clinic_buddy_id
-    omslags_bild {
-      id
-      title
-      filename_disk
-      width
-      height
-    }
   }
 }
