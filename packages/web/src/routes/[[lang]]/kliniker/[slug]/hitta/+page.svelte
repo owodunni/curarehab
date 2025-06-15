@@ -5,49 +5,32 @@
   import Seo from "$lib/components/Seo.svelte";
 
   const { data } = $props();
-  const { t } = $derived(data);
+  const { t, localized } = $derived(data);
   const locale = $derived(t("common", "lang"));
-  const clinic = $derived(data.clinic);
+  const hitta = $derived(data.clinic);
 </script>
 
-<Seo
-  seo={{
-    title:
-      t("kliniker", "hittaTitle") +
-      " - " +
-      (locale === "sv"
-        ? clinic.klinik_page?.title
-        : clinic.klinik_page?.title_en || clinic.klinik_page?.title),
-    description: t("kliniker", "hittaDescription"),
-  }} />
+<Seo seo={localized(hitta?.seo, hitta?.seo_en)} />
 
 <Container>
   <Section>
-    <div class="mb-12 text-center">
-      <h1 class="mb-4 text-4xl font-bold text-gray-900">
-        {t("kliniker", "hittaTitle")}
-      </h1>
-      <h2 class="mb-4 text-2xl text-gray-600">
-        {locale === "sv"
-          ? clinic.klinik_page?.title
-          : clinic.klinik_page?.title_en || clinic.klinik_page?.title}
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
+        {localized(hitta?.title, hitta?.title_en)}
       </h2>
-      <p class="mx-auto max-w-3xl text-xl text-gray-600">
-        {t("kliniker", "hittaDescription")}
+      <p class="text-theme-body mt-6 text-lg">
+        {localized(hitta?.description, hitta?.description_en)}
       </p>
     </div>
 
     <div class="mx-auto max-w-4xl">
-      {#if clinic.hitta?.omslagsbild}
+      {#if hitta?.omslagsbild}
         <div class="mb-8">
           <Image
             class="h-64 w-full rounded-lg object-cover shadow-lg md:h-96"
-            alt={clinic.hitta?.omslagsbild?.title ||
-              clinic.klinik_page?.title ||
-              clinic.klinik_page?.title_en ||
-              ""}
+            alt={hitta.omslagsbild.title || ""}
             height={450}
-            srcPath={clinic.hitta?.omslagsbild?.filename_disk || ""}
+            srcPath={hitta?.omslagsbild?.filename_disk || ""}
             width={800} />
         </div>
       {/if}
@@ -57,9 +40,7 @@
           <h3 class="mb-6 text-2xl font-semibold">Hitta hit</h3>
           <div class="space-y-4 text-gray-700">
             <p>
-              {locale === "sv"
-                ? clinic.hitta?.description
-                : clinic.hitta?.description_en || clinic.hitta?.description}
+              {locale === "sv" ? hitta?.description : hitta?.description_en || hitta?.description}
             </p>
             <p>
               Vi ligger centralt beläget med goda kommunikationer. Här hittar du all information du
@@ -107,16 +88,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="mt-8 text-center">
-        <a
-          class="text-blue-600 transition-colors hover:text-blue-800"
-          href="/{locale}/kliniker/{clinic.slug}">
-          ← Tillbaka till {locale === "sv"
-            ? clinic.klinik_page?.title
-            : clinic.klinik_page?.title_en || clinic.klinik_page?.title}
-        </a>
       </div>
     </div>
   </Section>

@@ -1,13 +1,13 @@
 import type { PageServerLoad } from "./$types";
-import type { KlinikBySlugQuery } from "../$types.gql";
-import query from "../query.gql?raw";
+import type { KlinikBokaBySlugQuery } from "./$types.gql";
+import query from "./query.gql?raw";
 import { error } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async (event) => {
   const { slug } = event.params;
 
   const result = await event.locals.client
-    .query<KlinikBySlugQuery>(query, [
+    .query<KlinikBokaBySlugQuery>(query, [
       {
         filter: { slug: { _eq: slug } },
       },
