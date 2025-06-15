@@ -5,35 +5,23 @@
   import ClinicList from "$lib/components/ClinicList.svelte";
 
   const { data } = $props();
-  const { t, l } = $derived(data);
+  const { t, l, localized } = $derived(data);
 </script>
 
-<Seo
-  seo={{
-    title: data.kliniker?.seo?.title || data.kliniker?.seo_en?.title || t("kliniker", "title"),
-    description:
-      data.kliniker?.seo?.description ||
-      data.kliniker?.seo_en?.description ||
-      t("kliniker", "description"),
-    link_photo: data.kliniker?.seo?.link_photo || data.kliniker?.seo_en?.link_photo,
-  }} />
+<Seo seo={localized(data.kliniker?.seo, data.kliniker?.seo_en)} />
 
 <Container>
   <Section>
-    <div class="mb-12 text-center">
-      <h1 class="mb-4 text-4xl font-bold text-gray-900">
-        {data.kliniker?.title || data.kliniker?.title_en || t("kliniker", "title")}
-      </h1>
-      <p class="mx-auto max-w-3xl text-xl text-gray-600">
-        {t("kliniker", "description")}
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
+        {localized(data.kliniker?.title, data.kliniker?.title_en)}
+      </h2>
+      <p class="text-theme-body mt-6 text-lg">
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+        {@html localized(data.kliniker?.description, data.kliniker?.description_en)}
       </p>
     </div>
 
-    <ClinicList
-      clinics={data.klinikerList}
-      description={t("kliniker", "clinicsDescription")}
-      {l}
-      {t}
-      title={t("kliniker", "clinicsTitle")} />
+    <ClinicList clinics={data.klinikerList} {l} {localized} {t} />
   </Section>
 </Container>

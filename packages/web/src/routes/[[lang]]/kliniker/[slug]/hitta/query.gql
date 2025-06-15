@@ -26,6 +26,20 @@ query KlinikHittaBySlug($filter: Kliniker_list_filter) {
           height
         }
       }
+      links {
+        links_id {
+          type
+          link
+          display_link
+        }
+      }
+      location {
+        type
+        link
+        display_link
+      }
+      text
+      text_en
       description
       description_en
       omslagsbild {

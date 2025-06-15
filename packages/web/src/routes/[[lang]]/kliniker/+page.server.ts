@@ -8,6 +8,6 @@ export const load: PageServerLoad = async (event) => {
   return {
     ...result,
     klinikerList: result.data?.Kliniker_list || [],
-    kliniker: result.data?.kliniker,
+    kliniker: result.data?.kliniker?.page,
   };
 };

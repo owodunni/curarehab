@@ -5,7 +5,7 @@
   import Container from "$lib/components/Container.svelte";
 
   const { data } = $props();
-  const { t, l } = $derived(data);
+  const { t, l, localized } = $derived(data);
 
   const locale = $derived(t("common", "lang"));
 
@@ -31,14 +31,7 @@
         )}
       </p>
     </div>
-    <ClinicList
-      bookingButtonText={t("boka", "bookAppointment")}
-      clinics={data.clinics}
-      description={t("boka", "clinicsDescription")}
-      findUsButtonText={t("boka", "learnMore")}
-      {l}
-      {t}
-      title={t("boka", "clinicsTitle")} />
+    <ClinicList clinics={data.clinics} {l} {localized} {t} />
   </Container>
 </Section>
 

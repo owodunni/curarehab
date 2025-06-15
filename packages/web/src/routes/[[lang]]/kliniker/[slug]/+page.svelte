@@ -5,74 +5,41 @@
   import Seo from "$lib/components/Seo.svelte";
 
   const { data } = $props();
-  const { t } = $derived(data);
+  const { t, localized, l } = $derived(data);
   const locale = $derived(t("common", "lang"));
-  const clinic = $derived(data.clinic);
+  const { clinic, boka, slug } = $derived(data);
 </script>
 
-<Seo
-  seo={{
-    title:
-      locale === "sv"
-        ? clinic.klinik_page?.title
-        : clinic.klinik_page?.title_en || clinic.klinik_page?.title,
-    description:
-      locale === "sv"
-        ? clinic.klinik_page?.description
-        : clinic.klinik_page?.description_en || clinic.klinik_page?.description,
-  }} />
+<Seo seo={localized(clinic?.seo, clinic?.seo_en)} />
 
 <Container>
   <Section>
-    <div class="mb-12 text-center">
-      <h1 class="mb-4 text-4xl font-bold text-gray-900">
-        {locale === "sv"
-          ? clinic.klinik_page?.title
-          : clinic.klinik_page?.title_en || clinic.klinik_page?.title}
-      </h1>
-      <p class="mx-auto max-w-3xl text-xl text-gray-600">
-        {locale === "sv"
-          ? clinic.klinik_page?.description
-          : clinic.klinik_page?.description_en || clinic.klinik_page?.description}
-      </p>
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
+        {localized(clinic?.title, clinic?.title_en)}
+      </h2>
     </div>
 
-    {#if clinic.klinik_page?.omslagsbild}
-      <div class="mb-12">
+    {#if clinic?.omslagsbild}
+      <div class="my-12">
         <Image
           class="h-64 w-full rounded-lg object-cover shadow-lg md:h-96"
-          alt={clinic.klinik_page?.omslagsbild?.title || clinic.klinik_page?.title || ""}
+          alt={clinic?.omslagsbild?.title || ""}
           height={450}
-          srcPath={clinic.klinik_page?.omslagsbild?.filename_disk || ""}
+          srcPath={clinic?.omslagsbild?.filename_disk || ""}
           width={800} />
       </div>
     {/if}
 
     <!-- Booking Section -->
-    {#if clinic.boka}
+    {#if boka}
       <div class="mb-12">
-        {#if clinic.boka?.omslagsbild}
-          <div class="mb-8">
-            <Image
-              class="h-64 w-full rounded-lg object-cover shadow-lg md:h-96"
-              alt={clinic.boka?.omslagsbild?.title ||
-                clinic.klinik_page?.title ||
-                clinic.klinik_page?.title_en ||
-                ""}
-              height={450}
-              srcPath={clinic.boka?.omslagsbild?.filename_disk || ""}
-              width={800} />
-          </div>
-        {/if}
-
         <div class="prose prose-lg max-w-none">
           <div class="rounded-lg border border-gray-200 bg-white p-8 shadow-md">
             <h3 class="mb-6 text-2xl font-semibold">{t("kliniker", "bokaTitle")}</h3>
             <div class="space-y-4 text-gray-700">
               <p>
-                {locale === "sv"
-                  ? clinic.boka?.description
-                  : clinic.boka?.description_en || clinic.boka?.description}
+                {localized(boka?.description, boka?.description_en)}
               </p>
             </div>
           </div>
@@ -86,7 +53,7 @@
               </p>
               <a
                 class="inline-block rounded-lg bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700"
-                href="/{locale}/kliniker/{clinic.slug}/boka">
+                href={`${l("kliniker")}/${slug}/boka`}>
                 {t("kliniker", "bokaTitle")}
               </a>
             </div>
@@ -116,7 +83,7 @@
         </p>
         <a
           class="inline-block rounded-lg bg-blue-600 px-6 py-3 text-white transition-colors hover:bg-blue-700"
-          href="/{locale}/kliniker/{clinic.slug}/boka">
+          href="/{locale}/kliniker/{slug}/boka">
           {t("kliniker", "bokaTitle")}
         </a>
       </div>
@@ -131,7 +98,7 @@
         </p>
         <a
           class="inline-block rounded-lg bg-green-600 px-6 py-3 text-white transition-colors hover:bg-green-700"
-          href="/{locale}/kliniker/{clinic.slug}/hitta">
+          href="/{locale}/kliniker/{slug}/hitta">
           {t("kliniker", "hittaTitle")}
         </a>
       </div>
@@ -146,7 +113,7 @@
         </p>
         <a
           class="inline-block rounded-lg bg-purple-600 px-6 py-3 text-white transition-colors hover:bg-purple-700"
-          href="/{locale}/kliniker/{clinic.slug}/om">
+          href="/{locale}/kliniker/{slug}/om">
           {t("kliniker", "omTitle")}
         </a>
       </div>

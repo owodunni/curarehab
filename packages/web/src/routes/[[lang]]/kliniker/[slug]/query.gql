@@ -6,8 +6,30 @@ query KlinikBySlug($filter: Kliniker_list_filter) {
       id
       title
       title_en
+      text
+      text_en
       description
       description_en
+      seo {
+        title
+        description
+        link_photo {
+          id
+          filename_disk
+          width
+          height
+        }
+      }
+      seo_en {
+        title
+        description
+        link_photo {
+          id
+          filename_disk
+          width
+          height
+        }
+      }
       omslagsbild {
         id
         title
