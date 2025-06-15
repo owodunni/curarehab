@@ -22,7 +22,7 @@
           class="text-theme-heading group-hover:text-theme-muted-hover mt-6 text-base font-medium leading-7 tracking-tight">
           {title}
         </h3>
-        <p class="text-theme-muted text-sm leading-6">
+        <p class="text-theme-muted line-clamp-2 text-sm leading-6">
           {subTitle}
         </p>
       </a>

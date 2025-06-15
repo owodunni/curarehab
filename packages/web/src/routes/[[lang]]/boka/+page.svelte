@@ -32,8 +32,10 @@
       </p>
     </div>
     <ClinicList
+      bookingButtonText={t("boka", "bookAppointment")}
       clinics={data.clinics}
       description={t("boka", "clinicsDescription")}
+      findUsButtonText={t("boka", "learnMore")}
       {l}
       {t}
       title={t("boka", "clinicsTitle")} />

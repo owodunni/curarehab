@@ -32,9 +32,12 @@
     l: L;
     title?: string;
     description?: string;
+    bookingButtonText?: string;
+    findUsButtonText?: string;
   }
 
-  const { clinics, t, l, title, description }: Props = $props();
+  const { clinics, t, l, title, description, bookingButtonText, findUsButtonText }: Props =
+    $props();
   const locale = $derived(t("common", "lang"));
 
   // Helper function to get localized text
@@ -61,48 +64,53 @@
   </div>
 {/if}
 
-<!-- Card Layout: Large cards with images and detailed info -->
+<!-- Card Layout: Similar to /kliniker page but with extra button -->
 <div class="grid gap-8 md:grid-cols-2">
   {#each clinics as clinic (clinic.slug)}
     {#if clinic.klinik_page}
-      <div
-        class="group overflow-hidden rounded-2xl border shadow-md transition-shadow hover:shadow-lg">
-        {#if clinic.klinik_page.omslagsbild?.filename_disk}
-          <div class="aspect-[16/9] overflow-hidden">
+      <div class="group">
+        <div class="relative w-full">
+          <!-- Clickable image -->
+          <a href={`${l("kliniker")}/${clinic.slug}`}>
             <Image
-              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              alt={clinic.klinik_page.omslagsbild.title ||
+              class="bg-skog-400 aspect-[16/9] w-full rounded-2xl object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+              alt={clinic.klinik_page.omslagsbild?.title ||
                 getLocalizedText(clinic.klinik_page.title, clinic.klinik_page.title_en)}
-              height={300}
-              srcPath={clinic.klinik_page.omslagsbild.filename_disk}
-              width={500} />
+              height={450}
+              srcPath={clinic.klinik_page.omslagsbild?.filename_disk || ""}
+              width={800} />
+          </a>
+
+          <div class="mt-6 flex items-center gap-x-6">
+            <a class="flex-1" href={`${l("kliniker")}/${clinic.slug}`}>
+              <h3
+                class="text-theme-heading group-hover:text-theme-muted-hover text-lg-heading overflow-hidden text-ellipsis"
+                lang={locale}>
+                {getLocalizedText(clinic.klinik_page.title, clinic.klinik_page.title_en)}
+              </h3>
+            </a>
+            <a class="btn variant-filled" href={`${l("kliniker")}/${clinic.slug}/boka`}>
+              {bookingButtonText || t("kliniker", "bokaTitle")}
+            </a>
+            <a class="btn variant-ghost" href={`${l("kliniker")}/${clinic.slug}/hitta`}
+              >{findUsButtonText || t("kliniker", "hittaTitle")}
+              <span aria-hidden="true">→</span></a>
           </div>
-        {/if}
 
-        <div class="p-6">
-          <div class="mx-auto max-w-xl">
-            <h3 class="text-theme-heading font-sang text-2xl font-bold tracking-tight sm:text-3xl">
-              {getLocalizedText(clinic.klinik_page.title, clinic.klinik_page.title_en)}
-            </h3>
-
-            {#if clinic.klinik_page.description || clinic.klinik_page.description_en}
-              <p class="text-theme-body mt-6 line-clamp-3 text-lg">
-                {getLocalizedText(
-                  clinic.klinik_page.description,
-                  clinic.klinik_page.description_en
-                )}
-              </p>
-            {/if}
-
-            <div class="mt-8 flex items-center gap-x-6">
-              <a class="btn variant-filled" href={`${l("kliniker")}/${clinic.slug}/boka`}>
-                {t("boka", "bookAppointment")}
-              </a>
-              <a class="btn variant-ghost" href={`${l("kliniker")}/${clinic.slug}`}>
-                {t("boka", "viewClinic")} <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
+          <!-- Clickable description -->
+          {#if clinic.klinik_page.description || clinic.klinik_page.description_en}
+            <a href={`${l("kliniker")}/${clinic.slug}`}>
+              <article class="prose mt-5">
+                <p
+                  class="text-theme-body line-clamp-6 overflow-hidden text-ellipsis text-base leading-7">
+                  {getLocalizedText(
+                    clinic.klinik_page.description,
+                    clinic.klinik_page.description_en
+                  )}
+                </p>
+              </article>
+            </a>
+          {/if}
         </div>
       </div>
     {/if}
