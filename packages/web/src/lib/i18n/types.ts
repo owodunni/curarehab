@@ -113,6 +113,10 @@ export type BokaTranslations = {
   clinicsDescription: string;
   visitTitle: string;
   visitDescription: string;
+  // Clinic list component
+  bookAppointment: string;
+  learnMore: string;
+  viewClinic: string;
 };
 
 export type KlinikerTranslations = {

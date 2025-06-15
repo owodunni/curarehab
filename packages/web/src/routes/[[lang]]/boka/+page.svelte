@@ -1,30 +1,45 @@
 <script lang="ts">
-  import Container from "$lib/components/Container.svelte";
-  import Section from "$lib/components/Section.svelte";
   import TextPage from "$lib/components/TextPage.svelte";
-  import ImageList from "$lib/components/ImageList.svelte";
+  import ClinicList from "$lib/components/ClinicList.svelte";
+  import Section from "$lib/components/Section.svelte";
+  import Container from "$lib/components/Container.svelte";
 
   const { data } = $props();
-  const { t } = $derived(data);
+  const { t, l } = $derived(data);
+
   const locale = $derived(t("common", "lang"));
+
+  // Helper function to get localized text
+  function getLocalizedText(sv: string | null | undefined, en: string | null | undefined): string {
+    if (locale === "en") {
+      return en || sv || "";
+    }
+    return sv || en || "";
+  }
 </script>
+
+<Section class="pt-14 sm:pt-20">
+  <Container>
+    <div class="mx-auto max-w-2xl pb-12 lg:mx-0">
+      <h1 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
+        {getLocalizedText(data.data?.boka?.boka?.title, data.data?.boka?.boka?.text_en)}
+      </h1>
+      <p class="text-theme-body mt-6 text-lg">
+        {getLocalizedText(
+          data.data?.boka?.boka?.description,
+          data.data?.boka?.boka?.description_en
+        )}
+      </p>
+    </div>
+    <ClinicList
+      clinics={data.clinics}
+      description={t("boka", "clinicsDescription")}
+      {l}
+      {t}
+      title={t("boka", "clinicsTitle")} />
+  </Container>
+</Section>
 
 {#if data.bokaPage}
   <TextPage data={data.bokaPage} {t} />
-{/if}
-
-{#if data.clinicImages && data.clinicImages.length > 0}
-  <Section>
-    <Container>
-      <h2 class="text-theme-heading mb-4 text-2xl font-semibold">
-        {locale === "sv" ? "Våra kliniker" : "Our clinics"}
-      </h2>
-      <p class="text-theme-text mb-8 text-lg">
-        {locale === "sv"
-          ? "Välj den klinik som passar dig bäst för din behandling."
-          : "Choose the clinic that suits you best for your treatment."}
-      </p>
-      <ImageList images={data.clinicImages} />
-    </Container>
-  </Section>
 {/if}

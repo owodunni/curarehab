@@ -41,9 +41,9 @@
   <Section extras="theme-sand-dark">
     <Container>
       <div class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
-        {#if data.image}
-          <div class="lg:pl-20">
-            <div class="max-w-xs px-2.5 lg:max-w-none">
+        <div class="lg:pl-20">
+          <div class="max-w-xs px-2.5 lg:max-w-none">
+            {#if data.image}
               <Image
                 class="aspect-square rounded-2xl  object-cover"
                 alt={data.image?.title || ""}
@@ -51,21 +51,22 @@
                 sizes="(min-width: 1024px) 32rem, 20rem"
                 srcPath={data.image?.filename_disk || ""}
                 width={800} />
-              {@render children?.()}
-              {#if data.links}
-                <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
-                  {#each data.links || [] as link (link.link)}
-                    <SocialLink
-                      class="text-skog-700 hover:text-skog-900 flex gap-x-4 text-sm leading-6"
-                      {link}
-                      onlyIcon={false} />
-                  {/each}
-                </ul>
-              {/if}
-              {@render extraChildren?.()}
-            </div>
+            {/if}
+            {@render children?.()}
+            {#if data.links}
+              <ul
+                class={`border-1 mt-8 flex flex-col space-y-4 ${data.image ? "border-t" : ""} pt-8`}>
+                {#each data.links || [] as link (link.link)}
+                  <SocialLink
+                    class="text-skog-700 hover:text-skog-900 flex gap-x-4 text-sm leading-6"
+                    {link}
+                    onlyIcon={false} />
+                {/each}
+              </ul>
+            {/if}
+            {@render extraChildren?.()}
           </div>
-        {/if}
+        </div>
         <div class="lg:order-first lg:row-span-2">
           <article class="prose">
             <BlocksRender blocks={(lang === "en" ? data.text_en : data.text)?.blocks || []} />
