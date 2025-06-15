@@ -8,11 +8,13 @@
   import Image from "./Image.svelte";
   import type { T } from "$lib/i18n/t";
   import SocialLink from "./SocialLink.svelte";
+  import type { Snippet } from "svelte";
 
   const {
     data,
     t,
     children,
+    extraChildren,
   }: {
     data:
       | {
@@ -26,7 +28,8 @@
       | null
       | undefined;
     t: T;
-    children?: import("svelte").Snippet;
+    children?: Snippet;
+    extraChildren?: Snippet;
   } = $props();
 
   const lang = $derived(t("common", "lang"));
@@ -48,9 +51,7 @@
                 sizes="(min-width: 1024px) 32rem, 20rem"
                 srcPath={data.image?.filename_disk || ""}
                 width={800} />
-              {#if children}
-                {@render children()}
-              {/if}
+              {@render children?.()}
               {#if data.links}
                 <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
                   {#each data.links || [] as link (link.link)}
@@ -61,6 +62,7 @@
                   {/each}
                 </ul>
               {/if}
+              {@render extraChildren?.()}
             </div>
           </div>
         {/if}
