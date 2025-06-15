@@ -5,16 +5,38 @@
   import Section from "$lib/components/Section.svelte";
   import Seo from "$lib/components/Seo.svelte";
   import SocialLink from "$lib/components/SocialLink.svelte";
+  import Breadcrumb from "$lib/components/Breadcrumb.svelte";
 
   const { data } = $props();
-  const { localized } = $derived(data);
+  const { localized, t, l } = $derived(data);
   const hitta = $derived(data.clinic);
+
+  // Get clinic info from the parent data
+  const clinicSlug = $derived(data.params?.slug);
+  // For now, use a generic clinic title - we'll improve this later
+  const clinicTitle = $derived("Klinik");
 </script>
 
 <Seo seo={localized(hitta?.seo, hitta?.seo_en)} />
 
 <Section>
   <Container>
+    <!-- Breadcrumb -->
+    <div class="mb-6">
+      <Breadcrumb
+        items={[
+          {
+            title: clinicTitle || "",
+            href: `${l("kliniker")}/${clinicSlug}`,
+          },
+          {
+            title: localized(hitta?.title, hitta?.title_en) || t("kliniker", "hittaTitle"),
+            current: true,
+          },
+        ]}
+        {l} />
+    </div>
+
     <div
       class="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
       <div class="lg:pt-20">

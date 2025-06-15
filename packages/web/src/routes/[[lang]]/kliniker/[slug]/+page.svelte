@@ -3,6 +3,7 @@
   import Section from "$lib/components/Section.svelte";
   import Image from "$lib/components/Image.svelte";
   import Seo from "$lib/components/Seo.svelte";
+  import Breadcrumb from "$lib/components/Breadcrumb.svelte";
 
   const { data } = $props();
   const { t, localized, l } = $derived(data);
@@ -14,6 +15,18 @@
 
 <Container>
   <Section>
+    <!-- Breadcrumb -->
+    <div class="mb-6">
+      <Breadcrumb
+        items={[
+          {
+            title: localized(clinic?.title, clinic?.title_en) || "",
+            current: true,
+          },
+        ]}
+        {l} />
+    </div>
+
     <div class="mx-auto max-w-2xl lg:mx-0">
       <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
         {localized(clinic?.title, clinic?.title_en)}

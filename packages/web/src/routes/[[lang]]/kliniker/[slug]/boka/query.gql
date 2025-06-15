@@ -4,6 +4,11 @@ query KlinikBokaBySlug($filter: Kliniker_list_filter) {
     clinic_buddy_location
     clinic_buddy_provider
     clinic_buddy_activity
+    klinik_page {
+      id
+      title
+      title_en
+    }
     boka {
       id
       title

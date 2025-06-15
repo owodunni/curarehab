@@ -3,13 +3,15 @@
   import Container from "$lib/components/Container.svelte";
   import Section from "$lib/components/Section.svelte";
   import Seo from "$lib/components/Seo.svelte";
+  import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import { onMount } from "svelte";
 
   let mount = $state(false);
 
   const { data } = $props();
-  const { t, localized } = $derived(data);
+  const { t, localized, l } = $derived(data);
   const locale = $derived(t("common", "lang"));
+  const clinic = $derived(data.clinic);
   const { clinic_buddy_activity, clinic_buddy_provider, clinic_buddy_location } = $derived(
     data.clinic
   );
@@ -49,6 +51,25 @@
 
 <Section>
   <Container>
+    <!-- Breadcrumb -->
+    <div class="mb-6">
+      <Breadcrumb
+        items={[
+          {
+            title:
+              locale === "sv"
+                ? clinic.klinik_page?.title || ""
+                : clinic.klinik_page?.title_en || clinic.klinik_page?.title || "",
+            href: `${l("kliniker")}/${clinic.slug}`,
+          },
+          {
+            title: localized(boka?.title, boka?.title_en) || t("kliniker", "bokaTitle"),
+            current: true,
+          },
+        ]}
+        {l} />
+    </div>
+
     <div class="mx-auto max-w-2xl lg:mx-0">
       <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
         {localized(boka?.title, boka?.title_en)}
