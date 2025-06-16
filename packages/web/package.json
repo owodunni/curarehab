@@ -33,7 +33,7 @@
     "graphql": "^16.6.0",
     "isomorphic-unfetch": "^4.0.2",
     "jsdom": "^26.1.0",
-    "postcss": "^8.4.23",
+    "postcss": "^8.5.5",
     "schema-dts": "^1.1.2",
     "svelte": "^5.33.18",
     "svelte-check": "^4.2.1",
