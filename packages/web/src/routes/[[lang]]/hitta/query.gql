@@ -31,4 +31,18 @@ query Hitta {
       }
     }
   }
+  Kliniker_list {
+    id
+    slug
+    klinik_page {
+      title
+      title_en
+      description
+      description_en
+      omslagsbild {
+        title
+        filename_disk
+      }
+    }
+  }
 }

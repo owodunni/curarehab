@@ -1,9 +1,12 @@
 <script lang="ts">
+  import type { Link } from "$lib/api/index.js";
   import { browser } from "$app/environment";
   import Container from "$lib/components/Container.svelte";
   import Section from "$lib/components/Section.svelte";
   import Seo from "$lib/components/Seo.svelte";
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
+  import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
+  import SocialLink from "$lib/components/SocialLink.svelte";
   import { onMount } from "svelte";
 
   let mount = $state(false);
@@ -77,6 +80,23 @@
       <p class="text-theme-body mt-6 text-lg">
         {localized(boka?.description, boka?.description_en)}
       </p>
+      {#if boka?.text || boka?.text_en}
+        <div class="prose text-theme-body mt-6 text-base leading-7">
+          <BlocksRender blocks={localized(boka.text, boka.text_en)?.blocks || []} />
+        </div>
+      {/if}
+      {#if boka?.links && boka.links.length > 0}
+        <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
+          {#each boka.links || [] as link (link?.links_id?.link)}
+            {#if link?.links_id}
+              <SocialLink
+                class="text-skog-700 hover:text-skog-900 flex gap-x-4 text-sm leading-6"
+                link={link.links_id as Link}
+                onlyIcon={false} />
+            {/if}
+          {/each}
+        </ul>
+      {/if}
     </div>
 
     {#if mount && browser}
