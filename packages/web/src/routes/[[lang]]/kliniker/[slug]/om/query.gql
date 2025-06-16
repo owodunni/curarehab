@@ -1,11 +1,30 @@
-query KlinikOmBySlug($filter: Kliniker_list_filter) {
+query KlinikOmBySlug(
+  $filter: Kliniker_list_filter
+  $terapeutFilter: terapeuter_directus_users_filter
+) {
   Kliniker_list(filter: $filter) {
     id
     slug
+    klinik_page {
+      id
+      title
+      title_en
+    }
     om {
       id
       title
       title_en
+      text
+      text_en
+      description
+      description_en
+      links {
+        links_id {
+          type
+          link
+          display_link
+        }
+      }
       seo {
         title
         description
@@ -26,14 +45,34 @@ query KlinikOmBySlug($filter: Kliniker_list_filter) {
           height
         }
       }
-      description
-      description_en
       omslagsbild {
         id
         title
         filename_disk
         width
         height
+      }
+    }
+  }
+  terapeuter_directus_users(filter: $terapeutFilter) {
+    directus_users_id {
+      first_name
+      last_name
+      work_title
+      profil_sammanfattning_en
+      profil_sammanfattning
+      slug
+      avatar {
+        title
+        type
+        width
+        height
+        filename_disk
+      }
+      kliniker {
+        Kliniker_list_id {
+          slug
+        }
       }
     }
   }

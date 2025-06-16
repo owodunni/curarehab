@@ -1,102 +1,95 @@
 <script lang="ts">
-  import Seo from "$lib/components/Seo.svelte";
-  import Container from "$lib/components/Container.svelte";
-  import Section from "$lib/components/Section.svelte";
-  import Image from "$lib/components/Image.svelte";
-  import Breadcrumb from "$lib/components/Breadcrumb.svelte";
+  import type { PageData } from "./$types";
 
-  const { data } = $props();
+  import Section from "$lib/components/Section.svelte";
+  import Container from "$lib/components/Container.svelte";
+  import Image from "$lib/components/Image.svelte";
+  import Seo from "$lib/components/Seo.svelte";
+  import Breadcrumb from "$lib/components/Breadcrumb.svelte";
+  import { getTitle } from "$lib/widgets/util";
+  import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
+  import ImageList, { type ImageType } from "$lib/components/ImageList.svelte";
+
+  const { data }: { data: PageData } = $props();
   const { t, localized, l } = $derived(data);
-  const locale = $derived(t("common", "lang"));
+  const lang = $derived(data.params.lang);
   const om = $derived(data.clinic);
 
-  // Get clinic info
-  const clinicSlug = $derived(data.params?.slug);
-  const clinicTitle = $derived("Klinik"); // Simplified for now
+  // Get clinic info for breadcrumb
+  const clinicData = $derived(data?.data?.Kliniker_list?.[0]);
+  const clinicTitle = $derived(
+    localized(clinicData?.klinik_page?.title, clinicData?.klinik_page?.title_en) || "Klinik"
+  );
+
+  // Filter and map therapists for this clinic
+  const users = $derived(
+    (data?.data?.terapeuter_directus_users || []).map(
+      ({ directus_users_id: user }) =>
+        ({
+          href: `${l("terapeuter")}/${user?.slug}`,
+          alt: user?.avatar?.title || "",
+          srcPath: user?.avatar?.filename_disk || "",
+          title: `${user?.first_name} ${user?.last_name}`,
+          subTitle: getTitle(user?.work_title || "", t),
+        }) satisfies ImageType
+    )
+  );
 </script>
 
-<Seo seo={localized(om.seo, om.seo_en)} />
+{#if om}
+  <Seo seo={lang === "en" ? om.seo_en : om.seo} />
 
-<Container>
+  <!-- Breadcrumb -->
+  <Container>
+    <Section>
+      <div class="mb-6">
+        <Breadcrumb
+          items={[
+            {
+              title: t("kliniker", "title"),
+              href: l("kliniker"),
+            },
+            {
+              title: clinicTitle,
+              href: `${l("kliniker")}/${data.params.slug}`,
+            },
+            {
+              title: localized(om?.title, om?.title_en) || t("kliniker", "omTitle"),
+              current: true,
+            },
+          ]}
+          {l} />
+      </div>
+    </Section>
+  </Container>
+
   <Section>
-    <!-- Breadcrumb -->
-    <div class="mb-6">
-      <Breadcrumb
-        items={[
-          {
-            title: clinicTitle,
-            href: `${l("kliniker")}/${clinicSlug}`,
-          },
-          {
-            title: localized(om?.title, om?.title_en) || t("kliniker", "omTitle"),
-            current: true,
-          },
-        ]}
-        {l} />
-    </div>
-
-    <div class="mx-auto max-w-2xl lg:mx-0">
-      <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
-        {localized(om?.title, om?.title_en)}
-      </h2>
-      <p class="text-theme-body mt-6 text-lg">
-        {localized(om?.description, om?.description_en)}
-      </p>
-    </div>
-
-    <div class="mx-auto max-w-4xl">
-      {#if om?.omslagsbild}
-        <div class="mb-8">
-          <Image
-            class="h-64 w-full rounded-lg object-cover shadow-lg md:h-96"
-            alt={om?.omslagsbild?.title || ""}
-            height={450}
-            srcPath={om?.omslagsbild?.filename_disk || ""}
-            width={800} />
-        </div>
-      {/if}
-
-      <div class="prose prose-lg max-w-none">
-        <div class="rounded-lg border border-gray-200 bg-white p-8 shadow-md">
-          <h3 class="mb-6 text-2xl font-semibold">Om vår klinik</h3>
-          <div class="space-y-4 text-gray-700">
-            <p>
-              {locale === "sv" ? om?.description : om?.description_en || om?.description}
-            </p>
-            <p>
-              Vår klinik erbjuder högkvalitativ vård inom naprapati, fysioterapi och massage. Vi har
-              erfarna terapeuter som arbetar med evidensbaserade metoder för att hjälpa våra
-              patienter att återfå sin hälsa och rörlighet.
-            </p>
-            <p>
-              Vi tror på en holistisk approach till hälsa och arbetar nära våra patienter för att
-              skapa individuella behandlingsplaner som passar just deras behov.
-            </p>
+    <Container>
+      <div
+        class="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+        <div class="mx-auto lg:pt-20">
+          <div class="lg:max-w-lg">
+            {#if om?.omslagsbild}
+              <Image
+                class="h-full w-full rounded-2xl object-cover"
+                alt={om.omslagsbild?.title || ""}
+                height={800}
+                srcPath={om.omslagsbild?.filename_disk || ""}
+                width={800} />
+            {/if}
           </div>
         </div>
-
-        <div class="mt-8 grid gap-6 md:grid-cols-2">
-          <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-md">
-            <h4 class="mb-4 text-xl font-semibold">Våra tjänster</h4>
-            <ul class="space-y-2 text-gray-700">
-              <li>• Naprapatbehandling</li>
-              <li>• Fysioterapi/Sjukgymnastik</li>
-              <li>• Medicinsk massage</li>
-              <li>• Akupunktur</li>
-              <li>• Rehabilitering</li>
-            </ul>
+        <div>
+          <div
+            class="prose text-theme-body hyphens-auto text-base leading-7"
+            lang={t("common", "lang")}>
+            <BlocksRender blocks={(lang === "en" ? om.text_en : om.text)?.blocks || []} />
           </div>
-
-          <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-md">
-            <h4 class="mb-4 text-xl font-semibold">Kontakta oss</h4>
-            <div class="space-y-2 text-gray-700">
-              <p><strong>Telefon:</strong> 013-12 13 14</p>
-              <p><strong>E-post:</strong> info@curarehab.se</p>
-              <p><strong>Adress:</strong> Placeholder Address, Linköping</p>
-            </div>
-          </div>
+          {#if users.length > 0}
+            <ImageList images={users} />
+          {/if}
         </div>
       </div>
-    </div>
+    </Container>
   </Section>
-</Container>
+{/if}

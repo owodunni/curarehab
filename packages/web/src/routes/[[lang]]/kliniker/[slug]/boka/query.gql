@@ -13,8 +13,17 @@ query KlinikBokaBySlug($filter: Kliniker_list_filter) {
       id
       title
       title_en
+      text
+      text_en
       description
       description_en
+      links {
+        links_id {
+          type
+          link
+          display_link
+        }
+      }
       seo {
         title
         description

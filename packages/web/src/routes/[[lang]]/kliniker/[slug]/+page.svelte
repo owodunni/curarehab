@@ -4,6 +4,7 @@
   import Image from "$lib/components/Image.svelte";
   import Seo from "$lib/components/Seo.svelte";
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
+  import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
 
   const { data } = $props();
   const { t, localized, l } = $derived(data);
@@ -31,6 +32,11 @@
       <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
         {localized(clinic?.title, clinic?.title_en)}
       </h2>
+      {#if clinic?.text || clinic?.text_en}
+        <div class="prose text-theme-body mt-6 text-base leading-7">
+          <BlocksRender blocks={localized(clinic.text, clinic.text_en)?.blocks || []} />
+        </div>
+      {/if}
     </div>
 
     {#if clinic?.omslagsbild}
