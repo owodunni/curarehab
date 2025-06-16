@@ -12,4 +12,4 @@
   });
 </script>
 
-<Error l={data.l} page="artiklar" {placeholders} status={page.status} t={data.t} />
+<Error l={data.l} page="hem" {placeholders} status={page.status} t={data.t} />
