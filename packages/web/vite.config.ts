@@ -12,6 +12,12 @@ function createRetryCodegenPlugin(config: CodegenConfig, maxRetries = 5): Plugin
   return {
     name: "retry-graphql-codegen",
     async buildStart() {
+      // Skip GraphQL codegen in test environment
+      if (process.env.NODE_ENV === "test" || process.env.VITEST === "true") {
+        console.log("🧪 Skipping GraphQL codegen in test environment");
+        return;
+      }
+
       let lastError: Error | null = null;
 
       for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -48,6 +54,12 @@ const sitemapPlugin = (client: Client): Plugin => {
   return {
     name: "sitemap-plugin",
     buildStart() {
+      // Skip sitemap generation in test environment
+      if (process.env.NODE_ENV === "test" || process.env.VITEST === "true") {
+        console.log("🧪 Skipping sitemap generation in test environment");
+        return;
+      }
+
       setTimeout(() => {
         sitemap().then((s) => {
           fs.writeFile("./static/sitemap.xml", s);
