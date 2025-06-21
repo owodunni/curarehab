@@ -11,3 +11,6 @@ vite.config.ts.timestamp-*
 sitemap.xml
 .env.local
 coverage
+
+# Sentry Config File
+.env.sentry-build-plugin
