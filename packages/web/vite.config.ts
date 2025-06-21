@@ -6,6 +6,7 @@ import { Client, fetchExchange } from "@urql/core";
 import { createSitemap } from "./src/lib/sitemap";
 import { promises as fs } from "fs";
 import { svelteTesting } from "@testing-library/svelte/vite";
+import { sentrySvelteKit } from "@sentry/sveltekit";
 
 // Retry wrapper for GraphQL codegen with exponential backoff
 function createRetryCodegenPlugin(config: CodegenConfig, maxRetries = 5): Plugin {
@@ -99,6 +100,12 @@ export default (params: { mode: string }) => {
       sitemapPlugin(client),
       sveltekit(),
       svelteTesting(),
+      sentrySvelteKit({
+        sourceMapsUploadOptions: {
+          org: "alexander-poole",
+          project: "curarehab",
+        },
+      }),
     ],
     test: {
       include: ["./src/**/*.test.ts"],

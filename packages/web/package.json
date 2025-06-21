@@ -43,6 +43,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@sentry/sveltekit": "^9.30.0",
     "@urql/core": "^4.0.8"
   }
 }
