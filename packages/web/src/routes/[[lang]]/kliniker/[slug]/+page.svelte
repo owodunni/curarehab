@@ -5,6 +5,7 @@
   import Seo from "$lib/components/Seo.svelte";
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
+  import Terapheuts from "$lib/widgets/Terapheuts.svelte";
 
   const { data } = $props();
   const { t, localized, l } = $derived(data);
@@ -57,3 +58,8 @@
     {/if}
   </Section>
 </Container>
+<Section extras="theme-skog">
+  <Container>
+    <Terapheuts {l} {t} terapheuts={data?.data?.terapeuter_directus_users || []} />
+  </Container>
+</Section>
