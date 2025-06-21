@@ -150,6 +150,12 @@ export type KlinikerTranslations = {
   // Clinic-specific about page
   aboutTitle: string;
   aboutDescription: string;
+
+  // Hero section for individual clinic pages
+  heroTitle: string;
+  heroSubtitle: string;
+  heroBookButton: string;
+  heroLearnMore: string;
 };
 
 export type FindTranslations = {
