@@ -8,7 +8,7 @@ const config = {
   preprocess: [vitePreprocess()],
 
   kit: {
-    adapter: adapter({ config: "./wrangler.jsonc" }),
+    adapter: adapter(),
     alias: {
       $lib: "src/lib",
       $types: ".gql/types",

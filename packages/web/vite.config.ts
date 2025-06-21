@@ -105,6 +105,7 @@ export default (params: { mode: string }) => {
           org: "alexander-poole",
           project: "curarehab",
         },
+        adapter: "cloudflare",
       }),
     ],
     test: {
