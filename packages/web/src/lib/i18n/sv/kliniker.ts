@@ -29,4 +29,11 @@ export const kliniker: KlinikerTranslations = {
   // Clinic-specific about page
   aboutTitle: "Om kliniken",
   aboutDescription: "Information om kliniken och vårt team.",
+
+  // Hero section for individual clinic pages
+  heroTitle: "Välkommen till vår klinik",
+  heroSubtitle:
+    "Professionell fysioterapi och rehabilitering i en modern miljö. Vårt erfarna team hjälper dig att återfå din hälsa och rörlighet med personligt anpassade behandlingar.",
+  heroBookButton: "Boka tid nu",
+  heroLearnMore: "Läs mer om oss",
 };
