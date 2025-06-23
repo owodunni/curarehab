@@ -41,6 +41,7 @@
         },
         ["behandlingar"],
         ["terapeuter"],
+        ["kliniker"],
         ...(locale === "sv" ? [["skadekompassen"] as const satisfies [Page]] : []),
       ],
       [t("common", "information")]: [["om"], ["hitta"], ["personuppgiftspolicy"], ["cookies"]],
