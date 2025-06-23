@@ -6,7 +6,8 @@
   import Container from "$lib/components/Container.svelte";
   import ContentPage from "$lib/components/ContentPage.svelte";
   import Articles from "$lib/widgets/Articles.svelte";
-  import ImageList, { type ImageType } from "$lib/components/ImageList.svelte";
+  import ImageList from "$lib/components/ImageList.svelte";
+  import type { ImageType } from "$lib/components/types";
   const { data }: { data: PageData } = $props();
   const { t, terapeut, l } = $derived(data);
   const locale = $derived(t("common", "lang"));

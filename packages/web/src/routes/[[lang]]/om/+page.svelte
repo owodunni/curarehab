@@ -6,7 +6,8 @@
   import Seo from "$lib/components/Seo.svelte";
   import { getTitle } from "$lib/widgets/util";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
-  import ImageList, { type ImageType } from "$lib/components/ImageList.svelte";
+  import ImageList from "$lib/components/ImageList.svelte";
+  import type { ImageType } from "$lib/components/types";
 
   const { data }: { data: PageData } = $props();
   const { t, l } = $derived(data);

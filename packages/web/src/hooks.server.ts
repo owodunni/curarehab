@@ -20,7 +20,7 @@ const toucan = (() => {
 
 export const handleError: HandleServerError = async ({ error, event }) => {
   // eslint-disable-next-line no-console
-  console.error(error, event);
+  console.error(error);
   if (!dev) toucan().captureException(error, { data: { svelteKit: { event } } });
 
   const toMessage = (): string => {

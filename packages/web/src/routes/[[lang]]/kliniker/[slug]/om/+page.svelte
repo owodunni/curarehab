@@ -6,9 +6,9 @@
   import Image from "$lib/components/Image.svelte";
   import Seo from "$lib/components/Seo.svelte";
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
-  import { getTitle } from "$lib/widgets/util";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
-  import ImageList, { type ImageType } from "$lib/components/ImageList.svelte";
+  import ImageList from "$lib/components/ImageList.svelte";
+  import { userToImageType } from "$lib/components/util";
 
   const { data }: { data: PageData } = $props();
   const { t, localized, l } = $derived(data);
@@ -21,19 +21,7 @@
     localized(clinicData?.klinik_page?.title, clinicData?.klinik_page?.title_en) || ""
   );
 
-  // Filter and map therapists for this clinic
-  const users = $derived(
-    (data?.data?.terapeuter_directus_users || []).map(
-      ({ directus_users_id: user }) =>
-        ({
-          href: `${l("terapeuter")}/${user?.slug}`,
-          alt: user?.avatar?.title || "",
-          srcPath: user?.avatar?.filename_disk || "",
-          title: `${user?.first_name} ${user?.last_name}`,
-          subTitle: getTitle(user?.work_title || "", t),
-        }) satisfies ImageType
-    )
-  );
+  const users = $derived(userToImageType(data?.data?.terapeuter_directus_users, t, l));
 </script>
 
 {#if om}

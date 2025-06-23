@@ -5,11 +5,13 @@
   import Container from "$lib/components/Container.svelte";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import ClinicList from "$lib/components/ClinicList.svelte";
+  import { userToImageType } from "$lib/components/util";
 
   const { data }: { data: PageData } = $props();
   const { t, l, localized } = $derived(data);
   const lang = $derived(data.params.lang);
   const hitta = $derived(data?.data?.hitta ?? undefined);
+  const images = $derived(userToImageType(data?.data?.terapeuter_directus_users, t, l));
 </script>
 
 {#if hitta}
@@ -22,7 +24,7 @@
           <BlocksRender blocks={(lang === "en" ? hitta.text_en : hitta.text)?.blocks || []} />
         </div>
       </div>
-      <ClinicList clinics={data.clinics} {l} {localized} {t} />
+      <ClinicList clinics={data.clinics} {images} {l} {localized} {t} />
     </Container>
   </Section>
 {/if}
