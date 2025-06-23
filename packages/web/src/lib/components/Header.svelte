@@ -24,6 +24,7 @@
     "behandlingar",
     "hitta",
     "om",
+    "kliniker",
     ...(locale === "sv" ? (["skadekompassen"] as const) : []),
   ] as const satisfies readonly Page[]);
 
