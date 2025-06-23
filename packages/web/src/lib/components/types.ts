@@ -16,3 +16,23 @@ export type ImageType = {
 export type ImageWithClinicSlug = {
   clinicSlug: string[];
 } & ImageType;
+
+export interface ClinicData {
+  slug?: string | null | undefined;
+  klinik_page?:
+    | {
+        title?: string | null | undefined;
+        title_en?: string | null | undefined;
+        description?: string | null | undefined;
+        description_en?: string | null | undefined;
+        omslagsbild?:
+          | {
+              title?: string | null | undefined;
+              filename_disk?: string | null | undefined;
+            }
+          | null
+          | undefined;
+      }
+    | null
+    | undefined;
+}

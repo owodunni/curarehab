@@ -2,31 +2,7 @@
   import type { L, T } from "$lib/i18n/t";
   import Card from "./Card.svelte";
   import ImageList from "./ImageList.svelte";
-  import { type ImageWithClinicSlug } from "./types";
-
-  interface ClinicData {
-    __typename?: "Kliniker_list" | undefined;
-    id?: string;
-    slug?: string | null | undefined;
-    klinik_page?:
-      | {
-          __typename?: "pages" | undefined;
-          title?: string | null | undefined;
-          title_en?: string | null | undefined;
-          description?: string | null | undefined;
-          description_en?: string | null | undefined;
-          omslagsbild?:
-            | {
-                __typename?: "directus_files" | undefined;
-                title?: string | null | undefined;
-                filename_disk?: string | null | undefined;
-              }
-            | null
-            | undefined;
-        }
-      | null
-      | undefined;
-  }
+  import { type ClinicData, type ImageWithClinicSlug } from "./types";
 
   interface Props {
     clinics: ClinicData[];

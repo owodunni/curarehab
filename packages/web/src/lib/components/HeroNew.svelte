@@ -30,7 +30,7 @@
       width={1200} />
   {/if}
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+    <div class="mx-auto max-w-2xl pt-32 lg:pt-48">
       <div class="text-center">
         <h1 class="text-theme-heading text-4xl font-semibold tracking-tight sm:text-6xl">
           {t("hem", "titleParagraph")}
@@ -43,6 +43,48 @@
           <a class="btn variant-filled" href={t("common", "hanoLink")}>{t("common", "bokaNu")}</a>
           <a class="btn variant-ghost-white" href={l("om")}
             >{t("hem", "readMore")} <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="py-24 sm:py-32">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:max-w-none">
+          <h2 class="text-lg/8 font-semibold text-white">
+            Trusted by the world’s most innovative teams
+          </h2>
+          <div
+            class="mx-auto mt-10 grid grid-cols-4 items-start gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:grid-cols-5">
+            <img
+              class="col-span-2 max-h-12 w-full object-contain object-left lg:col-span-1"
+              alt="Transistor"
+              height="48"
+              src="https://tailwindcss.com/plus-assets/img/logos/transistor-logo-white.svg"
+              width="158" />
+            <img
+              class="col-span-2 max-h-12 w-full object-contain object-left lg:col-span-1"
+              alt="Reform"
+              height="48"
+              src="https://tailwindcss.com/plus-assets/img/logos/reform-logo-white.svg"
+              width="158" />
+            <img
+              class="col-span-2 max-h-12 w-full object-contain object-left lg:col-span-1"
+              alt="Tuple"
+              height="48"
+              src="https://tailwindcss.com/plus-assets/img/logos/tuple-logo-white.svg"
+              width="158" />
+            <img
+              class="col-span-2 max-h-12 w-full object-contain object-left lg:col-span-1"
+              alt="SavvyCal"
+              height="48"
+              src="https://tailwindcss.com/plus-assets/img/logos/savvycal-logo-white.svg"
+              width="158" />
+            <img
+              class="col-span-2 max-h-12 w-full object-contain object-left lg:col-span-1"
+              alt="Statamic"
+              height="48"
+              src="https://tailwindcss.com/plus-assets/img/logos/statamic-logo-white.svg"
+              width="158" />
+          </div>
         </div>
       </div>
     </div>
