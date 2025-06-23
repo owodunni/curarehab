@@ -13,6 +13,8 @@ query KlinikBySlug(
       text_en
       description
       description_en
+      subtitle
+      subtitle_en
       seo {
         title
         description

@@ -32,8 +32,6 @@ export const kliniker: KlinikerTranslations = {
 
   // Hero section for individual clinic pages
   heroTitle: "Welcome to our clinic",
-  heroSubtitle:
-    "Professional physiotherapy and rehabilitation in a modern environment. Our experienced team helps you regain your health and mobility with personalized treatments tailored to your needs.",
   heroBookButton: "Book appointment",
   heroLearnMore: "Learn more about us",
 };

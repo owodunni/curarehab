@@ -34,7 +34,8 @@
       {localized(clinic?.title, clinic?.title_en) || t("kliniker", "heroTitle")}
     </h1>
     <p class="text-theme-body mt-6 text-lg leading-8">
-      {t("kliniker", "heroSubtitle")}
+      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+      {@html localized(clinic?.subtitle, clinic?.subtitle_en)}
     </p>
     <div class="mt-8 flex items-center gap-x-6">
       <a class="btn variant-filled" href={`${l("kliniker")}/${slug}/boka`}

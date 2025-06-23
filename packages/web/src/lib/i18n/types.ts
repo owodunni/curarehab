@@ -153,7 +153,6 @@ export type KlinikerTranslations = {
 
   // Hero section for individual clinic pages
   heroTitle: string;
-  heroSubtitle: string;
   heroBookButton: string;
   heroLearnMore: string;
 };
