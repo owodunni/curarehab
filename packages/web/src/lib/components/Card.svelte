@@ -12,6 +12,7 @@
     t,
     children,
     buttons,
+    extra,
   }: {
     link: string;
     t: T;
@@ -20,10 +21,11 @@
     text?: string | undefined | null;
     children?: Snippet;
     buttons?: Snippet;
+    extra?: Snippet;
   } = $props();
 </script>
 
-<div class="group">
+<div class="group max-w-[480px]">
   <div class="relative w-full">
     <a href={link}>
       <Image
@@ -63,6 +65,9 @@
           </p>
         </article>
       </a>
+    {/if}
+    {#if extra}
+      {@render extra()}
     {/if}
   </div>
 </div>

@@ -3,9 +3,12 @@
   import Container from "$lib/components/Container.svelte";
   import Section from "$lib/components/Section.svelte";
   import ClinicList from "$lib/components/ClinicList.svelte";
+  import { userToImageType } from "$lib/components/util.js";
 
   const { data } = $props();
   const { t, l, localized } = $derived(data);
+
+  const users = $derived(userToImageType(data?.data?.terapeuter_directus_users, t, l));
 </script>
 
 <Seo seo={localized(data.kliniker?.seo, data.kliniker?.seo_en)} />
@@ -22,6 +25,6 @@
       </p>
     </div>
 
-    <ClinicList clinics={data.klinikerList} {l} {localized} {t} />
+    <ClinicList clinics={data.klinikerList} images={users} {l} {localized} {t} />
   </Section>
 </Container>

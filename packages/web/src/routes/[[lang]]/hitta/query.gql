@@ -45,4 +45,26 @@ query Hitta {
       }
     }
   }
+  terapeuter_directus_users {
+    directus_users_id {
+      first_name
+      last_name
+      work_title
+      profil_sammanfattning_en
+      profil_sammanfattning
+      slug
+      kliniker {
+        Kliniker_list_id {
+          slug
+        }
+      }
+      avatar {
+        title
+        type
+        width
+        height
+        filename_disk
+      }
+    }
+  }
 }

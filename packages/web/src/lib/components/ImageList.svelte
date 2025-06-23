@@ -1,13 +1,6 @@
 <script lang="ts">
   import Image from "$lib/components/Image.svelte";
-
-  export type ImageType = {
-    alt: string;
-    srcPath: string;
-    title: string;
-    subTitle: string;
-    href: string;
-  };
+  import type { ImageType } from "./types";
 
   const { images } = $props<{ images: ImageType[] }>();
 </script>
