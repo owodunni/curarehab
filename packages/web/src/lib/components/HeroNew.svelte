@@ -3,6 +3,7 @@
   import type { T, L } from "$lib/i18n/t";
   import { onMount } from "svelte";
   import Img from "./Image.svelte";
+  import Logo from "./Logo.svelte";
 
   const { t, l, image }: { t: T; l: L; image: Image | undefined } = $props();
 
@@ -13,7 +14,7 @@
   });
 </script>
 
-<div class="relative isolate mx-auto max-w-7xl overflow-hidden">
+<div class="relative isolate mx-auto max-w-[100rem] overflow-hidden">
   {#if image}
     <div
       class="bg-skog-700 custom-cb absolute inset-0 -z-10"
@@ -41,7 +42,7 @@
         </p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
           <a class="btn variant-filled" href={t("common", "hanoLink")}>{t("common", "bokaNu")}</a>
-          <a class="btn variant-ghost-white" href={l("om")}
+          <a class="btn variant-ghost text-theme-body" href={l("om")}
             >{t("hem", "readMore")} <span aria-hidden="true">→</span></a>
         </div>
       </div>
@@ -49,41 +50,19 @@
     <div class="py-24 sm:py-32">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:max-w-none">
-          <h2 class="text-lg/8 font-semibold text-white">
-            Trusted by the world’s most innovative teams
+          <h2 class="text-theme-body text-lg/8 font-semibold">
+            Nu tillsammans, Naprapat Service och CuraRehab...
           </h2>
           <div
-            class="mx-auto mt-10 grid grid-cols-4 items-start gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:grid-cols-5">
+            class="mx-auto mt-10 grid grid-cols-4 gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:grid-cols-5">
             <img
               class="col-span-2 max-h-12 w-full object-contain object-left lg:col-span-1"
               alt="Transistor"
               height="48"
-              src="https://tailwindcss.com/plus-assets/img/logos/transistor-logo-white.svg"
+              src="/naprapat-service.jpg"
               width="158" />
-            <img
-              class="col-span-2 max-h-12 w-full object-contain object-left lg:col-span-1"
-              alt="Reform"
-              height="48"
-              src="https://tailwindcss.com/plus-assets/img/logos/reform-logo-white.svg"
-              width="158" />
-            <img
-              class="col-span-2 max-h-12 w-full object-contain object-left lg:col-span-1"
-              alt="Tuple"
-              height="48"
-              src="https://tailwindcss.com/plus-assets/img/logos/tuple-logo-white.svg"
-              width="158" />
-            <img
-              class="col-span-2 max-h-12 w-full object-contain object-left lg:col-span-1"
-              alt="SavvyCal"
-              height="48"
-              src="https://tailwindcss.com/plus-assets/img/logos/savvycal-logo-white.svg"
-              width="158" />
-            <img
-              class="col-span-2 max-h-12 w-full object-contain object-left lg:col-span-1"
-              alt="Statamic"
-              height="48"
-              src="https://tailwindcss.com/plus-assets/img/logos/statamic-logo-white.svg"
-              width="158" />
+            <Logo
+              class="col-span-2 max-h-12 w-full object-contain object-left text-white lg:col-span-1" />
           </div>
         </div>
       </div>

@@ -29,6 +29,11 @@ query ArticlesAndTerapeuts(
       profil_sammanfattning_en
       profil_sammanfattning
       slug
+      kliniker {
+        Kliniker_list_id {
+          slug
+        }
+      }
       avatar {
         title
         type
@@ -135,30 +140,6 @@ query ArticlesAndTerapeuts(
     id
     slug
     klinik_page {
-      id
-      title
-      title_en
-      description
-      description_en
-      omslagsbild {
-        id
-        title
-        filename_disk
-        width
-        height
-      }
-    }
-    boka {
-      id
-      title
-      title_en
-    }
-    hitta {
-      id
-      title
-      title_en
-    }
-    om {
       id
       title
       title_en

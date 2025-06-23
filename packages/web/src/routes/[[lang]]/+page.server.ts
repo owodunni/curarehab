@@ -34,5 +34,7 @@ export const load: PageServerLoad = async (event) => {
           }),
       },
     },
+    klinikerList: data.data?.Kliniker_list || [],
+    kliniker: data.data?.kliniker?.page,
   };
 };

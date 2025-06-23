@@ -13,7 +13,7 @@
   }
 
   const { clinics, t, l, localized, images }: Props = $props();
-  const reversed = $derived(clinics.reverse());
+  const reversed = $derived([...clinics].reverse());
 </script>
 
 <div
@@ -23,7 +23,9 @@
       <a class="btn btn-sm variant-filled" href={`${l("kliniker")}/${clinic.slug}/boka`}>
         {t("common", "bokaTid")}
       </a>
-      <a class="btn btn-sm variant-ghost" href={`${l("kliniker")}/${clinic.slug}/hitta`}
+      <a
+        class="btn btn-sm variant-ghost text-theme-body"
+        href={`${l("kliniker")}/${clinic.slug}/hitta`}
         >{t("common", "hittaHit")}
         <span aria-hidden="true">→</span></a>
     {/snippet}
