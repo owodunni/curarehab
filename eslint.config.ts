@@ -94,6 +94,7 @@ export default tseslint.config(
     files: ["**/*.svelte"],
     rules: {
       // Disable problematic rules that don't work well with Tailwind/modern Svelte
+      "svelte/consistent-selector-style": "off", // Feels weird to target ids
       "svelte/no-unused-class-name": "off", // False positives with Tailwind CSS
       "svelte/no-navigation-without-base": "off", // We handle base paths differently
       "svelte/experimental-require-slot-types": "off", // Too strict for current setup
