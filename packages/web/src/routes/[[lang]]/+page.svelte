@@ -9,9 +9,13 @@
   import Behandling from "./behandling.svelte";
   import Banner from "$lib/components/Banner.svelte";
   import HeroNew from "$lib/components/HeroNew.svelte";
+  import Clinics from "$lib/widgets/Clinics.svelte";
+  import { userToImageType } from "$lib/components/util";
 
   const { data }: { data: PageData } = $props();
-  const { t, l } = $derived(data);
+  const { t, l, localized } = $derived(data);
+
+  const users = $derived(userToImageType(data?.data?.terapeuter_directus_users, t, l));
 </script>
 
 {#if data.params.lang !== "en" && data?.data?.header?.banner}
@@ -22,22 +26,32 @@
   <HeroNew image={data?.data?.Hem?.omslagsbild || undefined} {l} {t} />
 </div>
 <Section extras="theme-skog">
+  <Clinics
+    description={localized(data.kliniker?.description, data.kliniker?.description_en) || ""}
+    images={users}
+    klinikerList={data.klinikerList}
+    {l}
+    {localized}
+    {t}
+    title={localized(data.kliniker?.title, data.kliniker?.title_en) || ""} />
+</Section>
+<Section extras="theme-sand-dark">
   <Container>
     <Terapheuts {l} {t} terapheuts={data?.data?.terapeuter_directus_users || []} />
   </Container>
 </Section>
-<Section extras="theme-sand-dark">
+<Section extras="theme-skog">
   <Container>
     <Behandling {t} />
   </Container>
 </Section>
-<Section extras="theme-skog">
+<Section extras="theme-sand-dark">
   <Container>
     <Treatments {l} {t} treatments={data?.data?.Behandlingar || []} />
   </Container>
 </Section>
 {#if data?.data?.Hem?.artiklar?.length || 0 > 0}
-  <Section extras="theme-sand-dark">
+  <Section extras="theme-skog">
     <Container>
       <Articles articles={data?.data?.Hem?.artiklar || []} {l} {t}>
         <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
