@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Hero from "$lib/widgets/Hero.svelte";
   import Terapheuts from "$lib/widgets/Terapheuts.svelte";
   import Treatments from "$lib/widgets/Treatments.svelte";
   import Section from "$lib/components/Section.svelte";
@@ -9,6 +8,7 @@
   import Articles from "$lib/widgets/Articles.svelte";
   import Behandling from "./behandling.svelte";
   import Banner from "$lib/components/Banner.svelte";
+  import HeroNew from "$lib/components/HeroNew.svelte";
 
   const { data }: { data: PageData } = $props();
   const { t, l } = $derived(data);
@@ -18,9 +18,9 @@
   <Banner banner={data?.data?.header?.banner} />
 {/if}
 
-<Section extras="theme-sand-dark lg:pt-8">
-  <Hero image={data?.data?.Hem?.omslagsbild ?? undefined} {l} {t} />
-</Section>
+<div class="theme-skog !py-0">
+  <HeroNew image={data?.data?.Hem?.omslagsbild || undefined} {l} {t} />
+</div>
 <Section extras="theme-skog">
   <Container>
     <Terapheuts {l} {t} terapheuts={data?.data?.terapeuter_directus_users || []} />
