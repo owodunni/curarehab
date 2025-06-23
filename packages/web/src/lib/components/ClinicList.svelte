@@ -37,11 +37,12 @@
   }
 
   const { clinics, t, l, localized, images }: Props = $props();
+  const reversed = $derived(clinics.reverse());
 </script>
 
 <div
   class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 pt-10 sm:max-w-none sm:grid-cols-2 lg:mx-0">
-  {#each clinics as clinic (clinic.slug)}
+  {#each reversed as clinic (clinic.slug)}
     {#snippet buttons()}
       <a class="btn btn-sm variant-filled" href={`${l("kliniker")}/${clinic.slug}/boka`}>
         {t("common", "bokaTid")}

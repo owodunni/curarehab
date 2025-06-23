@@ -11,6 +11,7 @@
     lazy = true,
     srcPath,
     class: clazz = "",
+    pictureClass = "",
     ...restProps
   }: ComponentProps<
     {
@@ -20,6 +21,7 @@
       lazy?: boolean;
       srcPath: string;
       class?: string;
+      pictureClass?: string;
     },
     HTMLImgAttributes
   > = $props();
@@ -96,7 +98,7 @@
   });
 </script>
 
-<picture class={`image-in ${intersecting ? "image-in-place" : ""} `}>
+<picture class={`image-in ${intersecting ? "image-in-place" : ""} ${pictureClass || ""}`}>
   {#each sourceSet as { type, srcset } (type)}
     <source sizes={`${width}px`} {srcset} {type} />
   {/each}
