@@ -80,6 +80,7 @@ module.exports = {
         "xl-summary": ["1.125rem", { lineHeight: "28px", fontWeight: "300" }],
         "2xl-summary": ["1.375rem", { lineHeight: "36px", fontWeight: "300" }],
         base: ["1rem", { lineHeight: "1.5rem", fontWeight: "300" }],
+        "base-medium": ["1rem", { lineHeight: "1.5rem", fontWeight: "500" }],
       },
     },
   },

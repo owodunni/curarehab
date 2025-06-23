@@ -20,6 +20,11 @@
   );
   const boka = $derived(data.clinic.boka);
 
+  const clinicData = $derived(data?.data?.Kliniker_list?.[0]);
+  const clinicTitle = $derived(
+    localized(clinicData?.klinik_page?.title, clinicData?.klinik_page?.title_en) || ""
+  );
+
   onMount(() => {
     mount = true;
     return () => {
@@ -59,18 +64,16 @@
       <Breadcrumb
         items={[
           {
-            title:
-              locale === "sv"
-                ? clinic.klinik_page?.title || ""
-                : clinic.klinik_page?.title_en || clinic.klinik_page?.title || "",
+            title: clinicTitle,
             href: `${l("kliniker")}/${clinic.slug}`,
           },
           {
-            title: localized(boka?.title, boka?.title_en) || t("kliniker", "bokaTitle"),
+            title: t("kliniker", "bokaTitle"),
             current: true,
           },
         ]}
-        {l} />
+        {l}
+        {t} />
     </div>
 
     <div class="mx-auto max-w-2xl lg:mx-0">
@@ -86,7 +89,7 @@
         </div>
       {/if}
       {#if boka?.links && boka.links.length > 0}
-        <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
+        <ul class="border-1 mt-8 flex flex-col space-y-4 border-b pb-4 pt-8">
           {#each boka.links || [] as link (link?.links_id?.link)}
             {#if link?.links_id}
               <SocialLink

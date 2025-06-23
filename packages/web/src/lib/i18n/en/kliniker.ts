@@ -13,9 +13,9 @@ export const kliniker: KlinikerTranslations = {
   clinicDescription: "Information about our clinic and our services.",
   bokaTitle: "Book appointment",
   bokaDescription: "Book an appointment at this clinic.",
-  hittaTitle: "Find us",
+  hittaTitle: "Find Us",
   hittaDescription: "Directions and contact information.",
-  omTitle: "About the clinic",
+  omTitle: "About",
   omDescription: "Learn more about our clinic and our team.",
 
   // Clinic-specific booking page

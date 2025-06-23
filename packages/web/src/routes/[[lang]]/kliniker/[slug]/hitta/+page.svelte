@@ -14,7 +14,11 @@
   // Get clinic info from the parent data
   const clinicSlug = $derived(data.params?.slug);
   // For now, use a generic clinic title - we'll improve this later
-  const clinicTitle = $derived("Klinik");
+  // Get clinic info for breadcrumb
+  const clinicData = $derived(data?.data?.Kliniker_list?.[0]);
+  const clinicTitle = $derived(
+    localized(clinicData?.klinik_page?.title, clinicData?.klinik_page?.title_en) || ""
+  );
 </script>
 
 <Seo seo={localized(hitta?.seo, hitta?.seo_en)} />
@@ -30,11 +34,12 @@
             href: `${l("kliniker")}/${clinicSlug}`,
           },
           {
-            title: localized(hitta?.title, hitta?.title_en) || t("kliniker", "hittaTitle"),
+            title: t("kliniker", "hittaTitle"),
             current: true,
           },
         ]}
-        {l} />
+        {l}
+        {t} />
     </div>
 
     <div
