@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { L } from "$lib/i18n/t";
+  import type { L, T } from "$lib/i18n/t";
 
   interface BreadcrumbItem {
     title: string;
@@ -10,9 +10,10 @@
   interface Props {
     items: BreadcrumbItem[];
     l: L;
+    t: T;
   }
 
-  const { items, l }: Props = $props();
+  const { items, l, t }: Props = $props();
 </script>
 
 <nav class="flex" aria-label="Breadcrumb">
@@ -20,8 +21,8 @@
     <!-- Kliniker root -->
     <li>
       <div>
-        <a class="text-skog-600 hover:text-skog-700 text-sm font-medium" href={l("kliniker")}>
-          Kliniker
+        <a class="text-skog-600 hover:text-skog-700 text-base-medium" href={l("kliniker")}>
+          {t("common", "kliniker")}
         </a>
       </div>
     </li>
@@ -42,12 +43,12 @@
               fill-rule="evenodd" />
           </svg>
           {#if item.href && !item.current}
-            <a class="text-skog-600 hover:text-skog-700 ml-4 text-sm font-medium" href={item.href}>
+            <a class="text-skog-600 hover:text-skog-700 text-base-medium ml-4" href={item.href}>
               {item.title}
             </a>
           {:else}
             <span
-              class="text-skog-700 ml-4 text-sm font-medium"
+              class="text-skog-700 text-base-medium ml-4"
               aria-current={item.current ? "page" : undefined}>
               {item.title}
             </span>

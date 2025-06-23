@@ -18,7 +18,7 @@
   // Get clinic info for breadcrumb
   const clinicData = $derived(data?.data?.Kliniker_list?.[0]);
   const clinicTitle = $derived(
-    localized(clinicData?.klinik_page?.title, clinicData?.klinik_page?.title_en) || "Klinik"
+    localized(clinicData?.klinik_page?.title, clinicData?.klinik_page?.title_en) || ""
   );
 
   // Filter and map therapists for this clinic
@@ -46,19 +46,16 @@
         <Breadcrumb
           items={[
             {
-              title: t("kliniker", "title"),
-              href: l("kliniker"),
-            },
-            {
               title: clinicTitle,
               href: `${l("kliniker")}/${data.params.slug}`,
             },
             {
-              title: localized(om?.title, om?.title_en) || t("kliniker", "omTitle"),
+              title: t("kliniker", "omTitle"),
               current: true,
             },
           ]}
-          {l} />
+          {l}
+          {t} />
       </div>
     </Section>
   </Container>

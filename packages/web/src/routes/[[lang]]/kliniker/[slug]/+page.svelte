@@ -26,7 +26,8 @@
             current: true,
           },
         ]}
-        {l} />
+        {l}
+        {t} />
     </div>
 
     <h1 class="text-theme-heading text-4xl font-bold tracking-tight sm:text-6xl">
