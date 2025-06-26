@@ -4,11 +4,14 @@
   import Section from "$lib/components/Section.svelte";
   import Container from "$lib/components/Container.svelte";
   import { userToImageType } from "$lib/components/util.js";
+  import { userGuard } from "$lib/components/types.js";
 
   const { data } = $props();
   const { t, l, localized } = $derived(data);
 
-  const images = $derived(userToImageType(data?.data?.terapeuter_directus_users, t, l));
+  const images = $derived(
+    userToImageType(data?.data?.terapeuter?.terapeuter?.filter(userGuard), t, l)
+  );
 </script>
 
 <Section class="pt-14 sm:pt-20">
