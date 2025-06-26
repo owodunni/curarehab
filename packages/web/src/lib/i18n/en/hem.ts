@@ -35,4 +35,5 @@ export const hem: HemTranslations = {
   behandlingUppföljningTitle: "Follow-Up",
   behandlingUppföljningParagraph:
     "Regular follow-up is crucial to ensure you receive the care you need. Together, we keep you on the right path to prevent a recurrence of issues. We are here for you every step of the way.",
+  together: "",
 };

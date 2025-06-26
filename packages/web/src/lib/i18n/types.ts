@@ -93,6 +93,7 @@ export type HemTranslations = {
   behandlingOvningarParagraph: string;
   behandlingUppföljningTitle: string;
   behandlingUppföljningParagraph: string;
+  together: string;
 };
 
 export type OmTranslations = {
