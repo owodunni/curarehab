@@ -37,6 +37,7 @@ export type CommonTranslations = {
   contact: string;
   titleFysio: string;
   titleNaprapat: string;
+  titleNaprapatLight: string;
   titleMassage: string;
   titleWeb: string;
   titleSpecFysio: string;

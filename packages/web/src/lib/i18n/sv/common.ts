@@ -23,6 +23,7 @@ export const common: CommonTranslations = {
   contact: "Kontakt",
   titleFysio: "Leg. Fysioterapeut",
   titleNaprapat: "Leg. Naprapat",
+  titleNaprapatLight: "Naprapat",
   titleMassage: "Massageterapeut",
   titleWeb: "Webansvarig",
   titleSpecFysio: "Leg. Specialistfysioterapeut",

@@ -11,7 +11,9 @@ export const getTitle = (title: string | undefined, t: T) => {
         ? "titleFysio"
         : _t === "specialistfysioterapeut"
           ? "titleSpecFysio"
-          : "titleWeb"
+          : _t === "naprapat-light"
+            ? "titleNaprapatLight"
+            : "titleWeb"
   );
 };
 
