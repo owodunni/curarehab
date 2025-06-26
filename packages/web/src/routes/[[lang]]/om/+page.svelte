@@ -4,26 +4,17 @@
   import Container from "$lib/components/Container.svelte";
   import Image from "$lib/components/Image.svelte";
   import Seo from "$lib/components/Seo.svelte";
-  import { getTitle } from "$lib/widgets/util";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import ImageList from "$lib/components/ImageList.svelte";
-  import type { ImageType } from "$lib/components/types";
+  import { userToImageType } from "$lib/components/util";
+  import { userGuard } from "$lib/components/types";
 
   const { data }: { data: PageData } = $props();
   const { t, l } = $derived(data);
   const lang = $derived(data.params.lang);
   const om = $derived(data?.data?.om ?? undefined);
   const users = $derived(
-    (data?.data?.terapeuter_directus_users || []).map(
-      ({ directus_users_id: user }) =>
-        ({
-          href: `${l("terapeuter")}/${user?.slug}`,
-          alt: user?.avatar?.title || "",
-          srcPath: user?.avatar?.filename_disk || "",
-          title: `${user?.first_name} ${user?.last_name}`,
-          subTitle: getTitle(user?.work_title || "", t),
-        }) satisfies ImageType
-    )
+    userToImageType(data?.data?.terapeuter?.terapeuter?.filter(userGuard), t, l)
   );
 </script>
 

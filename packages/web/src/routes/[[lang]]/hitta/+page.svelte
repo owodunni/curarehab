@@ -6,12 +6,15 @@
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import ClinicList from "$lib/components/ClinicList.svelte";
   import { userToImageType } from "$lib/components/util";
+  import { userGuard } from "$lib/components/types";
 
   const { data }: { data: PageData } = $props();
   const { t, l, localized } = $derived(data);
   const lang = $derived(data.params.lang);
   const hitta = $derived(data?.data?.hitta ?? undefined);
-  const images = $derived(userToImageType(data?.data?.terapeuter_directus_users, t, l));
+  const images = $derived(
+    userToImageType(data?.data?.terapeuter?.terapeuter?.filter(userGuard), t, l)
+  );
 </script>
 
 {#if hitta}

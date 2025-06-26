@@ -11,11 +11,13 @@
   import HeroNew from "$lib/components/HeroNew.svelte";
   import Clinics from "$lib/widgets/Clinics.svelte";
   import { userToImageType } from "$lib/components/util";
+  import { userGuard } from "$lib/components/types";
 
   const { data }: { data: PageData } = $props();
   const { t, l, localized } = $derived(data);
+  const terapeuter = $derived(data?.data?.terapeuter?.terapeuter?.filter(userGuard) || []);
 
-  const users = $derived(userToImageType(data?.data?.terapeuter_directus_users, t, l));
+  const users = $derived(userToImageType(terapeuter, t, l));
 </script>
 
 {#if data.params.lang !== "en" && data?.data?.header?.banner}
@@ -37,7 +39,7 @@
 </Section>
 <Section extras="theme-sand-dark">
   <Container>
-    <Terapheuts {l} {t} terapheuts={data?.data?.terapeuter_directus_users || []} />
+    <Terapheuts {l} {t} terapheuts={terapeuter} />
   </Container>
 </Section>
 <Section extras="theme-skog">

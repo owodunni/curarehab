@@ -9,6 +9,7 @@
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import ImageList from "$lib/components/ImageList.svelte";
   import { userToImageType } from "$lib/components/util";
+  import { userGuard } from "$lib/components/types";
 
   const { data }: { data: PageData } = $props();
   const { t, localized, l } = $derived(data);
@@ -21,7 +22,9 @@
     localized(clinicData?.klinik_page?.title, clinicData?.klinik_page?.title_en) || ""
   );
 
-  const users = $derived(userToImageType(data?.data?.terapeuter_directus_users, t, l));
+  const users = $derived(
+    userToImageType(data?.data?.terapeuter?.terapeuter?.filter(userGuard), t, l)
+  );
 </script>
 
 {#if om}

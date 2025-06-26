@@ -1,9 +1,9 @@
 <script lang="ts">
   import { page } from "$app/state";
   import type { L, T } from "$lib/i18n/t";
-  import type { TerapeutsMetaDataQuery } from "../../routes/[[lang]]/terapeuter/$types.gql";
   import CardList from "$lib/components/CardList.svelte";
   import Card from "$lib/components/Card.svelte";
+  import type { User } from "$lib/components/types";
 
   const {
     l,
@@ -12,7 +12,7 @@
   }: {
     l: L;
     t: T;
-    terapheuts: TerapeutsMetaDataQuery["terapeuter_directus_users"];
+    terapheuts: User[];
   } = $props();
 
   // Destructure for better change tracking & fewer redraws
