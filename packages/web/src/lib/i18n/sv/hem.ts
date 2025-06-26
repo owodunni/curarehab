@@ -35,4 +35,6 @@ export const hem: HemTranslations = {
   behandlingUppföljningTitle: "Uppföljning",
   behandlingUppföljningParagraph:
     "Regelbunden uppföljning är viktig för att säkerställa att du får den vård du behöver. Tillsammans håller vi dig på rätt väg för att undvika att besvären kommer tillbaka. Vi finns här för dig hela vägen.",
+  together:
+    "CuraRehab och Naprapat Service - Två kliniker med samma passion, tillsammans har vi över 35 års erfarenhet.",
 };
