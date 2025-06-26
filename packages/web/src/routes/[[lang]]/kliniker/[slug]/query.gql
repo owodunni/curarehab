@@ -113,24 +113,26 @@ query KlinikBySlug(
       }
     }
   }
-  terapeuter_directus_users(filter: $terapeutFilter) {
-    directus_users_id {
-      first_name
-      last_name
-      work_title
-      profil_sammanfattning_en
-      profil_sammanfattning
-      slug
-      avatar {
-        title
-        type
-        width
-        height
-        filename_disk
-      }
-      kliniker {
-        Kliniker_list_id {
-          slug
+  terapeuter {
+    terapeuter(filter: $terapeutFilter) {
+      directus_users_id {
+        first_name
+        last_name
+        work_title
+        profil_sammanfattning_en
+        profil_sammanfattning
+        slug
+        avatar {
+          title
+          type
+          width
+          height
+          filename_disk
+        }
+        kliniker {
+          Kliniker_list_id {
+            slug
+          }
         }
       }
     }

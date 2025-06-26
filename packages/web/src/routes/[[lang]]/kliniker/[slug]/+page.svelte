@@ -6,6 +6,7 @@
   import Breadcrumb from "$lib/components/Breadcrumb.svelte";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import Terapheuts from "$lib/widgets/Terapheuts.svelte";
+  import { userGuard } from "$lib/components/types";
 
   const { data } = $props();
   const { t, localized, l } = $derived(data);
@@ -62,6 +63,6 @@
 </Container>
 <Section extras="theme-skog">
   <Container>
-    <Terapheuts {l} {t} terapheuts={data?.data?.terapeuter_directus_users || []} />
+    <Terapheuts {l} {t} terapheuts={data?.data?.terapeuter?.terapeuter?.filter(userGuard) || []} />
   </Container>
 </Section>
