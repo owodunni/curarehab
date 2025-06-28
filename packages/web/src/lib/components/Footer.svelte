@@ -14,6 +14,7 @@
     columnLinks = [[], []],
     email,
     location,
+    location2,
     phone,
   }: {
     t: T;
@@ -23,6 +24,7 @@
     columnLinks?: [Link[], Link[]];
     email?: Link | undefined;
     location?: Link | undefined;
+    location2?: Link | undefined;
     phone?: Link | undefined;
   } = $props();
 
@@ -93,14 +95,22 @@
         <div>
           <h3 class="text-theme-heading text-sm font-semibold leading-6">{t("common", "hitta")}</h3>
           <ul class="mt-6 w-full space-y-4">
-            <li>
-              {#if location}
+            {#if location}
+              <li>
                 <SocialLink
                   class="text-theme-muted hover:text-theme-muted-hover flex gap-x-4 text-sm leading-6 xl:-ml-10"
                   link={location}
                   onlyIcon={false} />
-              {/if}
-            </li>
+              </li>
+            {/if}
+            {#if location2}
+              <li>
+                <SocialLink
+                  class="text-theme-muted hover:text-theme-muted-hover flex gap-x-4 text-sm leading-6 xl:-ml-10"
+                  link={location2}
+                  onlyIcon={false} />
+              </li>
+            {/if}
           </ul>
         </div>
         <div>
