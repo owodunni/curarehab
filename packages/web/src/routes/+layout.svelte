@@ -62,6 +62,7 @@
   l={data.l}
   {locale}
   location={toLink(data.widgets?.footer?.address)}
+  location2={toLink(data.widgets?.footer?.address2)}
   phone={toLink(data.widgets?.footer?.phone)}
   socialLinks={data.widgets?.footer?.social_links
     ?.map((a) => a?.links_id)
