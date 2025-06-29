@@ -48,15 +48,16 @@
         </div>
       </div>
     </div>
-    <div class="mx-auto max-w-2xl py-24">
+    <div class="mx-auto flex max-w-2xl flex-col items-center justify-center py-24">
       <h2 class="text-theme-body pb-4 text-center text-lg/8 font-semibold">
         {t("hem", "together")}
       </h2>
-      <div class="flex w-full justify-center gap-x-8">
-        <a href="https://naprapat.se">
-          <NaprapatServiceLogo class="max-h-12 w-48 object-contain text-white" /></a>
+      <div class="flex flex-col justify-center gap-4 sm:flex-row-reverse sm:gap-8">
         <a href="/om">
           <Logo class="max-h-12 w-48 object-contain text-white" />
+        </a>
+        <a href="https://naprapat.se">
+          <NaprapatServiceLogo class="max-h-12 w-48 object-contain text-white" />
         </a>
       </div>
     </div>
