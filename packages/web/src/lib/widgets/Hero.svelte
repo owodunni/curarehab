@@ -18,10 +18,9 @@
       {@html t("hem", "subtitleParagraph")}
     </p>
     <div class="mt-8 flex items-center gap-x-6">
-      <a href={t("common", "hanoLink")} class="btn variant-filled">{t("common", "bokaNu")}</a>
-      <a href={l("om")} class="btn variant-ghost"
-        >{t("hem", "readMore")} <span aria-hidden="true">→</span></a
-      >
+      <a class="btn variant-filled" href={t("common", "hanoLink")}>{t("common", "bokaNu")}</a>
+      <a class="btn variant-ghost" href={l("om")}
+        >{t("hem", "readMore")} <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </HeroComponent>

@@ -7,27 +7,29 @@ type Locales = "en" | "sv";
 
 const svTrans = {
   common: {
-    hello: "hej"
+    hello: "hej",
   },
   home: {
-    Welcome: "Välkommen {name} {surname}"
-  }
+    Welcome: "Välkommen {name} {surname}",
+  },
 };
 
 const enTrans = {
   common: {
-    hello: "hello"
+    hello: "hello",
   },
   home: {
-    Welcome: "welcome {name}"
-  }
+    Welcome: "welcome {name}",
+  },
 };
 
 const config = {
   loader: async (locale: Locales, file: Files) => {
-    if (locale === "sv") return file === "common" ? svTrans.common : svTrans.home;
+    if (locale === "sv") {
+      return file === "common" ? svTrans.common : svTrans.home;
+    }
     return file === "common" ? enTrans.common : enTrans.home;
-  }
+  },
 } satisfies Config<Files, Locales>;
 
 describe("translator", () => {

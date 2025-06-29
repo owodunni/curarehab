@@ -39,7 +39,6 @@
       case "webpage":
         return GlobeAltIcon;
       default:
-        console.warn(`No icon for ${type}`);
         return null;
     }
   }

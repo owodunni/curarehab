@@ -9,8 +9,8 @@
   export { clazz as class };
 </script>
 
-<a href={link.link} class={`${clazz || ""}`}>
-  <LinkIcon type={link.type} class="h-6 w-6" />
+<a class={`${clazz || ""}`} href={link.link}>
+  <LinkIcon class="h-6 w-6" type={link.type} />
   {#if onlyIcon === false}
     <p class="w-full overflow-hidden text-ellipsis">{link.display_link}</p>
   {/if}

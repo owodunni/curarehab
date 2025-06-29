@@ -4,22 +4,27 @@
   import type { ComponentProps } from "./types";
   import type { HTMLImgAttributes } from "svelte/elements";
 
-  let {
+  const {
     width,
     height,
     alt = "",
     lazy = true,
     srcPath,
     class: clazz = "",
+    pictureClass = "",
     ...restProps
-  }: ComponentProps<{
-    width: number;
-    height: number;
-    alt?: string;
-    lazy?: boolean;
-    srcPath: string;
-    class?: string;
-  }, HTMLImgAttributes> = $props();
+  }: ComponentProps<
+    {
+      width: number;
+      height: number;
+      alt?: string;
+      lazy?: boolean;
+      srcPath: string;
+      class?: string;
+      pictureClass?: string;
+    },
+    HTMLImgAttributes
+  > = $props();
 
   type Format = "avif" | "webp" | "jpg";
   type ImageType = "image/avif" | "image/webp" | "image/jpeg";
@@ -41,7 +46,7 @@
     const formats = [
       { format: "webp", name: "image/webp" },
       { format: "avif", name: "image/avif" },
-      { name: "image/jpeg", format: "jpg" }
+      { name: "image/jpeg", format: "jpg" },
     ] as const satisfies readonly { readonly format: Format; readonly name: ImageType }[];
 
     return formats.map(({ format, name }) => ({
@@ -54,17 +59,17 @@
           const src = getAsset2(srcPath, { width: w, height: h, format, quality: 0.8 });
           return `${src} ${width}w`;
         })
-        .join(",")
+        .join(","),
     }));
   }
 
-  let sourceSet = $derived(calculateSourceSet());
+  const sourceSet = $derived(calculateSourceSet());
 
   let node: HTMLElement;
   let intersecting = $state(false);
 
   onMount(() => {
-    if (!node || typeof IntersectionObserver === 'undefined') {
+    if (!node || typeof IntersectionObserver === "undefined") {
       // Fallback for SSR or browsers without IntersectionObserver
       intersecting = true;
       return;
@@ -80,8 +85,8 @@
         });
       },
       {
-        rootMargin: '50px',
-        threshold: 0.1
+        rootMargin: "50px",
+        threshold: 0.1,
       }
     );
 
@@ -93,23 +98,22 @@
   });
 </script>
 
-<picture class={`image-in ${intersecting ? "image-in-place" : ""} `}>
-  {#each sourceSet as { type, srcset }}
-    <source {type} {srcset} sizes={`${width}px`} />
+<picture class={`image-in ${intersecting ? "image-in-place" : ""} ${pictureClass || ""}`}>
+  {#each sourceSet as { type, srcset } (type)}
+    <source sizes={`${width}px`} {srcset} {type} />
   {/each}
   <img
     bind:this={node}
     class={`${width < 100 ? "image-sm" : "image"} ${intersecting ? "image-in-place" : ""} ${
       clazz || ""
     }`}
-    {width}
-    {height}
-    src={getAsset2(srcPath, { width, height, format: "jpg", quality: 80 })}
-    loading={lazy ? "lazy" : undefined}
-    decoding={lazy ? "async" : undefined}
     {alt}
-    {...restProps}
-  />
+    decoding={lazy ? "async" : undefined}
+    {height}
+    loading={lazy ? "lazy" : undefined}
+    src={getAsset2(srcPath, { width, height, format: "jpg", quality: 80 })}
+    {width}
+    {...restProps} />
 </picture>
 
 <style>
@@ -125,7 +129,8 @@
 
   .image-in {
     opacity: 0.01;
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
       transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     transition-property: opacity, transform;
     transition-duration: 0.8s, 0.8s;

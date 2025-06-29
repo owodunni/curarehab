@@ -10,7 +10,6 @@
     --color-sand-plus: 243, 242, 236;
     --color-sand: 224, 218, 207;
     --color-sand-minus: 200, 193, 183;
-
     --color-skog-plus: 111, 129, 103;
     --color-skog: 74, 88, 73;
     --color-skog-minus: 57, 65, 53;
@@ -21,33 +20,35 @@
      * Test result can be seen here https://app.contrast-finder.org/result.html?foreground=%23FFFFFF&background=rgb%28213%2C71%2C33%29&ratio=4.5&isBackgroundTested=true&algo=Rgb&lang=en
      */
     --color-tegel: 213, 68, 20;
-
     --color-text-heading: var(--color-kol);
     --color-text-body: var(--color-svart);
     --color-text-muted: var(--color-kol);
     --color-text-muted-hover: var(--color-skog);
-
     --color-bg-section: var(--color-sand-plus);
     --color-border-div: var(--color-sand-minus);
   }
+
   .theme-skog {
     --color-text-heading: var(--color-vit);
     --color-text-body: var(--color-sand-plus);
     --color-text-muted: var(--color-sand-plus);
     --color-text-muted-hover: var(--color-sand);
-
     --color-bg-section: var(--color-skog);
     --color-border-div: var(--color-sand-plus);
   }
+
   .theme-sand-dark {
     --color-text-heading: var(--color-skog-minus);
     --color-text-body: var(--color-kol);
   }
+
   .theme-sand-light {
     --color-text-body: var(--color-skog);
   }
+
   .theme-skog-dark {
     @apply theme-skog;
+
     --color-bg-section: var(--color-skog-minus);
   }
 }
@@ -62,15 +63,19 @@
   .button-base-styles {
     /* Size (match base) */
     @apply text-base;
+
     /* Padding */
     @apply px-5 py-2;
+
     /* Core */
     @apply whitespace-nowrap text-center;
+
     /* Flex Columns */
     @apply inline-flex items-center justify-center space-x-2;
   }
 
   /* === Button === */
+
   /* Standard button/anchor tag elements. */
 
   .btn {
@@ -81,35 +86,45 @@
     @apply bg-tegel whitespace-nowrap rounded-full text-sm font-medium text-white hover:brightness-110;
   }
 
+  .variant-filled-skog {
+    @apply whitespace-nowrap rounded-full text-sm font-medium text-white hover:brightness-110;
+  }
+
   .variant-ghost {
-    @apply hover:bg-sand-200/50 -mx-5 rounded-full text-sm font-medium text-gray-700  hover:text-gray-900;
+    @apply hover:bg-sand-200/50 -mx-5 rounded-full text-sm font-medium text-gray-700 hover:text-gray-900;
   }
 
   /* Button: Sizes */
+
   /* Note: Default values are built into `.btn` */
   .btn-sm {
     @apply px-3 py-1.5 text-sm font-normal;
   }
+
   .btn-lg {
     @apply px-7 py-3 text-lg;
   }
+
   .btn-xl {
     @apply px-9 py-4 text-xl;
   }
 
   /* === Icon Button === */
+
   /* A circular button meant for housing icons. */
 
   .btn-icon {
     /* Extend Base Button Classes */
     @apply button-base-styles;
+
     /* Padding */
     @apply p-0;
+
     /* Size (match base) */
     @apply aspect-square w-[43px] text-base;
+
     /* Rounded */
     @apply rounded-full;
-
     @apply transition-all;
   }
 
@@ -117,12 +132,15 @@
   .btn-icon-sm {
     @apply aspect-square w-[33px] text-sm;
   }
+
   .btn-icon-base {
     @apply aspect-square w-[43px] text-base;
   }
+
   .btn-icon-lg {
     @apply aspect-square w-[53px] text-lg;
   }
+
   .btn-icon-xl {
     @apply aspect-square w-[63px] text-xl;
   }
@@ -130,7 +148,7 @@
 
 h1,
 h2 {
-  font-family: "SangBleu";
+  font-family: SangBleu;
 }
 
 .cb-onlinebooking {

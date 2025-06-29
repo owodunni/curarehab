@@ -1,0 +1,59 @@
+query KlinikHittaBySlug($filter: Kliniker_list_filter) {
+  Kliniker_list(filter: $filter) {
+    id
+    slug
+    klinik_page {
+      id
+      title
+      title_en
+    }
+    hitta {
+      id
+      title
+      title_en
+      seo {
+        title
+        description
+        link_photo {
+          id
+          filename_disk
+          width
+          height
+        }
+      }
+      seo_en {
+        title
+        description
+        link_photo {
+          id
+          filename_disk
+          width
+          height
+        }
+      }
+      links {
+        links_id {
+          type
+          link
+          display_link
+        }
+      }
+      location {
+        type
+        link
+        display_link
+      }
+      text
+      text_en
+      description
+      description_en
+      omslagsbild {
+        id
+        title
+        filename_disk
+        width
+        height
+      }
+    }
+  }
+}

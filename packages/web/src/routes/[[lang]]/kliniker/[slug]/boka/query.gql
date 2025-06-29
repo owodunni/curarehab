@@ -1,0 +1,56 @@
+query KlinikBokaBySlug($filter: Kliniker_list_filter) {
+  Kliniker_list(filter: $filter) {
+    slug
+    clinic_buddy_location
+    clinic_buddy_provider
+    clinic_buddy_activity
+    klinik_page {
+      id
+      title
+      title_en
+    }
+    boka {
+      id
+      title
+      title_en
+      text
+      text_en
+      description
+      description_en
+      links {
+        links_id {
+          type
+          link
+          display_link
+        }
+      }
+      seo {
+        title
+        description
+        link_photo {
+          id
+          filename_disk
+          width
+          height
+        }
+      }
+      seo_en {
+        title
+        description
+        link_photo {
+          id
+          filename_disk
+          width
+          height
+        }
+      }
+      omslagsbild {
+        id
+        title
+        filename_disk
+        width
+        height
+      }
+    }
+  }
+}

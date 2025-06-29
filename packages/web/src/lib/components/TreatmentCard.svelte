@@ -3,12 +3,12 @@
   import type { L, T } from "$lib/i18n/t";
   import Card from "./Card.svelte";
 
-  let {
+  const {
     treatment,
     l,
     t,
     sammanfattning = "",
-    title = ""
+    title = "",
   }: {
     treatment: Treatment;
     l: L;
@@ -17,15 +17,14 @@
     title?: string | undefined | null;
   } = $props();
 
-  let primary = $derived(treatment.Primary_treatment === "true");
+  const primary = $derived(treatment.Primary_treatment === "true");
 </script>
 
 <Card
-  link={`${l("behandlingar")}/${treatment.Slug}`}
   image={treatment?.bild}
-  text={sammanfattning}
-  t={t}
+  link={`${l("behandlingar")}/${treatment.Slug}`}
   shape={primary ? "square" : "circle"}
->
+  {t}
+  text={sammanfattning}>
   {title}
 </Card>

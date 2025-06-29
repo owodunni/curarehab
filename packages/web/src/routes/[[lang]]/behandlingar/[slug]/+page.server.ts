@@ -9,13 +9,14 @@ export const load: PageServerLoad = async (event) => {
     .query<BehandlingQuery>(query, {
       filter: {
         Slug: { _eq: event.params.slug },
-        ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } })
-      }
+        ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } }),
+      },
     })
     .toPromise();
 
-  if (!data.data?.Behandlingar || data.data?.Behandlingar.length === 0)
+  if (!data.data?.Behandlingar || data.data?.Behandlingar.length === 0) {
     throw error(404, { message: "Treatment not found" });
+  }
 
   return { behandling: data.data.Behandlingar[0] };
 };

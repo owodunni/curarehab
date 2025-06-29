@@ -8,7 +8,7 @@
   import Flags from "./Flags.svelte";
   import type { Page } from "$lib/i18n";
 
-  let { t, l, locale, route }: { t: T; l: L; locale: "sv" | "en"; route: string } = $props();
+  const { t, l, locale, route }: { t: T; l: L; locale: "sv" | "en"; route: string } = $props();
 
   let open = $state(false);
 
@@ -20,42 +20,48 @@
     open = false;
   }
 
-  let links = $derived([
+  const links = $derived([
     "behandlingar",
     "hitta",
     "om",
-    ...(locale === "sv" ? ["skadekompassen"] as const : [])
+    "kliniker",
+    ...(locale === "sv" ? (["skadekompassen"] as const) : []),
   ] as const satisfies readonly Page[]);
 
-
-  let localizedHref = $derived((() => {
-    if (route === `/${locale}` || route === "/") return locale === "en" ? "/" : "/en";
-    else return locale === "en" ? route.substring(3) : `/en${route.substring(3)}`;
-  })());
+  const localizedHref = $derived(
+    (() => {
+      if (route === `/${locale}` || route === "/") {
+        return locale === "en" ? "/" : "/en";
+      } else {
+        return locale === "en" ? route.substring(3) : `/en${route.substring(3)}`;
+      }
+    })()
+  );
 
   // We don't want to show the localization switch language when showing articles since they can't be localized
-  let showLocalization = $derived(!(
-    localizedHref.startsWith("/en/artiklar") ||
-    localizedHref.startsWith("/sv/artiklar") ||
-    route.startsWith("/sv/skadekompassen") ||
-    route.startsWith("/en/skadekompassen")
-  ));
+  const showLocalization = $derived(
+    !(
+      localizedHref.startsWith("/en/artiklar") ||
+      localizedHref.startsWith("/sv/artiklar") ||
+      route.startsWith("/sv/skadekompassen") ||
+      route.startsWith("/en/skadekompassen")
+    )
+  );
 </script>
 
 <header lang={locale}>
   <nav>
-    <Container class={"relative z-50 flex justify-between py-8 "}>
+    <Container class="relative z-50 flex justify-between py-8">
       <div class="relative z-10 flex items-center gap-16">
         <a
-          href={l("hem")}
           class="btn-icon btn-lg border-x-secondary-200 absolute m-0 w-32 p-0"
-          onclick={close}
           aria-label={t("common", "title")}
-          ><Logo class="text-skog-700 hover:text-skog-900 w-48 transition-colors" /></a
-        >
+          href={l("hem")}
+          onclick={close}
+          ><Logo class="text-skog-700 hover:text-skog-900 w-48 transition-colors" /></a>
         <div class="hidden lg:flex lg:gap-12 lg:pl-48">
-          {#each links as link}
-            <a href={l(link)} class="btn variant-ghost text-base font-normal">
+          {#each links as link (link)}
+            <a class="btn variant-ghost text-base font-normal" href={l(link)}>
               {t("common", link)}
             </a>
           {/each}
@@ -65,27 +71,21 @@
         <div class="flex gap-4 lg:hidden">
           {#if showLocalization}
             <a
-              data-sveltekit-reload
               class="btn-icon relative z-10 h-8 w-8"
+              data-sveltekit-reload
               href={localizedHref}
-              onclick={close}
-            >
-              <Flags
-                {t}
-                flag={locale === "en" ? "swedish" : "english"}
-                class="p-[2px]"
-              />
+              onclick={close}>
+              <Flags class="p-[2px]" flag={locale === "en" ? "swedish" : "english"} {t} />
             </a>
           {/if}
           <button
-            type="button"
-            aria-haspopup="menu"
-            aria-expanded={open}
-            aria-label={t("common", "menuAria")}
-            aria-controls={open ? "popover-panel" : undefined}
             class="btn-icon relative z-10 -m-2"
+            aria-controls={open ? "popover-panel" : undefined}
+            aria-expanded={open}
+            aria-haspopup="menu"
+            aria-label={t("common", "menuAria")}
             onclick={toggle}
-          >
+            type="button">
             {#if open}
               <ChevronUpIcon class="h-8 w-8" />
             {:else}
@@ -94,28 +94,23 @@
           </button>
           {#if open}
             <div
-              aria-hidden="true"
               class="bg-sand-300/60 fixed inset-0 z-0 backdrop-blur-sm"
-              in:fade|global={{ duration: 150 }}
-              out:fade|global={{ duration: 200 }}
+              aria-hidden="true"
               onclick={close}
-            ></div>
+              in:fade|global={{ duration: 150 }}
+              out:fade|global={{ duration: 200 }}>
+            </div>
             <div
               class="absolute inset-x-0 top-0 origin-top"
               in:fly|global={{ y: -64, duration: 150 }}
-              out:fly|global={{ y: -64, duration: 200 }}
-            >
+              out:fly|global={{ y: -64, duration: 200 }}>
               <div
                 id="popover-panel"
-                class="bg-sand-100 z-0 w-screen rounded-b-2xl px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
-              >
+                class="bg-sand-100 z-0 w-screen rounded-b-2xl px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20">
                 <div class="flex flex-col items-start space-y-4">
-                  {#each links as link}
-                    <a
-                      href={l(link)}
-                      class="btn text-gray-700 hover:text-gray-900"
-                      onclick={toggle}>{t("common", link)}</a
-                    >
+                  {#each links as link (link)}
+                    <a class="btn text-gray-700 hover:text-gray-900" href={l(link)} onclick={toggle}
+                      >{t("common", link)}</a>
                   {/each}
                 </div>
                 <div class="mt-8 flex flex-col gap-4">
@@ -128,16 +123,8 @@
           {/if}
         </div>
         {#if showLocalization}
-          <a
-            data-sveltekit-reload
-            class="btn-icon m-0 hidden p-0 lg:block"
-            href={localizedHref}
-          >
-            <Flags
-              {t}
-              flag={locale === "en" ? "swedish" : "english"}
-              class=" h-10 w-10 p-1"
-            />
+          <a class="btn-icon m-0 hidden p-0 lg:block" data-sveltekit-reload href={localizedHref}>
+            <Flags class=" h-10 w-10 p-1" flag={locale === "en" ? "swedish" : "english"} {t} />
           </a>
         {/if}
         <a class="btn variant-filled hidden lg:block" href={t("common", "hanoLink")}>

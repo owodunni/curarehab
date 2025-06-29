@@ -1,13 +1,15 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import CardList from "$lib/components/CardList.svelte";
   import TreatmentCard from "$lib/components/TreatmentCard.svelte";
   import type { L, T } from "$lib/i18n/t";
   import type { ArticlesAndTerapeutsQuery } from "../../routes/[[lang]]/$types.gql";
 
-  export let l: L;
-  export let t: T;
-  export let treatments: ArticlesAndTerapeutsQuery["Behandlingar"];
+  const {
+    l,
+    t,
+    treatments,
+  }: { l: L; t: T; treatments: ArticlesAndTerapeutsQuery["Behandlingar"] } = $props();
 </script>
 
 <div class="mx-auto max-w-2xl lg:mx-0">
@@ -20,28 +22,26 @@
   </p>
 </div>
 <CardList>
-  {#each treatments.filter((treatment) => treatment.Primary_treatment === "true") as treatment}
+  {#each treatments.filter((treatment) => treatment.Primary_treatment === "true") as treatment (treatment.Slug)}
     <TreatmentCard
-      {treatment}
       {l}
-      {t}
-      sammanfattning={$page.params.lang !== "en"
+      sammanfattning={page.params.lang !== "en"
         ? treatment?.behandling_sammanfattning
         : treatment?.behandling_sammanfattning_en}
-      title={$page.params.lang !== "en" ? treatment?.Title : treatment?.Title_en}
-    />
+      {t}
+      title={page.params.lang !== "en" ? treatment?.Title : treatment?.Title_en}
+      {treatment} />
   {/each}
 </CardList>
 <CardList extras="border-t border-theme-div">
-  {#each treatments.filter((treatment) => treatment.Primary_treatment !== "true") as treatment}
+  {#each treatments.filter((treatment) => treatment.Primary_treatment !== "true") as treatment (treatment.Slug)}
     <TreatmentCard
-      {treatment}
       {l}
-      {t}
-      sammanfattning={$page.params.lang !== "en"
+      sammanfattning={page.params.lang !== "en"
         ? treatment?.behandling_sammanfattning
         : treatment?.behandling_sammanfattning_en}
-      title={$page.params.lang !== "en" ? treatment?.Title : treatment?.Title_en}
-    />
+      {t}
+      title={page.params.lang !== "en" ? treatment?.Title : treatment?.Title_en}
+      {treatment} />
   {/each}
 </CardList>

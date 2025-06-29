@@ -7,8 +7,8 @@ export const load: PageServerLoad = async (event) => {
   return event.locals.client
     .query<BehandlingarQuery>(query, {
       filter: {
-        ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } })
-      }
+        ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } }),
+      },
     })
     .toPromise();
 };

@@ -13,7 +13,7 @@
       ? {
           type: link.type,
           link: link.link,
-          display_link: link.display_link
+          display_link: link.display_link,
         }
       : undefined;
   }
@@ -43,21 +43,11 @@
 
 <Analytics l={data.l} t={data.t} />
 
-<Header t={data.t} l={data.l} {locale} route={data.route} />
+<Header l={data.l} {locale} route={data.route} t={data.t} />
 <main class="flex-grow">
-  <slot />
+  <slot></slot>
 </main>
 <Footer
-  {locale}
-  t={data.t}
-  l={data.l}
-  email={toLink(data.widgets?.footer?.email)}
-  phone={toLink(data.widgets?.footer?.phone)}
-  location={toLink(data.widgets?.footer?.address)}
-  socialLinks={data.widgets?.footer?.social_links
-    ?.map((a) => a?.links_id)
-    ?.map(toLink)
-    .filter(isLink) ?? []}
   columnLinks={[
     data.widgets?.footer?.partners
       ?.map((a) => a?.links_id)
@@ -66,6 +56,16 @@
     data.widgets?.footer?.other_links
       ?.map((a) => a?.links_id)
       ?.map(toLink)
-      .filter(isLink) ?? []
+      .filter(isLink) ?? [],
   ]}
-/>
+  email={toLink(data.widgets?.footer?.email)}
+  l={data.l}
+  {locale}
+  location={toLink(data.widgets?.footer?.address)}
+  location2={toLink(data.widgets?.footer?.address2)}
+  phone={toLink(data.widgets?.footer?.phone)}
+  socialLinks={data.widgets?.footer?.social_links
+    ?.map((a) => a?.links_id)
+    ?.map(toLink)
+    .filter(isLink) ?? []}
+  t={data.t} />

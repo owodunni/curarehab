@@ -11,14 +11,14 @@ const config = {
     adapter: adapter(),
     alias: {
       $lib: "src/lib",
-      "$types": ".gql/types"
+      $types: ".gql/types",
     },
     prerender: {
       concurrency: 4,
       crawl: true,
-      entries: ["*", "/", "/en", "/sitemap.xml"]
-    }
-  }
+      entries: ["*", "/", "/en", "/sitemap.xml"],
+    },
+  },
 };
 
 export default config;

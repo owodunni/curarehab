@@ -6,7 +6,7 @@
   import type { Link } from "$lib/api";
   import SocialLink from "./SocialLink.svelte";
 
-  let {
+  const {
     t,
     l,
     locale,
@@ -14,7 +14,8 @@
     columnLinks = [[], []],
     email,
     location,
-    phone
+    location2,
+    phone,
   }: {
     t: T;
     l: L;
@@ -23,6 +24,7 @@
     columnLinks?: [Link[], Link[]];
     email?: Link | undefined;
     location?: Link | undefined;
+    location2?: Link | undefined;
     phone?: Link | undefined;
   } = $props();
 
@@ -31,19 +33,20 @@
    * Its a list of two lists of links with titles, the first list is in the left column and the second in the right.
    * If we are on a small screen, the two lists are shown on top of each other.
    */
-  let linksWithCategory = $derived([
+  const linksWithCategory = $derived([
     {
       [t("common", "ourServices")]: [
         {
           link: t("common", "hanoLink"),
           display_link: t("common", "boka"),
-          type: "website"
+          type: "website",
         },
         ["behandlingar"],
         ["terapeuter"],
-        ...(locale === "sv" ? [["skadekompassen"] as const satisfies [Page]] : [])
+        ["kliniker"],
+        ...(locale === "sv" ? [["skadekompassen"] as const satisfies [Page]] : []),
       ],
-      [t("common", "information")]: [["om"], ["hitta"], ["personuppgiftspolicy"], ["cookies"]]
+      [t("common", "information")]: [["om"], ["hitta"], ["personuppgiftspolicy"], ["cookies"]],
     },
     {
       [t("common", "partners")]: columnLinks[0],
@@ -52,16 +55,16 @@
         {
           link: t("common", "fysioHref"),
           display_link: t("common", "fysioLinkTitle"),
-          type: "website"
+          type: "website",
         },
         {
           link: t("common", "naprapatHref"),
           display_link: t("common", "naprapatLinkTitle"),
-          type: "website"
+          type: "website",
         },
-        ...columnLinks[1]
-      ]
-    }
+        ...columnLinks[1],
+      ],
+    },
   ] as const satisfies readonly Record<string, ([Page] | Link)[]>[]);
 
   function toLinks(links: ([Page] | Link)[]): [string, string][] {
@@ -79,12 +82,12 @@
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div class="flex flex-col items-center space-y-8">
-        <a href={l("hem")} class="btn-icon w-32" aria-label={t("common", "title")}
+        <a class="btn-icon w-32" aria-label={t("common", "title")} href={l("hem")}
           ><Logo class="text-theme-body hover:text-theme-muted-hover w-32 transition-colors" />
         </a>
         <div class="flex space-x-6">
-          {#each socialLinks as link}
-            <SocialLink {link} class="text-theme-body hover:text-theme-muted-hover" />
+          {#each socialLinks as link (link.link)}
+            <SocialLink class="text-theme-body hover:text-theme-muted-hover" {link} />
           {/each}
         </div>
       </div>
@@ -92,15 +95,22 @@
         <div>
           <h3 class="text-theme-heading text-sm font-semibold leading-6">{t("common", "hitta")}</h3>
           <ul class="mt-6 w-full space-y-4">
-            <li>
-              {#if location}
+            {#if location}
+              <li>
                 <SocialLink
-                  link={location}
                   class="text-theme-muted hover:text-theme-muted-hover flex gap-x-4 text-sm leading-6 xl:-ml-10"
-                  onlyIcon={false}
-                />
-              {/if}
-            </li>
+                  link={location}
+                  onlyIcon={false} />
+              </li>
+            {/if}
+            {#if location2}
+              <li>
+                <SocialLink
+                  class="text-theme-muted hover:text-theme-muted-hover flex gap-x-4 text-sm leading-6 xl:-ml-10"
+                  link={location2}
+                  onlyIcon={false} />
+              </li>
+            {/if}
           </ul>
         </div>
         <div>
@@ -108,14 +118,13 @@
             {t("common", "contact")}
           </h3>
           <ul class="mt-6 space-y-4">
-            {#each [email, phone] as link}
+            {#each [email, phone] as link (link?.link || link)}
               <li>
                 {#if link}
                   <SocialLink
-                    {link}
                     class="text-theme-muted hover:text-theme-muted-hover flex gap-x-4 text-sm leading-6 xl:-ml-10"
-                    onlyIcon={false}
-                  />
+                    {link}
+                    onlyIcon={false} />
                 {/if}
               </li>
             {/each}
@@ -126,16 +135,15 @@
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div></div>
       <div class="col-start-2 mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0 xl:grid-cols-4">
-        {#each linksWithCategory as outerLinks}
-          {#each Object.entries(outerLinks) as [title, links]}
+        {#each linksWithCategory as outerLinks (JSON.stringify(outerLinks))}
+          {#each Object.entries(outerLinks) as [title, links] (title)}
             <div class="mt-0">
               <h3 class="text-theme-body text-sm font-semibold leading-6">{title}</h3>
               <ul class="mt-6 space-y-4">
-                {#each toLinks(links) as [href, linkTitle]}
+                {#each toLinks(links) as [href, linkTitle] (href)}
                   <li>
-                    <a {href} class="text-theme-muted hover:text-theme-muted-hover text-sm"
-                      >{linkTitle}</a
-                    >
+                    <a class="text-theme-muted hover:text-theme-muted-hover text-sm" {href}
+                      >{linkTitle}</a>
                   </li>
                 {/each}
               </ul>

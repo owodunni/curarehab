@@ -5,7 +5,7 @@ export const hem: HemTranslations = {
   description: "A website for Cura Rehab",
   titleParagraph: "Get rid of pain and rehabilitate injuries",
   subtitleParagraph:
-    "<bWelcome to CuraRehab Linköping</b> - With expertise and individually tailored treatments, we help you towards a pain-free and active life.",
+    "<b>Welcome to CuraRehab Linköping</b> - With expertise and individually tailored treatments, we help you towards a pain-free and active life.",
   readMore: "Read more",
   boka: "Book your appointment",
   naprapathyTitle: "Naprapathy - Pain relief for muscles and joints",
@@ -34,5 +34,6 @@ export const hem: HemTranslations = {
     "We assist you in finding the right exercises and provide you with a personalized exercise program that suits your daily life and lifestyle for the best results.",
   behandlingUppföljningTitle: "Follow-Up",
   behandlingUppföljningParagraph:
-    "Regular follow-up is crucial to ensure you receive the care you need. Together, we keep you on the right path to prevent a recurrence of issues. We are here for you every step of the way."
+    "Regular follow-up is crucial to ensure you receive the care you need. Together, we keep you on the right path to prevent a recurrence of issues. We are here for you every step of the way.",
+  together: "CuraRehab och Naprapat Service - Two clinics with the same passion.",
 };

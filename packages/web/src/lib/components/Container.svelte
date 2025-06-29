@@ -1,7 +1,10 @@
 <script lang="ts">
-  let { class: clazz = "", children }: {
+  const {
+    class: clazz = "",
+    children,
+  }: {
     class?: string;
-    children?: import('svelte').Snippet;
+    children?: import("svelte").Snippet;
   } = $props();
 </script>
 

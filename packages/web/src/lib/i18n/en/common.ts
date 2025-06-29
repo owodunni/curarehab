@@ -26,6 +26,7 @@ export const common: CommonTranslations = {
   titleMassage: "Massage therapist",
   titleWeb: "Web lord",
   titleSpecFysio: "Spec. Physiotherapist",
+  titleNaprapatLight: "Naprapath",
   terapheutsTitle: "Our therapists",
   terapheutsText:
     "<b>Help for a pain-free everyday life</b> - As licensed therapists, we help you towards better health and well-being. We always tailor our treatments according to your needs and goals.",
@@ -52,5 +53,9 @@ export const common: CommonTranslations = {
   cookiePolicy: "cookie policy",
   skadekompassenTitle: "Injuries",
   skadekompassenText: "",
-  skadekompassen: "Injuries"
+  skadekompassen: "Injuries",
+  kliniker: "Clinics",
+  kliniken: "Clinic",
+  hittaHit: "Find us",
+  bokaTid: "Book a time",
 };

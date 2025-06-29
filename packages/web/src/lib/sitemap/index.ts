@@ -12,10 +12,13 @@ const createUrl = (
 ) => {
   let l: string | undefined = undefined;
   if (lastmod) {
-    if (typeof lastmod === "string") l = lastmod;
-    else if (lastmod.date_updated) l = toString(new Date(lastmod.date_updated));
-    else if ("date_created" in lastmod && lastmod.date_created)
+    if (typeof lastmod === "string") {
+      l = lastmod;
+    } else if (lastmod.date_updated) {
+      l = toString(new Date(lastmod.date_updated));
+    } else if ("date_created" in lastmod && lastmod.date_created) {
       l = toString(new Date(lastmod.date_created));
+    }
   }
   return `
       <url>
@@ -39,7 +42,8 @@ const urls = (data: SlugsQuery) =>
       ["/om/personuppgiftspolicy", data.sekretess],
       ["/om/cookies", data.cookies],
       ["/terapeuter", data.Terapeuter],
-      ["/hitta", data.hitta]
+      ["/hitta", data.hitta],
+      ["/kliniker", data.kliniker],
     ].map(([route, lastmod]) => createUrl(locale + route, lastmod ?? undefined))
   );
 
@@ -49,7 +53,9 @@ const terapheutsUrls = (terapheuts: SlugsQuery["terapeuter_directus_users"]): st
     const { latestDate } = urlsFromArticles(
       (updateDate) =>
         directus_users_id?.artiklar?.flatMap((a) => {
-          if (!a) return "";
+          if (!a) {
+            return "";
+          }
           const date = new Date(a.date_updated);
           updateDate(date);
           return "";
@@ -72,9 +78,11 @@ function urlsFromArticles(
 
   return {
     urls: urlGenerator((date) => {
-      if (!latestDate || date > latestDate) latestDate = date;
+      if (!latestDate || date > latestDate) {
+        latestDate = date;
+      }
     }),
-    latestDate
+    latestDate,
   };
 }
 
@@ -83,7 +91,9 @@ const skadekompassenUrls = (skadekompassen: SlugsQuery["skadekompassen"], dateUp
   const { latestDate } = urlsFromArticles(
     (updateDate) =>
       artiklar.flatMap((a) => {
-        if (!a) return "";
+        if (!a) {
+          return "";
+        }
         const date = new Date(a.date_updated ?? a.date_created);
         updateDate(date);
         return "";
@@ -136,17 +146,51 @@ ${urls.join("\n")}
 `.trim();
 };
 
+const klinikerUrls = (kliniker: SlugsQuery["Kliniker_list"]): string[] => {
+  return kliniker.flatMap(({ slug, klinik_page, boka, hitta, om }) => {
+    // Helper function to get the most recent date from a page
+    const getPageDate = (
+      page: { date_updated?: string; date_created?: string } | null | undefined
+    ) => {
+      if (!page) return null;
+      return new Date(page.date_updated ?? page.date_created ?? "");
+    };
+
+    // Get dates for each page
+    const mainPageDate = getPageDate(klinik_page);
+    const bokaPageDate = getPageDate(boka);
+    const hittaPageDate = getPageDate(hitta);
+    const omPageDate = getPageDate(om);
+
+    return localPrefix.flatMap((locale) => [
+      createUrl(`${locale}/kliniker/${slug}`, mainPageDate ? toString(mainPageDate) : undefined),
+      createUrl(
+        `${locale}/kliniker/${slug}/boka`,
+        bokaPageDate ? toString(bokaPageDate) : undefined
+      ),
+      createUrl(
+        `${locale}/kliniker/${slug}/hitta`,
+        hittaPageDate ? toString(hittaPageDate) : undefined
+      ),
+      createUrl(`${locale}/kliniker/${slug}/om`, omPageDate ? toString(omPageDate) : undefined),
+    ]);
+  });
+};
+
 export const createSitemap = async (client: Client, query: string) => {
   const data = await client
     .query<SlugsQuery>(query, {
       filter: { status: { _eq: "published" } },
-      f2: { status: { _eq: "published" } }
+      f2: { status: { _eq: "published" } },
     })
     .toPromise();
 
-  if (data.data === undefined) throw new Error("No graphql data", data.error);
+  if (data.data === undefined) {
+    throw new Error("No graphql data", data.error);
+  }
 
-  const { artiklar, terapeuter_directus_users, Behandlingar, skadekompassen } = data.data;
+  const { artiklar, terapeuter_directus_users, Behandlingar, skadekompassen, Kliniker_list } =
+    data.data;
 
   return `
     <?xml version="1.0" encoding="UTF-8" ?>
@@ -164,6 +208,9 @@ export const createSitemap = async (client: Client, query: string) => {
         .join("\n")
         .trim()}
       ${behandlingarUrls(Behandlingar || [], data.data.behandlingar?.date_updated).trim()}
+      ${klinikerUrls(Kliniker_list || [])
+        .join("\n")
+        .trim()}
       ${artiklarUrls(artiklar || []).trim()}
 ${skadekompassenUrls(skadekompassen, skadekompassen?.date_updated).trim()}
     </urlset>`.trim();

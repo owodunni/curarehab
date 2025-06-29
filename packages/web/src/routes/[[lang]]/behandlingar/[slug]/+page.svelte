@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { PageData } from "./$types";
   import ContentPage from "$lib/components/ContentPage.svelte";
-  let { data }: { data: PageData } = $props();
-  let { t, behandling } = $derived(data);
+  const { data }: { data: PageData } = $props();
+  const { t, behandling } = $derived(data);
 </script>
 
 <ContentPage
@@ -11,10 +11,9 @@
     seo: behandling.seo,
     seo_en: behandling.seo_en,
     text: behandling.behandling_text,
-    text_en: behandling.behandling_text_en
+    text_en: behandling.behandling_text_en,
   }}
-  {t}
->
+  {t}>
   <h3 class="text-skog-900 group-hover:text-skog-700 text-lg font-medium leading-8 tracking-tight">
     {data.params.lang === "en" ? behandling?.Title_en : behandling?.Title}
   </h3>

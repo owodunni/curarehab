@@ -15,12 +15,12 @@
 </script>
 
 <button
-  type="button"
   class={`${clazzButton} ${checked ? "bg-skog-700" : "bg-sand-200"}`}
-  role="switch"
   aria-checked={checked}
   aria-label="Toggle switch"
-  on:click={toggle}
->
-  <span aria-hidden="true" class={`${classSpan} ${checked ? "translate-x-5" : "translate-x-0"}`}></span>
+  role="switch"
+  type="button"
+  on:click={toggle}>
+  <span class={`${classSpan} ${checked ? "translate-x-5" : "translate-x-0"}`} aria-hidden="true"
+  ></span>
 </button>

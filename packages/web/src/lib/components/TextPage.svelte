@@ -8,21 +8,31 @@
   import Image from "./Image.svelte";
   import type { T } from "$lib/i18n/t";
   import SocialLink from "./SocialLink.svelte";
+  import type { Snippet } from "svelte";
 
-  let { data, t, children }: {
-    data: {
-      text?: { blocks?: Block[] } | null;
-      text_en?: { blocks?: Block[] } | null;
-      seo?: SeoMetaData | null;
-      seo_en?: SeoMetaData | null;
-      image?: ImageType | null;
-      links?: Link[] | null;
-    } | null | undefined;
+  const {
+    data,
+    t,
+    children,
+    extraChildren,
+  }: {
+    data:
+      | {
+          text?: { blocks?: Block[] } | null;
+          text_en?: { blocks?: Block[] } | null;
+          seo?: SeoMetaData | null;
+          seo_en?: SeoMetaData | null;
+          image?: ImageType | null;
+          links?: Link[] | null;
+        }
+      | null
+      | undefined;
     t: T;
-    children?: import('svelte').Snippet;
+    children?: Snippet;
+    extraChildren?: Snippet;
   } = $props();
 
-  let lang = $derived(t("common", "lang"));
+  const lang = $derived(t("common", "lang"));
 </script>
 
 {#if data}
@@ -31,34 +41,32 @@
   <Section extras="theme-sand-dark">
     <Container>
       <div class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
-        {#if data.image}
-          <div class="lg:pl-20">
-            <div class="max-w-xs px-2.5 lg:max-w-none">
+        <div class="lg:pl-20">
+          <div class="max-w-xs px-2.5 lg:max-w-none">
+            {#if data.image}
               <Image
-                srcPath={data.image?.filename_disk || ""}
+                class="aspect-square rounded-2xl  object-cover"
                 alt={data.image?.title || ""}
-                width={800}
                 height={800}
                 sizes="(min-width: 1024px) 32rem, 20rem"
-                class="aspect-square rounded-2xl  object-cover"
-              />
-              {#if children}
-                {@render children()}
-              {/if}
-              {#if data.links}
-                <ul class="border-1 mt-8 flex flex-col space-y-4 border-t pt-8">
-                  {#each data.links || [] as link}
-                    <SocialLink
-                      {link}
-                      onlyIcon={false}
-                      class="text-skog-700 hover:text-skog-900 flex gap-x-4 text-sm leading-6"
-                    />
-                  {/each}
-                </ul>
-              {/if}
-            </div>
+                srcPath={data.image?.filename_disk || ""}
+                width={800} />
+            {/if}
+            {@render children?.()}
+            {#if data.links}
+              <ul
+                class={`border-1 mt-8 flex flex-col space-y-4 ${data.image ? "border-t" : ""} pt-8`}>
+                {#each data.links || [] as link (link.link)}
+                  <SocialLink
+                    class="text-skog-700 hover:text-skog-900 flex gap-x-4 text-sm leading-6"
+                    {link}
+                    onlyIcon={false} />
+                {/each}
+              </ul>
+            {/if}
+            {@render extraChildren?.()}
           </div>
-        {/if}
+        </div>
         <div class="lg:order-first lg:row-span-2">
           <article class="prose">
             <BlocksRender blocks={(lang === "en" ? data.text_en : data.text)?.blocks || []} />

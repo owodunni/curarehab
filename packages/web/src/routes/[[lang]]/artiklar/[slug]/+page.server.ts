@@ -10,12 +10,13 @@ export const load: PageServerLoad = async (event) => {
       filter: {
         slug: { _eq: event.params.slug },
         language: { _eq: event.params.lang ?? "sv" },
-        ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } })
-      }
+        ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } }),
+      },
     })
     .toPromise();
 
-  if (!data.data?.artiklar || data.data?.artiklar.length === 0)
+  if (!data.data?.artiklar || data.data?.artiklar.length === 0) {
     throw error(404, { message: "Article not found" });
+  }
   return { article: data.data.artiklar[0] };
 };

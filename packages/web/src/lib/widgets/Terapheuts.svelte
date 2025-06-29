@@ -1,16 +1,22 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import type { L, T } from "$lib/i18n/t";
-  import type { TerapeutsMetaDataQuery } from "../../routes/[[lang]]/terapeuter/$types.gql";
-  import { getTitle } from "./util";
   import CardList from "$lib/components/CardList.svelte";
   import Card from "$lib/components/Card.svelte";
+  import type { User } from "$lib/components/types";
 
-  let { l, t, terapheuts }: {
+  const {
+    l,
+    t,
+    terapheuts,
+  }: {
     l: L;
     t: T;
-    terapheuts: TerapeutsMetaDataQuery["terapeuter_directus_users"];
+    terapheuts: User[];
   } = $props();
+
+  // Destructure for better change tracking & fewer redraws
+  const { params } = $derived(page);
 </script>
 
 <div class="mx-auto max-w-2xl lg:mx-0">
@@ -23,16 +29,15 @@
   </p>
 </div>
 <CardList>
-  {#each terapheuts as { directus_users_id }}
+  {#each terapheuts as { directus_users_id } (directus_users_id?.slug)}
     <Card
-      link={`${l("terapeuter")}/${directus_users_id?.slug}`}
       image={directus_users_id?.avatar}
-      t={t}
+      link={`${l("terapeuter")}/${directus_users_id?.slug}`}
       shape="circle"
-      text={$page.params.lang === "en"
+      {t}
+      text={params.lang === "en"
         ? directus_users_id?.profil_sammanfattning_en
-        : directus_users_id?.profil_sammanfattning}
-    >
+        : directus_users_id?.profil_sammanfattning}>
       {directus_users_id?.first_name}
       {directus_users_id?.last_name}
     </Card>

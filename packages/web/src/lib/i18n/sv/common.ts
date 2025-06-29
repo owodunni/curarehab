@@ -23,6 +23,7 @@ export const common: CommonTranslations = {
   contact: "Kontakt",
   titleFysio: "Leg. Fysioterapeut",
   titleNaprapat: "Leg. Naprapat",
+  titleNaprapatLight: "Naprapat",
   titleMassage: "Massageterapeut",
   titleWeb: "Webansvarig",
   titleSpecFysio: "Leg. Specialistfysioterapeut",
@@ -53,5 +54,9 @@ export const common: CommonTranslations = {
   skadekompassenTitle: "Skadekompassen",
   skadekompassenText:
     "Lär dig mer om de vanligaste skadorna och besvären som vi behandlar. I våra artiklar ger vi dig mer information om dina besvär, så att du enklare kan förstå vad som orsakar dem.",
-  skadekompassen: "Skadekompassen"
+  skadekompassen: "Skadekompassen",
+  kliniker: "Kliniker",
+  kliniken: "Kliniken",
+  hittaHit: "Hitta hit",
+  bokaTid: "Boka tid",
 };

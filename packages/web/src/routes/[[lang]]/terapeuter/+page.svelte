@@ -4,15 +4,18 @@
   import type { PageData } from "./$types";
   import Section from "$lib/components/Section.svelte";
   import Seo from "$lib/components/Seo.svelte";
-  let { data }: { data: PageData } = $props();
+  import { userGuard } from "$lib/components/types";
+  const { data }: { data: PageData } = $props();
 </script>
 
 <Section>
   <Container>
-    <Terapheuts terapheuts={data?.data?.terapeuter_directus_users || []} l={data.l} t={data.t} />
+    <Terapheuts
+      l={data.l}
+      t={data.t}
+      terapheuts={data?.data?.terapeuter?.terapeuter?.filter(userGuard) || []} />
   </Container>
 </Section>
 
 <Seo
-  seo={data.params.lang === "en" ? data?.data?.Terapeuter?.seo_en : data?.data?.Terapeuter?.seo}
-/>
+  seo={data.params.lang === "en" ? data?.data?.Terapeuter?.seo_en : data?.data?.Terapeuter?.seo} />

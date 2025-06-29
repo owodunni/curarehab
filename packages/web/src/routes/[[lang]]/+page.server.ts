@@ -9,11 +9,11 @@ export const load: PageServerLoad = async (event) => {
     .query<ArticlesAndTerapeutsQuery>(query, {
       filter: {
         language: { _eq: event.params.lang ?? "sv" },
-        ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } })
+        ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } }),
       },
       filter2: {
-        ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } })
-      }
+        ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } }),
+      },
     })
     .toPromise();
 
@@ -29,10 +29,12 @@ export const load: PageServerLoad = async (event) => {
             banner: {
               link: banner?.Link as Link,
               text: banner?.Text ?? "",
-              title: banner?.Title ?? ""
-            }
-          })
-      }
-    }
+              title: banner?.Title ?? "",
+            },
+          }),
+      },
+    },
+    klinikerList: data.data?.Kliniker_list || [],
+    kliniker: data.data?.kliniker?.page,
   };
 };

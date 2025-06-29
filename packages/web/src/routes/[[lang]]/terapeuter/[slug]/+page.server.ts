@@ -9,18 +9,19 @@ export const load: PageServerLoad = async (event) => {
     .query<TerapeutsQuery>(query, {
       filter: {
         slug: {
-          _eq: event.params.slug
-        }
+          _eq: event.params.slug,
+        },
       },
       filter2: {
         language: { _eq: event.params.lang ?? "sv" },
-        ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } })
-      }
+        ...(PUBLIC_RUNTIME === "production" && { status: { _eq: "published" } }),
+      },
     })
     .toPromise();
 
   const user = data.data?.terapeuter_directus_users.filter((u) => u.directus_users_id);
-  if (!user || user.length === 0 || !user[0].directus_users_id)
+  if (!user || user.length === 0 || !user[0].directus_users_id) {
     throw error(404, { message: "User not found" });
+  }
   return { terapeut: user[0].directus_users_id };
 };

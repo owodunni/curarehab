@@ -5,5 +5,5 @@ export const artiklar: ArticleTranslations = {
   description: "Artiklar om rehab, smärta och mer",
   articlesTitle: "Våra artiklar",
   articlesText: "Läs våra artiklar om smärta och hur du blir av med den.",
-  readArticle: "Läs artikeln"
+  readArticle: "Läs artikeln",
 };

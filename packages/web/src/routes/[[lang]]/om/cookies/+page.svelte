@@ -3,10 +3,10 @@
   import TextPage from "$lib/components/TextPage.svelte";
   import ToggleButton from "$lib/components/ToggleButton.svelte";
   import { cookieSettings, type CookiePermissions, updateCookiePermissions } from "$lib/cookies";
-  let { data }: { data: PageData } = $props();
-  let { t } = $derived(data);
+  const { data }: { data: PageData } = $props();
+  const { t } = $derived(data);
 
-  let cookies = $derived<CookiePermissions>(
+  const cookies = $derived<CookiePermissions>(
     $cookieSettings.permission !== undefined
       ? $cookieSettings.cookiePermissions
       : { googleAds: false, googleAnalytics: false }
@@ -26,8 +26,7 @@
       <ToggleButton
         checked={cookies.googleAnalytics}
         on:toggle={(value) =>
-          updateCookiePermissions({ ...cookies, googleAnalytics: value.detail.toggle })}
-      />
+          updateCookiePermissions({ ...cookies, googleAnalytics: value.detail.toggle })} />
     </div>
     <div class="flex items-center justify-between">
       <div class="flex flex-grow flex-col">
@@ -41,8 +40,7 @@
       <ToggleButton
         checked={cookies.googleAds}
         on:toggle={(value) =>
-          updateCookiePermissions({ ...cookies, googleAds: value.detail.toggle })}
-      />
+          updateCookiePermissions({ ...cookies, googleAds: value.detail.toggle })} />
     </div>
   </div>
 </TextPage>

@@ -13,20 +13,19 @@
   {@html `<p>${block.data.text}</p>`}
 {:else if block.type === "nestedlist"}
   <ul>
-    {#each block.data.items as { content }}
+    {#each block.data.items as { content }, index (index)}
       <!-- eslint-disable-next-line svelte/no-at-html-tags -->
       <li>{@html content}</li>
     {/each}
   </ul>
 {:else if block.type === "image"}
   <Image
-    srcPath={`${block.data.file.url}.${block.data.file.extension}`}
-    loading="lazy"
-    width={block.data.file.width}
-    height={block.data.file.height}
-    alt={block.data.caption}
     class="rounded-2xl"
-  />
+    alt={block.data.caption}
+    height={block.data.file.height}
+    loading="lazy"
+    srcPath={`${block.data.file.url}.${block.data.file.extension}`}
+    width={block.data.file.width} />
 {:else if block.type === "quote"}
   <blockquote>
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
@@ -45,16 +44,16 @@
   <table>
     <thead>
       <tr>
-        {#each block.data.content[0] as header}
+        {#each block.data.content[0] as header, index (index)}
           <!-- eslint-disable-next-line svelte/no-at-html-tags -->
           <th>{@html header}</th>
         {/each}
       </tr>
     </thead>
     <tbody>
-      {#each block.data.content.slice(1) as row}
+      {#each block.data.content.slice(1) as row, rowIndex (rowIndex)}
         <tr>
-          {#each row as cell}
+          {#each row as cell, cellIndex (cellIndex)}
             <!-- eslint-disable-next-line svelte/no-at-html-tags -->
             <td>{@html cell}</td>
           {/each}

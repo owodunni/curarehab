@@ -15,7 +15,7 @@ describe("cookies", () => {
     // Use fake timers for deterministic behavior
     vi.useFakeTimers();
     // Set a fixed date for consistent testing
-    vi.setSystemTime(new Date('2024-01-01T12:00:00.000Z'));
+    vi.setSystemTime(new Date("2024-01-01T12:00:00.000Z"));
 
     // Reset store to initial state
     cookieSettings.set({ permission: undefined });
@@ -36,8 +36,11 @@ describe("cookies", () => {
     const cookiesAfterTrue = get(cookieSettings);
     expect(cookiesAfterTrue.permission).toBe(true);
     if (cookiesAfterTrue.permission !== undefined) {
-      expect(isExpectedTimestamp(cookiesAfterTrue.updated, '2024-01-01T12:00:00.000Z')).toBe(true);
-      expect(cookiesAfterTrue.cookiePermissions).toEqual({ googleAnalytics: true, googleAds: false });
+      expect(isExpectedTimestamp(cookiesAfterTrue.updated, "2024-01-01T12:00:00.000Z")).toBe(true);
+      expect(cookiesAfterTrue.cookiePermissions).toEqual({
+        googleAnalytics: true,
+        googleAds: false,
+      });
     }
 
     // Advance time by 1 second for the next update
@@ -50,7 +53,10 @@ describe("cookies", () => {
     expect(cookiesAfterUpdate.permission).toBe(true); // Still true because googleAds is true
     if (cookiesAfterUpdate.permission !== undefined && cookiesAfterTrue.permission !== undefined) {
       expect(lessThanDate(cookiesAfterTrue.updated, cookiesAfterUpdate.updated)).toBe(true);
-      expect(cookiesAfterUpdate.cookiePermissions).toEqual({ googleAnalytics: false, googleAds: true });
+      expect(cookiesAfterUpdate.cookiePermissions).toEqual({
+        googleAnalytics: false,
+        googleAds: true,
+      });
     }
 
     // Test setting all permissions to false
@@ -58,7 +64,10 @@ describe("cookies", () => {
     const cookiesAfterFalse = get(cookieSettings);
     expect(cookiesAfterFalse.permission).toBe(false);
     if (cookiesAfterFalse.permission !== undefined) {
-      expect(cookiesAfterFalse.cookiePermissions).toEqual({ googleAnalytics: false, googleAds: false });
+      expect(cookiesAfterFalse.cookiePermissions).toEqual({
+        googleAnalytics: false,
+        googleAds: false,
+      });
     }
   });
 });

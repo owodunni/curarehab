@@ -15,7 +15,7 @@ export const load: LayoutServerLoad = async (event) => {
   async function loadData(locale: Locale, route: Route) {
     return Promise.all([
       loadTranslations(locale, route as Route),
-      event.locals.client.query<WidgetsQuery>(query, []).toPromise()
+      event.locals.client.query<WidgetsQuery>(query, []).toPromise(),
     ] as const);
   }
 
@@ -24,15 +24,23 @@ export const load: LayoutServerLoad = async (event) => {
     const { lang } = event.params;
 
     const localeExists = locales.find((l) => l === lang);
-    if (lang && !localeExists) return ["sv", "/"];
+    if (lang && !localeExists) {
+      return ["sv", "/"];
+    }
 
     const locale: Locale = localeExists || defaultLocale;
     const route = ((): string => {
-      if (!lang) return pathname;
-      else if (pathname === `/${lang}`) return "/";
-      else return pathname.replace(`/${lang}`, "");
+      if (!lang) {
+        return pathname;
+      } else if (pathname === `/${lang}`) {
+        return "/";
+      } else {
+        return pathname.replace(`/${lang}`, "");
+      }
     })();
-    if (localeExists === defaultLocale) throw redirect(308, route);
+    if (localeExists === defaultLocale) {
+      throw redirect(308, route);
+    }
 
     return [locale, route as Route];
   }
@@ -44,6 +52,6 @@ export const load: LayoutServerLoad = async (event) => {
 
   return {
     translations,
-    widgets: widgets.data
+    widgets: widgets.data,
   };
 };

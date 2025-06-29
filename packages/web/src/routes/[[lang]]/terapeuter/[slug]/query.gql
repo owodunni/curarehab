@@ -39,6 +39,21 @@ query Terapeuts($filter: directus_users_filter, $filter2: artiklar_filter) {
           display_link
         }
       }
+      kliniker {
+        Kliniker_list_id {
+          slug
+          klinik_page {
+            title
+            title_en
+            description
+            description_en
+            omslagsbild {
+              title
+              filename_disk
+            }
+          }
+        }
+      }
       artiklar(filter: $filter2) {
         date_updated
         date_created

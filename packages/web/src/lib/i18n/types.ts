@@ -9,7 +9,8 @@ export type Page =
   | "hitta"
   | "terapeuter"
   | "skadekompassen"
-  | "boka";
+  | "boka"
+  | "kliniker";
 export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
@@ -36,6 +37,7 @@ export type CommonTranslations = {
   contact: string;
   titleFysio: string;
   titleNaprapat: string;
+  titleNaprapatLight: string;
   titleMassage: string;
   titleWeb: string;
   titleSpecFysio: string;
@@ -61,6 +63,10 @@ export type CommonTranslations = {
   cookieBannerAcceptButton: string;
   cookieBannerRejectButton: string;
   cookiePolicy: string;
+  kliniker: string;
+  kliniken: string;
+  hittaHit: string;
+  bokaTid: string;
 };
 
 export type HemTranslations = {
@@ -88,6 +94,7 @@ export type HemTranslations = {
   behandlingOvningarParagraph: string;
   behandlingUppföljningTitle: string;
   behandlingUppföljningParagraph: string;
+  together: string;
 };
 
 export type OmTranslations = {
@@ -106,6 +113,50 @@ export type ArticleTranslations = {
 export type BokaTranslations = {
   title: string;
   description: string;
+  // New multi-clinic content
+  clinicsTitle: string;
+  clinicsDescription: string;
+  visitTitle: string;
+  visitDescription: string;
+  // Clinic list component
+  bookAppointment: string;
+  learnMore: string;
+  viewClinic: string;
+};
+
+export type KlinikerTranslations = {
+  // Overview page
+  title: string;
+  description: string;
+  clinicsTitle: string;
+  clinicsDescription: string;
+
+  // Individual clinic pages
+  clinicTitle: string;
+  clinicDescription: string;
+  bokaTitle: string;
+  bokaDescription: string;
+  hittaTitle: string;
+  hittaDescription: string;
+  omTitle: string;
+  omDescription: string;
+
+  // Clinic-specific booking page
+  bookingTitle: string;
+  bookingDescription: string;
+
+  // Clinic-specific directions page
+  directionsTitle: string;
+  directionsDescription: string;
+
+  // Clinic-specific about page
+  aboutTitle: string;
+  aboutDescription: string;
+
+  // Hero section for individual clinic pages
+  heroTitle: string;
+  heroBookButton: string;
+  heroLearnMore: string;
 };
 
 export type FindTranslations = {
@@ -157,6 +208,7 @@ export type TranslationsByGroup = {
   cookies: CookiesTranslations;
   skadekompassen: SkadekompassenTranslations;
   boka: BokaTranslations;
+  kliniker: KlinikerTranslations;
 };
 
 export type Translations =
@@ -170,4 +222,5 @@ export type Translations =
   | keyof CookiesTranslations
   | keyof SkadekompassenTranslations
   | keyof TreatmentsTranslations
-  | keyof BokaTranslations;
+  | keyof BokaTranslations
+  | keyof KlinikerTranslations;

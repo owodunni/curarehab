@@ -13,20 +13,24 @@
     user: PageData["article"]["user_created"] | PageData["article"]["user_updated"],
     language: PageData["article"]["language"]
   ): [Person] | [] {
-    if (!user || !language) return [];
-    if (user.slug === "admin-user") return [];
+    if (!user || !language) {
+      return [];
+    }
+    if (user.slug === "admin-user") {
+      return [];
+    }
     return [
       {
         "@type": "Person",
         name: `${user.first_name} ${user.last_name}`,
         ...(user.email && { email: user.email }),
-        url: `https://curarehab.se/${language === "sv" ? "" : "en/"}terapeuter/${user.slug}`
-      }
+        url: `https://curarehab.se/${language === "sv" ? "" : "en/"}terapeuter/${user.slug}`,
+      },
     ];
   }
 
-  let { data }: { data: PageData } = $props();
-  let { article } = $derived(data);
+  const { data }: { data: PageData } = $props();
+  const { article } = $derived(data);
 
   let ldJson = $state<WithContext<NewsArticle> | undefined>(undefined);
 
@@ -44,14 +48,14 @@
           url: "https://curarehab.se",
           email: "info@curarehab.se",
           name: "CuraRehab",
-          legalName: "CuraRehab Linköping AB"
+          legalName: "CuraRehab Linköping AB",
         },
         ...(article.sammanfattning && { description: article.sammanfattning }),
         author: [
           ...userToPerson(article.user_created, article.language),
           ...(article.user_created?.slug !== article.user_updated?.slug
             ? userToPerson(article.user_updated, article.language)
-            : [])
+            : []),
         ],
         url: `https://curarehab.se/${article.language === "sv" ? "" : "en/"}artiklar/${article.slug}`,
         image: {
@@ -60,11 +64,11 @@
             width: 800,
             height: 450,
             format: "jpg",
-            quality: 80
+            quality: 80,
           }),
           width: "800",
-          height: "450"
-        }
+          height: "450",
+        },
       };
     } else {
       ldJson = undefined;
@@ -72,15 +76,14 @@
   });
 </script>
 
-<Seo seo={article?.seo} {ldJson} />
+<Seo {ldJson} seo={article?.seo} />
 
 <Section extras="py-0 pb-20 sm:pb-32">
   <Container>
     <article>
       <header class="mb-8 flex w-full max-w-xl flex-col">
         <h1
-          class="mb-8 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl"
-        >
+          class="mb-8 text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
           {article?.title}
         </h1>
         <p class="text-theme-heading text-xl-summary md:text-2xl-summary">
@@ -88,20 +91,18 @@
           {@html article?.sammanfattning}
         </p>
         <TerapeutCard
-          terapeut={article?.user_created}
-          t={data.t}
-          l={data.l}
           class="border-1 border-b-sand-300 mb-8 border-t pl-3 pt-4"
-          time={article?.date_updated ?? article?.date_created ?? ""}
-        />
+          l={data.l}
+          t={data.t}
+          terapeut={article?.user_created}
+          time={article?.date_updated ?? article?.date_created ?? ""} />
         <div class="relative mb-8">
           <Image
-            srcPath={article?.omslagsbild?.filename_disk ?? ""}
-            width={800}
-            height={450}
-            alt={article?.omslagsbild?.title || ""}
             class="aspect-[16/9] rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-          />
+            alt={article?.omslagsbild?.title || ""}
+            height={450}
+            srcPath={article?.omslagsbild?.filename_disk ?? ""}
+            width={800} />
         </div>
       </header>
       <div class="prose">

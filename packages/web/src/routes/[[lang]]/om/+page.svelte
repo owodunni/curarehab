@@ -4,12 +4,18 @@
   import Container from "$lib/components/Container.svelte";
   import Image from "$lib/components/Image.svelte";
   import Seo from "$lib/components/Seo.svelte";
-  import { getTitle } from "$lib/widgets/util";
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
-  let { data }: { data: PageData } = $props();
-  let { t, l } = $derived(data);
-  let lang = $derived(data.params.lang);
-  let om = $derived(data?.data?.om ?? undefined);
+  import ImageList from "$lib/components/ImageList.svelte";
+  import { userToImageType } from "$lib/components/util";
+  import { userGuard } from "$lib/components/types";
+
+  const { data }: { data: PageData } = $props();
+  const { t, l } = $derived(data);
+  const lang = $derived(data.params.lang);
+  const om = $derived(data?.data?.om ?? undefined);
+  const users = $derived(
+    userToImageType(data?.data?.terapeuter?.terapeuter?.filter(userGuard), t, l)
+  );
 </script>
 
 {#if om}
@@ -18,55 +24,24 @@
   <Section>
     <Container>
       <div
-        class="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2"
-      >
+        class="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
         <div class="mx-auto lg:pt-20">
           <div class="lg:max-w-lg">
             <Image
-              srcPath={om.omslags_bild?.filename_disk || ""}
-              alt={om.omslags_bild?.title || ""}
-              width={800}
-              height={800}
               class="h-full w-full rounded-2xl object-cover"
-            />
+              alt={om.omslags_bild?.title || ""}
+              height={800}
+              srcPath={om.omslags_bild?.filename_disk || ""}
+              width={800} />
           </div>
         </div>
         <div>
           <div
             class="prose text-theme-body hyphens-auto text-base leading-7"
-            lang={t("common", "lang")}
-          >
+            lang={t("common", "lang")}>
             <BlocksRender blocks={(lang === "en" ? om.text_en : om.text)?.blocks || []} />
           </div>
-          <ul
-            class="border-theme-div mt-10 grid grid-cols-2 gap-8 border-t pt-10 text-center sm:grid-cols-3"
-          >
-            {#if data?.data?.terapeuter_directus_users}
-              {#each data?.data?.terapeuter_directus_users || [] as { directus_users_id }}
-                <li>
-                  <a href={`${l("terapeuter")}/${directus_users_id?.slug}`} class="group">
-                    <Image
-                      srcPath={directus_users_id?.avatar?.filename_disk || ""}
-                      alt={directus_users_id?.avatar?.title || ""}
-                      width={400}
-                      height={400}
-                      class="mx-auto h-24 w-24 rounded-full"
-                    />
-
-                    <h3
-                      class="text-theme-heading group-hover:text-theme-muted-hover mt-6 text-base font-medium leading-7 tracking-tight"
-                    >
-                      {directus_users_id?.first_name}
-                      {directus_users_id?.last_name}
-                    </h3>
-                    <p class="text-theme-muted text-sm leading-6">
-                      {getTitle(directus_users_id?.work_title || "", t)}
-                    </p>
-                  </a>
-                </li>
-              {/each}
-            {/if}
-          </ul>
+          <ImageList images={users} />
         </div>
       </div>
     </Container>

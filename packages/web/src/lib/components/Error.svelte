@@ -10,8 +10,7 @@
 </script>
 
 <main
-  class="mx-auto flex w-full max-w-7xl flex-auto flex-col justify-center px-6 py-24 sm:py-64 lg:px-8"
->
+  class="mx-auto flex w-full max-w-7xl flex-auto flex-col justify-center px-6 py-24 sm:py-64 lg:px-8">
   <p class="text-primary-500 text-base font-semibold leading-8">{status}</p>
   <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
     {t("common", "errorTitle", { page: placeholders.page })}
@@ -20,9 +19,8 @@
     {t("common", "errorSubtitle", { resource: placeholders.resource })}
   </p>
   <div class="mt-10">
-    <a href={l(page)} class="text-primary-500 text-sm font-semibold leading-6"
+    <a class="text-primary-500 text-sm font-semibold leading-6" href={l(page)}
       ><span aria-hidden="true">&larr;</span>
-      {t("common", "errorHome", { backTo: placeholders.backTo })}</a
-    >
+      {t("common", "errorHome", { backTo: placeholders.backTo })}</a>
   </div>
 </main>

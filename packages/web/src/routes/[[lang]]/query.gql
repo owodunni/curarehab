@@ -1,4 +1,7 @@
-query ArticlesAndTerapeuts($filter: artiklar_filter, $filter2: Behandlingar_filter) {
+query ArticlesAndTerapeuts(
+  $filter: artiklar_filter
+  $filter2: Behandlingar_filter
+) {
   Behandlingar(filter: $filter2) {
     date_updated
     date_created
@@ -18,20 +21,27 @@ query ArticlesAndTerapeuts($filter: artiklar_filter, $filter2: Behandlingar_filt
     Title
     Title_en
   }
-  terapeuter_directus_users {
-    directus_users_id {
-      first_name
-      last_name
-      work_title
-      profil_sammanfattning_en
-      profil_sammanfattning
-      slug
-      avatar {
-        title
-        type
-        width
-        height
-        filename_disk
+  terapeuter {
+    terapeuter {
+      directus_users_id {
+        first_name
+        last_name
+        work_title
+        profil_sammanfattning_en
+        profil_sammanfattning
+        slug
+        kliniker {
+          Kliniker_list_id {
+            slug
+          }
+        }
+        avatar {
+          title
+          type
+          width
+          height
+          filename_disk
+        }
       }
     }
   }
@@ -96,6 +106,53 @@ query ArticlesAndTerapeuts($filter: artiklar_filter, $filter2: Behandlingar_filt
         link
         type
         display_link
+      }
+    }
+  }
+  kliniker {
+    id
+    page {
+      title
+      title_en
+      description
+      description_en
+      seo {
+        title
+        description
+        link_photo {
+          id
+          filename_disk
+          width
+          height
+        }
+      }
+      seo_en {
+        title
+        description
+        link_photo {
+          id
+          filename_disk
+          width
+          height
+        }
+      }
+    }
+  }
+  Kliniker_list {
+    id
+    slug
+    klinik_page {
+      id
+      title
+      title_en
+      description
+      description_en
+      omslagsbild {
+        id
+        title
+        filename_disk
+        width
+        height
       }
     }
   }

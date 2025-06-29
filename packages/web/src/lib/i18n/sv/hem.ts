@@ -5,7 +5,7 @@ export const hem: HemTranslations = {
   description: "En hemsida för Cura Rehab",
   titleParagraph: "Bli av med smärta och rehabilitera skador",
   subtitleParagraph:
-    "<b>Välkommen till CuraRehab Linköping</b> - Med spetskompetens och individuellt anpassade behandlingar hjälper vi dig mot ett smärtfritt och aktivt liv.",
+    "<b>Välkommen till CuraRehab Linköping</b> - Nu finns vi både i City och i Mjärdevi. Med specialistkompetens och individuellt anpassade behandlingar hjälper vi dig mot ett smärtfritt och aktivt liv.",
   readMore: "Läs mer",
   boka: "Boka din tid",
   naprapathyTitle: "Naprapati - Smärtlindring för muskler och leder",
@@ -34,5 +34,7 @@ export const hem: HemTranslations = {
     "Vi hjälper dig att hitta rätt övningar och ger dig ett personligt träningsprogram som passar in i din vardag och livsstil för bästa resultat.",
   behandlingUppföljningTitle: "Uppföljning",
   behandlingUppföljningParagraph:
-    "Regelbunden uppföljning är viktig för att säkerställa att du får den vård du behöver. Tillsammans håller vi dig på rätt väg för att undvika att besvären kommer tillbaka. Vi finns här för dig hela vägen."
+    "Regelbunden uppföljning är viktig för att säkerställa att du får den vård du behöver. Tillsammans håller vi dig på rätt väg för att undvika att besvären kommer tillbaka. Vi finns här för dig hela vägen.",
+  together:
+    "CuraRehab och Naprapat Service - Två kliniker med samma passion, tillsammans har vi bred kunskap och lång erfarenhet.",
 };

@@ -5,6 +5,6 @@
   export let blocks: Block[];
 </script>
 
-{#each blocks as block}
+{#each blocks as block, index (index)}
   <BlockRender {block} />
 {/each}

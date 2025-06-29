@@ -5,14 +5,25 @@ export const getTitle = (title: string | undefined, t: T) => {
   const _t = title?.toLowerCase();
   return t(
     "common",
-    _t === "naprapat" ? "titleNaprapat" : _t === "fyisoterapeut" ? "titleFysio" : _t === "specialistfysioterapeut" ? "titleSpecFysio" : "titleWeb"
+    _t === "naprapat"
+      ? "titleNaprapat"
+      : _t === "fyisoterapeut"
+        ? "titleFysio"
+        : _t === "specialistfysioterapeut"
+          ? "titleSpecFysio"
+          : _t === "naprapat-light"
+            ? "titleNaprapatLight"
+            : "titleWeb"
   );
 };
 
 export function getAsset(id: string | null | undefined, query?: string): string {
-  if (!id) return "";
-  return `${PUBLIC_ASSETS_URL}/assets/${id}${query ? `?${query}&quality=0.8&format=auto` : "?quality=0.8&format=auto"
-    }`;
+  if (!id) {
+    return "";
+  }
+  return `${PUBLIC_ASSETS_URL}/assets/${id}${
+    query ? `?${query}&quality=0.8&format=auto` : "?quality=0.8&format=auto"
+  }`;
 }
 
 export function getAsset2(
@@ -21,10 +32,12 @@ export function getAsset2(
     width,
     height,
     quality,
-    format
+    format,
   }: { width: number; height: number; quality: number; format: "png" | "jpg" | "avif" | "webp" }
 ): string {
-  if (!id) return "";
+  if (!id) {
+    return "";
+  }
   return `${PUBLIC_ASSETS_URL}${
     id.includes("/assets") ? "" : "/assets"
   }/${id}?width=${width}&height=${height}&quality=${quality}&format=${format}`;
