@@ -3,9 +3,9 @@ import type { HemTranslations } from "../types";
 export const hem: HemTranslations = {
   title: "Cura Rehab",
   description: "En hemsida för Cura Rehab",
-  titleParagraph: "Bli av med smärta och rehabilitera skador - Nu även i Mjärdevi!",
+  titleParagraph: "Bli av med smärta och rehabilitera skador",
   subtitleParagraph:
-    "<b>Välkommen till CuraRehab Linköping</b> - Nu finns vi både i City och i Mjärdevi. Med spetskompetens och individuellt anpassade behandlingar hjälper vi dig mot ett smärtfritt och aktivt liv.",
+    "<b>Välkommen till CuraRehab Linköping</b> - Nu finns vi både i City och i Mjärdevi. Med specialistkompetens och individuellt anpassade behandlingar hjälper vi dig mot ett smärtfritt och aktivt liv.",
   readMore: "Läs mer",
   boka: "Boka din tid",
   naprapathyTitle: "Naprapati - Smärtlindring för muskler och leder",
@@ -36,5 +36,5 @@ export const hem: HemTranslations = {
   behandlingUppföljningParagraph:
     "Regelbunden uppföljning är viktig för att säkerställa att du får den vård du behöver. Tillsammans håller vi dig på rätt väg för att undvika att besvären kommer tillbaka. Vi finns här för dig hela vägen.",
   together:
-    "CuraRehab och Naprapat Service - Två kliniker med samma passion, tillsammans har vi över 35 års erfarenhet.",
+    "CuraRehab och Naprapat Service - Två kliniker med samma passion, tillsammans har vi bred kunskap och lång erfarenhet.",
 };
