@@ -172,6 +172,7 @@ export default tseslint.config(
       "**/types.gql.ts",
       "**/proxy+*.ts",
       "**/dist/",
+      "**/NaprapatServiceLogo.svelte",
 
       // Tools
       ".unlighthouse*/",

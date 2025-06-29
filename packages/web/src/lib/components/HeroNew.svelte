@@ -4,6 +4,7 @@
   import { onMount } from "svelte";
   import Img from "./Image.svelte";
   import Logo from "./Logo.svelte";
+  import NaprapatServiceLogo from "./NaprapatServiceLogo.svelte";
 
   const { t, l, image }: { t: T; l: L; image: Image | undefined } = $props();
 
@@ -52,13 +53,8 @@
         {t("hem", "together")}
       </h2>
       <div class="flex w-full justify-center gap-x-8">
-        <img
-          class="max-h-12 object-contain"
-          alt="Transistor"
-          height="48"
-          src="/naprapat-service.jpg"
-          width="158" />
-        <Logo class="max-h-12 object-contain text-white" />
+        <NaprapatServiceLogo class="max-h-12 w-48 object-contain text-white" />
+        <Logo class="max-h-12 w-48 object-contain text-white" />
       </div>
     </div>
   </div>
