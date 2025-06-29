@@ -53,8 +53,11 @@
         {t("hem", "together")}
       </h2>
       <div class="flex w-full justify-center gap-x-8">
-        <NaprapatServiceLogo class="max-h-12 w-48 object-contain text-white" />
-        <Logo class="max-h-12 w-48 object-contain text-white" />
+        <a href="https://naprapat.se">
+          <NaprapatServiceLogo class="max-h-12 w-48 object-contain text-white" /></a>
+        <a href="/om">
+          <Logo class="max-h-12 w-48 object-contain text-white" />
+        </a>
       </div>
     </div>
   </div>
