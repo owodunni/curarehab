@@ -46,7 +46,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@urql/core": "^4.0.8",
+    "@urql/core": "^5.2.0",
     "toucan-js": "4.1.1"
   }
 }
