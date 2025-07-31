@@ -31,7 +31,11 @@
     {/snippet}
     {#snippet extra()}
       <ImageList
-        images={images.filter((image) => image.clinicSlug.some((slug) => slug === clinic.slug))} />
+        images={images.filter((image) => {
+          // eslint-disable-next-line no-console
+          console.log(image);
+          image.clinicSlug.some((slug) => slug === clinic.slug);
+        })} />
     {/snippet}
     <Card
       {buttons}
