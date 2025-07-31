@@ -11,7 +11,7 @@ const toucan = (() => {
   return () => {
     if (!instance) {
       instance = new Toucan({
-        dsn: "https://90483a7b8bc7e5ba40788d37ce4c5800@o4504931376758784.ingest.de.sentry.io/4509536456867840",
+        dsn: "https://90483a7b8bc7e5ba40788d37ce4c5800@o4504931376758784.ingest.us.sentry.io/4509536456867840",
       });
     }
     return instance;
