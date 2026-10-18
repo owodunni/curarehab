@@ -9,13 +9,21 @@
     l,
     t,
     treatments,
-  }: { l: L; t: T; treatments: ArticlesAndTerapeutsQuery["Behandlingar"] } = $props();
+    headingLevel = "h2",
+  }: {
+    l: L;
+    t: T;
+    treatments: ArticlesAndTerapeutsQuery["Behandlingar"];
+    headingLevel?: "h1" | "h2";
+  } = $props();
 </script>
 
 <div class="mx-auto max-w-2xl lg:mx-0">
-  <h2 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
+  <svelte:element
+    this={headingLevel}
+    class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
     {t("common", "treatmentsTitle")}
-  </h2>
+  </svelte:element>
   <p class="text-theme-body mt-6 text-lg">
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html t("common", "treatmentsText")}

@@ -1,56 +1,71 @@
 <script lang="ts">
+  import { page } from "$app/state";
   import type { SeoMetaData } from "$lib/api";
   import { getAsset2 } from "$lib/widgets/util";
-  import type { NewsArticle, WebPage, WithContext } from "schema-dts";
+  import { organization, origin } from "$lib/constants";
+  import type { MedicalClinic, NewsArticle, WebPage, WithContext } from "schema-dts";
+
+  type LdJson = WithContext<WebPage> | WithContext<NewsArticle> | WithContext<MedicalClinic>;
 
   const {
     seo,
     ldJson = undefined,
   }: {
     seo: SeoMetaData | null | undefined;
-    ldJson?: WithContext<WebPage> | WithContext<NewsArticle> | null | undefined;
+    ldJson?: LdJson | null | undefined;
   } = $props();
 
-  let computedLdJson = $state<WithContext<WebPage> | WithContext<NewsArticle> | null | undefined>(
-    ldJson
+  // Articles and skadekompassen only exist in one language, so they get no hreflang alternates.
+  const hasTranslation = $derived(
+    !page.url.pathname.replace(/^\/en(?=\/|$)/, "").match(/^\/(artiklar|skadekompassen)(\/|$)/)
   );
 
-  $effect(() => {
-    if (!ldJson && seo) {
-      computedLdJson = {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        ...(seo.title && { name: seo.title }),
-        ...(seo.description && { description: seo.description }),
-        ...(seo.link_photo &&
-          seo.link_photo.filename_disk && {
-            image: {
-              "@type": "ImageObject",
-              url: getAsset2(seo.link_photo.filename_disk, {
-                width: 800,
-                height: 450,
-                format: "jpg",
-                quality: 80,
-              }),
-              width: "800",
-              height: "450",
-            },
-          }),
-        publisher: {
-          "@type": "Organization",
-          url: "https://curarehab.se",
-          email: "info@curarehab.se",
-          name: "CuraRehab",
-          legalName: "CuraRehab Linköping AB",
-        },
-      };
-    } else {
-      computedLdJson = ldJson;
+  const svPath = $derived(page.url.pathname.replace(/^\/en(?=\/|$)/, "").replace(/\/$/, ""));
+  const canonical = $derived(`${origin}${page.url.pathname.replace(/\/$/, "")}`);
+  const alternates = $derived(
+    hasTranslation
+      ? [
+          { hreflang: "sv", href: `${origin}${svPath}` },
+          { hreflang: "en", href: `${origin}/en${svPath}` },
+          { hreflang: "x-default", href: `${origin}${svPath}` },
+        ]
+      : []
+  );
+
+  // Computed with $derived rather than $effect so that it is part of the prerendered HTML.
+  const computedLdJson = $derived.by((): LdJson | null | undefined => {
+    if (ldJson || !seo) {
+      return ldJson;
     }
+    return {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      ...(seo.title && { name: seo.title }),
+      ...(seo.description && { description: seo.description }),
+      ...(seo.link_photo &&
+        seo.link_photo.filename_disk && {
+          image: {
+            "@type": "ImageObject",
+            url: getAsset2(seo.link_photo.filename_disk, {
+              width: 800,
+              height: 450,
+              format: "jpg",
+              quality: 80,
+            }),
+            width: "800",
+            height: "450",
+          },
+        }),
+      publisher: organization,
+    };
   });
 </script>
 
 <svelte:head>
+  <link href={canonical} rel="canonical" />
+  {#each alternates as alternate (alternate.hreflang)}
+    <link href={alternate.href} hreflang={alternate.hreflang} rel="alternate" />
+  {/each}
   {#if seo}
     <title>{seo.title}</title>
     <meta name="description" content={seo.description} />
