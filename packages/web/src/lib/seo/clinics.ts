@@ -46,6 +46,6 @@ export const clinicLdJson = (
     hasMap: clinic.hasMap,
     telephone,
     email,
-    parentOrganization: { ...organization, "@type": "MedicalOrganization" },
+    parentOrganization: organization,
   };
 };
