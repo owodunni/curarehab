@@ -1,4 +1,4 @@
-import type { Organization } from "schema-dts";
+import type { MedicalOrganization } from "schema-dts";
 
 export const origin = "https://curarehab.se";
 export const email = "info@curarehab.se";
@@ -7,9 +7,9 @@ export const organizationName = "CuraRehab";
 export const legalName = "CuraRehab Linköping AB";
 
 export const organization = {
-  "@type": "Organization",
+  "@type": "MedicalOrganization",
   url: origin,
   email,
   name: organizationName,
   legalName,
-} satisfies Organization;
+} satisfies MedicalOrganization;
