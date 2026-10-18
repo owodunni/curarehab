@@ -2,6 +2,7 @@
   import { page } from "$app/state";
   import type { SeoMetaData } from "$lib/api";
   import { getAsset2 } from "$lib/widgets/util";
+  import { organization, origin } from "$lib/constants";
   import type { MedicalClinic, NewsArticle, WebPage, WithContext } from "schema-dts";
 
   type LdJson = WithContext<WebPage> | WithContext<NewsArticle> | WithContext<MedicalClinic>;
@@ -13,8 +14,6 @@
     seo: SeoMetaData | null | undefined;
     ldJson?: LdJson | null | undefined;
   } = $props();
-
-  const origin = "https://curarehab.se";
 
   // Articles and skadekompassen only exist in one language, so they get no hreflang alternates.
   const hasTranslation = $derived(
@@ -57,13 +56,7 @@
             height: "450",
           },
         }),
-      publisher: {
-        "@type": "Organization",
-        url: "https://curarehab.se",
-        email: "info@curarehab.se",
-        name: "CuraRehab",
-        legalName: "CuraRehab Linköping AB",
-      },
+      publisher: organization,
     };
   });
 </script>

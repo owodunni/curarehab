@@ -1,5 +1,6 @@
 import type { Client } from "@urql/core";
 import type { SlugsQuery } from "./$types.gql";
+import { origin } from "../constants";
 
 export const locales = ["en", "sv"];
 export const defaultLocale = "sv";
@@ -22,7 +23,7 @@ const createUrl = (
   }
   return `
       <url>
-        <loc>https://curarehab.se${route}</loc>
+        <loc>${origin}${route}</loc>
         ${l ? `<lastmod>${l}</lastmod>` : ""}
       </url>`.trim();
 };
