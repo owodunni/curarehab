@@ -1,9 +1,10 @@
 import type { MedicalClinic, PostalAddress, WithContext } from "schema-dts";
+import { email, organization, organizationName, origin, telephone } from "../constants";
 
 // Addresses are not stored in Directus, so they are kept here for the clinics' structured data.
 const clinics: Record<string, { name: string; address: PostalAddress; hasMap: string }> = {
   city: {
-    name: "CuraRehab City",
+    name: `${organizationName} City`,
     address: {
       "@type": "PostalAddress",
       streetAddress: "Drottninggatan 43N",
@@ -14,7 +15,7 @@ const clinics: Record<string, { name: string; address: PostalAddress; hasMap: st
     hasMap: "https://maps.app.goo.gl/3oE2VBnvFtgB6wyq5",
   },
   mjardevi: {
-    name: "CuraRehab Mjärdevi",
+    name: `${organizationName} Mjärdevi`,
     address: {
       "@type": "PostalAddress",
       streetAddress: "Teknikringen 7",
@@ -36,20 +37,15 @@ export const clinicLdJson = (
   return {
     "@context": "https://schema.org",
     "@type": "MedicalClinic",
-    "@id": `https://curarehab.se/kliniker/${slug}#clinic`,
+    "@id": `${origin}/kliniker/${slug}#clinic`,
     name: clinic.name,
-    url: `https://curarehab.se/kliniker/${slug}`,
+    url: `${origin}/kliniker/${slug}`,
     ...(description && { description }),
     ...(image && { image }),
     address: clinic.address,
     hasMap: clinic.hasMap,
-    telephone: "+46707666676",
-    email: "info@curarehab.se",
-    parentOrganization: {
-      "@type": "MedicalOrganization",
-      name: "CuraRehab",
-      legalName: "CuraRehab Linköping AB",
-      url: "https://curarehab.se",
-    },
+    telephone,
+    email,
+    parentOrganization: { ...organization, "@type": "MedicalOrganization" },
   };
 };
