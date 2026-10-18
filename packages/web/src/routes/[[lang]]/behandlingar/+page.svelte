@@ -10,7 +10,7 @@
 
 <Section>
   <Container>
-    <Treatments {l} {t} treatments={data?.data?.Behandlingar || []} />
+    <Treatments headingLevel="h1" {l} {t} treatments={data?.data?.Behandlingar || []} />
   </Container>
 </Section>
 
