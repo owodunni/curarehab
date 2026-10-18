@@ -6,11 +6,13 @@ query Slugs($filter: artiklar_filter, $f2: Behandlingar_filter) {
     language
     status
   }
-  terapeuter_directus_users {
-    directus_users_id {
-      slug
-      artiklar(filter: $filter) {
-        date_updated
+  terapeuter {
+    terapeuter {
+      directus_users_id {
+        slug
+        artiklar(filter: $filter) {
+          date_updated
+        }
       }
     }
   }

@@ -18,6 +18,7 @@
 <Section>
   <Clinics
     description={localized(data.kliniker?.description, data.kliniker?.description_en) || ""}
+    headingLevel="h1"
     images={users}
     klinikerList={data.klinikerList}
     {l}

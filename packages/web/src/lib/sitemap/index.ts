@@ -48,8 +48,15 @@ const urls = (data: SlugsQuery) =>
   );
 
 // TODO(#165): Change datastructure of terapeuter to get date_updated
-const terapheutsUrls = (terapheuts: SlugsQuery["terapeuter_directus_users"]): string[] => {
-  return terapheuts.flatMap(({ directus_users_id }) => {
+type Terapheuts = NonNullable<NonNullable<SlugsQuery["terapeuter"]>["terapeuter"]>;
+
+// Uses the same list as the /terapeuter page, so therapists who have left are not included.
+const terapheutsUrls = (terapheuts: Terapheuts): string[] => {
+  return terapheuts.flatMap((terapheut) => {
+    const directus_users_id = terapheut?.directus_users_id;
+    if (!directus_users_id?.slug) {
+      return [];
+    }
     const { latestDate } = urlsFromArticles(
       (updateDate) =>
         directus_users_id?.artiklar?.flatMap((a) => {
@@ -189,22 +196,21 @@ export const createSitemap = async (client: Client, query: string) => {
     throw new Error("No graphql data", data.error);
   }
 
-  const { artiklar, terapeuter_directus_users, Behandlingar, skadekompassen, Kliniker_list } =
-    data.data;
+  const { artiklar, terapeuter, Behandlingar, skadekompassen, Kliniker_list } = data.data;
 
   return `
     <?xml version="1.0" encoding="UTF-8" ?>
     <urlset
-      xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xhtml="https://www.w3.org/1999/xhtml"
-      xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
-      xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
-      xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
-      xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xhtml="http://www.w3.org/1999/xhtml"
+      xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+      xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+      xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+      xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
     >
       ${seUrls.join("\n")}
       ${urls(data.data).join("\n")}
-      ${terapheutsUrls(terapeuter_directus_users || [])
+      ${terapheutsUrls(terapeuter?.terapeuter || [])
         .join("\n")
         .trim()}
       ${behandlingarUrls(Behandlingar || [], data.data.behandlingar?.date_updated).trim()}
