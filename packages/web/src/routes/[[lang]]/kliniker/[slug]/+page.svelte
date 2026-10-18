@@ -7,13 +7,29 @@
   import BlocksRender from "$lib/components/EditorJs/BlocksRender.svelte";
   import Terapheuts from "$lib/widgets/Terapheuts.svelte";
   import { userGuard } from "$lib/components/types";
+  import { clinicLdJson } from "$lib/seo/clinics";
+  import { getAsset2 } from "$lib/widgets/util";
 
   const { data } = $props();
   const { t, localized, l } = $derived(data);
   const { clinic, slug } = $derived(data);
+
+  const ldJson = $derived(
+    clinicLdJson(slug, {
+      description: localized(clinic?.seo, clinic?.seo_en)?.description,
+      image: clinic?.omslagsbild?.filename_disk
+        ? getAsset2(clinic.omslagsbild.filename_disk, {
+            width: 1200,
+            height: 800,
+            quality: 80,
+            format: "jpg",
+          })
+        : undefined,
+    })
+  );
 </script>
 
-<Seo seo={localized(clinic?.seo, clinic?.seo_en)} />
+<Seo {ldJson} seo={localized(clinic?.seo, clinic?.seo_en)} />
 
 <!-- Hero Section -->
 <HeroComponent image={clinic?.omslagsbild || undefined}>
