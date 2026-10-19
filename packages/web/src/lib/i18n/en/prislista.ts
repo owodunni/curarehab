@@ -7,10 +7,6 @@ export const prislista: PrislistaTranslations = {
   heading: "Price list",
   intro:
     "Here you will find the prices for all our treatments. Click a treatment to read more about it.",
-  behandling: "Treatment",
-  tid: "Time",
-  pris: "Price",
-  minutes: "{minutes} min",
   currency: "SEK {price}",
   vatExemptTitle: "Healthcare treatments",
   vatExemptNote: "VAT exempt, as healthcare",
