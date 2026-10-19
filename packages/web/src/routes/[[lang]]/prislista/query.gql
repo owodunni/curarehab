@@ -1,0 +1,8 @@
+query Prislista($filter: Behandlingar_filter) {
+  Behandlingar(filter: $filter) {
+    Slug
+    Title
+    Title_en
+    pris
+  }
+}

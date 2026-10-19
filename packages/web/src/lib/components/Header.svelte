@@ -22,6 +22,7 @@
 
   const links = $derived([
     "behandlingar",
+    "prislista",
     "hitta",
     "om",
     "kliniker",

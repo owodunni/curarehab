@@ -10,7 +10,8 @@ export type Page =
   | "terapeuter"
   | "skadekompassen"
   | "boka"
-  | "kliniker";
+  | "kliniker"
+  | "prislista";
 export type TranslationGroup = "common" | Page;
 
 export type CommonTranslations = {
@@ -67,6 +68,7 @@ export type CommonTranslations = {
   kliniken: string;
   hittaHit: string;
   bokaTid: string;
+  prislista: string;
 };
 
 export type HemTranslations = {
@@ -181,6 +183,18 @@ export type TreatmentsTranslations = {
   tid: string;
 };
 
+export type PrislistaTranslations = {
+  title: string;
+  description: string;
+  heading: string;
+  intro: string;
+  currency: string;
+  vatExemptTitle: string;
+  vatIncludedTitle: string;
+  vatIncludedNote: string;
+  readMore: string;
+};
+
 export type SkadekompassenTranslations = {
   title: string;
   description: string;
@@ -209,6 +223,7 @@ export type TranslationsByGroup = {
   skadekompassen: SkadekompassenTranslations;
   boka: BokaTranslations;
   kliniker: KlinikerTranslations;
+  prislista: PrislistaTranslations;
 };
 
 export type Translations =
@@ -223,4 +238,5 @@ export type Translations =
   | keyof SkadekompassenTranslations
   | keyof TreatmentsTranslations
   | keyof BokaTranslations
-  | keyof KlinikerTranslations;
+  | keyof KlinikerTranslations
+  | keyof PrislistaTranslations;
