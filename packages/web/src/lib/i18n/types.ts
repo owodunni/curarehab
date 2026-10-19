@@ -188,10 +188,6 @@ export type PrislistaTranslations = {
   description: string;
   heading: string;
   intro: string;
-  behandling: string;
-  tid: string;
-  pris: string;
-  minutes: string;
   currency: string;
   vatExemptTitle: string;
   vatExemptNote: string;

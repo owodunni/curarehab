@@ -20,8 +20,8 @@
 
   const treatments = $derived(
     (data?.data?.Behandlingar ?? [])
-      .flatMap(({ Slug, Title, Title_en, pris, tid }) =>
-        Slug && Title ? [{ Slug, Title, Title_en, pris, tid }] : []
+      .flatMap(({ Slug, Title, Title_en, pris }) =>
+        Slug && Title ? [{ Slug, Title, Title_en, pris }] : []
       )
       .sort((a, b) => (a.pris ?? 0) - (b.pris ?? 0) || a.Title.localeCompare(b.Title, "sv"))
   );
@@ -77,18 +77,11 @@
                       class="text-theme-heading text-base-medium group-hover:text-theme-muted-hover underline-offset-4 group-hover:underline">
                       {title}
                     </span>
-                    <span class="flex shrink-0 items-baseline gap-4 sm:gap-8">
-                      {#if treatment.tid}
-                        <span class="text-theme-muted text-sm">
-                          {t("prislista", "minutes", { minutes: String(treatment.tid) })}
-                        </span>
-                      {/if}
-                      {#if treatment.pris}
-                        <span class="text-theme-heading text-base-medium w-20 text-right">
-                          {formatPrice(treatment.pris)}
-                        </span>
-                      {/if}
-                    </span>
+                    {#if treatment.pris}
+                      <span class="text-theme-heading text-base-medium shrink-0 text-right">
+                        {formatPrice(treatment.pris)}
+                      </span>
+                    {/if}
                   </a>
                 </li>
               {/each}

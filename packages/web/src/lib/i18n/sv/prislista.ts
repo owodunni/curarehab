@@ -7,10 +7,6 @@ export const prislista: PrislistaTranslations = {
   heading: "Prislista",
   intro:
     "Här hittar du priserna för alla behandlingar hos oss. Klicka på en behandling för att läsa mer om den.",
-  behandling: "Behandling",
-  tid: "Tid",
-  pris: "Pris",
-  minutes: "{minutes} min",
   currency: "{price} kr",
   vatExemptTitle: "Vård och behandling",
   vatExemptNote: "Momsfritt, räknas som hälso- och sjukvård",

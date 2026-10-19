@@ -4,6 +4,5 @@ query Prislista($filter: Behandlingar_filter) {
     Title
     Title_en
     pris
-    tid
   }
 }
