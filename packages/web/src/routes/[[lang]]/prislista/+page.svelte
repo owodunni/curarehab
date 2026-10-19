@@ -51,51 +51,45 @@
 
 <Section>
   <Container>
-    <div class="mx-auto max-w-3xl">
-      <h1 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
-        {t("prislista", "heading")}
-      </h1>
-      <p class="text-theme-body mt-6 text-lg">{t("prislista", "intro")}</p>
+    <h1 class="text-theme-heading text-3xl font-bold tracking-tight sm:text-4xl">
+      {t("prislista", "heading")}
+    </h1>
+    <p class="text-theme-body mt-6 text-lg">{t("prislista", "intro")}</p>
 
-      {#each groups as group (group.title)}
-        {#if group.treatments.length > 0}
-          <div class="mt-12">
-            <div
-              class="border-theme-div flex flex-wrap items-baseline justify-between gap-x-4 border-b pb-3">
-              <h2 class="text-theme-heading text-xl font-semibold">{group.title}</h2>
-              {#if group.note}
-                <p class="text-theme-muted text-sm">{group.note}</p>
-              {/if}
-            </div>
-            <ul class="divide-theme-div divide-y">
-              {#each group.treatments as treatment (treatment.Slug)}
-                {@const title =
-                  lang === "en" ? treatment.Title_en || treatment.Title : treatment.Title}
-                <li>
-                  <a
-                    class="group flex items-center justify-between gap-4 py-4"
-                    aria-label={t("prislista", "readMore", { treatment: title })}
-                    href={`${l("behandlingar")}/${treatment.Slug}`}>
-                    <span
-                      class="text-theme-heading text-base-medium group-hover:text-theme-muted-hover underline-offset-4 group-hover:underline">
-                      {title}
-                    </span>
-                    {#if treatment.pris}
-                      <span class="text-theme-heading text-base-medium shrink-0 text-right">
-                        {formatPrice(treatment.pris)}
-                      </span>
-                    {/if}
-                  </a>
-                </li>
-              {/each}
-            </ul>
+    {#each groups as group (group.title)}
+      {#if group.treatments.length > 0}
+        <div class="mt-12">
+          <div
+            class="border-theme-div flex flex-wrap items-baseline justify-between gap-x-4 border-b pb-3">
+            <h2 class="text-theme-heading text-xl font-semibold">{group.title}</h2>
+            {#if group.note}
+              <p class="text-theme-muted text-sm">{group.note}</p>
+            {/if}
           </div>
-        {/if}
-      {/each}
-
-      <div class="mt-12">
-        <a class="btn variant-filled" href={t("common", "hanoLink")}>{t("prislista", "boka")}</a>
-      </div>
-    </div>
+          <ul class="divide-theme-div divide-y">
+            {#each group.treatments as treatment (treatment.Slug)}
+              {@const title =
+                lang === "en" ? treatment.Title_en || treatment.Title : treatment.Title}
+              <li>
+                <a
+                  class="group flex items-center justify-between gap-4 py-4"
+                  aria-label={t("prislista", "readMore", { treatment: title })}
+                  href={`${l("behandlingar")}/${treatment.Slug}`}>
+                  <span
+                    class="text-theme-heading text-base-medium group-hover:text-theme-muted-hover">
+                    {title}
+                  </span>
+                  {#if treatment.pris}
+                    <span class="text-theme-heading text-base-medium shrink-0 text-right">
+                      {formatPrice(treatment.pris)}
+                    </span>
+                  {/if}
+                </a>
+              </li>
+            {/each}
+          </ul>
+        </div>
+      {/if}
+    {/each}
   </Container>
 </Section>
