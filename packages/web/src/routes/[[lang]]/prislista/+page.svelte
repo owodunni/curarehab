@@ -30,7 +30,7 @@
   const groups = $derived([
     {
       title: t("prislista", "vatExemptTitle"),
-      note: t("prislista", "vatExemptNote"),
+      note: undefined,
       treatments: treatments.filter((tr) => !vatIncludedSlugs.includes(tr.Slug)),
     },
     {
@@ -63,7 +63,9 @@
             <div
               class="border-theme-div flex flex-wrap items-baseline justify-between gap-x-4 border-b pb-3">
               <h2 class="text-theme-heading text-xl font-semibold">{group.title}</h2>
-              <p class="text-theme-muted text-sm">{group.note}</p>
+              {#if group.note}
+                <p class="text-theme-muted text-sm">{group.note}</p>
+              {/if}
             </div>
             <ul class="divide-theme-div divide-y">
               {#each group.treatments as treatment (treatment.Slug)}

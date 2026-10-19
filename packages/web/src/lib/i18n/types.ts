@@ -190,7 +190,6 @@ export type PrislistaTranslations = {
   intro: string;
   currency: string;
   vatExemptTitle: string;
-  vatExemptNote: string;
   vatIncludedTitle: string;
   vatIncludedNote: string;
   readMore: string;
