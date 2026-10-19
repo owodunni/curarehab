@@ -193,7 +193,6 @@ export type PrislistaTranslations = {
   vatIncludedTitle: string;
   vatIncludedNote: string;
   readMore: string;
-  boka: string;
 };
 
 export type SkadekompassenTranslations = {

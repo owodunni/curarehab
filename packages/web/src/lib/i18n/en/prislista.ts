@@ -12,5 +12,4 @@ export const prislista: PrislistaTranslations = {
   vatIncludedTitle: "Other treatments",
   vatIncludedNote: "Prices include 25% VAT",
   readMore: "Read more about {treatment}",
-  boka: "Book a time",
 };
