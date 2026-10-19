@@ -10,7 +10,7 @@ export const prislista: PrislistaTranslations = {
   currency: "SEK {price}",
   vatExemptTitle: "Healthcare treatments",
   vatExemptNote: "VAT exempt, as healthcare",
-  vatIncludedTitle: "Massage and wellness",
+  vatIncludedTitle: "Other treatments",
   vatIncludedNote: "Prices include 25% VAT",
   readMore: "Read more about {treatment}",
   boka: "Book a time",

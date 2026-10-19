@@ -10,7 +10,7 @@ export const prislista: PrislistaTranslations = {
   currency: "{price} kr",
   vatExemptTitle: "Vård och behandling",
   vatExemptNote: "Momsfritt, räknas som hälso- och sjukvård",
-  vatIncludedTitle: "Massage och friskvård",
+  vatIncludedTitle: "Övriga behandlingar",
   vatIncludedNote: "Priserna är inklusive 25 % moms",
   readMore: "Läs mer om {treatment}",
   boka: "Boka tid",
