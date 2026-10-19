@@ -8,12 +8,13 @@
   const { l, t } = $derived(data);
   const lang = $derived(data.params.lang);
 
-  // Healthcare (naprapathy, physiotherapy, acupuncture, diagnostics) is VAT exempt in Sweden.
-  // Massage, wellness treatments and goods such as insoles are sold including 25% VAT.
+  // Healthcare (naprapathy, physiotherapy, diagnostics) is VAT exempt in Sweden.
+  // Massage, acupuncture, wellness treatments and goods such as insoles are sold including 25% VAT.
   // The CMS has no VAT field, so treatments are grouped by slug here.
   const vatIncludedSlugs = [
     "massage",
     "gravidmassage",
+    "medicinsk-akupunktur",
     "friskvardsbidrag-for-fysioterapi-eller-naprapati",
     "fotanalys-och-inlaeggssulor",
   ];
