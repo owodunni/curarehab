@@ -42,6 +42,7 @@
           type: "website",
         },
         ["behandlingar"],
+        ["prislista"],
         ["terapeuter"],
         ["kliniker"],
         ...(locale === "sv" ? [["skadekompassen"] as const satisfies [Page]] : []),

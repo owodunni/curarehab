@@ -45,6 +45,7 @@ const urls = (data: SlugsQuery) =>
       ["/terapeuter", data.Terapeuter],
       ["/hitta", data.hitta],
       ["/kliniker", data.kliniker],
+      ["/prislista", data.behandlingar],
     ].map(([route, lastmod]) => createUrl(locale + route, lastmod ?? undefined))
   );
 

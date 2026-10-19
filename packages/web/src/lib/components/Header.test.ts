@@ -53,6 +53,7 @@ describe("Header", () => {
       .filter(Boolean);
 
     expect(linkTexts).toContain("common.behandlingar");
+    expect(linkTexts).toContain("common.prislista");
     expect(linkTexts).toContain("common.hitta");
     expect(linkTexts).toContain("common.om");
     expect(linkTexts).toContain("common.skadekompassen");
@@ -72,6 +73,7 @@ describe("Header", () => {
       .filter(Boolean);
 
     expect(linkTexts).toContain("common.behandlingar");
+    expect(linkTexts).toContain("common.prislista");
     expect(linkTexts).toContain("common.hitta");
     expect(linkTexts).toContain("common.om");
     expect(linkTexts).not.toContain("common.skadekompassen");

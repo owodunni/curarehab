@@ -10,6 +10,7 @@ import type {
   KlinikerTranslations,
   OmTranslations,
   Page,
+  PrislistaTranslations,
   PrivacyTranslations,
   SkadekompassenTranslations,
   TerapheutTranslations,
@@ -54,6 +55,11 @@ export const createT = (translations: LoadedTranslations<TranslationGroup, Trans
     params?: NamedPlaceholder
   ): string;
   function r(group: "kliniker", key: keyof KlinikerTranslations, params?: NamedPlaceholder): string;
+  function r(
+    group: "prislista",
+    key: keyof PrislistaTranslations,
+    params?: NamedPlaceholder
+  ): string;
   function r(group: TranslationGroup, key: Translations, params?: NamedPlaceholder): string {
     return t(group, key, params);
   }
